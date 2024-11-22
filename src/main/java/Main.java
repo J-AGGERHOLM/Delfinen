@@ -1,6 +1,5 @@
-import domain_model.Person;
-import domain_model.SwimmingClub;
-import domain_model.Team;
+import Models.SwimmingClub;
+import Models.Team;
 
 import java.util.ArrayList;
 
