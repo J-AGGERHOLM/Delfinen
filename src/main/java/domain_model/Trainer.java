@@ -3,7 +3,7 @@ package domain_model;
 import java.time.LocalDate;
 
 public class Trainer extends Person {
-
+// private Hold hold; when we create the teams.
 
 
 
