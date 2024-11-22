@@ -1,4 +1,4 @@
-package domain_model;
+package Models;
 
 
 import java.time.LocalDate;
@@ -43,9 +43,7 @@ public class Person {
    //____________________________________________ToString_______________________________________________________________
 
    public String toString(){
-        return "Full name: " + fullName +
-                "\nBirthday: " + birthday +
-                "id: " + id;
+        return "";
    }
 
 }

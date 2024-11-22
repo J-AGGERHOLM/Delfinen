@@ -1,4 +1,5 @@
-import domain_model.*;
+import Models.SwimmingClub;
+import Models.Team;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

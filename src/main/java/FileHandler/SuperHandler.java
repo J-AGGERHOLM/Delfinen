@@ -1,12 +1,12 @@
-package data_source;
+package FileHandler;
 
 
-public abstract class FileHandler {
+public abstract class SuperHandler {
 
     // I don't know if the constructor have to be empty.
     // We will see how the individual class' are built .
     // Then decide when we merge.
-    public FileHandler(){
+    public SuperHandler(){
 
     }
 

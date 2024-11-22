@@ -1,7 +1,6 @@
-package domain_model;
+package Models;
 
 public class Competition {
-
     String event;
     int placement;
     double time;
