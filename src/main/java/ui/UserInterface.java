@@ -21,6 +21,8 @@ public class UserInterface {
     }
 
     private void displayTeams(){
+        System.out.println("Please select the team you wish to view:");
 
+        //TODO: here we display a list of teams
     }
 }
