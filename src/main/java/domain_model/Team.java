@@ -22,5 +22,9 @@ public class Team {
         this.members = members;
     }
 
+    public void addMember(CompetitiveSwimmer member){
+        members.add(member);
+    }
+
 
 }

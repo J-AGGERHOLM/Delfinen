@@ -1,6 +1,10 @@
 package domain_model;
 
-public class CompetitiveSwimmer extends Person {
+import java.time.LocalDate;
 
+public class CompetitiveSwimmer extends Person {
+    public CompetitiveSwimmer(String fullname, LocalDate birthday, int id){
+        super(fullname, birthday, id);
+    }
 
 }
