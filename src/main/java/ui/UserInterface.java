@@ -2,7 +2,9 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
@@ -11,8 +13,6 @@ import Models.Competition;
 public class UserInterface {
 
     SuperHandler competitionFileHandler = new CompetitionFileHandler();
-
-
 
 
     public void mainLoopBenjamin() {
@@ -42,7 +42,7 @@ public class UserInterface {
         // show a list of all members
     }
 
-    private void displayCompetion()  {
+    private void displayCompetion() {
         Scanner sc = new Scanner(System.in);
         Scanner intScanner = new Scanner(System.in);
         Scanner doubleScanner = new Scanner(System.in);
@@ -56,19 +56,25 @@ public class UserInterface {
 
         switch (competitionInput.toUpperCase()) {
             case "CREATE" -> {
-                System.out.println("Please enter the name of the event:");
-                String event = sc.nextLine();
-                System.out.println("Please enter te placement achieved:");
-                int placement = intScanner.nextInt();
-                System.out.println("Please enter the swimmers time:");
-                double time = doubleScanner.nextDouble();
-                Competition competition = new Competition(event,placement,time);
-                ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
+                try {
+                    System.out.println("Please enter the name of the event:");
+                    String event = sc.nextLine();
+                    System.out.println("Please enter te placement achieved:");
+                    int placement = intScanner.nextInt();
+                    System.out.println("Please enter the swimmers time:");
+                    double time = doubleScanner.nextDouble();
+
+                    Competition competition = new Competition(event, placement, time);
+
+                    ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
+                } catch (InputMismatchException ime) {
+                    System.out.println("Error : Something is wrong with these input values");
+                }
 
                 try {
                     competitionFileHandler.create();
                 } catch (IOException e) {
-                    System.out.println("Error: " + e.getMessage());
+                    System.out.println("Error: Something went wrong trying to create the file");
                 }
             }
             default -> System.out.println("Not an option");
