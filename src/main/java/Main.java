@@ -18,6 +18,6 @@ public class Main{
         SwimmingClub swimmingClub = new SwimmingClub();
         //Creating dummy data for the team read feature:
         ArrayList<Team> teams = new ArrayList<Team>();
-        Team juniorTeam = new Team("Junior Team", new Person(1, "Hans Hansen"));
+       // Team juniorTeam = new Team("Junior Team", new Person(1, "Hans Hansen"));
     }
 }
