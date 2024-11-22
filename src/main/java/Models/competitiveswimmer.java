@@ -1,15 +1,15 @@
-package repositories;
+package Models;
 
 import Enums.SwimmingDisciplines;
-import Models.Person;
+
 import java.time.LocalDate;
 
-public class CompetitiveSwimmerRepository extends Person {
+public class competitiveswimmer extends Person {
 
 
     SwimmingDisciplines chosenDiscipline;
 
-    public CompetitiveSwimmerRepository(String fullName, LocalDate birthday, int id, SwimmingDisciplines chosenDiscipline) {
+    public competitiveswimmer(String fullName, LocalDate birthday, int id, SwimmingDisciplines chosenDiscipline) {
         super(fullName, birthday, id);
         this.chosenDiscipline = chosenDiscipline;
     }
