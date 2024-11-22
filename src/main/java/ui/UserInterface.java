@@ -25,4 +25,8 @@ public class UserInterface {
 
         //TODO: here we display a list of teams
     }
+
+    private void displayMembers(){
+        // show a list of all members
+    }
 }
