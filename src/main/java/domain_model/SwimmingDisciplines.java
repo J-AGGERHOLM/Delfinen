@@ -4,6 +4,6 @@ public enum SwimmingDisciplines {
 
     BUTTERFLY,
     CRAWL,
-    RYGCRAWL,
-    BRYSTSVØMNING;
+    BACKCRAWL,
+    BREASTSTROKE;
 }
