@@ -7,8 +7,8 @@ public class Member extends Person {
     private boolean competitive;
 
 
-    public Member(String name, LocalDate birthday, int id, boolean activity, boolean competitive) {
-        super(name, birthday, id);
+    public Member(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive) {
+        super(fullName, birthday, id);
         this.activity = activity;
         this.competitive = competitive;
     }
@@ -30,6 +30,21 @@ public class Member extends Person {
     public void setCompetitive(boolean newCompetitive) {
         competitive = newCompetitive;
     }
+
+
+
+    //______________________to String_____________--
+
+    @Override
+    public String toString(){
+        return "Full name: " + super.getFullName() +
+               "Birthday: " + super.getBirthday() +
+               "id: " + super.getId() +
+               "Activity status: " + (activity ? "Active" : "Passive") +
+               "Competitive status: " + (competitive ? "Competitive" : "Non-competitive"); // need better names
+    }
+
+
 
 
 }
