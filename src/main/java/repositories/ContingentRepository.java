@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ContingentRepository {
     private double price;
     private ArrayList<Contingent> contingents;
-    private ContingentHandler ch;
+    private final ContingentHandler ch;
 
     public ContingentRepository(){
         contingents = new ArrayList<>();

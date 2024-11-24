@@ -8,8 +8,8 @@ public enum Fees {
     PENSIONER(1600,25);
 
     // For price and discount
-    private int price;
-    private int discount;
+    private final int price;
+    private final int discount;
 
     // Sets price and discount
     Fees(int price, int discount){

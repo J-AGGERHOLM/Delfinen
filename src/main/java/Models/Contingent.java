@@ -6,9 +6,9 @@ public class Contingent {
     // Gemmes under run time.
     private static int nextId = 0;
     private int id;
-    private int memberId;
-    private double price;
-    private LocalDate date;
+    private final int memberId;
+    private final double price;
+    private final LocalDate date;
 
     public Contingent(int memberId, double price, LocalDate date) {
         // id increases

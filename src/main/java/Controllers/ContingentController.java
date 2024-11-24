@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ContingentController {
-    private ContingentRepository repository;
-    private Member member;
+    private final ContingentRepository repository;
+    private final Member member;
 
     public ContingentController(int memberId) {
         // Find member by id method here
