@@ -27,6 +27,7 @@ public class UserInterface {
                 case "EXIT" -> exit = true;
                 case "DISPLAY TEAM" -> displayTeams();
                 case "COMPETITION" -> displayCompetion();
+                case "DISPLAY MEMBERS" -> displayMembers();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
