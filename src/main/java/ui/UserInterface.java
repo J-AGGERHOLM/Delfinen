@@ -81,7 +81,7 @@ public class UserInterface {
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController(1);
-        System.out.println(cc.getSpecifikContingents());
+        System.out.println(cc.getMemberContingents());
         System.out.println("Type the contingent you would like to delete");
 
         System.out.println(cc.deleteContingent(scan.nextInt()));
@@ -89,7 +89,7 @@ public class UserInterface {
 
     private void getSpecificContingent(){
         ContingentController cc = new ContingentController(1);
-        System.out.println(cc.getSpecifikContingents());
+        System.out.println(cc.getMemberContingents());
     }
 
     private void readAll(){

@@ -21,68 +21,73 @@ public class ContingentRepository {
     }
 
     // Calculate Price
-    public double checkPrice(Member member) {
+    public double calculatePrice(Member member) {
         if(member == null){
             return 0;
         }
 
-        // get year
-        int year = calculateYear(member.getBirthday());
+        // get age
+        int age = calculateYear(member.getBirthday());
 
+        // Price is based on age or activity
         if (!member.getActivity()) {
             return price = Fees.PASSIVE.getPrice();
-        } else if (year < 18) {
+        } else if (age < 18) {
             return price = Fees.JUNIOR.getPrice();
-        } else if (year < 60) {
+        } else if (age < 60) {
             return price = Fees.SENIOR.getPrice();
         } else {
             return price = Fees.PENSIONER.getPrice();
         }
     }
-    // Get the year of a member
+    // Get the age of a member
     private int calculateYear(LocalDate memberDate) {
         LocalDate currentYear = LocalDate.now();
 
+        // Create the age based on member birthdate and the date today
         return Period.between(memberDate, currentYear).getYears();
     }
 
+    // Creates a contingent
     public boolean createMemberPaid(Member member) throws IOException {
+        // Something went wrong
         if (member == null) {
             return false;
         }
 
-        ContingentHandler ch = new ContingentHandler();
+        // Create contingent
         ch.create(member.getId(), price);
 
         return true;
     }
 
-    public ArrayList<Contingent> getSpecificContingents(){
+    // Get all contingents
+    public ArrayList<Contingent> getAllContingent(){
         contingents = ch.read();
 
         return contingents;
     }
 
+    // Delete a contingent
     public boolean deleteSpecificContingent(int id) throws IOException {
+        // To store the contingent
         Contingent temp = null;
         for(Contingent c : contingents){
+            // If there is a match
             if(c.getId() == id){
                 temp = c;
             }
         }
 
+        // No match
         if(temp == null){
             return false;
         }
 
+        // Remove from list and parse.
         contingents.remove(temp);
-
         ch.delete(contingents);
 
         return true;
-    }
-
-    public ArrayList<Contingent> readAll(){
-        return ch.read();
     }
 }

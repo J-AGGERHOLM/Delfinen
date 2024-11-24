@@ -22,32 +22,40 @@ public class ContingentController {
         repository = new ContingentRepository();
     }
 
-    // possible parse member
     public String checkMemberPrice() {
-        return String.valueOf(repository.checkPrice(member));
+        // Converts to keep string principle
+        return String.valueOf(repository.calculatePrice(member));
     }
 
+    // Creates member
     public String createMemberPaid() {
         try {
+            // If it's true
             if (repository.createMemberPaid(member)) {
                 return "Record created.";
             }
         } catch (IOException e) {
             return e.getMessage();
         }
+        // Something went wrong
         return "Something went wrong.";
     }
 
-    public String getSpecifikContingents() {
-        ArrayList<Contingent> contingents = repository.getSpecificContingents();
+    // Gets a member contingents
+    public String getMemberContingents() {
+        // For print
         StringBuilder sb = new StringBuilder();
+        // Store all
+        ArrayList<Contingent> contingents = repository.getAllContingent();
 
+        // Loops the ArrayList
         for (Contingent c : contingents) {
             if (c.getMemberId() == member.getId()) {
                 sb.append(c);
             }
         }
 
+        // Returns a message
         return sb.isEmpty()
                 ? "No contingent exist."
                 : sb.toString();
@@ -55,23 +63,29 @@ public class ContingentController {
 
     public String deleteContingent(int id) {
         try {
+            // If we can delete
             if(repository.deleteSpecificContingent(id)){
                 return "You deleted the record";
             }
         } catch (IOException e){
+            // Something terrible went wrong
             return e.getMessage();
         }
 
+        // Something went wrong
         return "The record didn't exist";
     }
 
     public String readAll(){
+        // For print
         StringBuilder sb = new StringBuilder();
 
-        for(Contingent c : repository.readAll()){
+        // Loops through all
+        for(Contingent c : repository.getAllContingent()){
             sb.append(c.toString());
         }
 
+        // Return message
         return sb.isEmpty()
                 ? "No record of any contingents"
                 : sb.toString();

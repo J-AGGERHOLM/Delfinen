@@ -11,6 +11,7 @@ public class Contingent {
     private LocalDate date;
 
     public Contingent(int memberId, double price, LocalDate date) {
+        // id increases
         id = nextId++;
         this.memberId = memberId;
         this.price = price;
