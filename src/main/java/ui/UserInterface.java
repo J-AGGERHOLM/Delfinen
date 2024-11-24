@@ -53,6 +53,7 @@ public class UserInterface {
             default -> System.out.println("Wrong input");
         }
     }
+
     private void contingentAdd(Scanner scan){
         // Display members.
         // Type ind which member you want to attach a contingent to
@@ -73,6 +74,7 @@ public class UserInterface {
             }
         }
     }
+
     private void contingentDelete(Scanner scan){
         // Display members.
         // Type ind which member you want to attach a contingent to
