@@ -1,18 +1,16 @@
 package FileHandler;
 
-import Models.Contingent;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class ContingentHandler extends SuperHandler {
-    private Contingent contingent;
-    public ContingentHandler(int id, double price) {
+public class Contingent extends Super {
+    private Models.Contingent contingent;
+    public Contingent(int id, double price) {
         super("Contingent.txt");
 
-        contingent = new Contingent(id, true, price, LocalDate.now());
+        contingent = new Models.Contingent(id, true, price, LocalDate.now());
     }
 
     @Override

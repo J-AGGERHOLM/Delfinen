@@ -1,14 +1,13 @@
 package repositories;
 
 import Enums.Fees;
-import FileHandler.ContingentHandler;
 import Models.Member;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class ContingentRepository {
+public class Contingent {
     private double price;
 
     // Calculate Price
@@ -42,7 +41,7 @@ public class ContingentRepository {
             return false;
         }
 
-        ContingentHandler ch = new ContingentHandler(member.getId(), price);
+        FileHandler.Contingent ch = new FileHandler.Contingent(member.getId(), price);
         ch.create();
 
         return true;

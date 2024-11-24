@@ -1,6 +1,6 @@
 package ui;
 
-import Controllers.ControllerContigent;
+import Controllers.Contigent;
 
 import java.util.Scanner;
 
@@ -51,7 +51,7 @@ public class UserInterface {
                 // Type ind which member you want to attach a contingent to
 
                 // should be user input in parameter.
-                ControllerContigent cc = new ControllerContigent(1);
+                Contigent cc = new Contigent(1);
 
                 if (cc.getMember() == null) {
                     System.out.println("The typed id didn't exist");

@@ -3,13 +3,13 @@ package FileHandler;
 
 import java.io.IOException;
 
-public abstract class SuperHandler {
+public abstract class Super {
     private final String filePath;
 
     // I don't know if the constructor have to be empty.
     // We will see how the individual class' are built .
     // Then decide when we merge.
-    public SuperHandler(String filePath){
+    public Super(String filePath){
         this.filePath = filePath;
     }
 
