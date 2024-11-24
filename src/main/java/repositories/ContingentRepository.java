@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Contingent {
+public class ContingentRepository {
     private double price;
 
     // Calculate Price
