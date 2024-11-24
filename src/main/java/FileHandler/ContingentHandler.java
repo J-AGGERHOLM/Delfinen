@@ -24,7 +24,8 @@ public class ContingentHandler extends Super {
 
         Contingent contingent = new Contingent(id, price, LocalDate.now());
 
-        writer.write(contingent.getMemberId() + "," +
+        writer.write(contingent.getId() + "," +
+                contingent.getMemberId() + "," +
                 contingent.getPrice() + "," +
                 contingent.getDate().toString());
 
@@ -38,37 +39,46 @@ public class ContingentHandler extends Super {
         File file = new File(super.getFilePath());
         ArrayList<Contingent> contingents = new ArrayList<>();
 
-        try(Scanner scan = new Scanner(new File(String.valueOf(file)))){
+        try (Scanner scan = new Scanner(new File(String.valueOf(file)))) {
             // skips header
             scan.nextLine();
 
-            while(scan.hasNextLine()){
+            while (scan.hasNextLine()) {
                 String line = scan.nextLine();
 
                 String[] attributes = line.split(",");
 
+
                 Contingent c = new Contingent(
-                         Integer.parseInt(attributes[0]),
-                        Double.parseDouble(attributes[1]),
-                        LocalDate.parse(attributes[2])
+                        Integer.parseInt(attributes[1]),
+                        Double.parseDouble(attributes[2]),
+                        LocalDate.parse(attributes[3])
                 );
+                c.setId(Integer.parseInt(attributes[0]));
 
                 contingents.add(c);
             }
             return contingents;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
     @Override
-    public void update() {
+    public void delete(ArrayList<Contingent> contingents) throws IOException {
+        BufferedWriter writer = new BufferedWriter(
+                new FileWriter(super.getFilePath(), false));
 
-    }
+        for (Contingent c : contingents) {
+            writer.write(c.getId() + "," +
+                    c.getMemberId() + "," +
+                    c.getPrice() + "," +
+                    c.getDate().toString());
+            // ny linje
+            writer.newLine();
+        }
 
-    @Override
-    public void delete() {
-
+        writer.flush();
     }
 }

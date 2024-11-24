@@ -12,6 +12,13 @@ import java.util.ArrayList;
 
 public class ContingentRepository {
     private double price;
+    private ArrayList<Contingent> contingents;
+    private ContingentHandler ch;
+
+    public ContingentRepository(){
+        contingents = new ArrayList<>();
+        ch = new ContingentHandler();
+    }
 
     // Calculate Price
     public double checkPrice(Member member) {
@@ -50,10 +57,32 @@ public class ContingentRepository {
         return true;
     }
 
-    public ArrayList<Contingent> getContingents(){
-        ContingentHandler ch = new ContingentHandler();
-        ArrayList<Contingent> c = new ArrayList<>(ch.read());
+    public ArrayList<Contingent> getSpecificContingents(){
+        contingents = ch.read();
 
-        return c;
+        return contingents;
+    }
+
+    public boolean deleteSpecificContingent(int id) throws IOException {
+        Contingent temp = null;
+        for(Contingent c : contingents){
+            if(c.getId() == id){
+                temp = c;
+            }
+        }
+
+        if(temp == null){
+            return false;
+        }
+
+        contingents.remove(temp);
+
+        ch.delete(contingents);
+
+        return true;
+    }
+
+    public ArrayList<Contingent> readAll(){
+        return ch.read();
     }
 }

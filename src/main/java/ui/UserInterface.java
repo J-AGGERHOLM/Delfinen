@@ -46,9 +46,9 @@ public class UserInterface {
 
         switch (input) {
             case 1 -> contingentAdd(scan);
-            case 2 -> contingentDelete();
-            case 3 -> System.out.println();
-            case 4 -> System.out.println();
+            case 2 -> contingentDelete(scan);
+            case 3 -> getSpecificContingent();
+            case 4 -> readAll();
             case 5 -> System.out.println();
             default -> System.out.println("Wrong input");
         }
@@ -57,7 +57,7 @@ public class UserInterface {
         // Display members.
         // Type ind which member you want to attach a contingent to
 
-        // should be user input in parameter.
+        // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController(1);
 
         if (cc.getMember() == null) {
@@ -73,13 +73,25 @@ public class UserInterface {
             }
         }
     }
-    private void contingentDelete(){
+    private void contingentDelete(Scanner scan){
         // Display members.
         // Type ind which member you want to attach a contingent to
 
+        // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController(1);
-        System.out.println(cc.getContingents());
+        System.out.println(cc.getSpecifikContingents());
         System.out.println("Type the contingent you would like to delete");
 
+        System.out.println(cc.deleteContingent(scan.nextInt()));
+    }
+
+    private void getSpecificContingent(){
+        ContingentController cc = new ContingentController(1);
+        System.out.println(cc.getSpecifikContingents());
+    }
+
+    private void readAll(){
+        ContingentController cc = new ContingentController(1);
+        System.out.println(cc.readAll());
     }
 }

@@ -1,6 +1,5 @@
 package FileHandler;
 
-
 import Models.Contingent;
 
 import java.io.IOException;
@@ -22,8 +21,7 @@ public abstract class Super {
     // We will do on merge
     public abstract void create(int id, double price) throws IOException;
     public abstract ArrayList<Contingent> read();
-    public abstract void update();
-    public abstract void delete();
+    public abstract void delete(ArrayList<Contingent> contingents) throws IOException;
 
     public String getFilePath() {
         return filePath;
