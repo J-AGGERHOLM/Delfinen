@@ -5,14 +5,19 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Controllers.Controller;
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
+import Models.Person;
+import Models.Trainer;
+import Models.Training;
 
 
 public class UserInterface {
 
     SuperHandler competitionFileHandler = new CompetitionFileHandler();
+    Controller controller = new Controller();
 
 
     public void mainLoopBenjamin() {
@@ -80,5 +85,44 @@ public class UserInterface {
             }
             default -> System.out.println("Not an option");
         }
+    }
+
+    public void trainerOptions() {
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.println("Trainer name:");
+            String trainerName = scanner.nextLine();
+            if(trainerName.isEmpty()) {
+                break;
+            }
+            Trainer trainer = controller.getTrainer(trainerName);
+            if(trainer == null) {
+                System.out.println("Trainer not found");
+                continue;
+            }
+            System.out.println("Discipline:");
+            String discipline = scanner.nextLine();
+            while(true) {
+                System.out.println("Swimmer:");
+                String swimmer = scanner.nextLine();
+                if(swimmer.isEmpty()) {
+                    break;
+                }
+                Person swimTemp = controller.getSwimmerByName(swimmer);
+                if(swimTemp == null) {
+                    System.out.println("Swimmer not found!");
+                    continue;
+                }
+                System.out.println("Time (XX:XX:XX):");
+                String time = scanner.nextLine();
+                controller.addTraining(new Training(trainer,discipline,swimTemp,time));
+            }
+        }
+
+        System.out.println(controller.showData());
+
+        System.out.println("For which discipline would you like to see your top 5 swimmers?");
+        String choice = scanner.nextLine();
+        System.out.println(controller.getDisciplineTopFive(choice));
     }
 }
