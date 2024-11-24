@@ -4,13 +4,11 @@ import java.time.LocalDate;
 
 public class Contingent {
     private int memberId;
-    private boolean hasPaid;
     private double price;
     private LocalDate date;
 
-    public Contingent(int memberId, boolean hasPaid, double price, LocalDate date){
+    public Contingent(int memberId, double price, LocalDate date){
         this.memberId = memberId;
-        this.hasPaid = hasPaid;
         this.price = price;
         this.date = date;
     }
@@ -25,5 +23,10 @@ public class Contingent {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public String toString(){
+    return "MemberId: " + memberId + " Price: " + price + " Date: " + date + "\n";
     }
 }

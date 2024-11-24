@@ -1,7 +1,10 @@
 package FileHandler;
 
 
+import Models.Contingent;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 public abstract class Super {
     private final String filePath;
@@ -17,8 +20,8 @@ public abstract class Super {
     // I don't know if it has to be void.
     // We will decide based on the individual class'.
     // We will do on merge
-    public abstract void create() throws IOException;
-    public abstract void read();
+    public abstract void create(int id, double price) throws IOException;
+    public abstract ArrayList<Contingent> read();
     public abstract void update();
     public abstract void delete();
 

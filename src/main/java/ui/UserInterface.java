@@ -1,6 +1,6 @@
 package ui;
 
-import Controllers.ContigentController;
+import Controllers.ContingentController;
 
 import java.util.Scanner;
 
@@ -37,43 +37,49 @@ public class UserInterface {
         Scanner scan = new Scanner(System.in);
         System.out.println("What would you like to do:");
         System.out.println("1: Add a contingent");
-        System.out.println("2: Edit a contingent");
-        System.out.println("3: Delete a contingent");
-        System.out.println("4: Find a person contingents");
-        System.out.println("5: Lookup all contingent");
-        System.out.println("6: Lookup arrears");
+        System.out.println("2: Delete a contingent");
+        System.out.println("3: Find a person contingents");
+        System.out.println("4: Lookup all contingent");
+        System.out.println("5: Lookup arrears");
 
         int input = scan.nextInt();
 
         switch (input) {
-            case 1 -> {
-                // Maybe Display members.
-                // Type ind which member you want to attach a contingent to
-
-                // should be user input in parameter.
-                ContigentController cc = new ContigentController(1);
-
-                if (cc.getMember() == null) {
-                    System.out.println("The typed id didn't exist");
-                } else {
-                    double price = Double.parseDouble(cc.checkMemberPrice());
-                    System.out.println("Price: " + price);
-                    System.out.println("Type in the amount of money");
-                    if (price <= scan.nextInt()) {
-                        System.out.println(cc.createMemberPaid());
-                    } else {
-                        System.out.println("Not enough money");
-                    }
-                }
-            }
-            case 2 -> System.out.println();
+            case 1 -> contingentAdd(scan);
+            case 2 -> contingentDelete();
             case 3 -> System.out.println();
             case 4 -> System.out.println();
             case 5 -> System.out.println();
-            case 6 -> System.out.println();
             default -> System.out.println("Wrong input");
         }
-        ;
+    }
+    private void contingentAdd(Scanner scan){
+        // Display members.
+        // Type ind which member you want to attach a contingent to
+
+        // should be user input in parameter.
+        ContingentController cc = new ContingentController(1);
+
+        if (cc.getMember() == null) {
+            System.out.println("The typed id didn't exist");
+        } else {
+            double price = Double.parseDouble(cc.checkMemberPrice());
+            System.out.println("Price: " + price);
+            System.out.println("Type in the amount of money");
+            if (price <= scan.nextInt()) {
+                System.out.println(cc.createMemberPaid());
+            } else {
+                System.out.println("Not enough money");
+            }
+        }
+    }
+    private void contingentDelete(){
+        // Display members.
+        // Type ind which member you want to attach a contingent to
+
+        ContingentController cc = new ContingentController(1);
+        System.out.println(cc.getContingents());
+        System.out.println("Type the contingent you would like to delete");
 
     }
 }

@@ -1,11 +1,14 @@
 package repositories;
 
 import Enums.Fees;
+import FileHandler.ContingentHandler;
+import Models.Contingent;
 import Models.Member;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 public class ContingentRepository {
     private double price;
@@ -17,7 +20,7 @@ public class ContingentRepository {
         }
 
         // get year
-        int year = calculateYear(member);
+        int year = calculateYear(member.getBirthday());
 
         if (!member.getActivity()) {
             return price = Fees.PASSIVE.getPrice();
@@ -29,11 +32,11 @@ public class ContingentRepository {
             return price = Fees.PENSIONER.getPrice();
         }
     }
-    // Get the Year
-    private int calculateYear(Member member) {
+    // Get the year of a member
+    private int calculateYear(LocalDate memberDate) {
         LocalDate currentYear = LocalDate.now();
 
-        return Period.between(member.getBirthday(), currentYear).getYears();
+        return Period.between(memberDate, currentYear).getYears();
     }
 
     public boolean createMemberPaid(Member member) throws IOException {
@@ -41,9 +44,16 @@ public class ContingentRepository {
             return false;
         }
 
-        FileHandler.Contingent ch = new FileHandler.Contingent(member.getId(), price);
-        ch.create();
+        ContingentHandler ch = new ContingentHandler();
+        ch.create(member.getId(), price);
 
         return true;
+    }
+
+    public ArrayList<Contingent> getContingents(){
+        ContingentHandler ch = new ContingentHandler();
+        ArrayList<Contingent> c = new ArrayList<>(ch.read());
+
+        return c;
     }
 }
