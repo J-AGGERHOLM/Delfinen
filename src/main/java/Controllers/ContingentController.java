@@ -2,7 +2,7 @@ package Controllers;
 
 import Models.Contingent;
 import Models.Member;
-import repositories.ContingentRepository;
+import Repositories.ContingentRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;

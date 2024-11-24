@@ -1,4 +1,4 @@
-package repositories;
+package Repositories;
 
 import Enums.Fees;
 import FileHandler.ContingentHandler;

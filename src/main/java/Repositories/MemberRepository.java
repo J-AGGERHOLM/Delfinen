@@ -1,4 +1,4 @@
-package repositories;
+package Repositories;
 
 public class MemberRepository {
 }
