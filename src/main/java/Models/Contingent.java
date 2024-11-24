@@ -15,4 +15,15 @@ public class Contingent {
         this.date = date;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }
