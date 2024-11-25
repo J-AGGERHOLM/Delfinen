@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import Models.*;
 
-import java.util.ArrayList;
 
 public class Controller {
     private SwimmingClub swimmingClub;
