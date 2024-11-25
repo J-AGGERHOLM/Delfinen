@@ -1,7 +1,7 @@
 package FileHandler;
 
 import Models.Member;
-import repositories.MemberRepository;
+import Repositories.MemberRepository;
 
 import java.io.*;
 import java.time.LocalDate;

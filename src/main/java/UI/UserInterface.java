@@ -1,4 +1,4 @@
-package ui;
+package UI;
 
 import Controllers.ContingentController;
 import Controllers.Controller;
@@ -15,7 +15,7 @@ import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
 import Models.Member;
-import repositories.MemberRepository;
+import Repositories.MemberRepository;
 import Models.Person;
 import Models.Trainer;
 import Models.Training;
@@ -26,7 +26,7 @@ public class UserInterface {
     SuperHandler competitionFileHandler;
     Scanner sc;
 
-    public UserInterface(){
+    public UserInterface() {
         this.controller = new Controller();
         competitionFileHandler = new CompetitionFileHandler();
         sc = new Scanner(System.in);
@@ -55,9 +55,6 @@ public class UserInterface {
             }
         }
     }
-    private void displayMembers() {
-        // show a list of all members
-    }
 
     private void displayTeams() {
         boolean exit = false;
@@ -84,23 +81,13 @@ public class UserInterface {
 
     }
 
-    private void createTeam(){
+    private void createTeam() {
         System.out.println("Creating a new team.");
         System.out.println("Please enter the team's name:");
         String teamName = sc.nextLine();
 
-            }
-        }
-        System.out.println("Please select the team's trainer:");
-
-        //TODO: select the teams trainer here from a list of trainers
-
-        System.out.println("Please select members to add to the team:");
-
-        //TODO: select competative swimmers from a list of members and add them to the team.
-
-
     }
+
 
     private void displayCompetion() {
         Scanner sc = new Scanner(System.in);
@@ -139,6 +126,7 @@ public class UserInterface {
             }
             default -> System.out.println("Not an option");
         }
+
     }
 
     public void trainerOptions() {
@@ -245,7 +233,7 @@ public class UserInterface {
     }
 
 
-    //Simons methods----------------------------------------------------------------------------------------------------
+//Simons methods----------------------------------------------------------------------------------------------------
 
 
     private void displayMembers() {
@@ -285,6 +273,6 @@ public class UserInterface {
                 }
             }
         }
-
     }
 }
+
