@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 public class Controller {
     private SwimmingClub swimmingClub;
+    private TrainingData data = new TrainingData();
+    private ArrayList<Trainer> trainers = new ArrayList<>();
+    private ArrayList<Person> swimmers = new ArrayList<>();
 
     public Controller(SwimmingClub swimmingClub){
         this.swimmingClub = swimmingClub;
@@ -40,10 +43,6 @@ public class Controller {
 
         return "No team Matches that selection";
     }
-
-    private TrainingData data = new TrainingData();
-    private ArrayList<Trainer> trainers = new ArrayList<>();
-    private ArrayList<Person> swimmers = new ArrayList<>();
 
     public String showData() {
         return data.showData(data.getData());
