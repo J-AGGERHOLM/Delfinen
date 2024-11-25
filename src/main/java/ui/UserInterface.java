@@ -56,6 +56,7 @@ public class UserInterface {
         System.out.println("You are displaying the competitions");
         System.out.println("You now have the following options:");
         System.out.println("CREATE : To create a competition entry");
+        System.out.println("DISPLAY: To view previous entries");
 
         String competitionInput = sc.nextLine();
 
@@ -82,6 +83,10 @@ public class UserInterface {
                 } catch (IOException e) {
                     System.out.println("Error: Something went wrong trying to create the file");
                 }
+            }
+            case "DISPLAY" -> {
+                System.out.println(controller.readCompetition());
+
             }
             default -> System.out.println("Not an option");
         }

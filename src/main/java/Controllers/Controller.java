@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.*;
+import FileHandler.*;
 
 import java.util.ArrayList;
 
@@ -27,8 +28,8 @@ public class Controller {
     }
 
     public Person getSwimmerByName(String name) {
-        for(Person s : swimmers) {
-            if(s.getFullName().equals(name)) {
+        for (Person s : swimmers) {
+            if (s.getFullName().equals(name)) {
                 return s;
             }
         }
@@ -36,8 +37,8 @@ public class Controller {
     }
 
     public Person getSwimmerByID(int id) {
-        for(Person s : swimmers) {
-            if(s.getId() == id) {
+        for (Person s : swimmers) {
+            if (s.getId() == id) {
                 return s;
             }
         }
@@ -45,8 +46,8 @@ public class Controller {
     }
 
     public Trainer getTrainer(String name) {
-        for(Trainer t : trainers) {
-            if(t.getFullName().equals(name)) {
+        for (Trainer t : trainers) {
+            if (t.getFullName().equals(name)) {
                 return t;
             }
         }
@@ -56,7 +57,7 @@ public class Controller {
     public String getSwimmerData(int id) {
         String result = "";
         Person temp = getSwimmerByID(id);
-        if(data.getData().contains(temp)) {
+        if (data.getData().contains(temp)) {
             result += data.getData();
         }
         return result;
@@ -65,8 +66,8 @@ public class Controller {
 
     public String getDisciplineData(String discipline) {
         String result = "TRAINER: \t  DISCIPLINE: \t  ID(NAME): \t TIME: \n";
-        for(Training t : data.getData()) {
-            if(t.getDiscipline().equals(discipline)) {
+        for (Training t : data.getData()) {
+            if (t.getDiscipline().equals(discipline)) {
                 result += t.toString() + "\n";
             }
         }
@@ -76,6 +77,19 @@ public class Controller {
     public String getDisciplineTopFive(String discipline) {
         return data.getDisciplineTrainings(discipline);
     }
+
+
+
+    //-----------------------------competitions methods start-------------------------------------
+    public ArrayList<Competition> readCompetition() {
+        CompetitionFileHandler competitionFileHandler = new CompetitionFileHandler();
+        competitionFileHandler.read();
+        ArrayList<Competition> loadedCompetitions = competitionFileHandler.getCompetitions();
+        return loadedCompetitions;
+    }
+
+    //-----------------------------competitions methods end---------------------------------------
+
 
 
 }
