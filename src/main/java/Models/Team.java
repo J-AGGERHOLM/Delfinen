@@ -22,5 +22,27 @@ public class Team {
         this.members = members;
     }
 
+    public void addMember(CompetitiveSwimmer member){
+        members.add(member);
+    }
+
+    @Override
+    public String toString(){
+        String result = "Team: " + name + ", Trainer: " + trainer.getFullName() + ", Members: " + members.size();
+        return result;
+    }
+
+    public String getFullData(){
+        String result = "Team: " + name + " \n";
+        result += "Trainer " + trainer + "\n";
+        result += "-----MEMBERS:-------\n";
+        int counter = 0;
+        for(Person m : members){
+            counter ++;
+            result += counter + ". " + m + "\n";
+        }
+        return result;
+    }
+
 
 }

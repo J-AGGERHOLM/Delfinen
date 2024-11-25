@@ -2,23 +2,44 @@ package UI;
 
 import Controllers.ContingentController;
 
+import Controllers.Controller;
+import Models.SwimmingClub;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
+    Controller controller;
+    Scanner sc = new Scanner(System.in);
+
+    public UserInterface(Controller controller){
+        this.controller = controller;
+    }
+
 
     public void mainLoop() {
+    SuperHandler competitionFileHandler = new CompetitionFileHandler();
+
+
+
+    public void mainLoopBenjamin() {
 
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello, and welcome to the Doplhin swimclub admin program!");
 
 
+        System.out.println("Hello, and welcome to the Doplhin swimclub admin program! please enter a command");
+
         while (!exit) {
             System.out.println("please enter a command");
             System.out.println("contingent: see options about contingent");
 
+        while(!exit){
             String userChoice = sc.nextLine();
-            switch (userChoice.toUpperCase()) {
+            switch (userChoice.toUpperCase()){
                 case "EXIT" -> exit = true;
                 case "DISPLAY TEAM" -> displayTeams();
                 case "CONTINGENT" -> displayContingent();
@@ -27,10 +48,32 @@ public class UserInterface {
         }
     }
 
-    private void displayTeams() {
-        System.out.println("Please select the team you wish to view:");
+    private void displayTeams(){
+        boolean exit = false;
+        while(!exit){
+            System.out.println("Please select the team you wish to view:");
 
-        //TODO: here we display a list of teams
+            String listOfTeams = controller.getListOfTeams();
+            System.out.println(listOfTeams);
+
+            System.out.println("Please enter a number of a team to view, or choose to exit");
+            String userChoice = sc.nextLine();
+            try{
+                int parsedChoice = Integer.parseInt(userChoice);
+                String teamDisplay = controller.getTeam(parsedChoice);
+                System.out.println(teamDisplay);
+            }catch (NumberFormatException e){
+                switch (userChoice.toUpperCase()){
+                    case "EXIT" -> exit = true;
+                    default -> System.out.println("Please enter a valid command");
+                }
+            }
+
+
+
+        }
+
+
     }
 
     private void displayContingent() {

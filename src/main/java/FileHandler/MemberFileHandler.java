@@ -2,6 +2,8 @@ package FileHandler;
 
 import java.io.IOException;
 
+/*
+commenting this out until someone finishes this
 public class MemberFileHandler extends SuperHandler{
 
 
@@ -25,3 +27,6 @@ public class MemberFileHandler extends SuperHandler{
 
     }
 }
+
+
+ */

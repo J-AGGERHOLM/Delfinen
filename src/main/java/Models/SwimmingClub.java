@@ -21,4 +21,11 @@ public class SwimmingClub {
         return disciplines;
     }
 
+    public void addTeam(Team team){
+        this.teams.add(team);
+    }
+
+
+
+
 }
