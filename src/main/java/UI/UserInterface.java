@@ -42,7 +42,7 @@ public class UserInterface {
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "CREATE TEAM" -> createTeam();
-                case "DISPLAY TEAM" -> displayTeams();
+               // case "DISPLAY TEAM" -> displayTeams();
                 case "CONTINGENT" -> displayContingent();
                 case "COMPETITION" -> displayCompetion();
                 default -> System.out.println("Please enter a valid Command");
@@ -50,51 +50,22 @@ public class UserInterface {
         }
     }
 
-    private void displayTeams() {
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("Please select the team you wish to view:");
-
-            String listOfTeams = controller.getListOfTeams();
-            System.out.println(listOfTeams);
-
-            System.out.println("Please enter a number of a team to view, or choose to exit");
-            String userChoice = sc.nextLine();
-            try {
-                int parsedChoice = Integer.parseInt(userChoice);
-                String teamDisplay = controller.getTeam(parsedChoice);
-                System.out.println(teamDisplay);
-            } catch (NumberFormatException e) {
-                switch (userChoice.toUpperCase()) {
-                    case "EXIT" -> exit = true;
-                    default -> System.out.println("Please enter a valid command");
-                }
-            }
-
-        }
-
-    }
-
-    private void createTeam() {
-        System.out.println("Creating a new team.");
-        System.out.println("Please enter the team's name:");
-        String teamName = sc.nextLine();
-
-    }
-
-
     private void displayCompetion() {
+        //scanners instanciated:
         Scanner sc = new Scanner(System.in);
         Scanner intScanner = new Scanner(System.in);
         Scanner doubleScanner = new Scanner(System.in);
 
+
+        //menu:
         System.out.println("You are displaying the competitions");
         System.out.println("You now have the following options:");
         System.out.println("CREATE : To create a competition entry");
+        System.out.println("DISPLAY: To view previous entries");
 
         String competitionInput = sc.nextLine();
 
-
+        //depending on the users input, these cases happen:
         switch (competitionInput.toUpperCase()) {
             case "CREATE" -> {
                 try {
@@ -105,6 +76,8 @@ public class UserInterface {
                     System.out.println("Please enter the swimmers time:");
                     double time = doubleScanner.nextDouble();
 
+
+                    //Competition object is created with the users input
                     Competition competition = new Competition(event, placement, time);
 
                     ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
@@ -112,16 +85,28 @@ public class UserInterface {
                     System.out.println("Error : Something is wrong with these input values");
                 }
 
+                //Competition object is comitted to the document
                 try {
                     competitionFileHandler.create();
                 } catch (IOException e) {
                     System.out.println("Error: Something went wrong trying to create the file");
                 }
             }
+            case "DISPLAY" -> {
+                System.out.println(controller.readCompetition());
+
+            }
             default -> System.out.println("Not an option");
         }
+    }
+
+    private void createTeam() {
+        System.out.println("Creating a new team.");
+        System.out.println("Please enter the team's name:");
+        String teamName = sc.nextLine();
 
     }
+
 
     public void trainerOptions() {
         Scanner scanner = new Scanner(System.in);
