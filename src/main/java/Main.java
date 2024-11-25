@@ -1,3 +1,4 @@
+import Controllers.Controller;
 import Models.SwimmingClub;
 import Models.Team;
 import ui.UserInterface;
@@ -13,14 +14,13 @@ public class Main{
        System.out.println("Welcome to the dolphin project");
        System.out.println("My push :D");
 
-       benjaminTest();
-
-        UserInterface userInterface = new UserInterface();
+        Controller controller = new Controller(benjaminTest());
+        UserInterface userInterface = new UserInterface(controller);
         userInterface.mainLoopBenjamin();
 
     }
 
-    private static void benjaminTest(){
+    private static SwimmingClub benjaminTest(){
         SwimmingClub swimmingClub = new SwimmingClub();
         //Creating dummy data for the team read feature:
         ArrayList<Team> teams = new ArrayList<Team>();
@@ -46,6 +46,8 @@ public class Main{
         seniorTeam.addMember(swimmer7);
         seniorTeam.addMember(swimmer8);
         swimmingClub.addTeam(seniorTeam);
+
+        return swimmingClub;
 
 
     }

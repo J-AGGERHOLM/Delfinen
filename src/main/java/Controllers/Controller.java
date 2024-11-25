@@ -19,10 +19,26 @@ public class Controller {
     public String getListOfTeams(){
         ArrayList<Team> teams = swimmingClub.getTeams();
         String result = "";
+        int counter = 0;
         for(Team t: teams){
-
+            counter++;
+            result += counter + ". " + t + "\n";
         }
-        return  "";
+        return  result;
+    }
+
+    public String getTeam(int choice){
+        String result = "";
+        ArrayList<Team> teams = swimmingClub.getTeams();
+        int counter = 0;
+        for(Team t: teams){
+            counter++;
+            if( counter == choice){
+                return t.getFullData();
+            }
+        }
+
+        return "No team Matches that selection";
     }
 
     private TrainingData data = new TrainingData();

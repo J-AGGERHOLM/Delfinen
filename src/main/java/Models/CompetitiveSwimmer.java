@@ -26,7 +26,8 @@ public class CompetitiveSwimmer extends Person {
 
     @Override
     public String toString() {
-        return "Name :  " + getFullName() + "       " + "Swimming discipline :  " + getChosendiscipline();
+        String result = super.toString();
+        return result + "Swimming discipline :  " + getChosendiscipline();
     }
 
 }
