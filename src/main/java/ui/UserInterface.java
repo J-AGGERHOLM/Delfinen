@@ -49,10 +49,13 @@ public class UserInterface {
     }
 
     private void displayCompetion() {
+        //scanners instanciated:
         Scanner sc = new Scanner(System.in);
         Scanner intScanner = new Scanner(System.in);
         Scanner doubleScanner = new Scanner(System.in);
 
+
+        //menu:
         System.out.println("You are displaying the competitions");
         System.out.println("You now have the following options:");
         System.out.println("CREATE : To create a competition entry");
@@ -60,7 +63,7 @@ public class UserInterface {
 
         String competitionInput = sc.nextLine();
 
-
+        //depending on the users input, these cases happen:
         switch (competitionInput.toUpperCase()) {
             case "CREATE" -> {
                 try {
@@ -71,6 +74,8 @@ public class UserInterface {
                     System.out.println("Please enter the swimmers time:");
                     double time = doubleScanner.nextDouble();
 
+
+                    //Competition object is created with the users input
                     Competition competition = new Competition(event, placement, time);
 
                     ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
@@ -78,6 +83,7 @@ public class UserInterface {
                     System.out.println("Error : Something is wrong with these input values");
                 }
 
+                //Competition object is comitted to the document
                 try {
                     competitionFileHandler.create();
                 } catch (IOException e) {
@@ -94,33 +100,33 @@ public class UserInterface {
 
     public void trainerOptions() {
         Scanner scanner = new Scanner(System.in);
-        while(true) {
+        while (true) {
             System.out.println("Trainer name:");
             String trainerName = scanner.nextLine();
-            if(trainerName.isEmpty()) {
+            if (trainerName.isEmpty()) {
                 break;
             }
             Trainer trainer = controller.getTrainer(trainerName);
-            if(trainer == null) {
+            if (trainer == null) {
                 System.out.println("Trainer not found");
                 continue;
             }
             System.out.println("Discipline:");
             String discipline = scanner.nextLine();
-            while(true) {
+            while (true) {
                 System.out.println("Swimmer:");
                 String swimmer = scanner.nextLine();
-                if(swimmer.isEmpty()) {
+                if (swimmer.isEmpty()) {
                     break;
                 }
                 Person swimTemp = controller.getSwimmerByName(swimmer);
-                if(swimTemp == null) {
+                if (swimTemp == null) {
                     System.out.println("Swimmer not found!");
                     continue;
                 }
                 System.out.println("Time (XX:XX:XX):");
                 String time = scanner.nextLine();
-                controller.addTraining(new Training(trainer,discipline,swimTemp,time));
+                controller.addTraining(new Training(trainer, discipline, swimTemp, time));
             }
         }
 
