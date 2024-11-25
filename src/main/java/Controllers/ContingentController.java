@@ -14,9 +14,9 @@ public class ContingentController {
 
     public ContingentController(int memberId) {
         // Find member by id method here
-        //member = new Member("Jacob", LocalDate.of(1993, 10, 2), 1, true, true);
-        //member = new Member("Simon", LocalDate.of(1963,10,2),2,true,true);
-        //member = new Member("Jack", LocalDate.of(1983, 10, 2), 3, false, true);
+        // member = new Member("Jacob", LocalDate.of(1993, 10, 2), 1, true, true);
+        // member = new Member("Simon", LocalDate.of(1963,10,2),2,true,true);
+        // member = new Member("Jack", LocalDate.of(1983, 10, 2), 3, false, true);
         member = new Member("Benjamin", LocalDate.of(2010, 10, 2), 4, true, true);
 
         repository = new ContingentRepository();
