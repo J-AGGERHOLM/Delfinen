@@ -86,6 +86,9 @@ public class ContingentHandler extends Super {
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(super.getFilePath(), false));
 
+        writer.write("Id,MemberId,Price,Birthday");
+        // ny linje
+        writer.newLine();
         // Write the array in file
         for (Contingent c : contingents) {
             writer.write(c.getId() + "," +
