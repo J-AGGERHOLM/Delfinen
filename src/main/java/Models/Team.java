@@ -9,8 +9,10 @@ public class Team {
     private Person trainer;
     private ArrayList<Person> members;
     private String name;
+    private int id;
 
-    public Team(String name, Person trainer){
+    public Team(int id, String name, Person trainer){
+        this.id = id;
         this.name = name;
         this.trainer = trainer;
         this.members = new ArrayList<Person>();
