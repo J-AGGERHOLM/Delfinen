@@ -2,19 +2,13 @@ package UI;
 
 import Controllers.ContingentController;
 import Controllers.Controller;
-import Models.SwimmingClub;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
-
-import Controllers.Controller;
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
-import Models.Member;
 import Repositories.MemberRepository;
 import Models.Person;
 import Models.Trainer;
