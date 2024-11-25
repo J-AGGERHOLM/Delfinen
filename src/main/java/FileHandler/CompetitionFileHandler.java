@@ -42,19 +42,25 @@ public class CompetitionFileHandler extends SuperHandler {
             File compFile = new File(filePath);
             ArrayList<Competition> tempArray = new ArrayList<>();
 
-            try (Scanner sc = new Scanner(new File(String.valueOf(compFile)))) {
-                while (sc.hasNextLine()) ;
-                String line = sc.nextLine();
-                String[] attributes = line.split(",");
+            try (Scanner sc = new Scanner(compFile)) {
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    String[] attributes = line.split(",");
 
-                Competition competion = new Competition(attributes[0], Integer.parseInt(attributes[2]), Double.parseDouble(attributes[3]));
-                tempArray.add(competion);
+                    if (attributes.length == 3) {
+                        Competition competition = new Competition(
+                                attributes[0],
+                                Integer.parseInt(attributes[1]),
+                                Double.parseDouble(attributes[2])
+                        );
+                        tempArray.add(competition);
+                    }
+                }
             }
             competitions = tempArray;
 
         } catch (Exception e) {
             throw new RuntimeException("Error reading from file", e);
-
         }
     }
 

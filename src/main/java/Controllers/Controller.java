@@ -81,12 +81,25 @@ public class Controller {
 
 
     //-----------------------------competitions methods start-------------------------------------
-    public ArrayList<Competition> readCompetition() {
+
+    public String readCompetition() {
         CompetitionFileHandler competitionFileHandler = new CompetitionFileHandler();
         competitionFileHandler.read();
-        ArrayList<Competition> loadedCompetitions = competitionFileHandler.getCompetitions();
-        return loadedCompetitions;
+        ArrayList<Competition> competitionArrayList = competitionFileHandler.getCompetitions();
+
+        if (competitionArrayList.isEmpty()) {
+            return "No competitions found.";
+        }
+
+        StringBuilder result = new StringBuilder("Competitions:\n");
+        for (Competition competition : competitionArrayList) {
+            result.append("Event: ").append(competition.getEvent())
+                    .append(", Placement: ").append(competition.getPlacement())
+                    .append(", Time: ").append(competition.getTime()).append("\n");
+        }
+        return result.toString();
     }
+
 
     //-----------------------------competitions methods end---------------------------------------
 
