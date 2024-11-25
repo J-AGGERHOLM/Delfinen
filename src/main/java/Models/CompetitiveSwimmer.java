@@ -22,4 +22,11 @@ public class CompetitiveSwimmer extends Person {
     public SwimmingDisciplines getChosendiscipline() {
         return chosenDiscipline;
     }
+
+
+    @Override
+    public String toString() {
+        return "Name :  " + getFullName() + "       " + "Swimming discipline :  " + getChosendiscipline();
+    }
+
 }

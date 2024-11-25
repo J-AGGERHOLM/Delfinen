@@ -12,6 +12,36 @@ public class Competition {
 
     }
 
+    // ------------------------ START: get og setter ------------------------
+
+
+    public String getEvent() {
+        return event;
+    }
+
+    public int getPlacement() {
+        return placement;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public void setPlacement(int placement) {
+        this.placement = placement;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
+
+    // ------------------------ SLUT: get og setter ------------------------
+
 
     @Override
     public String toString() {

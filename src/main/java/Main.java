@@ -1,3 +1,6 @@
+import Models.SwimmingClub;
+import Models.Team;
+import ui.UserInterface;
 import Enums.SwimmingDisciplines;
 import Models.*;
 
@@ -12,12 +15,16 @@ public class Main{
 
        benjaminTest();
 
+        UserInterface userInterface = new UserInterface();
+        userInterface.mainLoopBenjamin();
+
     }
 
     private static void benjaminTest(){
         SwimmingClub swimmingClub = new SwimmingClub();
         //Creating dummy data for the team read feature:
         ArrayList<Team> teams = new ArrayList<Team>();
+        // Team juniorTeam = new Team("Junior Team", new Person(1, "Hans Hansen"));
         Team juniorTeam = new Team("Junior Team", new Trainer("Hans Hansen", LocalDate.of(1995, 2, 23), 1));
         CompetitiveSwimmer swimmer1 = new CompetitiveSwimmer("Mikkel Mikkelson", LocalDate.of(1976, 7, 7), 2, SwimmingDisciplines.BACKCRAWL);
         CompetitiveSwimmer swimmer2 = new CompetitiveSwimmer("Søren Sørensen", LocalDate.of(2003, 4, 12), 3, SwimmingDisciplines.BREASTSTROKE);
