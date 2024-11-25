@@ -23,8 +23,8 @@ public class UserInterface {
     SuperHandler competitionFileHandler;
     Scanner sc;
 
-    public UserInterface(Controller controller){
-        this.controller = controller;
+    public UserInterface(){
+        this.controller = new Controller();
         competitionFileHandler = new CompetitionFileHandler();
         sc = new Scanner(System.in);
     }
@@ -37,6 +37,7 @@ public class UserInterface {
 
 
         while (!exit) {
+
             System.out.println("please enter a command");
             System.out.println("contingent: see options about contingent");
 
