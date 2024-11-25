@@ -11,7 +11,6 @@ import java.time.Period;
 import java.util.ArrayList;
 
 public class ContingentRepository {
-    private double price;
     private ArrayList<Contingent> contingents;
     private final ContingentHandler ch;
 
@@ -20,8 +19,22 @@ public class ContingentRepository {
         ch = new ContingentHandler();
     }
 
+    // Creates a contingent
+    public boolean createMemberContingent(Member member) throws IOException {
+        // Something went wrong
+        if (member == null) {
+            return false;
+        }
+
+        double price = calculatePrice(member);
+
+        // Create contingent
+        ch.create(member.getId(), price);
+
+        return true;
+    }
     // Calculate Price
-    public double calculatePrice(Member member) {
+    private double calculatePrice(Member member) {
         if(member == null){
             return 0;
         }
@@ -31,13 +44,13 @@ public class ContingentRepository {
 
         // Price is based on age or activity
         if (!member.getActivity()) {
-            return price = Fees.PASSIVE.getPrice();
+            return Fees.PASSIVE.getPrice();
         } else if (age < 18) {
-            return price = Fees.JUNIOR.getPrice();
+            return Fees.JUNIOR.getPrice();
         } else if (age < 60) {
-            return price = Fees.SENIOR.getPrice();
+            return Fees.SENIOR.getPrice();
         } else {
-            return price = Fees.PENSIONER.getPrice();
+            return Fees.PENSIONER.getPrice();
         }
     }
     // Get the age of a member
@@ -46,19 +59,6 @@ public class ContingentRepository {
 
         // Create the age based on member birthdate and the date today
         return Period.between(memberDate, currentYear).getYears();
-    }
-
-    // Creates a contingent
-    public boolean createMemberPaid(Member member) throws IOException {
-        // Something went wrong
-        if (member == null) {
-            return false;
-        }
-
-        // Create contingent
-        ch.create(member.getId(), price);
-
-        return true;
     }
 
     // Get all contingents

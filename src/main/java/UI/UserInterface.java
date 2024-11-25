@@ -2,10 +2,12 @@ package UI;
 
 import Controllers.ContingentController;
 import Controllers.Controller;
+
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
+
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
@@ -42,7 +44,7 @@ public class UserInterface {
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "CREATE TEAM" -> createTeam();
-               // case "DISPLAY TEAM" -> displayTeams();
+                // case "DISPLAY TEAM" -> displayTeams();
                 case "CONTINGENT" -> displayContingent();
                 case "COMPETITION" -> displayCompetion();
                 default -> System.out.println("Please enter a valid Command");
@@ -178,14 +180,7 @@ public class UserInterface {
         if (cc.getMember() == null) {
             System.out.println("The typed id didn't exist");
         } else {
-            double price = Double.parseDouble(cc.checkMemberPrice());
-            System.out.println("Price: " + price);
-            System.out.println("Type in the amount of money");
-            if (price <= scan.nextInt()) {
-                System.out.println(cc.createMemberPaid());
-            } else {
-                System.out.println("Not enough money");
-            }
+            System.out.println(cc.createMemberContingent());
         }
     }
 
