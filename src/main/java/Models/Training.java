@@ -30,7 +30,7 @@ public class Training implements Comparable<Training> {
     public String toString() {
         return trainer.getFullName() + "\t\t  " +
                 discipline + "\t\t   " +
-                swimmer.getAge() + "(" +
+                swimmer.getId() + "(" +
                 swimmer.getFullName() + ")\t\t" +
                 time;
     }

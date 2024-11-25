@@ -37,7 +37,7 @@ public class Controller {
 
     public Person getSwimmerByID(int id) {
         for(Person s : swimmers) {
-            if(s.getAge() == id) {
+            if(s.getId() == id) {
                 return s;
             }
         }
