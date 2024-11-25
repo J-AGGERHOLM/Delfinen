@@ -40,6 +40,7 @@ public class UserInterface {
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()){
                 case "EXIT" -> exit = true;
+                case "CREATE TEAM" -> createTeam();
                 case "DISPLAY TEAM" -> displayTeams();
                 case "COMPETITION" -> displayCompetion();
                 case "DISPLAY MEMBERS" -> displayMembers();
@@ -69,9 +70,22 @@ public class UserInterface {
                 }
             }
 
-
-
         }
+
+    }
+
+    private void createTeam(){
+        System.out.println("Creating a new team.");
+        System.out.println("Please enter the team's name:");
+        String teamName = sc.nextLine();
+
+        System.out.println("Please select the team's trainer:");
+
+        //TODO: select the teams trainer here from a list of trainers
+
+        System.out.println("Please select members to add to the team:");
+
+        //TODO: select competative swimmers from a list of members and add them to the team.
 
 
     }
