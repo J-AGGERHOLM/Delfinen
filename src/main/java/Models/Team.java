@@ -26,5 +26,11 @@ public class Team {
         members.add(member);
     }
 
+    @Override
+    public String toString(){
+        String result = "Team: " + name + ", Trainer: " + trainer.getFullName() + ", Members: " + members.size();
+        return result;
+    }
+
 
 }

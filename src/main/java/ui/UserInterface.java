@@ -1,8 +1,17 @@
 package ui;
 
+import Controllers.Controller;
+import Models.SwimmingClub;
+
 import java.util.Scanner;
 
 public class UserInterface {
+    Controller controller;
+
+    public UserInterface(Controller controller){
+        this.controller = controller;
+    }
+
 
     public void mainLoopBenjamin(){
 
@@ -24,5 +33,6 @@ public class UserInterface {
         System.out.println("Please select the team you wish to view:");
 
         //TODO: here we display a list of teams
+
     }
 }

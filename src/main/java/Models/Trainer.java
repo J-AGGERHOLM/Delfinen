@@ -11,6 +11,14 @@ public class Trainer extends Person {
         this.team = team;
     }
 
+    public Trainer(String name, LocalDate birthday, int id){
+        super(name, birthday, id);
+    }
+
+    public void setTeam(Team team){
+        this.team = team;
+    }
+
 
     @Override
     public String toString() {
