@@ -43,7 +43,7 @@ public class Person {
    //____________________________________________ToString_______________________________________________________________
 
    public String toString(){
-        return "";
+        return "ID: " + id + " Name: " + fullName + " Birthday: " + birthday + " ";
    }
 
 }

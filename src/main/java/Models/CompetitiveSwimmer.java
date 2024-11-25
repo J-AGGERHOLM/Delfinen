@@ -4,12 +4,12 @@ import Enums.SwimmingDisciplines;
 
 import java.time.LocalDate;
 
-public class competitiveswimmer extends Person {
+public class CompetitiveSwimmer extends Person {
 
 
     SwimmingDisciplines chosenDiscipline;
 
-    public competitiveswimmer(String fullName, LocalDate birthday, int id, SwimmingDisciplines chosenDiscipline) {
+    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, SwimmingDisciplines chosenDiscipline) {
         super(fullName, birthday, id);
         this.chosenDiscipline = chosenDiscipline;
     }
@@ -26,7 +26,8 @@ public class competitiveswimmer extends Person {
 
     @Override
     public String toString() {
-        return "Name :  " + getFullName() + "       " + "Swimming discipline :  " + getChosendiscipline();
+        String result = super.toString();
+        return result + "Swimming discipline :  " + getChosendiscipline();
     }
 
 }

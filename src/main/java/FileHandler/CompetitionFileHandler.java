@@ -24,6 +24,7 @@ public class CompetitionFileHandler extends SuperHandler {
 
     @Override
     public void create() throws IOException {
+
         if (competition == null) {
             throw new IllegalStateException("Competition entry is empty.");
         }

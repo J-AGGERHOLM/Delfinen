@@ -1,8 +1,9 @@
-package repositories;
+package Repositories;
 
 import Models.Member;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MemberRepository {
@@ -47,9 +48,10 @@ public class MemberRepository {
         for (Member m : memberArrayList) {
             if (idToCheck == m.getId()) {
                 currentMember = m;
+                return currentMember;
             }
         }
-        return currentMember;
+        return null;
     }
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
     public Member chooseSpecificMemberByName(String name) {
@@ -59,6 +61,10 @@ public class MemberRepository {
             }
         }
         return currentMember;
+    }
+
+    public void createMember(String name, LocalDate birthday, int id, boolean activity, boolean competitive){
+        Member member = new Member(name, birthday, id, activity, competitive);
     }
 
 
