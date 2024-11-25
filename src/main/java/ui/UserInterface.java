@@ -6,12 +6,15 @@ import Models.SwimmingClub;
 import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 import Controllers.Controller;
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
+import Models.Member;
+import repositories.MemberRepository;
 import Models.Person;
 import Models.Trainer;
 import Models.Training;
@@ -43,7 +46,6 @@ public class UserInterface {
                 case "CREATE TEAM" -> createTeam();
                 case "DISPLAY TEAM" -> displayTeams();
                 case "COMPETITION" -> displayCompetion();
-                case "DISPLAY MEMBERS" -> displayMembers();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
@@ -88,10 +90,6 @@ public class UserInterface {
         //TODO: select competative swimmers from a list of members and add them to the team.
 
 
-    }
-
-    private void displayMembers() {
-        // show a list of all members
     }
 
     private void displayCompetion() {
@@ -170,5 +168,49 @@ public class UserInterface {
         System.out.println("For which discipline would you like to see your top 5 swimmers?");
         String choice = scanner.nextLine();
         System.out.println(controller.getDisciplineTopFive(choice));
+    }
+
+
+    //Simons methods----------------------------------------------------------------------------------------------------
+
+
+    private void displayMembers() {
+        System.out.println("Here you have a list of all the members from the club: \n");
+        MemberRepository memberRepository = new MemberRepository();
+        System.out.println(memberRepository.displayMembers()); // should be with controller, will do it later
+    }
+
+    private void displayInformationFromSpecificMember() {
+        MemberRepository memberRepository = new MemberRepository();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine();
+        switch (input.toLowerCase(Locale.ROOT)) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                memberRepository.chooseSpecificMemberByName(input);
+            }
+            case "id" -> {
+                int idNum = 0;
+                System.out.println("Enter id: ");
+                while (true) {
+                    String inputNum = sc.nextLine();
+                    try {
+                        idNum = Integer.parseInt(inputNum);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(input + " is not a valid id. try again");
+                    }
+                }
+                if (memberRepository.chooseSpecificMemberById(idNum) == null) {
+                    System.out.println("There is no member with ID: " + idNum);
+                } else {
+                    System.out.println("Member information with ID " + idNum);
+                    System.out.println(memberRepository.getCurrentMember().toString());
+                }
+            }
+        }
+
     }
 }

@@ -44,6 +44,13 @@ public class Member extends Person {
                "Competitive status: " + (competitive ? "Competitive" : "Non-competitive"); // need better names
     }
 
+    public String toStringFile(){
+        return super.getFullName() + "," +
+                super.getBirthday() + "," + super.getId() + "," +
+                (activity ? "active" : "passive") + "," +
+                (competitive ? "competitive" : "non-competitive");
+    }
+
 
 
 
