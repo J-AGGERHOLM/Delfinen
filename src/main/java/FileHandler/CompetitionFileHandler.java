@@ -82,7 +82,7 @@ public class CompetitionFileHandler {
         Competition forDeletion = null;
 
         for (Competition c : competitions) {
-            if (c.getEvent().equals(eventName)) {
+            if (c.getEvent().toUpperCase().equals(eventName.toUpperCase())) {
                 forDeletion = c;
             }
         }
@@ -101,8 +101,10 @@ public class CompetitionFileHandler {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
             for (Competition c : competitions) {
                 writer.write(c.getEvent() + "," + c.getPlacement() + "," + c.getTime());
-                writer.flush();
+                writer.newLine();
+
             }
+            writer.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
