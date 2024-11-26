@@ -18,11 +18,12 @@ import Models.Training;
 
 
 public class UserInterface {
-    Controller controller;
+    Controller controller = new Controller();
     Scanner sc = new Scanner(System.in);
 
-    public UserInterface(Controller controller){
-        this.controller = controller;
+
+    public UserInterface(){
+
     }
 
 

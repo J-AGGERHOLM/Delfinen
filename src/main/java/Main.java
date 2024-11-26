@@ -3,7 +3,7 @@ import Models.CompetitiveSwimmer;
 import Models.SwimmingClub;
 import Models.Team;
 import Models.Trainer;
-import UI.UserInterface;
+import ui.UserInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
