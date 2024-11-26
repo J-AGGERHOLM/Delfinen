@@ -10,7 +10,7 @@ import java.util.Scanner;
 import Models.Competition;
 
 
-public class CompetitionFileHandler extends SuperHandler {
+public class CompetitionFileHandler {
 
     Competition competition;
 
@@ -22,7 +22,7 @@ public class CompetitionFileHandler extends SuperHandler {
     }
 
 
-    @Override
+
     public void create() throws IOException {
 
         if (competition == null) {
@@ -37,7 +37,6 @@ public class CompetitionFileHandler extends SuperHandler {
 
     private ArrayList<Competition> competitions = new ArrayList<>();
 
-    @Override
     public void read() {
         try {
             File compFile = new File(filePath);
@@ -69,13 +68,10 @@ public class CompetitionFileHandler extends SuperHandler {
     public ArrayList<Competition> getCompetitions() {
         return competitions;
     }
-
-    @Override
     public void update() {
 
     }
 
-    @Override
     public void delete() {
 
     }

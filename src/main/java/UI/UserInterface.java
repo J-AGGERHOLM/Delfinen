@@ -11,7 +11,6 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import FileHandler.CompetitionFileHandler;
-import FileHandler.SuperHandler;
 import Models.Competition;
 import Repositories.MemberRepository;
 import Models.Person;
@@ -21,7 +20,7 @@ import Models.Training;
 
 public class UserInterface {
     Controller controller;
-    SuperHandler competitionFileHandler;
+    CompetitionFileHandler competitionFileHandler;
     Scanner sc;
 
     public UserInterface() {

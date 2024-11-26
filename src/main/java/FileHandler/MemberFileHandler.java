@@ -7,7 +7,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class MemberFileHandler extends SuperHandler{
+public class MemberFileHandler {
     private final String fileName = "membersList.txt";
     private MemberRepository memberRepository;
 
@@ -20,7 +20,7 @@ public class MemberFileHandler extends SuperHandler{
 
 
 
-    @Override
+
     public void create() throws IOException {
         if (memberRepository.getMemberArrayList() == null) {
             throw new IllegalStateException("Member repository entry is empty.");
@@ -40,7 +40,7 @@ public class MemberFileHandler extends SuperHandler{
         writer.flush();
     }
 
-    @Override
+
     public void read() {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -64,12 +64,12 @@ public class MemberFileHandler extends SuperHandler{
 
 
 
-    @Override
+
     public void update() {
 
     }
 
-    @Override
+
     public void delete() {
 
     }
