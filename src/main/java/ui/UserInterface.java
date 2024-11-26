@@ -1,6 +1,7 @@
-package ui;
+package UI;
 
 import Controllers.Controller;
+import Controllers.TeamsController;
 import Models.SwimmingClub;
 
 import java.io.File;
@@ -19,6 +20,7 @@ import Models.Training;
 
 public class UserInterface {
     Controller controller = new Controller();
+    TeamsController teamsController = new TeamsController();
     Scanner sc = new Scanner(System.in);
 
 
@@ -35,7 +37,7 @@ public class UserInterface {
 
         boolean exit = false;
 
-        System.out.println("Hello, and welcome to the Doplhin swimclub admin program! please enter a command");
+        System.out.println("Hello, and welcome to the Dolphin swimclub admin program! please enter a command");
 
         while(!exit){
             String userChoice = sc.nextLine();
@@ -55,14 +57,14 @@ public class UserInterface {
         while(!exit){
             System.out.println("Please select the team you wish to view:");
 
-            String listOfTeams = controller.getListOfTeams();
+            String listOfTeams = teamsController.getListOfTeams();
             System.out.println(listOfTeams);
 
             System.out.println("Please enter a number of a team to view, or choose to exit");
             String userChoice = sc.nextLine();
             try{
                 int parsedChoice = Integer.parseInt(userChoice);
-                String teamDisplay = controller.getTeam(parsedChoice);
+                String teamDisplay = teamsController.getTeam(parsedChoice);
                 System.out.println(teamDisplay);
             }catch (NumberFormatException e){
                 switch (userChoice.toUpperCase()){
