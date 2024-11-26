@@ -1,14 +1,9 @@
-package ui;
+package UI;
 
 import Controllers.Controller;
-import Models.SwimmingClub;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import Controllers.Controller;
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
