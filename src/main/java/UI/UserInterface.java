@@ -4,14 +4,12 @@ import Controllers.CompetitionController;
 import Controllers.ContingentController;
 import Controllers.Controller;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
-import FileHandler.CompetitionFileHandler;
-import Models.Competition;
+import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
 import Models.Person;
 import Models.Trainer;
@@ -20,12 +18,10 @@ import Models.Training;
 
 public class UserInterface {
     Controller controller;
-    CompetitionFileHandler competitionFileHandler;
     Scanner sc;
 
     public UserInterface() {
         this.controller = new Controller();
-        competitionFileHandler = new CompetitionFileHandler();
         sc = new Scanner(System.in);
     }
 
@@ -43,20 +39,23 @@ public class UserInterface {
             System.out.println("Members: see options about members");
             System.out.println("Contingent: see options about contingent");
             System.out.println("Competition: see options about competitions");
-           // System.out.println("Teams: see options about teams");
+            // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "TRAINER" -> trainerMenu();
                 case "CREATE TEAM" -> teamMenu();
-                case "MEMBERS" ->  memberMenu();
+                case "MEMBERS" -> memberMenu();
                 case "CONTINGENT" -> contingentMenu();
                 case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
     }
+
+    //----------------------------------Competition methods START----------------------------------
+
 
     private void competionMenu() {
         //competitionController
@@ -65,10 +64,6 @@ public class UserInterface {
 
         //scanners instanciated:
         Scanner sc = new Scanner(System.in);
-        Scanner intScanner = new Scanner(System.in);
-        Scanner doubleScanner = new Scanner(System.in);
-
-
         //menu:
 
         System.out.println("You are in the Competition menu");
@@ -81,31 +76,7 @@ public class UserInterface {
 
         //depending on the users input, these cases happen:
         switch (competitionInput) {
-            case "CREATE" -> {
-                try {
-                    System.out.println("Please enter the name of the event:");
-                    String event = sc.nextLine();
-                    System.out.println("Please enter te placement achieved:");
-                    int placement = intScanner.nextInt();
-                    System.out.println("Please enter the swimmers time:");
-                    double time = doubleScanner.nextDouble();
-
-
-                    //Competition object is created with the users input
-                    Competition competition = new Competition(event, placement, time);
-
-                    ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
-                } catch (InputMismatchException ime) {
-                    System.out.println("Error : Something is wrong with these input values");
-                }
-
-                //Competition object is comitted to the document
-                try {
-                    competitionFileHandler.create();
-                } catch (IOException e) {
-                    System.out.println("Error: Something went wrong trying to create the file");
-                }
-            }
+            case "CREATE" -> competitionEntryCreate();
             case "DISPLAY" -> {
                 System.out.println(competitionController.readCompetition());
 
@@ -113,6 +84,30 @@ public class UserInterface {
             default -> System.out.println("Not an option");
         }
     }
+
+
+    public void competitionEntryCreate() {
+        Scanner intScanner = new Scanner(System.in);
+        Scanner doubleScanner = new Scanner(System.in);
+        CompetitionRepository repository = new CompetitionRepository();
+
+        try {
+            System.out.println("Please enter the name of the event:");
+            String event = sc.nextLine();
+            System.out.println("Please enter te placement achieved:");
+            int placement = intScanner.nextInt();
+            System.out.println("Please enter the swimmers time:");
+            double time = doubleScanner.nextDouble();
+
+
+            repository.commitCompetitionEntry(event, placement, time);
+
+        } catch (InputMismatchException ime) {
+            System.out.println("Error : Something is wrong with these input values");
+        }
+
+    }
+    //----------------------------------Competition methods END----------------------------------
 
 
     //----------------------------------TEAM methods----------------------------------
@@ -138,9 +133,6 @@ public class UserInterface {
         }
 
     }
-
-
-
 
 
     private void createTeam() {
@@ -176,9 +168,6 @@ public class UserInterface {
         }
 
     }
-
-
-
 
 
     public void trainerOptions() {
@@ -222,8 +211,6 @@ public class UserInterface {
     //----------------------------------Training methods----------------------------------
 
 
-
-
     //----------------------------------Contingents methods----------------------------------
 
 
@@ -249,7 +236,6 @@ public class UserInterface {
         }
 
     }
-
 
 
     private void contingentAdd() {
@@ -290,8 +276,6 @@ public class UserInterface {
     //----------------------------------Contingents methods----------------------------------
 
 
-
-
 //Member methods----------------------------------------------------------------------------------------------------
 
     public void memberMenu() {
@@ -318,7 +302,7 @@ public class UserInterface {
     }
 
 
-    private void createMember()  {
+    private void createMember() {
         MemberRepository memberRepository = new MemberRepository();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter full name: ");
