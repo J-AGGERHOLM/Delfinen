@@ -16,7 +16,7 @@ public class Main{
 
         Controller controller = new Controller(benjaminTest());
         UserInterface userInterface = new UserInterface(controller);
-        userInterface.mainLoopBenjamin();
+        userInterface.mainLoop();
 
     }
 

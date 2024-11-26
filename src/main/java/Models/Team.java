@@ -24,6 +24,25 @@ public class Team {
         this.members = members;
     }
 
+    //-----------------GETTERS-----------------------
+    public Person getTrainer(){
+        return trainer;
+    }
+
+    public ArrayList<Person> getMembers(){
+        return members;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    //------------------------------------OTHER STUFF:----------------------------------
+
     public void addMember(CompetitiveSwimmer member){
         members.add(member);
     }
