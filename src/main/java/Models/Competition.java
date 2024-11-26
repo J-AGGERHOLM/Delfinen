@@ -40,7 +40,7 @@ public class Competition {
         this.time = time;
     }
 
-    // ------------------------ SLUT: get og setter ------------------------
+    // ------------------------ END: get og setter ------------------------
 
 
     @Override

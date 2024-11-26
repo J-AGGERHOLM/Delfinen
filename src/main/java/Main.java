@@ -1,24 +1,18 @@
-import Controllers.Controller;
+import Enums.SwimmingDisciplines;
+import Models.CompetitiveSwimmer;
 import Models.SwimmingClub;
 import Models.Team;
-import ui.UserInterface;
-import Enums.SwimmingDisciplines;
-import Models.*;
+import Models.Trainer;
+import UI.UserInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main{
    public static void main(String[] args) {
-       System.out.println("Jack");
-       System.out.println("Welcome to the dolphin project");
-       System.out.println("My push :D");
-
-        Controller controller = new Controller(benjaminTest());
-        UserInterface userInterface = new UserInterface(controller);
-        userInterface.mainLoop();
-
-    }
+       UserInterface ui = new UserInterface();
+       ui.mainLoop();
+   }
 
     private static SwimmingClub benjaminTest(){
         SwimmingClub swimmingClub = new SwimmingClub();

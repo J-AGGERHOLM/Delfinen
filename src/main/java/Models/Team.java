@@ -18,7 +18,8 @@ public class Team {
         this.members = new ArrayList<Person>();
     }
 
-    public Team(String name, Person trainer, ArrayList<Person> members){
+    public Team(int id,String name, Person trainer, ArrayList<Person> members){
+        this.id = id;
         this.name = name;
         this.trainer = trainer;
         this.members = members;
