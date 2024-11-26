@@ -22,7 +22,7 @@ public class Member extends Person {
         return competitive;
     }
 
-    //_______________________________________________Setter Methods_________________________________________________________
+    //_______________________________________________Setter Methods_____________________________________________________
     public void setActivity(boolean newActivity) {
         activity = newActivity;
     }
@@ -33,7 +33,7 @@ public class Member extends Person {
 
 
 
-    //______________________to String_____________--
+    //______________________to String___________________________________________________________________________________
 
     @Override
     public String toString(){

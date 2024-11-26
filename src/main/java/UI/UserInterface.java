@@ -4,6 +4,7 @@ import Controllers.CompetitionController;
 import Controllers.ContingentController;
 import Controllers.Controller;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -220,9 +221,62 @@ public class UserInterface {
 //Simons methods----------------------------------------------------------------------------------------------------
 
 
-    private void displayMembers() {
-        System.out.println("Here you have a list of all the members from the club: \n");
+    private void createMember() throws IOException {
         MemberRepository memberRepository = new MemberRepository();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter full name: ");
+        String name = sc.nextLine();
+        System.out.println("Enter Birthday: ");
+        System.out.println("Day of birth: ");
+        int day = sc.nextInt();
+        System.out.println("Month of birth:");
+        int month = sc.nextInt();
+        System.out.println("Year of birth: ");
+        int year = sc.nextInt();
+        System.out.println("Will it be active or passive?");
+        sc.nextLine();
+        String activity = sc.nextLine();
+        System.out.println("Will it be competitive or regular?");
+        String competitive = sc.nextLine();
+        memberRepository.createMember(name,
+                LocalDate.of(year,month,day),
+                memberRepository.getNewId(),
+                activity.equalsIgnoreCase("active"),
+                competitive.equalsIgnoreCase("competitive"));
+        System.out.println("You have created a new Member :D");
+    }
+
+    private void editMember(){
+        Scanner sc = new Scanner(System.in);
+        MemberRepository memberRepository = new MemberRepository();
+        System.out.println("Which members information do you want to edit? ");
+        System.out.println("Enter Full name: ");
+        String name = sc.nextLine();
+        memberRepository.chooseSpecificMemberByName(name);
+        if (memberRepository.getCurrentMember() == null){
+            System.out.println("couldnt find a member with that name.");
+        } else {
+            System.out.println("Member " + memberRepository.getCurrentMember().getFullName() + "found");
+            System.out.println("what information do you want to edit? \nName \nBirthday \nActivity \nCompetitive");
+            String input = sc.nextLine();
+            switch (input){
+                case "Name" -> {
+                    System.out.println("Enter new name: ");
+                    String newName = sc.nextLine();
+                    memberRepository.getCurrentMember().setName(newName);
+                    System.out.println("Members name changed :)");
+                }
+            }
+            String newName = sc.nextLine();
+            memberRepository.getCurrentMember().setName(newName);
+        }
+
+    }
+
+
+    private void displayMembers() {
+        MemberRepository memberRepository = new MemberRepository();
+        System.out.println("Here you have a list of all the members from the club: \n");
         System.out.println(memberRepository.displayMembers()); // should be with controller, will do it later
     }
 
@@ -257,6 +311,7 @@ public class UserInterface {
                 }
             }
         }
+
     }
 }
 

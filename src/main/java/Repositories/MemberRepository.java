@@ -1,18 +1,24 @@
 package Repositories;
 
+import FileHandler.MemberFileHandler;
 import Models.Member;
 
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MemberRepository {
     private ArrayList<Member> memberArrayList;
     private Member currentMember;
+    private MemberFileHandler memberFileHandler;
 
 
     public MemberRepository() {
+        memberFileHandler = new MemberFileHandler();
+        memberFileHandler.setMemberRepository(this);
         memberArrayList = new ArrayList<>();
+        memberFileHandler.read();
     }
 
 
@@ -28,6 +34,10 @@ public class MemberRepository {
 
     //__________________________________________________________________________________________________________________
 
+
+    public int getNewId(){
+        return memberArrayList.size();
+    }
 
     // returns a list of all members
     public String displayMembers() {
@@ -63,10 +73,15 @@ public class MemberRepository {
         return currentMember;
     }
 
-    public void createMember(String name, LocalDate birthday, int id, boolean activity, boolean competitive){
+    public void createMember(String name, LocalDate birthday, int id, boolean activity, boolean competitive) throws IOException {
         Member member = new Member(name, birthday, id, activity, competitive);
+        currentMember = member;
+        memberArrayList.add(currentMember);
+        memberFileHandler.create();
+
     }
 
 
 }
+
 
