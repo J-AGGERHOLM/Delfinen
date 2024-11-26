@@ -10,6 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import Controllers.TeamsController;
 import FileHandler.CompetitionFileHandler;
 import FileHandler.SuperHandler;
 import Models.Competition;
@@ -22,6 +23,7 @@ import Models.Training;
 public class UserInterface {
     Controller controller;
     SuperHandler competitionFileHandler;
+    TeamsController teamsController = new TeamsController();
     Scanner sc;
 
     public UserInterface() {
@@ -46,7 +48,7 @@ public class UserInterface {
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "CREATE TEAM" -> createTeam();
-                // case "DISPLAY TEAM" -> displayTeams();
+                 case "DISPLAY TEAM" -> displayTeams();
                 case "CONTINGENT" -> displayContingent();
                 case "COMPETITION" -> displayCompetion();
                 default -> System.out.println("Please enter a valid Command");
@@ -108,10 +110,89 @@ public class UserInterface {
         }
     }
 
+    private void displayTeams(){
+        boolean exit = false;
+        while(!exit){
+            System.out.println("Please select the team you wish to view:");
+
+            String listOfTeams = teamsController.getListOfTeams();
+            System.out.println(listOfTeams);
+
+            System.out.println("Please enter a number of a team to view, or choose to exit");
+            String userChoice = sc.nextLine();
+            try{
+                int parsedChoice = Integer.parseInt(userChoice);
+                String teamDisplay = teamsController.getTeam(parsedChoice);
+                System.out.println(teamDisplay);
+            }catch (NumberFormatException e){
+                switch (userChoice.toUpperCase()){
+                    case "EXIT" -> exit = true;
+                    default -> System.out.println("Please enter a valid command");
+                }
+            }
+
+        }
+
+    }
+
     private void createTeam() {
+        //must do this when creating a team:
+        teamsController.resetTeamCreation();
+
+        //Selecting the teams name:
         System.out.println("Creating a new team.");
         System.out.println("Please enter the team's name:");
         String teamName = sc.nextLine();
+
+        //Selecting the team's members from the clubs list of members:
+        System.out.println("Please select the teams members by ID: (press exit to end");
+        System.out.println(teamsController.getListOfMembers());
+        boolean exit = false;
+        while(!exit){
+            String userChoice = sc.nextLine();
+
+            try{
+                int personChoice = Integer.parseInt(userChoice);
+                String result = teamsController.addPersonToNewTeam(personChoice);
+                System.out.println(result);
+            }catch (NumberFormatException e){
+
+                if(userChoice.toUpperCase().equals("EXIT")){
+                    exit = true;
+                }else{
+                    System.out.println("Please enter a valid input");
+                }
+            }
+        }
+
+        //Selecting the teams trainer:
+        System.out.println("Please select the team's trainer: (by their ID)");
+        System.out.println(teamsController.getListOfTrainers());
+
+        exit = false;
+        int trainerChoiceID;
+        while (!exit){
+            String userChoice = sc.nextLine();
+            try{
+                trainerChoiceID= Integer.parseInt(userChoice);
+            }catch (NumberFormatException e){
+                System.out.println("Please enter a number");
+                trainerChoiceID = -1;
+            }
+
+            if( teamsController.assignTrainer(trainerChoiceID)){
+                System.out.println("That trainer has been assigned to the team");
+                exit=true;
+            }else{
+                System.out.println("Please enter a valid trainer");
+            }
+        }
+
+        //Finally we tell the controller to make the new team with all the data it has gathered:
+        teamsController.finalCreateNewTeam(teamName);
+        System.out.println("Team created succesfully");
+
+
 
     }
 

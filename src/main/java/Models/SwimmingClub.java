@@ -5,11 +5,10 @@ import java.util.ArrayList;
 public class SwimmingClub {
 
     private ArrayList<Team> teams;
-    private ArrayList<Team> disciplines;
+
 
     public SwimmingClub(){
         this.teams = new ArrayList<Team>();
-        this.disciplines = new ArrayList<Team>();
     }
 
 
@@ -17,12 +16,19 @@ public class SwimmingClub {
         return teams;
     }
 
-    public ArrayList<Team> getDisciplines(){
-        return disciplines;
-    }
 
     public void addTeam(Team team){
         this.teams.add(team);
+    }
+
+    public int getNewTeamID(){
+        int highestID = 0;
+        for(Team t: teams){
+            if (t.getId() > highestID){
+                highestID = t.getId();
+            }
+        }
+        return highestID + 1;
     }
 
 
