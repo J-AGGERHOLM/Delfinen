@@ -11,6 +11,10 @@ public class TeamFileHandler {
 
     private final String filePath = "Teams.txt";
 
+
+    //Waiting for persons to be done. I need to be able to read the list of persons to create the
+    //person objects in the teams, or a way to get already existing person objects and add them to the team
+    //arraylist
     public ArrayList<Team> readAllTeams(){
         return new ArrayList<Team>();
     }

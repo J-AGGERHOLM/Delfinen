@@ -30,7 +30,7 @@ public class UserInterface {
 
 
 
-    public void mainLoopBenjamin() {
+    public void mainLoop() {
 
         boolean exit = false;
 
