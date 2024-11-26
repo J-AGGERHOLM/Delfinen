@@ -1,5 +1,6 @@
 package UI;
 
+import Controllers.CompetitionController;
 import Controllers.ContingentController;
 import Controllers.Controller;
 import java.io.IOException;
@@ -51,6 +52,10 @@ public class UserInterface {
     }
 
     private void displayCompetion() {
+        //competitionController
+
+        CompetitionController competitionController = new CompetitionController();
+
         //scanners instanciated:
         Scanner sc = new Scanner(System.in);
         Scanner intScanner = new Scanner(System.in);
@@ -93,7 +98,7 @@ public class UserInterface {
                 }
             }
             case "DISPLAY" -> {
-                System.out.println(controller.readCompetition());
+                System.out.println(competitionController.readCompetition());
 
             }
             default -> System.out.println("Not an option");
