@@ -235,7 +235,6 @@ public class UserInterface {
         String competitive = sc.nextLine();
         memberRepository.createMember(name,
                 LocalDate.of(year,month,day),
-                memberRepository.getNewId(),
                 activity.equalsIgnoreCase("active"),
                 competitive.equalsIgnoreCase("competitive"));
         System.out.println("You have created a new Member :D");
@@ -298,7 +297,7 @@ public class UserInterface {
                         System.out.println(input + " is not a valid id. try again");
                     }
                 }
-                if (memberRepository.chooseSpecificMemberById(idNum) == null) {
+                if (memberRepository.chooseSpecificMemberById(idNum)) {
                     System.out.println("There is no member with ID: " + idNum);
                 } else {
                     System.out.println("Member information with ID " + idNum);
