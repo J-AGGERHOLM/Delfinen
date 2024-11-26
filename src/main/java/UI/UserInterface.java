@@ -40,24 +40,26 @@ public class UserInterface {
         while (!exit) {
 
             System.out.println("please enter a command");
-            System.out.println("Contingent: see options about contingent");
+            //System.out.println("Trainer: see options about trainers");
+            System.out.println("Members: see options about members");
             System.out.println("Contingent: see options about contingent");
             System.out.println("Competition: see options about competitions");
-            System.out.println("Create Team: see options about creating teams");
+           // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
-                case "CREATE TEAM" -> createTeam();
-                // case "DISPLAY TEAM" -> displayTeams();
-                case "CONTINGENT" -> displayContingent();
-                case "COMPETITION" -> displayCompetion();
+                case "TRAINER" -> trainerMenu();
+                case "CREATE TEAM" -> teamMenu();
+                case "MEMBERS" ->  memberMenu();
+                case "CONTINGENT" -> contingentMenu();
+                case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
     }
 
-    private void displayCompetion() {
+    private void competionMenu() {
         //competitionController
 
         CompetitionController competitionController = new CompetitionController();
@@ -69,15 +71,17 @@ public class UserInterface {
 
 
         //menu:
-        System.out.println("You are displaying the competitions");
-        System.out.println("You now have the following options:");
-        System.out.println("CREATE : To create a competition entry");
-        System.out.println("DISPLAY: To view previous entries");
 
-        String competitionInput = sc.nextLine();
+        System.out.println("You are in the Competition menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - To create a new competion entry.");
+        System.out.println("Type : 'Display' - To Display all competion entries.");
+        //System.out.println("Type : 'Delete' - To delete competition entry.");
+
+        String competitionInput = sc.nextLine().toUpperCase();
 
         //depending on the users input, these cases happen:
-        switch (competitionInput.toUpperCase()) {
+        switch (competitionInput) {
             case "CREATE" -> {
                 try {
                     System.out.println("Please enter the name of the event:");
@@ -111,12 +115,71 @@ public class UserInterface {
         }
     }
 
+
+    //----------------------------------TEAM methods----------------------------------
+    private void teamMenu() {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("You are in the Team menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - .");
+        System.out.println("Type : 'Delete' - .");
+        System.out.println("Type : 'Members' - .");
+        System.out.println("Type : 'Specific' - .");
+
+        String input = scan.nextLine().toUpperCase();
+
+        switch (input) {
+            case "CREATE" -> createTeam();
+            case "DELETE" -> System.out.println();
+            case "MEMBERS" -> System.out.println();
+            case "SPECIFIC" -> System.out.println();
+            case "" -> System.out.println();
+            default -> System.out.println("Wrong input");
+        }
+
+    }
+
+
+
+
+
     private void createTeam() {
         System.out.println("Creating a new team.");
         System.out.println("Please enter the team's name:");
         String teamName = sc.nextLine();
 
     }
+    //----------------------------------TEAM methods----------------------------------
+
+
+    //----------------------------------Training methods----------------------------------
+
+    private void trainerMenu() {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("You are in the Trainer menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - .");
+        System.out.println("Type : 'Delete' - .");
+        System.out.println("Type : 'Members' - .");
+        System.out.println("Type : 'Specific' - .");
+
+        String input = scan.nextLine().toUpperCase();
+
+        switch (input) {
+            case "CREATE" -> System.out.println();
+            case "DELETE" -> System.out.println();
+            case "MEMBERS" -> System.out.println();
+            case "SPECIFIC" -> System.out.println();
+            case "" -> System.out.println();
+            default -> System.out.println("Wrong input");
+        }
+
+    }
+
+
+
 
 
     public void trainerOptions() {
@@ -157,29 +220,40 @@ public class UserInterface {
         String choice = scanner.nextLine();
         System.out.println(controller.getDisciplineTopFive(choice));
     }
+    //----------------------------------Training methods----------------------------------
 
-    private void displayContingent() {
+
+
+
+    //----------------------------------Contingents methods----------------------------------
+
+
+    private void contingentMenu() {
+
         Scanner scan = new Scanner(System.in);
-        System.out.println("What would you like to do:");
-        System.out.println("1: Add a contingent");
-        System.out.println("2: Delete a contingent");
-        System.out.println("3: Find a person contingents");
-        System.out.println("4: Lookup all contingent");
-        System.out.println("5: Lookup arrears");
+        System.out.println("You are in the Contingent menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - To register a new contingent entry.");
+        System.out.println("Type : 'Delete' - To Delete an existing contingent entry.");
+        System.out.println("Type : 'Members' - To view contingents of all members.");
+        System.out.println("Type : 'Specific' - To search for a specific members contingents.");
 
-        int input = scan.nextInt();
+        String input = scan.nextLine().toUpperCase();
 
         switch (input) {
-            case 1 -> contingentAdd(scan);
-            case 2 -> contingentDelete(scan);
-            case 3 -> getSpecificContingent();
-            case 4 -> readAll();
-            case 5 -> System.out.println();
+            case "CREATE" -> contingentAdd();
+            case "DELETE" -> contingentDelete();
+            case "MEMBERS" -> readAll();
+            case "SPECIFIC" -> getSpecificContingent();
+            case "" -> System.out.println();
             default -> System.out.println("Wrong input");
         }
+
     }
 
-    private void contingentAdd(Scanner scan) {
+
+
+    private void contingentAdd() {
         // Display members.
         // Type ind which member you want to attach a contingent to
 
@@ -192,7 +266,8 @@ public class UserInterface {
         }
     }
 
-    private void contingentDelete(Scanner scan) {
+    private void contingentDelete() {
+        Scanner scan = new Scanner(System.in);
         // Display members.
         // Type ind which member you want to attach a contingent to
 
@@ -213,12 +288,38 @@ public class UserInterface {
         ContingentController cc = new ContingentController(1);
         System.out.println(cc.readAll());
     }
+    //----------------------------------Contingents methods----------------------------------
 
 
-//Simons methods----------------------------------------------------------------------------------------------------
 
 
-    private void createMember() throws IOException {
+//Member methods----------------------------------------------------------------------------------------------------
+
+    public void memberMenu() {
+
+        System.out.println("You are in the Member menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - To register a new member.");
+        System.out.println("Type : 'Edit' - To edit information about an existing member.");
+        System.out.println("Type : 'Members' - To view all current members.");
+        System.out.println("Type : 'Specific' - To search for a specific member.");
+
+
+        Scanner sc = new Scanner(System.in);
+
+        String userInput = sc.nextLine().toUpperCase();
+
+        switch (userInput) {
+            case "CREATE" -> createMember();
+            case "EDIT" -> editMember();
+            case "DISPLAY MEMBERS" -> displayMembers();
+            case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
+            default -> System.out.println("Not an option!");
+        }
+    }
+
+
+    private void createMember()  {
         MemberRepository memberRepository = new MemberRepository();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter full name: ");
@@ -236,26 +337,26 @@ public class UserInterface {
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
         memberRepository.createMember(name,
-                LocalDate.of(year,month,day),
+                LocalDate.of(year, month, day),
                 activity.equalsIgnoreCase("active"),
                 competitive.equalsIgnoreCase("competitive"));
         System.out.println("You have created a new Member :D");
     }
 
-    private void editMember(){
+    private void editMember() {
         Scanner sc = new Scanner(System.in);
         MemberRepository memberRepository = new MemberRepository();
         System.out.println("Which members information do you want to edit? ");
         System.out.println("Enter Full name: ");
         String name = sc.nextLine();
         memberRepository.chooseSpecificMemberByName(name);
-        if (memberRepository.getCurrentMember() == null){
+        if (memberRepository.getCurrentMember() == null) {
             System.out.println("couldnt find a member with that name.");
         } else {
             System.out.println("Member " + memberRepository.getCurrentMember().getFullName() + "found");
             System.out.println("what information do you want to edit? \nName \nBirthday \nActivity \nCompetitive");
             String input = sc.nextLine();
-            switch (input){
+            switch (input) {
                 case "Name" -> {
                     System.out.println("Enter new name: ");
                     String newName = sc.nextLine();
