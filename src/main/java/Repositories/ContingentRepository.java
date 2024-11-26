@@ -14,7 +14,7 @@ public class ContingentRepository {
     private ArrayList<Contingent> contingents;
     private final ContingentHandler ch;
 
-    public ContingentRepository(){
+    public ContingentRepository() {
         contingents = new ArrayList<>();
         ch = new ContingentHandler();
     }
@@ -29,13 +29,14 @@ public class ContingentRepository {
         double price = calculatePrice(member);
 
         // Create contingent
-        ch.create(member.getId(), price);
+        ch.create(checkID(), member.getId(), price);
 
         return true;
     }
+
     // Calculate Price
     private double calculatePrice(Member member) {
-        if(member == null){
+        if (member == null) {
             return 0;
         }
 
@@ -53,6 +54,7 @@ public class ContingentRepository {
             return Fees.PENSIONER.getPrice();
         }
     }
+
     // Get the age of a member
     private int calculateYear(LocalDate memberDate) {
         LocalDate currentYear = LocalDate.now();
@@ -62,25 +64,23 @@ public class ContingentRepository {
     }
 
     // Get all contingents
-    public ArrayList<Contingent> getAllContingent(){
-        contingents = ch.read();
-
-        return contingents;
+    public ArrayList<Contingent> getAllContingent() {
+        return ch.read();
     }
 
     // Delete a contingent
     public boolean deleteSpecificContingent(int id) throws IOException {
         // To store the contingent
         Contingent temp = null;
-        for(Contingent c : contingents){
+        for (Contingent c : contingents) {
             // If there is a match
-            if(c.getId() == id){
+            if (c.getId() == id) {
                 temp = c;
             }
         }
 
         // No match
-        if(temp == null){
+        if (temp == null) {
             return false;
         }
 
@@ -90,4 +90,10 @@ public class ContingentRepository {
 
         return true;
     }
+
+    public int checkID() {
+        int id = getAllContingent().size();
+        return ++id;
+    }
+
 }

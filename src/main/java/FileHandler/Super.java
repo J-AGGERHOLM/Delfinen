@@ -19,7 +19,7 @@ public abstract class Super {
     // I don't know if it has to be void.
     // We will decide based on the individual class'.
     // We will do on merge
-    public abstract void create(int id, double price) throws IOException;
+    public abstract void create(int id, int medlemId, double price) throws IOException;
     public abstract ArrayList<Contingent> read();
     public abstract void delete(ArrayList<Contingent> contingents) throws IOException;
 

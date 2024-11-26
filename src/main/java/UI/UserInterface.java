@@ -182,7 +182,6 @@ public class UserInterface {
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController(1);
-
         if (cc.getMember() == null) {
             System.out.println("The typed id didn't exist");
         } else {

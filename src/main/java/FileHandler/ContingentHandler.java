@@ -20,14 +20,14 @@ public class ContingentHandler extends Super {
 
     //Creates a contingent
     @Override
-    public void create(int id, double price) throws IOException {
+    public void create(int id, int memberId, double price) throws IOException {
         // Append on .txt doesn't override
         // BufferedWriter creates a file if it doesn't exist
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(super.getFilePath(), true));
 
         // Create the specific contingent
-        Contingent contingent = new Contingent(id, price, LocalDate.now());
+        Contingent contingent = new Contingent(id, memberId, price, LocalDate.now());
 
         // Write to file
         writer.write(contingent.getId() + "," +
@@ -59,7 +59,10 @@ public class ContingentHandler extends Super {
 
                 // Insert in object
                 Contingent c = new Contingent(
+                        Integer.parseInt(attributes[0]),
+
                         Integer.parseInt(attributes[1]),
+
                         Double.parseDouble(attributes[2]),
                         LocalDate.parse(attributes[3])
                 );

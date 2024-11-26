@@ -90,4 +90,5 @@ public class ContingentController {
     public Member getMember() {
         return member;
     }
+
 }
