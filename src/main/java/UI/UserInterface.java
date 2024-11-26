@@ -40,7 +40,10 @@ public class UserInterface {
         while (!exit) {
 
             System.out.println("please enter a command");
-            System.out.println("contingent: see options about contingent");
+            System.out.println("Contingent: see options about contingent");
+            System.out.println("Contingent: see options about contingent");
+            System.out.println("Competition: see options about competitions");
+            System.out.println("Create Team: see options about creating teams");
 
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()) {
