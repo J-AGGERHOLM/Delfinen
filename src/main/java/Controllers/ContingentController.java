@@ -22,16 +22,11 @@ public class ContingentController {
         repository = new ContingentRepository();
     }
 
-    public String checkMemberPrice() {
-        // Converts to keep string principle
-        return String.valueOf(repository.calculatePrice(member));
-    }
-
     // Creates member
-    public String createMemberPaid() {
+    public String createMemberContingent() {
         try {
             // If it's true
-            if (repository.createMemberPaid(member)) {
+            if (repository.createMemberContingent(member)) {
                 return "Record created.";
             }
         } catch (IOException e) {
