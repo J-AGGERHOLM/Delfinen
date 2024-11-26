@@ -4,6 +4,7 @@ import Controllers.CompetitionController;
 import Controllers.ContingentController;
 import Controllers.Controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -70,7 +71,7 @@ public class UserInterface {
         System.out.println("You have following options:");
         System.out.println("Type : 'Create' - To create a new competion entry.");
         System.out.println("Type : 'Display' - To Display all competion entries.");
-        //System.out.println("Type : 'Delete' - To delete competition entry.");
+        System.out.println("Type : 'Delete' - To delete competition entry.");
 
         String competitionInput = sc.nextLine().toUpperCase();
 
@@ -79,10 +80,21 @@ public class UserInterface {
             case "CREATE" -> competitionEntryCreate();
             case "DISPLAY" -> {
                 System.out.println(competitionController.readCompetition());
-
             }
+            case "DELETE" -> deleteCompetitionEntry();
             default -> System.out.println("Not an option");
         }
+    }
+
+
+    public void deleteCompetitionEntry() {
+        Scanner sc = new Scanner(System.in);
+        CompetitionRepository repository = new CompetitionRepository();
+        System.out.println("Please enter the name of the event you'd like to delete.");
+        String searchWord = sc.nextLine();
+        repository.searchForEntry(searchWord);
+
+
     }
 
 

@@ -22,7 +22,6 @@ public class CompetitionFileHandler {
     }
 
 
-
     public void create() throws IOException {
 
         if (competition == null) {
@@ -68,11 +67,46 @@ public class CompetitionFileHandler {
     public ArrayList<Competition> getCompetitions() {
         return competitions;
     }
+
     public void update() {
 
     }
 
-    public void delete() {
+    public void delete(String eventName) {
 
+        read();
+        if (competitions == null) {
+            return;
+        }
+
+        Competition forDeletion = null;
+
+        for (Competition c : competitions) {
+            if (c.getEvent().equals(eventName)) {
+                forDeletion = c;
+            }
+        }
+        if (forDeletion != null) {
+            competitions.remove(forDeletion);
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false));
+            writer.write("");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+            for (Competition c : competitions) {
+                writer.write(c.getEvent() + "," + c.getPlacement() + "," + c.getTime());
+                writer.flush();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }
+

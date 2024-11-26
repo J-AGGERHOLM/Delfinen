@@ -27,4 +27,8 @@ public class CompetitionRepository {
     }
 
 
+    public void searchForEntry(String eventName){
+        competitionFileHandler.delete(eventName);
+    }
+
 }
