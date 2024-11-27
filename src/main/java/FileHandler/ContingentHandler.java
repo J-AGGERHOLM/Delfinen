@@ -41,7 +41,7 @@ public class ContingentHandler  {
         // Array for data.
         ArrayList<Contingent> contingents = new ArrayList<>();
 
-        // With try it closes the stream automatic
+        // With try, it closes the stream automatic
         try (Scanner scan = new Scanner(new File(String.valueOf(filePath)))) {
             // skips header
             scan.nextLine();

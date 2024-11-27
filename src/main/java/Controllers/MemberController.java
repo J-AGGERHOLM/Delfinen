@@ -30,11 +30,13 @@ public class MemberController {
     }
 
     public String displayMembers(){
-        if (memberRepository.getMemberArrayList().isEmpty()){
-            return "There is no members up to this point.";
-        } else {
-            return memberRepository.displayMembers();
+        StringBuilder sb = new StringBuilder();
+        for(Member member : memberRepository.getMemberArrayList()){
+            sb.append(member).append("\n");
         }
+        return sb.isEmpty()
+                ? "No member found"
+                : sb.toString();
     }
 
     public String displayMemberInformation(){
@@ -44,13 +46,13 @@ public class MemberController {
            return memberRepository.displayMemberInformation();
         }
     }
-    public String chooseSpecificMemberById(int idToCheck) {
-        if (!memberRepository.chooseSpecificMemberById(idToCheck)){
-            return "Member with ID: " + idToCheck + "Was not found";
-        } else {
-            return "Member with ID: " + idToCheck + "found :)";
-        }
-    }
+//    public String chooseSpecificMemberById(int idToCheck) {
+//        if (!memberRepository.chooseSpecificMemberById(idToCheck)){
+//            return "Member with ID: " + idToCheck + "Was not found";
+//        } else {
+//            return "Member with ID: " + idToCheck + "found :)";
+//        }
+//    }
 
     public String chooseSpecificMemberByName(String name) {
         if (!memberRepository.chooseSpecificMemberByName(name)){

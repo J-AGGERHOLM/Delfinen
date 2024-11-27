@@ -29,7 +29,7 @@ public class ContingentRepository {
         double price = calculatePrice(member);
 
         // Create contingent
-        ch.create(checkID(), member.getId(), price);
+        ch.create(getId(), member.getId(), price);
 
         return true;
     }
@@ -91,7 +91,7 @@ public class ContingentRepository {
         return true;
     }
 
-    public int checkID() {
+    public int getId() {
         int id = getAllContingent().size();
         return ++id;
     }
