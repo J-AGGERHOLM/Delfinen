@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Controllers.MemberController;
 import FileHandler.CompetitionFileHandler;
 import Repositories.MemberRepository;
 
@@ -288,11 +289,12 @@ public class UserInterface {
 //Member methods----------------------------------------------------------------------------------------------------
 
     public void memberMenu() {
-
+        // need to translate to danish
         System.out.println("You are in the Member menu");
         System.out.println("You have following options:");
         System.out.println("Type : 'Create' - To register a new member.");
         System.out.println("Type : 'Edit' - To edit information about an existing member.");
+        System.out.println("Typer : 'Delete' - to delete a member from the system.");
         System.out.println("Type : 'Members' - To view all current members.");
         System.out.println("Type : 'Specific' - To search for a specific member.");
 
@@ -302,19 +304,19 @@ public class UserInterface {
         String userInput = sc.nextLine().toUpperCase();
 
         switch (userInput) {
-            case "CREATE" -> createMember();
+            // case "CREATE" -> createMember();
             case "EDIT" -> editMember();
             case "DISPLAY MEMBERS" -> displayMembers();
-            //case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
+            case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
             default -> System.out.println("Not an option!");
         }
     }
 
-    private void createMember() {
-        MemberRepository memberRepository = new MemberRepository();
+    private void createMember() throws IOException {
+        MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter full name: ");
-        String name = sc.nextLine();
+        String name = sc.nextLine().trim();
         System.out.println("Enter Birthday: ");
         System.out.println("Day of birth: ");
         int day = sc.nextInt();
@@ -322,16 +324,12 @@ public class UserInterface {
         int month = sc.nextInt();
         System.out.println("Year of birth: ");
         int year = sc.nextInt();
-        System.out.println("Will it be active or passive?");
         sc.nextLine();
+        System.out.println("Will it be active or passive?");
         String activity = sc.nextLine();
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
-        memberRepository.createMember(name,
-                LocalDate.of(year, month, day),
-                activity.equalsIgnoreCase("active"),
-                competitive.equalsIgnoreCase("competitive"));
-        System.out.println("You have created a new Member :D");
+        System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
     }
 
     private void editMember() {
@@ -368,38 +366,38 @@ public class UserInterface {
         System.out.println(memberRepository.displayMembers()); // should be with controller, will do it later
     }
 
-//    private void displayInformationFromSpecificMember() {
-//        MemberRepository memberRepository = new MemberRepository();
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Do you want to use a name or an id?");
-//        String input = sc.nextLine();
-//        switch (input.toLowerCase(Locale.ROOT)) {
-//            case "name", "full name" -> {
-//                System.out.println("Enter name: ");
-//                input = sc.nextLine();
-//                memberRepository.chooseSpecificMemberByName(input);
-//            }
-//            case "id" -> {
-//                int idNum = 0;
-//                System.out.println("Enter id: ");
-//                while (true) {
-//                    String inputNum = sc.nextLine();
-//                    try {
-//                        idNum = Integer.parseInt(inputNum);
-//                        break;
-//                    } catch (NumberFormatException e) {
-//                        System.out.println(input + " is not a valid id. try again");
-//                    }
-//                }
-//                if (memberRepository.chooseSpecificMemberById(idNum)) {
-//                    System.out.println("There is no member with ID: " + idNum);
-//                } else {
-//                    System.out.println("Member information with ID " + idNum);
-//                    System.out.println(memberRepository.getCurrentMember().toString());
-//                }
-//            }
-//        }
-//
-//    }
+    private void displayInformationFromSpecificMember() {
+        MemberRepository memberRepository = new MemberRepository();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine();
+        switch (input.toLowerCase()) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                memberRepository.chooseSpecificMemberByName(input);
+            }
+            case "id" -> {
+                int idNum = 0;
+                System.out.println("Enter id: ");
+                while (true) {
+                    String inputNum = sc.nextLine();
+                    try {
+                        idNum = Integer.parseInt(inputNum);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(input + " is not a valid id. try again");
+                    }
+                }
+                if (memberRepository.chooseSpecificMemberById(idNum)) {
+                    System.out.println("There is no member with ID: " + idNum);
+                } else {
+                    System.out.println("Member information with ID " + idNum);
+                    System.out.println(memberRepository.getCurrentMember().toString());
+                }
+            }
+        }
+
+    }
 }
 
