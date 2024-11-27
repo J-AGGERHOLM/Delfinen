@@ -19,7 +19,10 @@ public class ContingentController {
     public String createMemberContingent(int memberId) {
         try {
             MemberRepository mr = new MemberRepository();
-            Member member = mr.chooseSpecificMemberById(memberId);
+            Member member = null;
+            if(mr.chooseSpecificMemberById(memberId)){
+                member = mr.getCurrentMember();
+            }
 
             if(member == null){
                 return "Member not found";
