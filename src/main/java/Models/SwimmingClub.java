@@ -21,6 +21,10 @@ public class SwimmingClub {
         this.teams.add(team);
     }
 
+    public void deleteTeam(Team team){
+        this.teams.remove(team);
+    }
+
     public int getNewTeamID(){
         int highestID = 0;
         for(Team t: teams){

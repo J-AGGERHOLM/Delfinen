@@ -21,15 +21,15 @@ import Models.Training;
 
 public class UserInterface {
     Controller controller;
-    SuperHandler competitionFileHandler;
+    //SuperHandler competitionFileHandler;
     TeamsController teamsController = new TeamsController();
     Scanner sc;
-    CompetitionFileHandler competitionFileHandler;
+    //CompetitionFileHandler competitionFileHandler;
 
 
     public UserInterface() {
         this.controller = new Controller();
-        competitionFileHandler = new CompetitionFileHandler();
+        //competitionFileHandler = new CompetitionFileHandler();
         sc = new Scanner(System.in);
     }
 
@@ -47,21 +47,23 @@ public class UserInterface {
             System.out.println("Members: see options about members");
             System.out.println("Contingent: see options about contingent");
             System.out.println("Competition: see options about competitions");
+            System.out.println("Hold: administrere klubbens svømmehold");
             // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "TRAINER" -> trainerMenu();
-                case "CREATE TEAM" -> teamMenu();
+                case "HOLD" -> teamMenu();
                 case "MEMBERS" -> memberMenu();
                 case "CONTINGENT" -> contingentMenu();
-                case "COMPETITION" -> competionMenu();
+                //case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
     }
 
+    /*
     private void competionMenu() {
         //competitionController
 
@@ -117,6 +119,8 @@ public class UserInterface {
             default -> System.out.println("Not an option");
         }
     }
+    */
+
 
     //----------------------------------------------TEAMS-------------------------------------------
 
@@ -230,27 +234,30 @@ public class UserInterface {
     }
 
 
-    //----------------------------------TEAM methods----------------------------------
+
     private void teamMenu() {
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("You are in the Team menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - .");
-        System.out.println("Type : 'Delete' - .");
-        System.out.println("Type : 'Members' - .");
-        System.out.println("Type : 'Specific' - .");
+        boolean exit = false;
+        while(!exit){
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Du er i hold menuen");
+            System.out.println("Du har nu følgende muligheder:");
+            System.out.println("OPRETTE: oprette en ny hold");
+            System.out.println("SE: se hold, og opdatere deres medlemmer, trænere og navn");
+            System.out.println("SLET: slet en hold ");
+            System.out.println("AFSLUT: gå tilbage til hovedmenuen");
 
-        String input = scan.nextLine().toUpperCase();
+            String input = scan.nextLine().toUpperCase();
 
-        switch (input) {
-            case "CREATE" -> createTeam();
-            case "DELETE" -> System.out.println();
-            case "MEMBERS" -> System.out.println();
-            case "SPECIFIC" -> System.out.println();
-            case "" -> System.out.println();
-            default -> System.out.println("Wrong input");
+            switch (input) {
+                case "OPRETTE" -> createTeam();
+                case "SLET" -> deleteTeam();
+                case "SE" -> displayTeams();
+                case "AFSLUT" -> exit = true;
+                default -> System.out.println("Wrong input");
+            }
         }
+
 
     }
 
@@ -313,6 +320,42 @@ public class UserInterface {
         System.out.println("Team created succesfully");
 
 
+
+    }
+
+    private void deleteTeam(){
+        System.out.println("Vælg venligst holdet du gerne vil slette ved at indtaste dens ID: " +
+                "\n (AFSLUT for at gå tilbage)");
+        System.out.println(teamsController.getListOfTeams());
+        boolean exit = false;
+        while(!exit){
+            String userChoice = sc.nextLine();
+            try{
+                int idChoice = Integer.parseInt(userChoice);
+                System.out.println("Er du sikker på du vil slette holdet? y/n");
+                userChoice = sc.nextLine();
+                if(userChoice.equals("y")){
+                    boolean deletedSuccesfully = teamsController.deleteTeam(idChoice);
+                    if(deletedSuccesfully){
+                        System.out.println("Holdet er blevet slettet");
+                        exit = true;
+                    }else{
+                        System.out.println("Denne hold blev ikke fundet i databasen.");
+                        exit = true;
+                    }
+                }else{
+                    exit = true;
+                }
+
+
+            }catch (NumberFormatException e){
+                if(userChoice.toUpperCase().equals("AFSLUT")){
+                    exit = true;
+                }else{
+                    System.out.println("ugyldigt kommando");
+                }
+            }
+        }
 
     }
 

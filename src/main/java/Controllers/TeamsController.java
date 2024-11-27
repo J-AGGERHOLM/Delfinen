@@ -101,6 +101,19 @@ public class TeamsController {
 
     }
 
+    //-----------------------------------deleting team----------------------------
+
+    public boolean deleteTeam(int id){
+        for(Team t: swimmingClub.getTeams()){
+            if(t.getId() == id){
+                swimmingClub.deleteTeam(t);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     //-------------------------------------Team editing-----------------------------
 
     public boolean setCurrentTeam(int id){
@@ -187,20 +200,20 @@ public class TeamsController {
         // Creating dummy data for the team read feature:ArrayList<Team> teams = new ArrayList<Team>();
         //Team juniorTeam = new Team("Junior Team", new Person(1, "Hans Hansen"));
         Team juniorTeam = new Team( 1,"Junior Team", new Trainer("Hans Hansen", LocalDate.of(1995, 2, 23), 1));
-        CompetitiveSwimmer swimmer1 = new CompetitiveSwimmer("Mikkel Mikkelson", LocalDate.of(1976, 7, 7), 2, SwimmingDisciplines.BACKCRAWL);
-        CompetitiveSwimmer swimmer2 = new CompetitiveSwimmer("Søren Sørensen", LocalDate.of(2003, 4, 12), 3, SwimmingDisciplines.BREASTSTROKE);
-        CompetitiveSwimmer swimmer3 = new CompetitiveSwimmer("Ragnar Lodbrok", LocalDate.of(1976, 7, 7), 4, SwimmingDisciplines.BUTTERFLY);
-        CompetitiveSwimmer swimmer4 = new CompetitiveSwimmer("William Williamson", LocalDate.of(1976, 7, 7), 5, SwimmingDisciplines.CRAWL);
+        CompetitiveSwimmer swimmer1 = new CompetitiveSwimmer("Mikkel Mikkelson", LocalDate.of(1976, 7, 7), 2, true, true, SwimmingDisciplines.BACKCRAWL);
+        CompetitiveSwimmer swimmer2 = new CompetitiveSwimmer("Søren Sørensen", LocalDate.of(2003, 4, 12), 3, true, true, SwimmingDisciplines.BREASTSTROKE);
+        CompetitiveSwimmer swimmer3 = new CompetitiveSwimmer("Ragnar Lodbrok", LocalDate.of(1976, 7, 7), 4, true, true, SwimmingDisciplines.BUTTERFLY);
+        CompetitiveSwimmer swimmer4 = new CompetitiveSwimmer("William Williamson", LocalDate.of(1976, 7, 7), 5, true, true, SwimmingDisciplines.CRAWL);
         juniorTeam.addMember(swimmer1);
         juniorTeam.addMember(swimmer2);
         juniorTeam.addMember(swimmer3);
         juniorTeam.addMember(swimmer4);
         swimmingClub.addTeam(juniorTeam);
         Team seniorTeam = new Team(2, "Senior Team", new Trainer("Mads Mikkelson", LocalDate.of(1982, 11, 11), 6));
-        CompetitiveSwimmer swimmer5 = new CompetitiveSwimmer("Harry Harrison", LocalDate.of(2007, 12, 12), 7, SwimmingDisciplines.CRAWL);
-        CompetitiveSwimmer swimmer6 = new CompetitiveSwimmer("Anya Annison", LocalDate.of(2001, 10, 29), 8, SwimmingDisciplines.BUTTERFLY);
-        CompetitiveSwimmer swimmer7 = new CompetitiveSwimmer("Benny Bennison", LocalDate.of(1999, 9, 12), 9, SwimmingDisciplines.BREASTSTROKE);
-        CompetitiveSwimmer swimmer8 = new CompetitiveSwimmer("Carol Carolson", LocalDate.of(2000, 1, 1), 10, SwimmingDisciplines.BACKCRAWL);
+        CompetitiveSwimmer swimmer5 = new CompetitiveSwimmer("Harry Harrison", LocalDate.of(2007, 12, 12), 7, true, true, SwimmingDisciplines.CRAWL);
+        CompetitiveSwimmer swimmer6 = new CompetitiveSwimmer("Anya Annison", LocalDate.of(2001, 10, 29), 8, true, true, SwimmingDisciplines.BUTTERFLY);
+        CompetitiveSwimmer swimmer7 = new CompetitiveSwimmer("Benny Bennison", LocalDate.of(1999, 9, 12), 9, true, true, SwimmingDisciplines.BREASTSTROKE);
+        CompetitiveSwimmer swimmer8 = new CompetitiveSwimmer("Carol Carolson", LocalDate.of(2000, 1, 1), 10, true, true, SwimmingDisciplines.BACKCRAWL);
         seniorTeam.addMember(swimmer5);
         seniorTeam.addMember(swimmer6);
         seniorTeam.addMember(swimmer7);
@@ -212,17 +225,19 @@ public class TeamsController {
     private MemberRepository createDummyMemberRepository() throws IOException {
         MemberRepository mr = new MemberRepository();
 
-        mr.createMember("Alice Annison", LocalDate.of(1996, 11, 1), mr.getNewId(), true, true);
-        mr.createMember("Benjamin Bennison", LocalDate.of(2005,11,1),mr.getNewId(),true, true);
-        mr.createMember("Carol Caro", LocalDate.of(1992, 11, 1), mr.getNewId(), true, true);
-        mr.createMember("Daniel Danielson", LocalDate.of(1987,11,1),mr.getNewId(),true, true);
-        mr.createMember("Edward Eddison", LocalDate.of(1999, 11, 1), mr.getNewId(), true, true);
-        mr.createMember("Fred Fochs", LocalDate.of(1966,11,1),mr.getNewId(),true, true);
-        mr.createMember("Gemma Garter", LocalDate.of(1997, 11, 1), mr.getNewId(), true, true);
-        mr.createMember("Harry Harrison", LocalDate.of(2001,11,1),mr.getNewId(),true, true);
-        mr.createMember("Inger Ilton", LocalDate.of(2002, 11, 1), mr.getNewId(), true, true);
-        mr.createMember("Janet Jacobs", LocalDate.of(1994,11,1),mr.getNewId(),true, true);
-
+        //We dont need to do this as member repository saves the data
+        /*
+        mr.createMember("Alice Annison", LocalDate.of(1996, 11, 1), true, true);
+        mr.createMember("Benjamin Bennison", LocalDate.of(2005,11,1),true, true);
+        mr.createMember("Carol Caro", LocalDate.of(1992, 11, 1), true, true);
+        mr.createMember("Daniel Danielson", LocalDate.of(1987,11,1),true, true);
+        mr.createMember("Edward Eddison", LocalDate.of(1999, 11, 1), true, true);
+        mr.createMember("Fred Fochs", LocalDate.of(1966,11,1),true, true);
+        mr.createMember("Gemma Garter", LocalDate.of(1997, 11, 1), true, true);
+        mr.createMember("Harry Harrison", LocalDate.of(2001,11,1),true, true);
+        mr.createMember("Inger Ilton", LocalDate.of(2002, 11, 1), true, true);
+        mr.createMember("Janet Jacobs", LocalDate.of(1994,11,1),true, true);
+        */
         return mr;
 
     }
