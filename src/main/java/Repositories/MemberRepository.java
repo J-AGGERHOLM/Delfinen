@@ -60,6 +60,7 @@ public class MemberRepository {
                 return true;
             }
         }
+        currentMember = null;
         return false;
     }
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
@@ -70,6 +71,7 @@ public class MemberRepository {
                 return true;
             }
         }
+        currentMember = null;
         return false;
     }
 
@@ -96,9 +98,14 @@ public class MemberRepository {
         }
     }
 
-    public boolean delete(String name){
+    public boolean deleteMember(){
         try {
-
+            memberArrayList.remove(currentMember);
+            memberFileHandler.update();
+            return true;
+        } catch (Exception e){
+            return false;
+        }
 
     }
 

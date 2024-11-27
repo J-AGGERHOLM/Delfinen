@@ -36,7 +36,7 @@ public class TrainerRepository {
 
 
     public int getNewId(){
-        return trainerArrayList.size() + 1;
+        return trainerArrayList.size() + 101; // trainers id come with 100 before to differentiate.
     }
 
     // returns a list of all members
@@ -119,6 +119,16 @@ public class TrainerRepository {
         }
     }
 
+    public boolean deleteTrainer(){
+        try {
+            trainerArrayList.remove(currentTrainer);
+            trainerFileHandler.update();
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+
+    }
 
 
 
