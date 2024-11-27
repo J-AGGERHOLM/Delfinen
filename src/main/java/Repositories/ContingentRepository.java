@@ -13,16 +13,22 @@ import java.util.ArrayList;
 public class ContingentRepository {
     private ArrayList<Contingent> contingents;
     private final ContingentHandler ch;
+    private final MemberRepository mr;
 
     public ContingentRepository() {
         contingents = new ArrayList<>();
         ch = new ContingentHandler();
+        mr = new MemberRepository();
     }
 
     // Creates a contingent
-    public boolean createMemberContingent(Member member) throws IOException {
-        // Something went wrong
-        if (member == null) {
+    public boolean createMemberContingent(int memberId) throws IOException {
+        Member member = null;
+        if(mr.chooseSpecificMemberById(memberId)){
+            member = mr.getCurrentMember();
+        }
+
+        if(member == null){
             return false;
         }
 
@@ -41,7 +47,7 @@ public class ContingentRepository {
         }
 
         // get age
-        int age = calculateYear(member.getBirthday());
+        int age = member.getAge();
 
         // Price is based on age or activity
         if (!member.getActivity()) {
@@ -53,14 +59,6 @@ public class ContingentRepository {
         } else {
             return Fees.PENSIONER.getPrice();
         }
-    }
-
-    // Get the age of a member
-    private int calculateYear(LocalDate memberDate) {
-        LocalDate currentYear = LocalDate.now();
-
-        // Create the age based on member birthdate and the date today
-        return Period.between(memberDate, currentYear).getYears();
     }
 
     // Get all contingents
@@ -94,6 +92,16 @@ public class ContingentRepository {
     public int getId() {
         int id = getAllContingent().size();
         return ++id;
+    }
+
+    public double getExpectedEarnings(){
+        double sum = 0;
+
+        for(Member member: mr.getMemberArrayList()){
+            sum += calculatePrice(member);
+        }
+
+        return sum;
     }
 
 }
