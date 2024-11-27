@@ -4,13 +4,13 @@ import Enums.SwimmingDisciplines;
 
 import java.time.LocalDate;
 
-public class CompetitiveSwimmer extends Person {
+public class CompetitiveSwimmer extends Member {
 
 
     SwimmingDisciplines chosenDiscipline;
 
-    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, SwimmingDisciplines chosenDiscipline) {
-        super(fullName, birthday, id);
+    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, SwimmingDisciplines chosenDiscipline) {
+        super(fullName, birthday, id, activity, competitive);
         this.chosenDiscipline = chosenDiscipline;
     }
 
