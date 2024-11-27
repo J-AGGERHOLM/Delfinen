@@ -28,16 +28,6 @@ public class MemberFileHandler {
         writer.flush();
     }
 
-    public void addToFile(ArrayList<Member> memberArrayList, Member member) throws IOException {
-        if (memberArrayList == null) {
-            throw new IllegalStateException("Member repository entry is empty.");
-        }
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-        writer.write(member.toStringFile());
-        writer.newLine();
-        writer.flush();
-    }
-
 
     public void read() {
         ArrayList<Member> members;
@@ -61,12 +51,16 @@ public class MemberFileHandler {
     }
 
 
-    public void update() {
+    public void update(String membersName) throws IOException {
+        for (Member m : memberRepository.getMemberArrayList()){
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+            writer.write(memberRepository.getCurrentMember().toStringFile());
+            writer.newLine();
+            writer.flush();
+        }
 
     }
 
 
-    public void delete() {
 
-    }
 }
