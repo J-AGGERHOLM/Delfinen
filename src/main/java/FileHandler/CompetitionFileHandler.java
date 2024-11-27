@@ -23,15 +23,24 @@ public class CompetitionFileHandler {
 
 
     public void create() throws IOException {
-
         if (competition == null) {
             throw new IllegalStateException("Competition entry is empty.");
         }
+
+        // Get the last ID from the file
+        int lastId = competitions.isEmpty() ? 0 : competitions.get(competitions.size() - 1).getId();
+
+        // Increment the ID
+        competition.setId(lastId + 1);
+
+        // Save the new competition
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
-        writer.write(competition.getEvent() + "," + competition.getPlacement() + "," + competition.getTime());
+        writer.write(competition.toString());
         writer.newLine();
         writer.flush();
+        writer.close();
     }
+
 
 
     private ArrayList<Competition> competitions = new ArrayList<>();
@@ -42,15 +51,19 @@ public class CompetitionFileHandler {
             ArrayList<Competition> tempArray = new ArrayList<>();
 
             try (Scanner sc = new Scanner(compFile)) {
+                sc.nextLine();
+
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();
+
                     String[] attributes = line.split(",");
 
-                    if (attributes.length == 3) {
+                    if (attributes.length == 4) {
                         Competition competition = new Competition(
-                                attributes[0],
-                                Integer.parseInt(attributes[1]),
-                                Double.parseDouble(attributes[2])
+                                Integer.parseInt(attributes[0]), // ID
+                                attributes[1], // Event
+                                Integer.parseInt(attributes[2]), // Placement
+                                Double.parseDouble(attributes[3]) // Time
                         );
                         tempArray.add(competition);
                     }
@@ -62,6 +75,7 @@ public class CompetitionFileHandler {
             throw new RuntimeException("Error reading from file", e);
         }
     }
+
 
     //helper method for the read function.
     public ArrayList<Competition> getCompetitions() {
