@@ -30,6 +30,11 @@ public class Team {
         return trainer;
     }
 
+    public void setTrainer(Trainer trainer){
+        this.trainer = trainer;
+        trainer.setTeam(this);
+    }
+
     public ArrayList<Person> getMembers(){
         return members;
     }
@@ -38,14 +43,22 @@ public class Team {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public int getId(){
         return id;
     }
 
     //------------------------------------OTHER STUFF:----------------------------------
 
-    public void addMember(CompetitiveSwimmer member){
+    public void addMember(Person member){
         members.add(member);
+    }
+
+    public void removeMember(Person member){
+        members.remove(member);
     }
 
     @Override

@@ -110,24 +110,33 @@ public class UserInterface {
         }
     }
 
+    //----------------------------------------------TEAMS-------------------------------------------
+
     private void displayTeams(){
         boolean exit = false;
         while(!exit){
-            System.out.println("Please select the team you wish to view:");
+            System.out.println("Vælg venligst holdet du gerne vil se:");
 
             String listOfTeams = teamsController.getListOfTeams();
             System.out.println(listOfTeams);
 
-            System.out.println("Please enter a number of a team to view, or choose to exit");
+            System.out.println("Indtast tallet på holdet du vil gerne se/redigere, eller indtast AFSLUT for at gå tilbage");
             String userChoice = sc.nextLine();
             try{
                 int parsedChoice = Integer.parseInt(userChoice);
                 String teamDisplay = teamsController.getTeam(parsedChoice);
                 System.out.println(teamDisplay);
+                if(teamsController.setCurrentTeam(parsedChoice)){
+                    editTeamMenu();
+                }else{
+                    System.out.println("Holdet kunne ikke findes.");
+                }
+
+
             }catch (NumberFormatException e){
                 switch (userChoice.toUpperCase()){
-                    case "EXIT" -> exit = true;
-                    default -> System.out.println("Please enter a valid command");
+                    case "AFSLUT" -> exit = true;
+                    default -> System.out.println("Indtast venligst en gyldig kommando");
                 }
             }
 
@@ -135,17 +144,94 @@ public class UserInterface {
 
     }
 
+    private void editTeamMenu(){
+        boolean exit = false;
+        while(!exit){
+
+            System.out.println(teamsController.getCurrentTeam());
+            System.out.println("Indtast venligst handlingen du vil udføre:");
+            System.out.println("TILFØJ/FJERN: tilføje eller fjerne medlemmer fra hold");
+            System.out.println("ÆNDRE NAVN: ændre holdets navn");
+            System.out.println("ÆNDRE TRÆNER: ændre holdets træner");
+            System.out.println("AFSLUT: gå tilbage");
+
+            String userChoice = sc.nextLine();
+            switch(userChoice.toUpperCase()){
+                case "TILFØJ", "FJERN", "TILFØJ/FJERN" -> editTeamAddRemove();
+                case "ÆNDRE NAVN", "NAVN" -> editTeamChangeName();
+                case "ÆNDRE TRÆNER", "TRÆNER" -> editTeamChangeTrainer();
+                case "AFSLUT" -> exit = true;
+                default -> System.out.println("Indtast en gyldig kommando");
+            }
+        }
+    }
+
+    private void editTeamAddRemove(){
+        System.out.println("Vælg IDet af medlemet du vil gerne tilføje/fjerne fra holdet");
+        System.out.println("Indtast AFSLUT for at gå tilbage");
+        System.out.println(teamsController.getListOfMembers());
+        boolean exit = false;
+        while(!exit){
+            String userChoice = sc.nextLine();
+            try{
+                int userChoiceID = Integer.parseInt(userChoice);
+                String result = teamsController.addRemoveFromCurrentTeam(userChoiceID);
+                System.out.println(result);
+            }catch (NumberFormatException e){
+                if(userChoice.toUpperCase().equals("AFSLUT")){
+                    exit = true;
+                }else {
+                    System.out.println("Indtast venligst en gyldig kommando");
+                }
+            }
+        }
+
+    }
+
+    private void editTeamChangeName(){
+
+        System.out.println("Indtast venligst den ny navn for holdet:");
+        String userChoice = sc.nextLine();
+        teamsController.setCurrentTeamName(userChoice);
+        System.out.println("Navnet er blevet ændret");
+    }
+
+    private void editTeamChangeTrainer(){
+
+        System.out.println("Vælg venlist en træner til holdet:");
+        System.out.println(teamsController.getListOfTrainers());
+
+        boolean exit = false;
+        int trainerChoiceID;
+        while (!exit){
+            String userChoice = sc.nextLine();
+            try{
+                trainerChoiceID= Integer.parseInt(userChoice);
+            }catch (NumberFormatException e){
+                System.out.println("Indtast venligst en tal");
+                trainerChoiceID = -1;
+            }
+
+            if( teamsController.assignTrainerToCurrentTeam(trainerChoiceID)){
+                System.out.println("Denne træner er blevet tildelt til holdet");
+                exit=true;
+            }else{
+                System.out.println("Indtast venligst en gyldig træner");
+            }
+        }
+    }
+
     private void createTeam() {
         //must do this when creating a team:
         teamsController.resetTeamCreation();
 
         //Selecting the teams name:
-        System.out.println("Creating a new team.");
-        System.out.println("Please enter the team's name:");
+        System.out.println("Skaber en ny hold.");
+        System.out.println("Indtast venligst holdets navn:");
         String teamName = sc.nextLine();
 
         //Selecting the team's members from the clubs list of members:
-        System.out.println("Please select the teams members by ID: (press exit to end");
+        System.out.println("Vælg venligst holdets medlemmer ved at indstaste deres ID (AFSLUT for at slutte)");
         System.out.println(teamsController.getListOfMembers());
         boolean exit = false;
         while(!exit){
@@ -157,16 +243,16 @@ public class UserInterface {
                 System.out.println(result);
             }catch (NumberFormatException e){
 
-                if(userChoice.toUpperCase().equals("EXIT")){
+                if(userChoice.toUpperCase().equals("AFSLUT")){
                     exit = true;
                 }else{
-                    System.out.println("Please enter a valid input");
+                    System.out.println("Indtast venligst en gyldig kommando");
                 }
             }
         }
 
         //Selecting the teams trainer:
-        System.out.println("Please select the team's trainer: (by their ID)");
+        System.out.println("Indtast venligst trænerens ID");
         System.out.println(teamsController.getListOfTrainers());
 
         exit = false;
@@ -176,15 +262,15 @@ public class UserInterface {
             try{
                 trainerChoiceID= Integer.parseInt(userChoice);
             }catch (NumberFormatException e){
-                System.out.println("Please enter a number");
+                System.out.println("Indtast venligst en tal");
                 trainerChoiceID = -1;
             }
 
             if( teamsController.assignTrainer(trainerChoiceID)){
-                System.out.println("That trainer has been assigned to the team");
+                System.out.println("Denne træner er blevet tildelt til holdet");
                 exit=true;
             }else{
-                System.out.println("Please enter a valid trainer");
+                System.out.println("Indtast venligst en gyldig træner");
             }
         }
 
@@ -196,7 +282,7 @@ public class UserInterface {
 
     }
 
-
+//----------------------------------------------------END OF TEAMS-------------------------------------------
 
 
     public void trainerOptions() {

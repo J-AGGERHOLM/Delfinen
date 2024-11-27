@@ -101,10 +101,64 @@ public class TeamsController {
 
     }
 
-    //Team editing-----------------------------
+    //-------------------------------------Team editing-----------------------------
 
     public boolean setCurrentTeam(int id){
-        return true;
+       for(Team t: swimmingClub.getTeams()){
+           if(t.getId() == id){
+               currentTeam = t;
+               return true;
+           }
+       }
+       return false;
+    }
+
+    public String getCurrentTeam(){
+        return currentTeam.getFullData();
+    }
+
+    public String addRemoveFromCurrentTeam(int id){
+        Person personToToggle = null;
+        boolean personExists = false;
+        for(Person p: memberRepository.getMemberArrayList()){
+            if(p.getId() == id){
+                personToToggle = p;
+                personExists = true;
+            }
+        }
+
+        if(!personExists){
+            return "Denne person kunne ikke findes i databasen";
+        }
+
+        //if the person is on the team we remove them from it:
+        for(Person p: currentTeam.getMembers()){
+            if(p.equals(personToToggle)){
+                currentTeam.removeMember(p);
+                return p.getFullName() + "Er blevet fjernet fra holdet";
+            }
+        }
+
+        //if we dont find them on the team we add them to it:
+        if(personToToggle != null){
+            currentTeam.addMember(personToToggle);
+        }
+        return personToToggle.getFullName() + "er blevet tilføjet til holdet";
+    }
+
+    public boolean assignTrainerToCurrentTeam(int id){
+        for(Trainer t: trainerRepo){
+            if(t.getId() == id){
+                currentTeam.setTrainer(t);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void setCurrentTeamName(String name){
+        currentTeam.setName(name);
     }
 
 
