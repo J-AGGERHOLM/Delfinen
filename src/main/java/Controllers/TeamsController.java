@@ -11,11 +11,15 @@ import java.util.ArrayList;
 
 public class TeamsController {
 
-    SwimmingClub swimmingClub = benjaminTest();
-    MemberRepository memberRepository;
+    private SwimmingClub swimmingClub = benjaminTest();
+    private MemberRepository memberRepository;
 
-    ArrayList<Person> newTeamList = new ArrayList<Person>();
-    Trainer newTeamTrainer;
+    //For creating new teams:
+    private ArrayList<Person> newTeamList = new ArrayList<Person>();
+    private Trainer newTeamTrainer;
+
+    //for editing teams:
+    private Team currentTeam;
 
 
     //TEST
@@ -95,6 +99,12 @@ public class TeamsController {
         Team team = new Team(id, teamName, newTeamTrainer, newTeamList );
         swimmingClub.addTeam(team);
 
+    }
+
+    //Team editing-----------------------------
+
+    public boolean setCurrentTeam(int id){
+        return true;
     }
 
 

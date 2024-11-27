@@ -197,6 +197,8 @@ public class UserInterface {
     }
 
 
+
+
     public void trainerOptions() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
