@@ -3,7 +3,6 @@ package Repositories;
 import FileHandler.MemberFileHandler;
 import Models.Member;
 
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,14 +35,14 @@ public class MemberRepository {
 
 
     public int getNewId(){
-        return memberArrayList.size();
+        return memberArrayList.size() + 1;
     }
 
     // returns a list of all members
     public String displayMembers() {
         String result = "";
         for (Member m : memberArrayList) {
-            result += m.getFullName() + "\n";        }
+            result += m.toString() + "\n";        }
         return result;
     }
 
@@ -54,32 +53,49 @@ public class MemberRepository {
 
 
     // Find a specific member with their id from the list for editing, deleting, payments, etc
-    public Member chooseSpecificMemberById(int idToCheck) {
+    public boolean chooseSpecificMemberById(int idToCheck) {
         for (Member m : memberArrayList) {
             if (idToCheck == m.getId()) {
                 currentMember = m;
-                return currentMember;
+                return true;
             }
         }
-        return null;
+        return false;
     }
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
-    public Member chooseSpecificMemberByName(String name) {
+    public boolean chooseSpecificMemberByName(String name) {
         for (Member m : memberArrayList) {
             if (m.getFullName().contains(name)) {
                 currentMember = m;
+                return true;
             }
         }
-        return currentMember;
+        return false;
     }
 
-    public void createMember(String name, LocalDate birthday, int id, boolean activity, boolean competitive) throws IOException {
-        Member member = new Member(name, birthday, id, activity, competitive);
-        currentMember = member;
-        memberArrayList.add(currentMember);
-        memberFileHandler.create();
 
+    public boolean createMember(String name, LocalDate birthday, boolean activity, boolean competitive) {
+        try {
+            // Create a new Member object
+            Member member = new Member(name, birthday, getNewId(), activity, competitive);
+            // Assign the current member
+            currentMember = member;
+            // Add the member to the ArrayList
+            memberArrayList.add(currentMember);
+            // Save the member to file
+            memberFileHandler.create();
+            return true;
+        } catch (IOException e) {
+            System.err.println("Error occurred while creating a member: " + e.getMessage());
+
+            return false;
+        } catch (Exception e) {
+            // Catch any other unforeseen exceptions
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+            return false;
+        }
     }
+// this is something only in the person feature.
 
 
 }

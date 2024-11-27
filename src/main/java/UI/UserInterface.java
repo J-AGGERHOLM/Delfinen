@@ -7,14 +7,13 @@ import Controllers.Controller;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 import Controllers.TeamsController;
 import FileHandler.CompetitionFileHandler;
-import FileHandler.SuperHandler;
-import Models.Competition;
 import Repositories.MemberRepository;
+
+import Models.Competition;
 import Models.Person;
 import Models.Trainer;
 import Models.Training;
@@ -25,6 +24,8 @@ public class UserInterface {
     SuperHandler competitionFileHandler;
     TeamsController teamsController = new TeamsController();
     Scanner sc;
+    CompetitionFileHandler competitionFileHandler;
+
 
     public UserInterface() {
         this.controller = new Controller();
@@ -42,21 +43,26 @@ public class UserInterface {
         while (!exit) {
 
             System.out.println("please enter a command");
-            System.out.println("contingent: see options about contingent");
+            //System.out.println("Trainer: see options about trainers");
+            System.out.println("Members: see options about members");
+            System.out.println("Contingent: see options about contingent");
+            System.out.println("Competition: see options about competitions");
+            // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
-                case "CREATE TEAM" -> createTeam();
-                 case "DISPLAY TEAM" -> displayTeams();
-                case "CONTINGENT" -> displayContingent();
-                case "COMPETITION" -> displayCompetion();
+                case "TRAINER" -> trainerMenu();
+                case "CREATE TEAM" -> teamMenu();
+                case "MEMBERS" -> memberMenu();
+                case "CONTINGENT" -> contingentMenu();
+                case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
     }
 
-    private void displayCompetion() {
+    private void competionMenu() {
         //competitionController
 
         CompetitionController competitionController = new CompetitionController();
@@ -68,15 +74,17 @@ public class UserInterface {
 
 
         //menu:
-        System.out.println("You are displaying the competitions");
-        System.out.println("You now have the following options:");
-        System.out.println("CREATE : To create a competition entry");
-        System.out.println("DISPLAY: To view previous entries");
 
-        String competitionInput = sc.nextLine();
+        System.out.println("You are in the Competition menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - To create a new competion entry.");
+        System.out.println("Type : 'Display' - To Display all competion entries.");
+        //System.out.println("Type : 'Delete' - To delete competition entry.");
+
+        String competitionInput = sc.nextLine().toUpperCase();
 
         //depending on the users input, these cases happen:
-        switch (competitionInput.toUpperCase()) {
+        switch (competitionInput) {
             case "CREATE" -> {
                 try {
                     System.out.println("Please enter the name of the event:");
@@ -221,6 +229,32 @@ public class UserInterface {
         }
     }
 
+
+    //----------------------------------TEAM methods----------------------------------
+    private void teamMenu() {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("You are in the Team menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - .");
+        System.out.println("Type : 'Delete' - .");
+        System.out.println("Type : 'Members' - .");
+        System.out.println("Type : 'Specific' - .");
+
+        String input = scan.nextLine().toUpperCase();
+
+        switch (input) {
+            case "CREATE" -> createTeam();
+            case "DELETE" -> System.out.println();
+            case "MEMBERS" -> System.out.println();
+            case "SPECIFIC" -> System.out.println();
+            case "" -> System.out.println();
+            default -> System.out.println("Wrong input");
+        }
+
+    }
+
+
     private void createTeam() {
         //must do this when creating a team:
         teamsController.resetTeamCreation();
@@ -285,6 +319,32 @@ public class UserInterface {
 //----------------------------------------------------END OF TEAMS-------------------------------------------
 
 
+    //----------------------------------Training methods----------------------------------
+
+    private void trainerMenu() {
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("You are in the Trainer menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - .");
+        System.out.println("Type : 'Delete' - .");
+        System.out.println("Type : 'Members' - .");
+        System.out.println("Type : 'Specific' - .");
+
+        String input = scan.nextLine().toUpperCase();
+
+        switch (input) {
+            case "CREATE" -> System.out.println();
+            case "DELETE" -> System.out.println();
+            case "MEMBERS" -> System.out.println();
+            case "SPECIFIC" -> System.out.println();
+            case "" -> System.out.println();
+            default -> System.out.println("Wrong input");
+        }
+
+    }
+
+
     public void trainerOptions() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -323,69 +383,103 @@ public class UserInterface {
         String choice = scanner.nextLine();
         System.out.println(controller.getDisciplineTopFive(choice));
     }
+    //----------------------------------Training methods----------------------------------
 
-    private void displayContingent() {
+
+    //----------------------------------Contingents methods----------------------------------
+
+
+    private void contingentMenu() {
+
         Scanner scan = new Scanner(System.in);
-        System.out.println("What would you like to do:");
-        System.out.println("1: Add a contingent");
-        System.out.println("2: Delete a contingent");
-        System.out.println("3: Find a person contingents");
-        System.out.println("4: Lookup all contingent");
-        System.out.println("5: Lookup arrears");
+        System.out.println("You are in the Contingent menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - To register a new contingent entry.");
+        System.out.println("Type : 'Delete' - To Delete an existing contingent entry.");
+        System.out.println("Type : 'Members' - To view contingents of all members.");
+        System.out.println("Type : 'Specific' - To search for a specific members contingents.");
 
-        int input = scan.nextInt();
+        String input = scan.nextLine().toUpperCase();
 
         switch (input) {
-            case 1 -> contingentAdd(scan);
-            case 2 -> contingentDelete(scan);
-            case 3 -> getSpecificContingent();
-            case 4 -> readAll();
-            case 5 -> System.out.println();
+            case "CREATE" -> contingentAdd(scan);
+            case "DELETE" -> contingentDelete(scan);
+            case "MEMBERS" -> readAll();
+            case "SPECIFIC" -> getSpecificContingent(scan);
+            case "" -> System.out.println();
             default -> System.out.println("Wrong input");
         }
+
     }
 
     private void contingentAdd(Scanner scan) {
-        // Display members.
-        // Type ind which member you want to attach a contingent to
+        displayMembers();
+
+        System.out.println("Type an member id to create a contingent");
+        int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
-        ContingentController cc = new ContingentController(1);
-
-        if (cc.getMember() == null) {
-            System.out.println("The typed id didn't exist");
-        } else {
-            System.out.println(cc.createMemberContingent());
-        }
+        ContingentController cc = new ContingentController();
+        System.out.println(cc.createMemberContingent(memberId));
     }
 
     private void contingentDelete(Scanner scan) {
-        // Display members.
-        // Type ind which member you want to attach a contingent to
+        displayMembers();
+
+        System.out.println("Type an member id to get the members contingent");
+        int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
-        ContingentController cc = new ContingentController(1);
-        System.out.println(cc.getMemberContingents());
-        System.out.println("Type the contingent you would like to delete");
+        ContingentController cc = new ContingentController();
+        System.out.println(cc.getMemberContingents(memberId));
+        System.out.println("Type an contingent id you would like to delete");
 
         System.out.println(cc.deleteContingent(scan.nextInt()));
     }
 
-    private void getSpecificContingent() {
-        ContingentController cc = new ContingentController(1);
-        System.out.println(cc.getMemberContingents());
+    private void getSpecificContingent(Scanner scan) {
+        displayMembers();
+
+        System.out.println("Type an member id to get specific contingent");
+        int memberId = scan.nextInt();
+
+        ContingentController cc = new ContingentController();
+        System.out.println(cc.getMemberContingents(memberId));
     }
 
     private void readAll() {
-        ContingentController cc = new ContingentController(1);
+        ContingentController cc = new ContingentController();
         System.out.println(cc.readAll());
     }
+    //----------------------------------Contingents methods----------------------------------
 
 
-//Simons methods----------------------------------------------------------------------------------------------------
+//Member methods----------------------------------------------------------------------------------------------------
+
+    public void memberMenu() {
+
+        System.out.println("You are in the Member menu");
+        System.out.println("You have following options:");
+        System.out.println("Type : 'Create' - To register a new member.");
+        System.out.println("Type : 'Edit' - To edit information about an existing member.");
+        System.out.println("Type : 'Members' - To view all current members.");
+        System.out.println("Type : 'Specific' - To search for a specific member.");
 
 
-    private void createMember() throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        String userInput = sc.nextLine().toUpperCase();
+
+        switch (userInput) {
+            case "CREATE" -> createMember();
+            case "EDIT" -> editMember();
+            case "DISPLAY MEMBERS" -> displayMembers();
+            //case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
+            default -> System.out.println("Not an option!");
+        }
+    }
+
+    private void createMember() {
         MemberRepository memberRepository = new MemberRepository();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter full name: ");
@@ -403,27 +497,26 @@ public class UserInterface {
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
         memberRepository.createMember(name,
-                LocalDate.of(year,month,day),
-                memberRepository.getNewId(),
+                LocalDate.of(year, month, day),
                 activity.equalsIgnoreCase("active"),
                 competitive.equalsIgnoreCase("competitive"));
         System.out.println("You have created a new Member :D");
     }
 
-    private void editMember(){
+    private void editMember() {
         Scanner sc = new Scanner(System.in);
         MemberRepository memberRepository = new MemberRepository();
         System.out.println("Which members information do you want to edit? ");
         System.out.println("Enter Full name: ");
         String name = sc.nextLine();
         memberRepository.chooseSpecificMemberByName(name);
-        if (memberRepository.getCurrentMember() == null){
+        if (memberRepository.getCurrentMember() == null) {
             System.out.println("couldnt find a member with that name.");
         } else {
             System.out.println("Member " + memberRepository.getCurrentMember().getFullName() + "found");
             System.out.println("what information do you want to edit? \nName \nBirthday \nActivity \nCompetitive");
             String input = sc.nextLine();
-            switch (input){
+            switch (input) {
                 case "Name" -> {
                     System.out.println("Enter new name: ");
                     String newName = sc.nextLine();
@@ -444,38 +537,38 @@ public class UserInterface {
         System.out.println(memberRepository.displayMembers()); // should be with controller, will do it later
     }
 
-    private void displayInformationFromSpecificMember() {
-        MemberRepository memberRepository = new MemberRepository();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Do you want to use a name or an id?");
-        String input = sc.nextLine();
-        switch (input.toLowerCase(Locale.ROOT)) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
-                input = sc.nextLine();
-                memberRepository.chooseSpecificMemberByName(input);
-            }
-            case "id" -> {
-                int idNum = 0;
-                System.out.println("Enter id: ");
-                while (true) {
-                    String inputNum = sc.nextLine();
-                    try {
-                        idNum = Integer.parseInt(inputNum);
-                        break;
-                    } catch (NumberFormatException e) {
-                        System.out.println(input + " is not a valid id. try again");
-                    }
-                }
-                if (memberRepository.chooseSpecificMemberById(idNum) == null) {
-                    System.out.println("There is no member with ID: " + idNum);
-                } else {
-                    System.out.println("Member information with ID " + idNum);
-                    System.out.println(memberRepository.getCurrentMember().toString());
-                }
-            }
-        }
-
-    }
+//    private void displayInformationFromSpecificMember() {
+//        MemberRepository memberRepository = new MemberRepository();
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Do you want to use a name or an id?");
+//        String input = sc.nextLine();
+//        switch (input.toLowerCase(Locale.ROOT)) {
+//            case "name", "full name" -> {
+//                System.out.println("Enter name: ");
+//                input = sc.nextLine();
+//                memberRepository.chooseSpecificMemberByName(input);
+//            }
+//            case "id" -> {
+//                int idNum = 0;
+//                System.out.println("Enter id: ");
+//                while (true) {
+//                    String inputNum = sc.nextLine();
+//                    try {
+//                        idNum = Integer.parseInt(inputNum);
+//                        break;
+//                    } catch (NumberFormatException e) {
+//                        System.out.println(input + " is not a valid id. try again");
+//                    }
+//                }
+//                if (memberRepository.chooseSpecificMemberById(idNum)) {
+//                    System.out.println("There is no member with ID: " + idNum);
+//                } else {
+//                    System.out.println("Member information with ID " + idNum);
+//                    System.out.println(memberRepository.getCurrentMember().toString());
+//                }
+//            }
+//        }
+//
+//    }
 }
 

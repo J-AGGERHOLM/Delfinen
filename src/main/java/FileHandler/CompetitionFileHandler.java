@@ -10,7 +10,7 @@ import java.util.Scanner;
 import Models.Competition;
 
 
-public class CompetitionFileHandler extends SuperHandler {
+public class CompetitionFileHandler {
 
     Competition competition;
 
@@ -22,7 +22,6 @@ public class CompetitionFileHandler extends SuperHandler {
     }
 
 
-    @Override
     public void create() throws IOException {
 
         if (competition == null) {
@@ -37,7 +36,6 @@ public class CompetitionFileHandler extends SuperHandler {
 
     private ArrayList<Competition> competitions = new ArrayList<>();
 
-    @Override
     public void read() {
         try {
             File compFile = new File(filePath);
@@ -70,13 +68,47 @@ public class CompetitionFileHandler extends SuperHandler {
         return competitions;
     }
 
-    @Override
     public void update() {
 
     }
 
-    @Override
-    public void delete() {
+    public void delete(String eventName) {
 
+        read();
+        if (competitions == null) {
+            return;
+        }
+
+        Competition forDeletion = null;
+
+        for (Competition c : competitions) {
+            if (c.getEvent().toUpperCase().equals(eventName.toUpperCase())) {
+                forDeletion = c;
+            }
+        }
+        if (forDeletion != null) {
+            competitions.remove(forDeletion);
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false));
+            writer.write("");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+            for (Competition c : competitions) {
+                writer.write(c.getEvent() + "," + c.getPlacement() + "," + c.getTime());
+                writer.newLine();
+
+            }
+            writer.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 }
+

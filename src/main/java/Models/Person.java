@@ -2,6 +2,7 @@ package Models;
 
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Person {
 
@@ -10,40 +11,49 @@ public class Person {
     private int id;
 
     // Constructor
-    public Person(String fullName, LocalDate birthday, int id){
+    public Person(String fullName, LocalDate birthday, int id) {
         this.fullName = fullName;
         this.birthday = birthday;
         this.id = id;
     }
 
     //_______________________Getter Methods____________________________________
-    public String getFullName(){
+    public String getFullName() {
         return fullName;
     }
-    public LocalDate getBirthday(){
+
+    public LocalDate getBirthday() {
         return birthday;
     }
-    public int getId(){
+
+    public int getId() {
         return id;
+    }
+
+    public int getAge() {
+        LocalDate currentYear = LocalDate.now();
+        return Period.between(birthday, currentYear).getYears();
     }
 
 
     //_______________________________Setter Methods_____________________________________________
 
-   public void setName(String newFullName){
+    public void setName(String newFullName) {
         fullName = newFullName;
-   }
-   public void setBirthday(LocalDate newBirthday){
+    }
+
+    public void setBirthday(LocalDate newBirthday) {
         birthday = newBirthday;
-   }
+    }
 
     public void setId(int newId) {
         id = newId;
     }
-   //____________________________________________ToString_______________________________________________________________
+    //____________________________________________ToString_______________________________________________________________
 
-   public String toString(){
+    public String toString() {
         return "ID: " + id + " Name: " + fullName + " Birthday: " + birthday + " ";
-   }
+    }
+
 
 }
