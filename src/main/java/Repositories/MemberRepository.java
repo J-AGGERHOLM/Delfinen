@@ -53,14 +53,14 @@ public class MemberRepository {
 
 
     // Find a specific member with their id from the list for editing, deleting, payments, etc
-    public Member chooseSpecificMemberById(int idToCheck) {
+    public boolean chooseSpecificMemberById(int idToCheck) {
         for (Member m : memberArrayList) {
             if (idToCheck == m.getId()) {
                 currentMember = m;
-                return currentMember;
+                return true;
             }
         }
-        return null;
+        return false;
     }
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
     public boolean chooseSpecificMemberByName(String name) {
