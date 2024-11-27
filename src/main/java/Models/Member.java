@@ -32,26 +32,23 @@ public class Member extends Person {
     }
 
 
-
     //______________________to String___________________________________________________________________________________
 
     @Override
-    public String toString(){
-        return "Full name: " + super.getFullName() +
-               "Birthday: " + super.getBirthday() +
-               "id: " + super.getId() +
-               "Activity status: " + (activity ? "Active" : "Passive") +
-               "Competitive status: " + (competitive ? "Competitive" : "Non-competitive"); // need better names
+    public String toString() {
+        return "id: " + super.getId() +
+                " Full name: " + super.getFullName() +
+                " Birthday: " + super.getBirthday() +
+                " Activity status: " + (activity ? "Active" : "Passive") +
+                " Competitive status: " + (competitive ? "Competitive" : "Non-competitive"); // need better names
     }
 
-    public String toStringFile(){
+    public String toStringFile() {
         return super.getFullName() + "," +
                 super.getBirthday() + "," + super.getId() + "," +
                 (activity ? "active" : "passive") + "," +
                 (competitive ? "competitive" : "non-competitive");
     }
-
-
 
 
 }

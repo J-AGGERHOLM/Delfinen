@@ -42,7 +42,7 @@ public class MemberRepository {
     public String displayMembers() {
         String result = "";
         for (Member m : memberArrayList) {
-            result += m.getFullName() + "\n";        }
+            result += m.toString() + "\n";        }
         return result;
     }
 
@@ -53,14 +53,14 @@ public class MemberRepository {
 
 
     // Find a specific member with their id from the list for editing, deleting, payments, etc
-    public boolean chooseSpecificMemberById(int idToCheck) {
+    public Member chooseSpecificMemberById(int idToCheck) {
         for (Member m : memberArrayList) {
             if (idToCheck == m.getId()) {
                 currentMember = m;
-                return true;
+                return currentMember;
             }
         }
-        return false;
+        return null;
     }
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
     public boolean chooseSpecificMemberByName(String name) {
