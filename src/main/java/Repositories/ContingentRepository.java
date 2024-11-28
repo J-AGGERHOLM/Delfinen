@@ -6,8 +6,6 @@ import Models.Contingent;
 import Models.Member;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 
 public class ContingentRepository {
@@ -62,7 +60,7 @@ public class ContingentRepository {
     }
 
     // Get all contingents
-    public ArrayList<Contingent> getAllContingent() {
+    public ArrayList<Contingent> getAllContingent() throws IOException {
         return ch.read();
     }
 
@@ -89,7 +87,7 @@ public class ContingentRepository {
         return true;
     }
 
-    public int getId() {
+    public int getId() throws IOException {
         int id = getAllContingent().size();
         return ++id;
     }

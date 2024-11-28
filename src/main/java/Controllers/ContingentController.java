@@ -28,7 +28,10 @@ public class ContingentController {
     }
 
     // Gets a member contingents
-    public String getMemberContingents(int memberId) {
+    public String getMemberContingents(int memberId)
+    {
+        try{
+
         // For print
         StringBuilder sb = new StringBuilder();
         // Store all
@@ -45,6 +48,9 @@ public class ContingentController {
         return sb.isEmpty()
                 ? "Der er ingen kontingent på ønskede id: " + memberId
                 : sb.toString();
+        } catch (IOException e){
+            return e.getMessage();
+        }
     }
 
     public String deleteContingent(int id) {
@@ -65,15 +71,20 @@ public class ContingentController {
         // For print
         StringBuilder sb = new StringBuilder();
 
-        // Loops through all
-        for(Contingent c : repository.getAllContingent()){
-            sb.append(c.toString());
+        try{
+            // Loops through all
+            for (Contingent c : repository.getAllContingent()) {
+                sb.append(c.toString());
+            }
+
+            // Return message
+            return sb.isEmpty()
+                    ? "Der er ingen kontingenter oprettet"
+                    : sb.toString();
+        } catch (IOException e){
+            return e.getMessage();
         }
 
-        // Return message
-        return sb.isEmpty()
-                ? "Der er ingen kontingenter oprettet"
-                : sb.toString();
     }
 
     public String getExpectedEarnings(){
