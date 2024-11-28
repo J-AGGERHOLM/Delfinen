@@ -20,14 +20,14 @@ public class UserInterface {
     Controller controller;
     CompetitionController competitionController;
     TeamsController teamsController = new TeamsController();
-    TrainingController trainingController = new TrainingController();
+    TrainingController trainingController;
     Scanner sc;
 
 
     public UserInterface() {
         this.controller = new Controller();
         this.competitionController = new CompetitionController();
-
+        this.trainingController = new TrainingController();
         sc = new Scanner(System.in);
     }
 
@@ -391,23 +391,26 @@ public class UserInterface {
             case "TILFØJE" -> addTrainingSession();
             case "FEM" -> viewTop5ForDiscipline();
             case "RETURN" -> trainerMenu();
-            case "EXIT" -> mainLoop();
+            case "EXIT" -> {
+                trainingController.writeToFile();
+                mainLoop();
+            }
             default -> System.out.println("Forkert input");
         }
 
     }
 
     public void addTrainingSession() {
-
         System.out.println("Disciplin");
         String discipline = sc.nextLine();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
         for(CompetitiveSwimmer swimmer : swimmers) {
+            System.out.println(swimmer.getFullName());
             CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
             System.out.println(swimTemp.getFullName());
             System.out.println("Tid (XX:XX:XX):");
             String time = sc.nextLine();
-            trainingController.addTraining(new Training(discipline, swimTemp, time));
+            trainingController.addTraining(new Training(discipline, swimmer.getId(), time));
         }
         System.out.println(trainingController.showData());
     }
