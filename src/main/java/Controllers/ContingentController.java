@@ -1,9 +1,7 @@
 package Controllers;
 
 import Models.Contingent;
-import Models.Member;
 import Repositories.ContingentRepository;
-import Repositories.MemberRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,25 +16,15 @@ public class ContingentController {
     // Creates member
     public String createMemberContingent(int memberId) {
         try {
-            MemberRepository mr = new MemberRepository();
-            Member member = null;
-            if(mr.chooseSpecificMemberById(memberId)){
-                member = mr.getCurrentMember();
-            }
-
-            if(member == null){
-                return "Member not found";
-            }
-
             // If it's true
-            if (repository.createMemberContingent(member)) {
-                return "Record created.";
+            if (repository.createMemberContingent(memberId)) {
+                return "Du oprettede koningent på følgende id: " + memberId;
+            }else{
+                return "Det indtastede id findes ikke: " + memberId;
             }
         } catch (IOException e) {
             return e.getMessage();
         }
-        // Something went wrong
-        return "Something went wrong.";
     }
 
     // Gets a member contingents
@@ -55,7 +43,7 @@ public class ContingentController {
 
         // Returns a message
         return sb.isEmpty()
-                ? "No contingent exist."
+                ? "Der er ingen kontingent på ønskede id: " + memberId
                 : sb.toString();
     }
 
@@ -63,15 +51,14 @@ public class ContingentController {
         try {
             // If we can delete
             if(repository.deleteSpecificContingent(id)){
-                return "You deleted the record";
+                return "Du slettede kontingent med følgende id: " + id;
+            }else{
+                return "Der findes ikke nogen kontingenter med id: " + id;
             }
         } catch (IOException e){
             // Something terrible went wrong
             return e.getMessage();
         }
-
-        // Something went wrong
-        return "The record didn't exist";
     }
 
     public String readAll(){
@@ -85,8 +72,16 @@ public class ContingentController {
 
         // Return message
         return sb.isEmpty()
-                ? "No record of any contingents"
+                ? "Der er ingen kontingenter oprettet"
                 : sb.toString();
+    }
+
+    public String getExpectedEarnings(){
+        double sum = repository.getExpectedEarnings();
+
+        return sum == 0
+                ? "Der er ingen medlemmer. I tjener ikke noget endnu"
+                : String.valueOf(sum);
     }
 
     // ------------------------------- getter ----------------------------------

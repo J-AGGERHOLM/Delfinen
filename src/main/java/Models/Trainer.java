@@ -15,16 +15,28 @@ public class Trainer extends Person {
         super(name, birthday, id);
     }
 
+    //______________________________________getter and setter methods____________________________________
+
+    public Team getTeam(){
+        return team;
+    }
+
     public void setTeam(Team team){
         this.team = team;
     }
 
-
+    //___________________________________________________________________________________________________________________
     @Override
     public String toString() {
         return "Full name: " + super.getFullName() +
                 "Birthday: " + super.getBirthday() +
                 "id: " + super.getId() +
                 "Team: ";// + team.getName;
+    }
+
+    public String toStringFile(){
+        return super.getFullName() + "," +
+                super.getBirthday() + "," + super.getId() + "," +
+                team.getName();
     }
 }

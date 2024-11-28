@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 import Controllers.TeamsController;
 import FileHandler.CompetitionFileHandler;
+
+import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
 
 import Models.Competition;
@@ -21,6 +23,7 @@ import Models.Training;
 
 public class UserInterface {
     Controller controller;
+    CompetitionController competitionController;
     //SuperHandler competitionFileHandler;
     TeamsController teamsController = new TeamsController();
     Scanner sc;
@@ -29,7 +32,8 @@ public class UserInterface {
 
     public UserInterface() {
         this.controller = new Controller();
-        //competitionFileHandler = new CompetitionFileHandler();
+        this.competitionController = new CompetitionController();
+
         sc = new Scanner(System.in);
     }
 
@@ -57,13 +61,16 @@ public class UserInterface {
                 case "HOLD" -> teamMenu();
                 case "MEMBERS" -> memberMenu();
                 case "CONTINGENT" -> contingentMenu();
-                //case "COMPETITION" -> competionMenu();
+                case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
         }
     }
 
-    /*
+
+//----------------------------------Competition methods START----------------------------------
+
+
     private void competionMenu() {
         //competitionController
 
@@ -71,55 +78,68 @@ public class UserInterface {
 
         //scanners instanciated:
         Scanner sc = new Scanner(System.in);
-        Scanner intScanner = new Scanner(System.in);
-        Scanner doubleScanner = new Scanner(System.in);
-
-
         //menu:
 
         System.out.println("You are in the Competition menu");
         System.out.println("You have following options:");
         System.out.println("Type : 'Create' - To create a new competion entry.");
         System.out.println("Type : 'Display' - To Display all competion entries.");
-        //System.out.println("Type : 'Delete' - To delete competition entry.");
+        System.out.println("Type : 'Delete' - To delete competition entry.");
 
         String competitionInput = sc.nextLine().toUpperCase();
 
         //depending on the users input, these cases happen:
         switch (competitionInput) {
-            case "CREATE" -> {
-                try {
-                    System.out.println("Please enter the name of the event:");
-                    String event = sc.nextLine();
-                    System.out.println("Please enter te placement achieved:");
-                    int placement = intScanner.nextInt();
-                    System.out.println("Please enter the swimmers time:");
-                    double time = doubleScanner.nextDouble();
-
-
-                    //Competition object is created with the users input
-                    Competition competition = new Competition(event, placement, time);
-
-                    ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
-                } catch (InputMismatchException ime) {
-                    System.out.println("Error : Something is wrong with these input values");
-                }
-
-                //Competition object is comitted to the document
-                try {
-                    competitionFileHandler.create();
-                } catch (IOException e) {
-                    System.out.println("Error: Something went wrong trying to create the file");
-                }
-            }
+            case "CREATE" -> competitionEntryCreate();
             case "DISPLAY" -> {
                 System.out.println(competitionController.readCompetition());
-
             }
+            case "DELETE" -> deleteCompetitionEntry();
             default -> System.out.println("Not an option");
         }
     }
-    */
+
+
+    public void deleteCompetitionEntry() {
+
+        Scanner sc = new Scanner(System.in);
+        CompetitionRepository repository = new CompetitionRepository();
+        System.out.println("Please enter the name of the event you'd like to delete.");
+        String searchWord = sc.nextLine();
+        repository.searchForEntry(searchWord);
+
+    }
+
+
+    public void competitionEntryCreate() {
+        Scanner sc = new Scanner(System.in);
+        Scanner intScanner = new Scanner(System.in);
+        Scanner doubleScanner = new Scanner(System.in);
+        CompetitionRepository repository = new CompetitionRepository();
+
+        try {
+            System.out.println("Please enter the name of the event:");
+            String event = sc.nextLine();
+            System.out.println("Please enter te placement achieved:");
+            int placement = intScanner.nextInt();
+            System.out.println("Please enter the swimmers time:");
+            double time = doubleScanner.nextDouble();
+
+
+            repository.commitCompetitionEntry(event, placement, time);
+
+        } catch (InputMismatchException ime) {
+            System.out.println("Error : Something is wrong with these input values");
+        }
+
+    }
+    //----------------------------------Competition methods END----------------------------------
+
+
+
+
+
+
 
 
     //----------------------------------------------TEAMS-------------------------------------------
@@ -435,22 +455,23 @@ public class UserInterface {
     private void contingentMenu() {
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("You are in the Contingent menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - To register a new contingent entry.");
-        System.out.println("Type : 'Delete' - To Delete an existing contingent entry.");
-        System.out.println("Type : 'Members' - To view contingents of all members.");
-        System.out.println("Type : 'Specific' - To search for a specific members contingents.");
+        System.out.println("Du er i contingent menuen.");
+        System.out.println("Du har følgende muligheder:");
+        System.out.println("Skriv : 'Opret' - For at oprette en kontingent.");
+        System.out.println("Skriv : 'Slet' - For at slette en kontingent.");
+        System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
+        System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
 
         String input = scan.nextLine().toUpperCase();
 
         switch (input) {
-            case "CREATE" -> contingentAdd(scan);
-            case "DELETE" -> contingentDelete(scan);
-            case "MEMBERS" -> readAll();
-            case "SPECIFIC" -> getSpecificContingent(scan);
+            case "OPRET" -> contingentAdd(scan);
+            case "SLET" -> contingentDelete(scan);
+            case "MEDLEMMER" -> readAll();
+            case "SPECIFIK" -> getSpecificContingent(scan);
+            case "FORVENTET" -> getExpectedEarnings();
             case "" -> System.out.println();
-            default -> System.out.println("Wrong input");
+            default -> System.out.println("Det indtastede passede ikke.");
         }
 
     }
@@ -458,7 +479,7 @@ public class UserInterface {
     private void contingentAdd(Scanner scan) {
         displayMembers();
 
-        System.out.println("Type an member id to create a contingent");
+        System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på.");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
@@ -469,30 +490,38 @@ public class UserInterface {
     private void contingentDelete(Scanner scan) {
         displayMembers();
 
-        System.out.println("Type an member id to get the members contingent");
+        System.out.println("Skriv et id på en medlem, som du vil slette kontingent på.");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
         System.out.println(cc.getMemberContingents(memberId));
-        System.out.println("Type an contingent id you would like to delete");
+        System.out.println("Skriv et kontingent id for at slette en specifik.");
 
         System.out.println(cc.deleteContingent(scan.nextInt()));
+    }
+
+    private void readAll() {
+        ContingentController cc = new ContingentController();
+        System.out.println(cc.readAll());
     }
 
     private void getSpecificContingent(Scanner scan) {
         displayMembers();
 
-        System.out.println("Type an member id to get specific contingent");
+        System.out.println("Skriv et medlems id for at få kontingenterne");
         int memberId = scan.nextInt();
 
         ContingentController cc = new ContingentController();
         System.out.println(cc.getMemberContingents(memberId));
     }
 
-    private void readAll() {
+    private void getExpectedEarnings(){
         ContingentController cc = new ContingentController();
-        System.out.println(cc.readAll());
+
+        System.out.println("Forventede indtjening:");
+        System.out.println(cc.getExpectedEarnings());
+
     }
     //----------------------------------Contingents methods----------------------------------
 
