@@ -1,5 +1,7 @@
 package FileHandler;
 
+import Enums.SwimmingDisciplines;
+import Models.CompetitiveSwimmer;
 import Models.Member;
 import Repositories.MemberRepository;
 
@@ -29,38 +31,81 @@ public class MemberFileHandler {
     }
 
 
+
     public void read() {
-        ArrayList<Member> members;
-        try (Scanner scan = new Scanner(new File(fileName))){
-
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 String[] attributes = line.split(",");
-                Member member = new Member(attributes[0],
-                        LocalDate.parse(attributes[1]),
-                        Integer.parseInt(attributes[2]),
-                        attributes[3].equalsIgnoreCase("active"),
-                        attributes[4].equalsIgnoreCase("competitive")
-                );
-                memberRepository.getMemberArrayList().add(member);
-            }
 
+                if (attributes.length < 5) {
+                    System.err.println("Invalid entry: " + line);
+                    continue; // Skip malformed entries
+                }
+
+                boolean isCompetitive = attributes[4].equalsIgnoreCase("competitive");
+
+                if (isCompetitive) {
+                    if (attributes.length < 6) {
+                        System.err.println("Competitive member missing discipline: " + line);
+                        continue; // Skip entries missing the discipline
+                    }
+                    try {
+
+                        //here it creates and reads competitive members in from the text file:
+                        SwimmingDisciplines discipline = SwimmingDisciplines.valueOf(attributes[5].toUpperCase());
+                        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(
+                                attributes[0], // Name
+                                LocalDate.parse(attributes[1]), // Birthday
+                                Integer.parseInt(attributes[2]), // ID
+                                attributes[3].equalsIgnoreCase("active"), // Activity
+                                true, // Competitive
+                                discipline // Discipline
+                        );
+
+
+                        //here it adds a competitive member to the member arraylist
+                        memberRepository.getMemberArrayList().add(competitiveSwimmer);
+
+
+                    } catch (IllegalArgumentException e) {
+                        System.err.println("Invalid discipline in entry: " + line);
+                    }
+
+
+                } else {
+                    Member member = new Member(
+                            attributes[0], // Name
+                            LocalDate.parse(attributes[1]), // Birthday
+                            Integer.parseInt(attributes[2]), // ID
+                            attributes[3].equalsIgnoreCase("active"), // Activity
+                            false // Competitive
+                    );
+
+
+                    //here it adds a con-competitive member to the member arraylist
+                    memberRepository.getMemberArrayList().add(member);
+
+                }
+            }
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
         }
     }
 
 
-    public void update(String membersName) throws IOException {
+
+
+    public void update() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
         for (Member m : memberRepository.getMemberArrayList()){
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.write(memberRepository.getCurrentMember().toStringFile());
+            writer.write(m.toStringFile());
             writer.newLine();
             writer.flush();
         }
 
     }
 
+    }
 
 
-}

@@ -1,17 +1,15 @@
 package UI;
 
-import Controllers.CompetitionController;
-import Controllers.ContingentController;
-import Controllers.Controller;
+import Controllers.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controllers.TeamsController;
 import FileHandler.CompetitionFileHandler;
 
+import Enums.SwimmingDisciplines;
 import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
 
@@ -24,10 +22,8 @@ import Models.Training;
 public class UserInterface {
     Controller controller;
     CompetitionController competitionController;
-    //SuperHandler competitionFileHandler;
     TeamsController teamsController = new TeamsController();
     Scanner sc;
-    //CompetitionFileHandler competitionFileHandler;
 
 
     public UserInterface() {
@@ -277,7 +273,6 @@ public class UserInterface {
                 default -> System.out.println("Wrong input");
             }
         }
-
 
     }
 
@@ -529,11 +524,12 @@ public class UserInterface {
 //Member methods----------------------------------------------------------------------------------------------------
 
     public void memberMenu() {
-
+        // need to translate to danish
         System.out.println("You are in the Member menu");
         System.out.println("You have following options:");
         System.out.println("Type : 'Create' - To register a new member.");
         System.out.println("Type : 'Edit' - To edit information about an existing member.");
+        System.out.println("Typer : 'Delete' - to delete a member from the system.");
         System.out.println("Type : 'Members' - To view all current members.");
         System.out.println("Type : 'Specific' - To search for a specific member.");
 
@@ -543,19 +539,19 @@ public class UserInterface {
         String userInput = sc.nextLine().toUpperCase();
 
         switch (userInput) {
-            case "CREATE" -> createMember();
+            // case "CREATE" -> createMember();
             case "EDIT" -> editMember();
             case "DISPLAY MEMBERS" -> displayMembers();
-            //case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
+            case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
             default -> System.out.println("Not an option!");
         }
     }
 
-    private void createMember() {
-        MemberRepository memberRepository = new MemberRepository();
+    private void createMember() throws IOException {
+        MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter full name: ");
-        String name = sc.nextLine();
+        String name = sc.nextLine().trim();
         System.out.println("Enter Birthday: ");
         System.out.println("Day of birth: ");
         int day = sc.nextInt();
@@ -563,16 +559,42 @@ public class UserInterface {
         int month = sc.nextInt();
         System.out.println("Year of birth: ");
         int year = sc.nextInt();
-        System.out.println("Will it be active or passive?");
         sc.nextLine();
+        System.out.println("Will it be active or passive?");
         String activity = sc.nextLine();
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
-        memberRepository.createMember(name,
+        System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
+
+        //Hi simon, i made changes here:
+        //it's a check to see if we should create a member or the subclass competitiveSwimmer
+        int disciplineIndex = -1;
+        if (competitive.equalsIgnoreCase("competitive")) {
+            disciplineIndex = typeMemberDiscipline();
+            memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
+        }else{
+
+            memberController.createMember(name,
                 LocalDate.of(year, month, day),
                 activity.equalsIgnoreCase("active"),
                 competitive.equalsIgnoreCase("competitive"));
+
+
+        }
         System.out.println("You have created a new Member :D");
+    }
+//helper method for creating competitibe member:
+    private int typeMemberDiscipline() {
+        int userChoice = 0;
+        Scanner cmScan = new Scanner(System.in);
+        System.out.println("Chose a swimming discipline to assign to the member:");
+        System.out.println("Type 1 : To assign Butterfly ");
+        System.out.println("Type 2 : To assign Crawl ");
+        System.out.println("Type 3 : To assign Backcrawl ");
+        System.out.println("Type 4 : To assign Breaststroke ");
+        userChoice = cmScan.nextInt();
+
+        return userChoice - 1;
     }
 
     private void editMember() {
@@ -609,38 +631,34 @@ public class UserInterface {
         System.out.println(memberRepository.displayMembers()); // should be with controller, will do it later
     }
 
-//    private void displayInformationFromSpecificMember() {
-//        MemberRepository memberRepository = new MemberRepository();
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Do you want to use a name or an id?");
-//        String input = sc.nextLine();
-//        switch (input.toLowerCase(Locale.ROOT)) {
-//            case "name", "full name" -> {
-//                System.out.println("Enter name: ");
-//                input = sc.nextLine();
-//                memberRepository.chooseSpecificMemberByName(input);
-//            }
-//            case "id" -> {
-//                int idNum = 0;
-//                System.out.println("Enter id: ");
-//                while (true) {
-//                    String inputNum = sc.nextLine();
-//                    try {
-//                        idNum = Integer.parseInt(inputNum);
-//                        break;
-//                    } catch (NumberFormatException e) {
-//                        System.out.println(input + " is not a valid id. try again");
-//                    }
-//                }
-//                if (memberRepository.chooseSpecificMemberById(idNum)) {
-//                    System.out.println("There is no member with ID: " + idNum);
-//                } else {
-//                    System.out.println("Member information with ID " + idNum);
-//                    System.out.println(memberRepository.getCurrentMember().toString());
-//                }
-//            }
-//        }
-//
-//    }
+    private void displayInformationFromSpecificMember() {
+        MemberController memberController = new MemberController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine();
+        switch (input.toLowerCase()) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                memberController.chooseSpecificMemberByName(input);
+            }
+            case "id" -> {
+                int idNum = 0;
+                System.out.println("Enter id: ");
+                while (true) {
+                    String inputNum = sc.nextLine();
+                    try {
+                        idNum = Integer.parseInt(inputNum);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(input + " is not a valid id. try again");
+                    }
+                }
+                System.out.println(memberController.chooseSpecificMemberById(idNum));
+                System.out.println(memberController.displayMemberInformation());
+            }
+        }
+
+    }
 }
 

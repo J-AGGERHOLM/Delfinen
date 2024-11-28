@@ -1,6 +1,8 @@
 package Repositories;
 
+import Enums.SwimmingDisciplines;
 import FileHandler.MemberFileHandler;
+import Models.CompetitiveSwimmer;
 import Models.Member;
 
 import java.io.IOException;
@@ -60,6 +62,7 @@ public class MemberRepository {
                 return true;
             }
         }
+        currentMember = null;
         return false;
     }
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
@@ -70,6 +73,7 @@ public class MemberRepository {
                 return true;
             }
         }
+        currentMember = null;
         return false;
     }
 
@@ -96,14 +100,49 @@ public class MemberRepository {
         }
     }
 
-    /* commenting this out until its done
-    public boolean delete(String name){
+
+    public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int disciplineIndex) {
+        SwimmingDisciplines chosenDiscipline = null;
+        chosenDiscipline = chosenDiscipline.values()[disciplineIndex];
         try {
+            // Create a new Member object
+            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline);
+            // Assign the current member
+            currentMember = member;
+            // Add the member to the ArrayList
+            memberArrayList.add(currentMember);
+            // Save the member to file
+            memberFileHandler.create();
+            return true;
+        } catch (IOException e) {
+            System.err.println("Error occurred while creating a member: " + e.getMessage());
 
-
+            return false;
+        } catch (Exception e) {
+            // Catch any other unforeseen exceptions
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+            return false;
+        }
     }
-*/
 
+    public boolean updateInformation() throws IOException {
+        try {
+            memberFileHandler.update();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public boolean deleteMember(){
+        try {
+            memberArrayList.remove(currentMember);
+            memberFileHandler.update();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }
 
