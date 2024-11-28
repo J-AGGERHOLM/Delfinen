@@ -1,2 +1,4 @@
-teamID;teamName;TrainerID;member1ID:member2ID:member3ID:etc;
-1;Junior Team;1;2:3:4:5;
+team ID;Team name;Trainer ID; member ID 1: member ID2: etc: ;
+1;Junior Team;1;2:3:4:5:;
+2;Senior Team;5;7:8:9:10:;
+3;Swag Team;2;3:5:2:1:;
