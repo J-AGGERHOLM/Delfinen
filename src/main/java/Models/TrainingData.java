@@ -26,15 +26,22 @@ public class TrainingData {
         return data;
     }
 
-    public String getDisciplineTrainings(String discipline) {
+    public String getDisciplineTrainings(String team, String discipline) {
         ArrayList<Training> disciplineData = new ArrayList<>();
-        String result = "TRAINER: \t  DISCIPLINE: \t  ID(NAME): \t TIME: \n";
+        String result = "DISCIPLINE: \t  ID(NAME): \t TIME: \n";
         for(Training t : trainings) {
             if(t.getDiscipline().toUpperCase().equals(discipline.toUpperCase())) {
-                disciplineData.add(t);
+                if(t.swimmerAge() < 18 && team.equals("junior")) {
+                    disciplineData.add(t);
+                }
+                if(t.swimmerAge() >= 18 && team.equals("senior")) {
+                    disciplineData.add(t);
+                }
             }
         }
+
         disciplineData.sort(Comparator.comparing(Training::getTime));
+
         for(int i = 0; i < 5; i++) {
             try {
                 result += disciplineData.get(i).toString() + "\n";

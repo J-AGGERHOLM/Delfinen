@@ -61,14 +61,10 @@ public class Controller {
         swimmers.add(s);
     }
 
-    public void addTrainer(Trainer t) {
-        trainers.add(t);
-    }
-
-    public Person getSwimmerByName(String name) {
+    public CompetitiveSwimmer getSwimmerByName(String name) {
         for (Person s : swimmers) {
             if (s.getFullName().equals(name)) {
-                return s;
+                return (CompetitiveSwimmer) s;
             }
         }
         return null;
@@ -139,8 +135,8 @@ public class Controller {
         return result;
     }
 
-    public String getDisciplineTopFive(String discipline) {
-        return data.getDisciplineTrainings(discipline);
+    public String getDisciplineTopFive(String team, String discipline) {
+        return data.getDisciplineTrainings(team, discipline);
     }
 
 

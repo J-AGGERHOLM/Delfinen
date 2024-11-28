@@ -1,16 +1,21 @@
 package Models;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Training implements Comparable<Training> {
-    private Trainer trainer;
     private String discipline;
-    private Person swimmer;
+    private CompetitiveSwimmer swimmer;
     private String time;
 
-    public Training(Trainer trainer, String discipline, Person swimmer, String time) {
-        this.trainer = trainer;
+    public Training(String discipline, CompetitiveSwimmer swimmer, String time) {
         this.discipline = discipline;
         this.swimmer = swimmer;
         this.time = time;
+    }
+
+    public int swimmerAge() {
+        return Period.between(swimmer.getBirthday(), LocalDate.now()).getYears();
     }
 
     public int getTimeAsInteger() {
@@ -28,8 +33,7 @@ public class Training implements Comparable<Training> {
 
 
     public String toString() {
-        return trainer.getFullName() + "\t\t  " +
-                discipline + "\t\t   " +
+        return discipline + "\t\t   " +
                 swimmer.getId() + "(" +
                 swimmer.getFullName() + ")\t\t" +
                 time;
@@ -38,6 +42,12 @@ public class Training implements Comparable<Training> {
     @Override
     public int compareTo(Training o) {
         return getTimeAsInteger() - o.getTimeAsInteger();
+    }
+
+    public String toStringFile() {
+        return discipline + ","
+                + swimmer.getId() + ","
+                + time;
     }
 }
 

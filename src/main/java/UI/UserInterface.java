@@ -10,6 +10,7 @@ import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Scanner;
 
+import Models.CompetitiveSwimmer;
 import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
 import Models.Person;
@@ -182,44 +183,34 @@ public class UserInterface {
     }
 
 
-    public void trainerOptions() {
-        Scanner scanner = new Scanner(System.in);
+    public void createTrainingSesson(Scanner sc) {
+        //To Create A New Training Sesson
         while (true) {
-            System.out.println("Trainer name:");
-            String trainerName = scanner.nextLine();
-            if (trainerName.isEmpty()) {
-                break;
-            }
-            Trainer trainer = controller.getTrainer(trainerName);
-            if (trainer == null) {
-                System.out.println("Trainer not found");
-                continue;
-            }
             System.out.println("Discipline:");
-            String discipline = scanner.nextLine();
+            String discipline = sc.nextLine();
             while (true) {
                 System.out.println("Swimmer:");
-                String swimmer = scanner.nextLine();
+                String swimmer = sc.nextLine();
                 if (swimmer.isEmpty()) {
                     break;
                 }
-                Person swimTemp = controller.getSwimmerByName(swimmer);
-                if (swimTemp == null) {
-                    System.out.println("Swimmer not found!");
-                    continue;
-                }
-                System.out.println("Time (XX:XX:XX):");
-                String time = scanner.nextLine();
-                controller.addTraining(new Training(trainer, discipline, swimTemp, time));
+                CompetitiveSwimmer swimTemp = controller.getSwimmerByName(swimmer);
+                System.out.println("Tid (XX:XX:XX):");
+                String time = sc.nextLine();
+                controller.addTraining(new Training(discipline, swimTemp, time));
             }
         }
-
-        System.out.println(controller.showData());
-
-        System.out.println("For which discipline would you like to see your top 5 swimmers?");
-        String choice = scanner.nextLine();
-        System.out.println(controller.getDisciplineTopFive(choice));
     }
+
+    public void viewTopFive(Scanner sc) {
+        System.out.println("For hvilken hold vil du gerne se top 5?");
+        String team = sc.nextLine();
+        System.out.println("Hvilken discipline?");
+        String discipline = sc.nextLine();
+        System.out.println(controller.getDisciplineTopFive(team, team));
+    }
+
+
     //----------------------------------Training methods----------------------------------
 
 
