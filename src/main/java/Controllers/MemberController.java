@@ -1,5 +1,6 @@
 package Controllers;
 
+import Enums.SwimmingDisciplines;
 import Models.Member;
 import Repositories.MemberRepository;
 
@@ -64,6 +65,13 @@ public class MemberController {
 
     public String createMember(String name, LocalDate birthday, boolean activity, boolean competitive){
         if(!memberRepository.createMember(name, birthday, activity, competitive)){
+            return "Failed to create member, please try again";
+        }
+        return "Member was successfully created";
+    }
+
+    public String createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int swimmingDisciplineIndex) {
+        if(!memberRepository.createCompetitiveMember(name, birthday, activity, competitive, swimmingDisciplineIndex)){
             return "Failed to create member, please try again";
         }
         return "Member was successfully created";

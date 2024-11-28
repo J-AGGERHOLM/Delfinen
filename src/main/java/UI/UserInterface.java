@@ -4,16 +4,15 @@ import Controllers.CompetitionController;
 import Controllers.ContingentController;
 import Controllers.Controller;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
+import Enums.SwimmingDisciplines;
 import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
 
-import Models.Competition;
 import Models.Person;
 import Models.Trainer;
 import Models.Training;
@@ -126,12 +125,6 @@ public class UserInterface {
 
     }
     //----------------------------------Competition methods END----------------------------------
-
-
-
-
-
-
 
 
     //----------------------------------TEAM methods----------------------------------
@@ -303,7 +296,7 @@ public class UserInterface {
         System.out.println(cc.getMemberContingents(memberId));
     }
 
-    private void getExpectedEarnings(){
+    private void getExpectedEarnings() {
         ContingentController cc = new ContingentController();
 
         System.out.println("Forventede indtjening:");
@@ -355,11 +348,36 @@ public class UserInterface {
         String activity = sc.nextLine();
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
-        memberRepository.createMember(name,
+
+        //Hi simon, i made changes here:
+        //it's a check to see if we should create a member or the subclass competitiveSwimmer
+        int disciplineIndex = -1;
+        if (competitive.equalsIgnoreCase("competitive")) {
+            disciplineIndex = typeMemberDiscipline();
+            memberRepository.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
+        }else{
+
+            memberRepository.createMember(name,
                 LocalDate.of(year, month, day),
                 activity.equalsIgnoreCase("active"),
                 competitive.equalsIgnoreCase("competitive"));
+
+
+        }
         System.out.println("You have created a new Member :D");
+    }
+//helper method for creating competitibe member:
+    private int typeMemberDiscipline() {
+        int userChoice = 0;
+        Scanner cmScan = new Scanner(System.in);
+        System.out.println("Chose a swimming discipline to assign to the member:");
+        System.out.println("Type 1 : To assign Butterfly ");
+        System.out.println("Type 2 : To assign Crawl ");
+        System.out.println("Type 3 : To assign Backcrawl ");
+        System.out.println("Type 4 : To assign Breaststroke ");
+        userChoice = cmScan.nextInt();
+
+        return userChoice - 1;
     }
 
     private void editMember() {
