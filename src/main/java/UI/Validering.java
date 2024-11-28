@@ -19,7 +19,6 @@ public class Validering {
     }
 
     //checks input to see if it is an integer.
-    //helper method to use with isAString() method.
     public static String mustBeString(Scanner scan) {
         while(scan.hasNextInt()){
             System.out.println("You cant type a number");
@@ -46,12 +45,8 @@ public class Validering {
         return scan.nextDouble();
     }
 
-    public static LocalDate checkDate(int year, int month, int day) {
-        if (year > 1900 && month <= 12 && day <= 31){
-            return null;
-        }else{
-            return null;
-        }
+    public static LocalDate checkDate(Scanner scan) {
+        return null;
     }
 
 }
