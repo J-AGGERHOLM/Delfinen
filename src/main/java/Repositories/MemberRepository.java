@@ -96,12 +96,13 @@ public class MemberRepository {
         }
     }
 
+    /* commenting this out until its done
     public boolean delete(String name){
         try {
 
 
     }
-
+*/
 
 
 }
