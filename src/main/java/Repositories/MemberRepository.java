@@ -42,7 +42,7 @@ public class MemberRepository {
     public String displayMembers() {
         String result = "";
         for (Member m : memberArrayList) {
-            result += m.getFullName() + "\n";        }
+            result += m.toString() + "\n";        }
         return result;
     }
 
@@ -94,6 +94,12 @@ public class MemberRepository {
             System.err.println("An unexpected error occurred: " + e.getMessage());
             return false;
         }
+    }
+
+    public boolean delete(String name){
+        try {
+
+
     }
 
 

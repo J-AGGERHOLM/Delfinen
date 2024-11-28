@@ -1,1 +1,7 @@
-Jacobs badekar,1,11.2
+Id,Event,Placement, time
+0,Jacobs badekar,1,11.2
+1,Jacob,2,10.6
+2,Adam,2,9.6
+3,Nikolaj,4,6.8
+4,Skive,1,9.5
+5,Horsens svømmehal,2,19.5
