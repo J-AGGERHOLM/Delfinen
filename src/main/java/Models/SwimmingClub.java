@@ -35,6 +35,10 @@ public class SwimmingClub {
         fileHandler.saveAllToFile(teams);
     }
 
+    public void readTeamsFromFile(ArrayList<Member> allMembers, ArrayList<Trainer> allTrainers){
+        teams = fileHandler.readAllTeams(allMembers, allTrainers);
+    }
+
     public int getNewTeamID(){
         int highestID = 0;
         for(Team t: teams){

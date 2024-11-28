@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class TeamsController {
 
-    private SwimmingClub swimmingClub = benjaminTest();
+    private SwimmingClub swimmingClub;
     private MemberRepository memberRepository;
 
     //For creating new teams:
@@ -23,15 +23,19 @@ public class TeamsController {
 
 
     //TEST
-    ArrayList<Trainer> trainerRepo = testMakeTrainers();
+    private ArrayList<Trainer> trainerRepo = testMakeTrainers();
 
     public TeamsController(){
 
         try{
             memberRepository = createDummyMemberRepository();
+
         }catch (IOException e){
             System.out.println("An IO exception occured on create dummy repository");
         }
+
+        swimmingClub = new SwimmingClub();
+        swimmingClub.readTeamsFromFile(memberRepository.getMemberArrayList(), trainerRepo);
 
     }
 
