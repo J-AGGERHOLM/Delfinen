@@ -1,15 +1,13 @@
 package Models;
 
 public class Training implements Comparable<Training> {
-    private Trainer trainer;
     private String discipline;
-    private Person swimmer;
+    private int swimmerID;
     private String time;
 
-    public Training(Trainer trainer, String discipline, Person swimmer, String time) {
-        this.trainer = trainer;
+    public Training(String discipline, int swimmerId, String time) {
         this.discipline = discipline;
-        this.swimmer = swimmer;
+        this.swimmerID = swimmerId;
         this.time = time;
     }
 
@@ -26,18 +24,26 @@ public class Training implements Comparable<Training> {
         return time;
     }
 
+    public int getSwimmerID() {
+        return swimmerID;
+    }
+
 
     public String toString() {
-        return trainer.getFullName() + "\t\t  " +
-                discipline + "\t\t   " +
-                swimmer.getId() + "(" +
-                swimmer.getFullName() + ")\t\t" +
+        return discipline + "\t\t   " +
+                swimmerID + "\t\t   " +
                 time;
     }
 
     @Override
     public int compareTo(Training o) {
         return getTimeAsInteger() - o.getTimeAsInteger();
+    }
+
+    public String toStringFile() {
+        return discipline + ","
+                + swimmerID + ","
+                + time;
     }
 }
 
