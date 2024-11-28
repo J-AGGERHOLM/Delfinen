@@ -174,6 +174,10 @@ public class TeamsController {
         currentTeam.setName(name);
     }
 
+    public void loadTeamsFromFile(){
+
+    }
+
 
     //-------------------TEST FUNCTIONS: REMOVE WHEN FEATURES ARE COMPLETE---------------------------------
 

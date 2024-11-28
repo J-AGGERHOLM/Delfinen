@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class TeamFileHandler {
 
     private final String filePath = "Teams.txt";
+    private final String fieldSeperator = ";";
+    private final String listItemSeperator = ":";
 
 
     //Waiting for persons to be done. I need to be able to read the list of persons to create the
@@ -25,11 +27,10 @@ public class TeamFileHandler {
         result += team.getId() + ";";
         result += team.getName() + ";";
         result += team.getTrainer().getId() + ";";
-        result += "{";
         for(Person p: team.getMembers()){
-            result += p.getId() + ";";
+            result += p.getId() + ":";
         }
-        result += "}";
+        result += ";";
 
         bufferedWriter.write(result);
         bufferedWriter.newLine();
@@ -61,5 +62,39 @@ public class TeamFileHandler {
             return false;
         }
     }
+
+
+    public boolean saveAllToFile(ArrayList<Team> teams){
+
+        PrintStream teamsFile;
+
+        try{
+            teamsFile = new PrintStream(filePath);
+
+            for(Team team: teams){
+                String result = "";
+                result += team.getId() + fieldSeperator;
+                result += team.getName() + fieldSeperator;
+                result += team.getTrainer().getId() + fieldSeperator;
+                for(Person p: team.getMembers()){
+                    result += p.getId() + listItemSeperator;
+                }
+                result += fieldSeperator;
+                teamsFile.println(result);
+            }
+
+            teamsFile.close();
+
+            return true;
+
+
+
+        }catch(FileNotFoundException e){
+            return false;
+        }
+
+
+    }
+
 
 }
