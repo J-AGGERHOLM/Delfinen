@@ -124,22 +124,25 @@ public class MemberRepository {
             return false;
         }
     }
-/* commented out because it stopped the program from running in its current state:
 
-    /* commenting this out until its done
-    public boolean delete(String name){
+    public boolean updateInformation() throws IOException {
+        try {
+            memberFileHandler.update();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     public boolean deleteMember(){
         try {
             memberArrayList.remove(currentMember);
             memberFileHandler.update();
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
-
     }
-
-
 
 }
 

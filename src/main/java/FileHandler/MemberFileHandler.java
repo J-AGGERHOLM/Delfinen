@@ -93,11 +93,11 @@ public class MemberFileHandler {
         }
     }
 
+
+
+
     public void update() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
-
-
-    public void update(String membersName) throws IOException {
         for (Member m : memberRepository.getMemberArrayList()){
             writer.write(m.toStringFile());
             writer.newLine();
@@ -106,5 +106,6 @@ public class MemberFileHandler {
 
     }
 
+    }
 
-}
+

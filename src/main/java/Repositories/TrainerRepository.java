@@ -119,6 +119,15 @@ public class TrainerRepository {
         }
     }
 
+    public boolean updateInformation() throws IOException {
+        try {
+            trainerFileHandler.update();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     public boolean deleteTrainer(){
         try {
             trainerArrayList.remove(currentTrainer);

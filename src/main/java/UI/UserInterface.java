@@ -1,15 +1,12 @@
 package UI;
 
-import Controllers.CompetitionController;
-import Controllers.ContingentController;
-import Controllers.Controller;
+import Controllers.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controllers.MemberController;
 import FileHandler.CompetitionFileHandler;
 
 import Enums.SwimmingDisciplines;
@@ -574,10 +571,10 @@ public class UserInterface {
         int disciplineIndex = -1;
         if (competitive.equalsIgnoreCase("competitive")) {
             disciplineIndex = typeMemberDiscipline();
-            memberRepository.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
+            memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
         }else{
 
-            memberRepository.createMember(name,
+            memberController.createMember(name,
                 LocalDate.of(year, month, day),
                 activity.equalsIgnoreCase("active"),
                 competitive.equalsIgnoreCase("competitive"));
@@ -635,7 +632,7 @@ public class UserInterface {
     }
 
     private void displayInformationFromSpecificMember() {
-        MemberRepository memberRepository = new MemberRepository();
+        MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         System.out.println("Do you want to use a name or an id?");
         String input = sc.nextLine();
@@ -643,7 +640,7 @@ public class UserInterface {
             case "name", "full name" -> {
                 System.out.println("Enter name: ");
                 input = sc.nextLine();
-                memberRepository.chooseSpecificMemberByName(input);
+                memberController.chooseSpecificMemberByName(input);
             }
             case "id" -> {
                 int idNum = 0;
@@ -657,12 +654,8 @@ public class UserInterface {
                         System.out.println(input + " is not a valid id. try again");
                     }
                 }
-                if (memberRepository.chooseSpecificMemberById(idNum)) {
-                    System.out.println("There is no member with ID: " + idNum);
-                } else {
-                    System.out.println("Member information with ID " + idNum);
-                    System.out.println(memberRepository.getCurrentMember().toString());
-                }
+                System.out.println(memberController.chooseSpecificMemberById(idNum));
+                System.out.println(memberController.displayMemberInformation());
             }
         }
 
