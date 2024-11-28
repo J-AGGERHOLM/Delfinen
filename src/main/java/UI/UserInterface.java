@@ -21,7 +21,6 @@ import Models.Training;
 
 
 public class UserInterface {
-    Controller controller;
     CompetitionController competitionController;
     TeamsController teamsController = new TeamsController();
     TrainingController trainingController;
@@ -29,7 +28,6 @@ public class UserInterface {
 
 
     public UserInterface() {
-        this.controller = new Controller();
         this.competitionController = new CompetitionController();
         this.trainingController = new TrainingController();
         sc = new Scanner(System.in);
