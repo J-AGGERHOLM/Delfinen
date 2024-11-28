@@ -13,7 +13,6 @@ import Repositories.MemberRepository;
 
 
 public class TrainingController {
-    private SwimmingClub swimmingClub;
     private TrainingData data;
     private ArrayList<Trainer> trainers;
     private ArrayList<Person> swimmers;
@@ -40,7 +39,8 @@ public class TrainingController {
     }
 
     public CompetitiveSwimmer getSwimmerByID(int id) {
-        for (Person s : swimmers) {
+        ArrayList <Member> members = memberRepo.getMemberArrayList();
+        for (Member s : members) {
             if (s.getId() == id) {
                 return (CompetitiveSwimmer) s;
             }
@@ -87,6 +87,17 @@ public class TrainingController {
 
     public String getDisciplineTopFive(String team, String discipline) {
         return data.getDisciplineTrainings(team, discipline);
+    }
+
+    public ArrayList<CompetitiveSwimmer> getCompetitiveSwimmersForDiscipline(String discipline) {
+        ArrayList<CompetitiveSwimmer> result = new ArrayList<>();
+        for(Member mem : memberRepo.getMemberArrayList()) {
+            CompetitiveSwimmer swimmer = getSwimmerByID(mem.getId());
+            if(String.valueOf(swimmer.getChosendiscipline()).equals(discipline)) {
+                result.add(swimmer);
+            }
+        }
+        return result;
     }
 }
 

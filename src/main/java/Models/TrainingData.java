@@ -19,7 +19,7 @@ public class TrainingData {
     }
 
     public String showData(ArrayList<Training> training) {
-        String data = "TRAINER: \t  DISCIPLINE: \t  ID(NAME): \t TIME: \n";
+        String data = "DISCIPLINE: \t  ID(NAME): \t TIME: \n";
         for(Training t : training) {
             data += t.toString() + "\n";
         }

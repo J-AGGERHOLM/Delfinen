@@ -1,31 +1,26 @@
 package UI;
 
-import Controllers.CompetitionController;
-import Controllers.ContingentController;
-import Controllers.Controller;
+import Controllers.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controllers.TeamsController;
 import FileHandler.CompetitionFileHandler;
 
 import Enums.SwimmingDisciplines;
+import Models.*;
 import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
-
-import Models.Competition;
-import Models.Person;
-import Models.Trainer;
-import Models.Training;
 
 
 public class UserInterface {
     Controller controller;
     CompetitionController competitionController;
     TeamsController teamsController = new TeamsController();
+    TrainingController trainingController = new TrainingController();
     Scanner sc;
 
 
@@ -46,7 +41,7 @@ public class UserInterface {
         while (!exit) {
 
             System.out.println("please enter a command");
-            //System.out.println("Trainer: see options about trainers");
+            System.out.println("Trainer: see options about trainers");
             System.out.println("Members: see options about members");
             System.out.println("Contingent: see options about contingent");
             System.out.println("Competition: see options about competitions");
@@ -383,67 +378,50 @@ public class UserInterface {
     //----------------------------------Training methods----------------------------------
 
     private void trainerMenu() {
+        System.out.println("Velkommen til Træningmenu");
+        System.out.println("Du har følgende muligheder:");
+        System.out.println("TILFØJE : tilføje en træningssession.");
+        System.out.println("FEM : se de top 5 for en disciplin");
+        System.out.println("RETURN: træningmenu");
+        System.out.println("EXIT : hovedmenuen");
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("You are in the Trainer menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - .");
-        System.out.println("Type : 'Delete' - .");
-        System.out.println("Type : 'Members' - .");
-        System.out.println("Type : 'Specific' - .");
-
-        String input = scan.nextLine().toUpperCase();
+        String input = sc.nextLine().toUpperCase();
 
         switch (input) {
-            case "CREATE" -> System.out.println();
-            case "DELETE" -> System.out.println();
-            case "MEMBERS" -> System.out.println();
-            case "SPECIFIC" -> System.out.println();
-            case "" -> System.out.println();
-            default -> System.out.println("Wrong input");
+            case "TILFØJE" -> addTrainingSession();
+            case "FEM" -> viewTop5ForDiscipline();
+            case "RETURN" -> trainerMenu();
+            case "EXIT" -> mainLoop();
+            default -> System.out.println("Forkert input");
         }
 
     }
 
+    public void addTrainingSession() {
 
-    public void trainerOptions() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Trainer name:");
-            String trainerName = scanner.nextLine();
-            if (trainerName.isEmpty()) {
-                break;
-            }
-            Trainer trainer = controller.getTrainer(trainerName);
-            if (trainer == null) {
-                System.out.println("Trainer not found");
-                continue;
-            }
-            System.out.println("Discipline:");
-            String discipline = scanner.nextLine();
-            while (true) {
-                System.out.println("Swimmer:");
-                String swimmer = scanner.nextLine();
-                if (swimmer.isEmpty()) {
-                    break;
-                }
-                Person swimTemp = controller.getSwimmerByName(swimmer);
-                if (swimTemp == null) {
-                    System.out.println("Swimmer not found!");
-                    continue;
-                }
-                System.out.println("Time (XX:XX:XX):");
-                String time = scanner.nextLine();
-                controller.addTraining(new Training(trainer, discipline, swimTemp, time));
-            }
+        System.out.println("Disciplin");
+        String discipline = sc.nextLine();
+        ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
+        for(CompetitiveSwimmer swimmer : swimmers) {
+            CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
+            System.out.println(swimTemp.getFullName());
+            System.out.println("Tid (XX:XX:XX):");
+            String time = sc.nextLine();
+            trainingController.addTraining(new Training(discipline, swimTemp, time));
         }
-
-        System.out.println(controller.showData());
-
-        System.out.println("For which discipline would you like to see your top 5 swimmers?");
-        String choice = scanner.nextLine();
-        System.out.println(controller.getDisciplineTopFive(choice));
+        System.out.println(trainingController.showData());
     }
+
+    public void viewTop5ForDiscipline() {
+        System.out.println("For hvilken disciplin vil du gerne se de top 5 svømmere?");
+        String choice = sc.nextLine();
+        System.out.println("Junior eller Senior hold?");
+        String team = sc.nextLine();
+        System.out.println(trainingController.getDisciplineTopFive(team,choice));
+    }
+
+
+
     //----------------------------------Training methods----------------------------------
 
 
