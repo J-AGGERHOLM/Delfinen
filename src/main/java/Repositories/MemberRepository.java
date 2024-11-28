@@ -1,6 +1,8 @@
 package Repositories;
 
+import Enums.SwimmingDisciplines;
 import FileHandler.MemberFileHandler;
+import Models.CompetitiveSwimmer;
 import Models.Member;
 
 import java.io.IOException;
@@ -98,6 +100,34 @@ public class MemberRepository {
         }
     }
 
+
+    public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int disciplineIndex) {
+        SwimmingDisciplines chosenDiscipline = null;
+        chosenDiscipline = chosenDiscipline.values()[disciplineIndex];
+        try {
+            // Create a new Member object
+            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline);
+            // Assign the current member
+            currentMember = member;
+            // Add the member to the ArrayList
+            memberArrayList.add(currentMember);
+            // Save the member to file
+            memberFileHandler.create();
+            return true;
+        } catch (IOException e) {
+            System.err.println("Error occurred while creating a member: " + e.getMessage());
+
+            return false;
+        } catch (Exception e) {
+            // Catch any other unforeseen exceptions
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+            return false;
+        }
+    }
+/* commented out because it stopped the program from running in its current state:
+
+    /* commenting this out until its done
+    public boolean delete(String name){
     public boolean deleteMember(){
         try {
             memberArrayList.remove(currentMember);

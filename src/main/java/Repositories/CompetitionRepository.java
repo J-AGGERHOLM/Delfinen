@@ -2,8 +2,10 @@ package Repositories;
 
 import FileHandler.CompetitionFileHandler;
 import Models.Competition;
+import Models.Contingent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CompetitionRepository {
 
@@ -13,7 +15,7 @@ public class CompetitionRepository {
 
 
     public void commitCompetitionEntry(String event, int placement, double time) {
-        Competition competition = new Competition(event, placement, time);
+        Competition competition = new Competition(getId(),event, placement, time);
 
         competitionFileHandler.setCompetition(competition);
 
@@ -29,6 +31,18 @@ public class CompetitionRepository {
 
     public void searchForEntry(String eventName){
         competitionFileHandler.delete(eventName);
+    }
+
+    public ArrayList<Competition> getAllEntries() {
+        competitionFileHandler.read();
+        ArrayList<Competition> competitions =  competitionFileHandler.getCompetitions();
+        return competitions;
+    }
+
+
+    public int getId() {
+        int id = getAllEntries().size();
+        return ++id;
     }
 
 }

@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 import Controllers.MemberController;
 import FileHandler.CompetitionFileHandler;
+
+import Enums.SwimmingDisciplines;
+import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
 
 import Models.Competition;
@@ -21,13 +24,16 @@ import Models.Training;
 
 public class UserInterface {
     Controller controller;
-    CompetitionFileHandler competitionFileHandler;
+    CompetitionController competitionController;
+    TeamsController teamsController = new TeamsController();
+    Scanner sc;
 
 
     public UserInterface() {
         this.controller = new Controller();
-        competitionFileHandler = new CompetitionFileHandler();
+        this.competitionController = new CompetitionController();
 
+        sc = new Scanner(System.in);
     }
 
     public void mainLoop() {
@@ -44,13 +50,14 @@ public class UserInterface {
             System.out.println("Members: see options about members");
             System.out.println("Contingent: see options about contingent");
             System.out.println("Competition: see options about competitions");
+            System.out.println("Hold: administrere klubbens svømmehold");
             // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "TRAINER" -> trainerMenu();
-                case "CREATE TEAM" -> teamMenu();
+                case "HOLD" -> teamMenu();
                 case "MEMBERS" -> memberMenu();
                 case "CONTINGENT" -> contingentMenu();
                 case "COMPETITION" -> competionMenu();
@@ -59,6 +66,10 @@ public class UserInterface {
         }
     }
 
+
+//----------------------------------Competition methods START----------------------------------
+
+
     private void competionMenu() {
         //competitionController
 
@@ -66,89 +77,307 @@ public class UserInterface {
 
         //scanners instanciated:
         Scanner sc = new Scanner(System.in);
-        Scanner intScanner = new Scanner(System.in);
-        Scanner doubleScanner = new Scanner(System.in);
-
-
         //menu:
 
         System.out.println("You are in the Competition menu");
         System.out.println("You have following options:");
         System.out.println("Type : 'Create' - To create a new competion entry.");
         System.out.println("Type : 'Display' - To Display all competion entries.");
-        //System.out.println("Type : 'Delete' - To delete competition entry.");
+        System.out.println("Type : 'Delete' - To delete competition entry.");
 
         String competitionInput = sc.nextLine().toUpperCase();
 
         //depending on the users input, these cases happen:
         switch (competitionInput) {
-            case "CREATE" -> {
-                try {
-                    System.out.println("Please enter the name of the event:");
-                    String event = sc.nextLine();
-                    System.out.println("Please enter te placement achieved:");
-                    int placement = intScanner.nextInt();
-                    System.out.println("Please enter the swimmers time:");
-                    double time = doubleScanner.nextDouble();
-
-
-                    //Competition object is created with the users input
-                    Competition competition = new Competition(event, placement, time);
-
-                    ((CompetitionFileHandler) competitionFileHandler).setCompetition(competition);
-                } catch (InputMismatchException ime) {
-                    System.out.println("Error : Something is wrong with these input values");
-                }
-
-                //Competition object is comitted to the document
-                try {
-                    competitionFileHandler.create();
-                } catch (IOException e) {
-                    System.out.println("Error: Something went wrong trying to create the file");
-                }
-            }
+            case "CREATE" -> competitionEntryCreate();
             case "DISPLAY" -> {
                 System.out.println(competitionController.readCompetition());
-
             }
+            case "DELETE" -> deleteCompetitionEntry();
             default -> System.out.println("Not an option");
         }
     }
 
 
-    //----------------------------------TEAM methods----------------------------------
+    public void deleteCompetitionEntry() {
+
+        Scanner sc = new Scanner(System.in);
+        CompetitionRepository repository = new CompetitionRepository();
+        System.out.println("Please enter the name of the event you'd like to delete.");
+        String searchWord = sc.nextLine();
+        repository.searchForEntry(searchWord);
+
+    }
+
+
+    public void competitionEntryCreate() {
+        Scanner sc = new Scanner(System.in);
+        Scanner intScanner = new Scanner(System.in);
+        Scanner doubleScanner = new Scanner(System.in);
+        CompetitionRepository repository = new CompetitionRepository();
+
+        try {
+            System.out.println("Please enter the name of the event:");
+            String event = sc.nextLine();
+            System.out.println("Please enter te placement achieved:");
+            int placement = intScanner.nextInt();
+            System.out.println("Please enter the swimmers time:");
+            double time = doubleScanner.nextDouble();
+
+
+            repository.commitCompetitionEntry(event, placement, time);
+
+        } catch (InputMismatchException ime) {
+            System.out.println("Error : Something is wrong with these input values");
+        }
+
+    }
+    //----------------------------------Competition methods END----------------------------------
+
+
+
+
+
+
+
+
+    //----------------------------------------------TEAMS-------------------------------------------
+
+    private void displayTeams(){
+        boolean exit = false;
+        while(!exit){
+            System.out.println("Vælg venligst holdet du gerne vil se:");
+
+            String listOfTeams = teamsController.getListOfTeams();
+            System.out.println(listOfTeams);
+
+            System.out.println("Indtast tallet på holdet du vil gerne se/redigere, eller indtast AFSLUT for at gå tilbage");
+            String userChoice = sc.nextLine();
+            try{
+                int parsedChoice = Integer.parseInt(userChoice);
+                String teamDisplay = teamsController.getTeam(parsedChoice);
+                System.out.println(teamDisplay);
+                if(teamsController.setCurrentTeam(parsedChoice)){
+                    editTeamMenu();
+                }else{
+                    System.out.println("Holdet kunne ikke findes.");
+                }
+
+
+            }catch (NumberFormatException e){
+                switch (userChoice.toUpperCase()){
+                    case "AFSLUT" -> exit = true;
+                    default -> System.out.println("Indtast venligst en gyldig kommando");
+                }
+            }
+
+        }
+
+    }
+
+    private void editTeamMenu(){
+        boolean exit = false;
+        while(!exit){
+
+            System.out.println(teamsController.getCurrentTeam());
+            System.out.println("Indtast venligst handlingen du vil udføre:");
+            System.out.println("TILFØJ/FJERN: tilføje eller fjerne medlemmer fra hold");
+            System.out.println("ÆNDRE NAVN: ændre holdets navn");
+            System.out.println("ÆNDRE TRÆNER: ændre holdets træner");
+            System.out.println("AFSLUT: gå tilbage");
+
+            String userChoice = sc.nextLine();
+            switch(userChoice.toUpperCase()){
+                case "TILFØJ", "FJERN", "TILFØJ/FJERN" -> editTeamAddRemove();
+                case "ÆNDRE NAVN", "NAVN" -> editTeamChangeName();
+                case "ÆNDRE TRÆNER", "TRÆNER" -> editTeamChangeTrainer();
+                case "AFSLUT" -> exit = true;
+                default -> System.out.println("Indtast en gyldig kommando");
+            }
+        }
+    }
+
+    private void editTeamAddRemove(){
+        System.out.println("Vælg IDet af medlemet du vil gerne tilføje/fjerne fra holdet");
+        System.out.println("Indtast AFSLUT for at gå tilbage");
+        System.out.println(teamsController.getListOfMembers());
+        boolean exit = false;
+        while(!exit){
+            String userChoice = sc.nextLine();
+            try{
+                int userChoiceID = Integer.parseInt(userChoice);
+                String result = teamsController.addRemoveFromCurrentTeam(userChoiceID);
+                System.out.println(result);
+            }catch (NumberFormatException e){
+                if(userChoice.toUpperCase().equals("AFSLUT")){
+                    exit = true;
+                }else {
+                    System.out.println("Indtast venligst en gyldig kommando");
+                }
+            }
+        }
+
+    }
+
+    private void editTeamChangeName(){
+
+        System.out.println("Indtast venligst den ny navn for holdet:");
+        String userChoice = sc.nextLine();
+        teamsController.setCurrentTeamName(userChoice);
+        System.out.println("Navnet er blevet ændret");
+    }
+
+    private void editTeamChangeTrainer(){
+
+        System.out.println("Vælg venlist en træner til holdet:");
+        System.out.println(teamsController.getListOfTrainers());
+
+        boolean exit = false;
+        int trainerChoiceID;
+        while (!exit){
+            String userChoice = sc.nextLine();
+            try{
+                trainerChoiceID= Integer.parseInt(userChoice);
+            }catch (NumberFormatException e){
+                System.out.println("Indtast venligst en tal");
+                trainerChoiceID = -1;
+            }
+
+            if( teamsController.assignTrainerToCurrentTeam(trainerChoiceID)){
+                System.out.println("Denne træner er blevet tildelt til holdet");
+                exit=true;
+            }else{
+                System.out.println("Indtast venligst en gyldig træner");
+            }
+        }
+    }
+
+
+
     private void teamMenu() {
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("You are in the Team menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - .");
-        System.out.println("Type : 'Delete' - .");
-        System.out.println("Type : 'Members' - .");
-        System.out.println("Type : 'Specific' - .");
+        boolean exit = false;
+        while(!exit){
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Du er i hold menuen");
+            System.out.println("Du har nu følgende muligheder:");
+            System.out.println("OPRETTE: oprette en ny hold");
+            System.out.println("SE: se hold, og opdatere deres medlemmer, trænere og navn");
+            System.out.println("SLET: slet en hold ");
+            System.out.println("AFSLUT: gå tilbage til hovedmenuen");
 
-        String input = scan.nextLine().toUpperCase();
+            String input = scan.nextLine().toUpperCase();
 
-        switch (input) {
-            case "CREATE" -> createTeam();
-            case "DELETE" -> System.out.println();
-            case "MEMBERS" -> System.out.println();
-            case "SPECIFIC" -> System.out.println();
-            case "" -> System.out.println();
-            default -> System.out.println("Wrong input");
+            switch (input) {
+                case "OPRETTE" -> createTeam();
+                case "SLET" -> deleteTeam();
+                case "SE" -> displayTeams();
+                case "AFSLUT" -> exit = true;
+                default -> System.out.println("Wrong input");
+            }
         }
 
     }
 
 
     private void createTeam() {
-        System.out.println("Creating a new team.");
-        System.out.println("Please enter the team's name:");
-        Scanner sc = new Scanner(System.in);
+        //must do this when creating a team:
+        teamsController.resetTeamCreation();
+
+        //Selecting the teams name:
+        System.out.println("Skaber en ny hold.");
+        System.out.println("Indtast venligst holdets navn:");
         String teamName = sc.nextLine();
 
+        //Selecting the team's members from the clubs list of members:
+        System.out.println("Vælg venligst holdets medlemmer ved at indstaste deres ID (AFSLUT for at slutte)");
+        System.out.println(teamsController.getListOfMembers());
+        boolean exit = false;
+        while(!exit){
+            String userChoice = sc.nextLine();
+
+            try{
+                int personChoice = Integer.parseInt(userChoice);
+                String result = teamsController.addPersonToNewTeam(personChoice);
+                System.out.println(result);
+            }catch (NumberFormatException e){
+
+                if(userChoice.toUpperCase().equals("AFSLUT")){
+                    exit = true;
+                }else{
+                    System.out.println("Indtast venligst en gyldig kommando");
+                }
+            }
+        }
+
+        //Selecting the teams trainer:
+        System.out.println("Indtast venligst trænerens ID");
+        System.out.println(teamsController.getListOfTrainers());
+
+        exit = false;
+        int trainerChoiceID;
+        while (!exit){
+            String userChoice = sc.nextLine();
+            try{
+                trainerChoiceID= Integer.parseInt(userChoice);
+            }catch (NumberFormatException e){
+                System.out.println("Indtast venligst en tal");
+                trainerChoiceID = -1;
+            }
+
+            if( teamsController.assignTrainer(trainerChoiceID)){
+                System.out.println("Denne træner er blevet tildelt til holdet");
+                exit=true;
+            }else{
+                System.out.println("Indtast venligst en gyldig træner");
+            }
+        }
+
+        //Finally we tell the controller to make the new team with all the data it has gathered:
+        teamsController.finalCreateNewTeam(teamName);
+        System.out.println("Team created succesfully");
+
+
+
     }
-    //----------------------------------TEAM methods----------------------------------
+
+    private void deleteTeam(){
+        System.out.println("Vælg venligst holdet du gerne vil slette ved at indtaste dens ID: " +
+                "\n (AFSLUT for at gå tilbage)");
+        System.out.println(teamsController.getListOfTeams());
+        boolean exit = false;
+        while(!exit){
+            String userChoice = sc.nextLine();
+            try{
+                int idChoice = Integer.parseInt(userChoice);
+                System.out.println("Er du sikker på du vil slette holdet? y/n");
+                userChoice = sc.nextLine();
+                if(userChoice.equals("y")){
+                    boolean deletedSuccesfully = teamsController.deleteTeam(idChoice);
+                    if(deletedSuccesfully){
+                        System.out.println("Holdet er blevet slettet");
+                        exit = true;
+                    }else{
+                        System.out.println("Denne hold blev ikke fundet i databasen.");
+                        exit = true;
+                    }
+                }else{
+                    exit = true;
+                }
+
+
+            }catch (NumberFormatException e){
+                if(userChoice.toUpperCase().equals("AFSLUT")){
+                    exit = true;
+                }else{
+                    System.out.println("ugyldigt kommando");
+                }
+            }
+        }
+
+    }
+
+//----------------------------------------------------END OF TEAMS-------------------------------------------
 
 
     //----------------------------------Training methods----------------------------------
@@ -224,22 +453,23 @@ public class UserInterface {
     private void contingentMenu() {
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("You are in the Contingent menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - To register a new contingent entry.");
-        System.out.println("Type : 'Delete' - To Delete an existing contingent entry.");
-        System.out.println("Type : 'Members' - To view contingents of all members.");
-        System.out.println("Type : 'Specific' - To search for a specific members contingents.");
+        System.out.println("Du er i contingent menuen.");
+        System.out.println("Du har følgende muligheder:");
+        System.out.println("Skriv : 'Opret' - For at oprette en kontingent.");
+        System.out.println("Skriv : 'Slet' - For at slette en kontingent.");
+        System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
+        System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
 
         String input = scan.nextLine().toUpperCase();
 
         switch (input) {
-            case "CREATE" -> contingentAdd(scan);
-            case "DELETE" -> contingentDelete(scan);
-            case "MEMBERS" -> readAll();
-            case "SPECIFIC" -> getSpecificContingent(scan);
+            case "OPRET" -> contingentAdd(scan);
+            case "SLET" -> contingentDelete(scan);
+            case "MEDLEMMER" -> readAll();
+            case "SPECIFIK" -> getSpecificContingent(scan);
+            case "FORVENTET" -> getExpectedEarnings();
             case "" -> System.out.println();
-            default -> System.out.println("Wrong input");
+            default -> System.out.println("Det indtastede passede ikke.");
         }
 
     }
@@ -247,7 +477,7 @@ public class UserInterface {
     private void contingentAdd(Scanner scan) {
         displayMembers();
 
-        System.out.println("Type an member id to create a contingent");
+        System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på.");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
@@ -258,30 +488,38 @@ public class UserInterface {
     private void contingentDelete(Scanner scan) {
         displayMembers();
 
-        System.out.println("Type an member id to get the members contingent");
+        System.out.println("Skriv et id på en medlem, som du vil slette kontingent på.");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
         System.out.println(cc.getMemberContingents(memberId));
-        System.out.println("Type an contingent id you would like to delete");
+        System.out.println("Skriv et kontingent id for at slette en specifik.");
 
         System.out.println(cc.deleteContingent(scan.nextInt()));
+    }
+
+    private void readAll() {
+        ContingentController cc = new ContingentController();
+        System.out.println(cc.readAll());
     }
 
     private void getSpecificContingent(Scanner scan) {
         displayMembers();
 
-        System.out.println("Type an member id to get specific contingent");
+        System.out.println("Skriv et medlems id for at få kontingenterne");
         int memberId = scan.nextInt();
 
         ContingentController cc = new ContingentController();
         System.out.println(cc.getMemberContingents(memberId));
     }
 
-    private void readAll() {
+    private void getExpectedEarnings(){
         ContingentController cc = new ContingentController();
-        System.out.println(cc.readAll());
+
+        System.out.println("Forventede indtjening:");
+        System.out.println(cc.getExpectedEarnings());
+
     }
     //----------------------------------Contingents methods----------------------------------
 
@@ -330,6 +568,36 @@ public class UserInterface {
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
         System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
+
+        //Hi simon, i made changes here:
+        //it's a check to see if we should create a member or the subclass competitiveSwimmer
+        int disciplineIndex = -1;
+        if (competitive.equalsIgnoreCase("competitive")) {
+            disciplineIndex = typeMemberDiscipline();
+            memberRepository.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
+        }else{
+
+            memberRepository.createMember(name,
+                LocalDate.of(year, month, day),
+                activity.equalsIgnoreCase("active"),
+                competitive.equalsIgnoreCase("competitive"));
+
+
+        }
+        System.out.println("You have created a new Member :D");
+    }
+//helper method for creating competitibe member:
+    private int typeMemberDiscipline() {
+        int userChoice = 0;
+        Scanner cmScan = new Scanner(System.in);
+        System.out.println("Chose a swimming discipline to assign to the member:");
+        System.out.println("Type 1 : To assign Butterfly ");
+        System.out.println("Type 2 : To assign Crawl ");
+        System.out.println("Type 3 : To assign Backcrawl ");
+        System.out.println("Type 4 : To assign Breaststroke ");
+        userChoice = cmScan.nextInt();
+
+        return userChoice - 1;
     }
 
     private void editMember() {
