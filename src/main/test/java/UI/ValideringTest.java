@@ -89,10 +89,10 @@ public class ValideringTest {
     @Test
     void checkDouble() {
         // Arrange
-        Scanner scan = new Scanner(String.valueOf(2));
+        Scanner scan = new Scanner(String.valueOf(2.2));
         // Act
         double actual = Validering.checkDouble(scan);
-        double expected = 2;
+        double expected = 2.2;
         // Assert
         assertEquals(expected, actual);
     }
@@ -103,7 +103,7 @@ public class ValideringTest {
     @Test
     void checkDoubleNot() {
         // Arrange
-        Scanner scan = new Scanner("hej " + 1);
+        Scanner scan = new Scanner("\n" + 1);
         // Act
         double actual = Validering.checkDouble(scan);
         double expected = 1;
