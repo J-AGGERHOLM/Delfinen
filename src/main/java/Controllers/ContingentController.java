@@ -30,10 +30,10 @@ public class ContingentController {
     // Gets a member contingents
     public String getMemberContingents(int memberId)
     {
-        try{
-
         // For print
         StringBuilder sb = new StringBuilder();
+
+        try{
         // Store all
         ArrayList<Contingent> contingents = repository.getAllContingent();
 
@@ -46,7 +46,7 @@ public class ContingentController {
 
         // Returns a message
         return sb.isEmpty()
-                ? "Der er ingen kontingent på ønskede id: " + memberId
+                ? ""
                 : sb.toString();
         } catch (IOException e){
             return e.getMessage();

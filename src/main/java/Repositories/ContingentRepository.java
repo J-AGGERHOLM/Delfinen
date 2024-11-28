@@ -5,16 +5,15 @@ import FileHandler.ContingentHandler;
 import Models.Contingent;
 import Models.Member;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ContingentRepository {
-    private ArrayList<Contingent> contingents;
     private final ContingentHandler ch;
     private final MemberRepository mr;
 
     public ContingentRepository() {
-        contingents = new ArrayList<>();
         ch = new ContingentHandler();
         mr = new MemberRepository();
     }
@@ -59,13 +58,10 @@ public class ContingentRepository {
         }
     }
 
-    // Get all contingents
-    public ArrayList<Contingent> getAllContingent() throws IOException {
-        return ch.read();
-    }
-
     // Delete a contingent
     public boolean deleteSpecificContingent(int id) throws IOException {
+        ArrayList<Contingent> contingents = ch.read();
+
         // To store the contingent
         Contingent temp = null;
         for (Contingent c : contingents) {
@@ -88,7 +84,7 @@ public class ContingentRepository {
     }
 
     public int getId() throws IOException {
-        int id = getAllContingent().size();
+        int id = ch.read().size();
         return ++id;
     }
 
@@ -100,6 +96,11 @@ public class ContingentRepository {
         }
 
         return sum;
+    }
+
+    // ---------------------- getter -----------------------------
+    public ArrayList<Contingent> getAllContingent() throws FileNotFoundException {
+        return ch.read();
     }
 
 }
