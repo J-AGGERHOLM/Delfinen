@@ -4,14 +4,23 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Validering {
-    Scanner scan;
+    /*
 
+
+    We might end up with creating a scanner for each method.
+    Sometimes the scanner acts funny. If your input doesn't get validated
+    you need to create it locally in the method instead of globally
+
+
+     */
+    Scanner scan;
     public Validering(){
         scan = new Scanner(System.in);
     }
+
     //method to check if a string variable is empty.
     //currently only used to make sure that there are no movie entries without titles.
-    private String checkString(String value) {
+    public String checkString(String value) {
         while (value.isEmpty()) {
             System.out.println("Please enter some text");
             value = scan.nextLine();
@@ -22,7 +31,7 @@ public class Validering {
     // controls that inputted value is a string.
     // if it is an integer it promts you to change it to a string.
     // used to make sure we don't get any unwanted inputs while creating a movie entry.
-    private String isAString(String value) {
+    public String isAString(String value) {
         if (isAnInteger(value)) {
             System.out.println("Please enter a valid Name");
             value = scan.nextLine();
@@ -34,7 +43,7 @@ public class Validering {
 
     //checks input to see if it is an integer.
     //helper method to use with isAString() method.
-    private boolean isAnInteger(String value) {
+    public boolean isAnInteger(String value) {
         try {
             Integer.parseInt(value);
             return true;
@@ -44,7 +53,7 @@ public class Validering {
     }
 
     // check for isInColor
-    private String stringIsYesNo(String value) {
+    public String stringIsYesNo(String value) {
         // if user input != YES or NO, then the method prompts you to write a valid input.
         while (!value.equals("YES") && !value.equals("NO")) {
             System.out.println("Try again. Type: yes or no.");
@@ -55,7 +64,7 @@ public class Validering {
     }
 
     // Check for min value.
-    private int checkInt() {
+    public int checkInt() {
         try {
             //makes sure it's an integer:
             return Integer.parseInt(scan.nextLine());
@@ -64,4 +73,5 @@ public class Validering {
             return checkInt();
         }
     }
+
 }
