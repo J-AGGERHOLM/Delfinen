@@ -55,6 +55,7 @@ public class MemberController {
 //        }
 //    }
 
+
     public String chooseSpecificMemberByName(String name) {
         if (!memberRepository.chooseSpecificMemberByName(name)){
             return "Member with name: " + name + "Was not found";
@@ -62,6 +63,8 @@ public class MemberController {
             return "Member with name: " + name + "found :)";
         }
     }
+
+
 
     public String createMember(String name, LocalDate birthday, boolean activity, boolean competitive){
         if(!memberRepository.createMember(name, birthday, activity, competitive)){

@@ -122,15 +122,16 @@ public class MemberRepository {
             return false;
         }
     }
-/* commented out because it stopped the program from running in it's current state:
+/* commented out because it stopped the program from running in its current state:
 
+    /* commenting this out until its done
     public boolean delete(String name){
         try {
 
 
     }
-
 */
+
 
 }
 
