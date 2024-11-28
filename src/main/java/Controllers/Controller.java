@@ -53,22 +53,22 @@ public class Controller {
         return data.showData(data.getData());
     }
 
-    public void addTraining(Training t) {
-        data.addTraining(t);
-    }
+//    public void addTraining(Training t) {
+//        data.addTraining(t);
+//    }
 
     public void addSwimmer(Person s) {
         swimmers.add(s);
     }
 
-    public CompetitiveSwimmer getSwimmerByName(String name) {
-        for (Person s : swimmers) {
-            if (s.getFullName().equals(name)) {
-                return (CompetitiveSwimmer) s;
-            }
-        }
-        return null;
-    }
+//    public CompetitiveSwimmer getSwimmerByName(String name) {
+//        for (Person s : swimmers) {
+//            if (s.getFullName().equals(name)) {
+//                return (CompetitiveSwimmer) s;
+//            }
+//        }
+//        return null;
+//    }
 
     public Person getSwimmerByID(int id) {
         for (Person s : swimmers) {

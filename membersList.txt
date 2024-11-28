@@ -1,1 +1,7 @@
 Jacob,0095-01-22,1,passive,non-competitive
+Jack,1990-04-20,1,active,competitive
+Jack,1990-04-20,1,active,competitive
+Jack,1990-04-20,2,active,competitive
+Jack,1990-04-20,1,active,competitive
+Jack,1990-04-20,1,active,competitive
+Jack,1990-04-20,2,active,competitive

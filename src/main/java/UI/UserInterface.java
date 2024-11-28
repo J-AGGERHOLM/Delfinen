@@ -10,18 +10,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
+import Controllers.TrainingController;
+import Models.*;
 import Repositories.CompetitionRepository;
 import Repositories.MemberRepository;
-
-import Models.Competition;
-import Models.Person;
-import Models.Trainer;
-import Models.Training;
 
 
 public class UserInterface {
     Controller controller;
     CompetitionController competitionController;
+    TrainingController tc = new TrainingController();
 
 
     public UserInterface() {
@@ -216,14 +214,14 @@ public class UserInterface {
                 if (swimmer.isEmpty()) {
                     break;
                 }
-                Person swimTemp = controller.getSwimmerByName(swimmer);
+                CompetitiveSwimmer swimTemp = tc.getSwimmerByName(swimmer);
                 if (swimTemp == null) {
                     System.out.println("Swimmer not found!");
                     continue;
                 }
                 System.out.println("Time (XX:XX:XX):");
                 String time = scanner.nextLine();
-                controller.addTraining(new Training(trainer, discipline, swimTemp, time));
+                tc.addTraining(new Training(discipline, swimTemp, time));
             }
         }
 
@@ -231,7 +229,8 @@ public class UserInterface {
 
         System.out.println("For which discipline would you like to see your top 5 swimmers?");
         String choice = scanner.nextLine();
-        System.out.println(controller.getDisciplineTopFive(choice));
+        String team = scanner.nextLine();
+        System.out.println(controller.getDisciplineTopFive(team,choice));
     }
     //----------------------------------Training methods----------------------------------
 
