@@ -2,10 +2,7 @@ package FileHandler;
 
 import Models.Contingent;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,7 +34,7 @@ public class ContingentHandler  {
     }
 
     // Read all data
-    public ArrayList<Contingent> read() {
+    public ArrayList<Contingent> read() throws FileNotFoundException {
         // Array for data.
         ArrayList<Contingent> contingents = new ArrayList<>();
 
@@ -68,12 +65,7 @@ public class ContingentHandler  {
             }
 
             return contingents;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
-
-        // Something went wrong
-        return null;
     }
 
     // Delete specific Contingent

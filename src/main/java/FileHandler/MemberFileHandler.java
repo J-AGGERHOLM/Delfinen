@@ -95,16 +95,17 @@ public class MemberFileHandler {
 
 
 
-    public void update(String membersName) throws IOException {
+
+    public void update() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
         for (Member m : memberRepository.getMemberArrayList()){
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.write(memberRepository.getCurrentMember().toStringFile());
+            writer.write(m.toStringFile());
             writer.newLine();
             writer.flush();
         }
 
     }
 
+    }
 
 
-}

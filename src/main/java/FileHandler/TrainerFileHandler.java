@@ -1,5 +1,6 @@
 package FileHandler;
 
+import Models.Member;
 import Models.Trainer;
 import Repositories.TrainerRepository;
 
@@ -57,15 +58,17 @@ public class TrainerFileHandler {
     }
 
 
-
-
-
-    public void update() {
-
-    }
-
-
-    public void delete() {
+    public void update() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, false));
+        for (Trainer t : trainerRepository.getTrainerArrayList()){
+            writer.write(t.toStringFile());
+            writer.newLine();
+            writer.flush();
+        }
 
     }
+
+
+
+
 }
