@@ -76,22 +76,22 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         //menu:
 
-        System.out.println("You are in the Competition menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - To create a new competion entry.");
-        System.out.println("Type : 'Display' - To Display all competion entries.");
-        System.out.println("Type : 'Delete' - To delete competition entry.");
+        System.out.println("Du er i konkurrence menuen");
+        System.out.println("Du har nu følgende valgmuligheder:");
+        System.out.println("'Tilføj' - For at oprette en ny konkurrence.");
+        System.out.println("'Se' - For at vise konkurrencerne.");
+        System.out.println("'Slet' - For at slette en konkurrence.");
 
         String competitionInput = sc.nextLine().toUpperCase();
 
         //depending on the users input, these cases happen:
         switch (competitionInput) {
-            case "CREATE" -> competitionEntryCreate();
-            case "DISPLAY" -> {
+            case "TILFØJ" -> competitionEntryCreate();
+            case "SE" -> {
                 System.out.println(competitionController.readCompetition());
             }
-            case "DELETE" -> deleteCompetitionEntry();
-            default -> System.out.println("Not an option");
+            case "SLET" -> deleteCompetitionEntry();
+            default -> System.out.println("Ikke en mulighed");
         }
     }
 
@@ -100,8 +100,8 @@ public class UserInterface {
 
         Scanner sc = new Scanner(System.in);
         CompetitionRepository repository = new CompetitionRepository();
-        System.out.println("Please enter the name of the event you'd like to delete.");
-        String searchWord = sc.nextLine();
+        System.out.println("Indtast venligst ID på den konkurrence du har lyst til at slette.");
+        int searchWord = sc.nextInt();
         repository.searchForEntry(searchWord);
 
     }
@@ -114,11 +114,11 @@ public class UserInterface {
         CompetitionRepository repository = new CompetitionRepository();
 
         try {
-            System.out.println("Please enter the name of the event:");
+            System.out.println("Indtast venligst navn til stævnet:");
             String event = sc.nextLine();
-            System.out.println("Please enter te placement achieved:");
+            System.out.println("Indtast venligst placering opnået til stævnet:");
             int placement = intScanner.nextInt();
-            System.out.println("Please enter the swimmers time:");
+            System.out.println("Indtast venligst tid på svømmeren til stævnet:");
             double time = doubleScanner.nextDouble();
 
 
