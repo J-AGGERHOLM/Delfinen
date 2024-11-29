@@ -517,7 +517,50 @@ public class UserInterface {
 
     }
     //----------------------------------Contingents methods----------------------------------
+// Trainer methods______________________________________________________________________________________________________
+    // translate to danish
+    public void trainersMenu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("title");
+        System.out.println("options");
+        System.out.println("'create'");
+        System.out.println("'edit'");
+        System.out.println("'delete'");
+        System.out.println("'Display trainers'");
+        System.out.println("'specific");
 
+        String input = sc.nextLine().toUpperCase();
+
+        switch (input){
+            case "CREATE" -> createTrainer();
+            case "EDIT" -> editTrainer();
+            case "DELETE" -> deleteTrainer();
+            case "DISPLAY" -> showTrainers();
+            case "SPECIFIC" -> specificTrainer();
+            default -> System.out.println("Not option");
+         }
+
+
+    }
+    public void createTrainer() {
+        System.out.println("should create a member");
+    }
+
+    public void editTrainer(){
+        System.out.println("should edit the trainer");
+    }
+
+    public void deleteTrainer(){
+        System.out.println("should delete trainer");
+    }
+
+    public void showTrainers(){
+        System.out.println("should show a list of trainers");
+    }
+
+    public void specificTrainer(){
+        System.out.println("should show a specific trainers information");
+    }
 
 //Member methods----------------------------------------------------------------------------------------------------
 
