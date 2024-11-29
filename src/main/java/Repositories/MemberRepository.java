@@ -125,7 +125,7 @@ public class MemberRepository {
         }
     }
 
-    public boolean updateInformation() throws IOException {
+    public boolean updateInformation() {
         try {
             memberFileHandler.update();
             return true;

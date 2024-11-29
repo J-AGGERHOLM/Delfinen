@@ -78,6 +78,9 @@ public class MemberController {
         }
         return "Member was successfully created";
     }
+    public boolean updateInformation(){
+        return memberRepository.updateInformation();
+    }
 
     public String deleteMember() {
         if (!memberRepository.deleteMember()) {
