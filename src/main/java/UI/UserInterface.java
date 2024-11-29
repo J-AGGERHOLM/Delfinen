@@ -537,15 +537,16 @@ public class UserInterface {
         String userInput = sc.nextLine().toUpperCase();
 
         switch (userInput) {
-            // case "CREATE" -> createMember();
+            case "CREATE" -> createMember();
             case "EDIT" -> editMember();
-            case "DISPLAY MEMBERS" -> displayMembers();
-            case "DISPLAY SPECIFIC" -> displayInformationFromSpecificMember();
+            case "DELETE" -> deleteMember();
+            case "MEMBERS" -> displayMembers();
+            case "SPECIFIC" -> displayInformationFromSpecificMember();
             default -> System.out.println("Not an option!");
         }
     }
 
-    private void createMember() throws IOException {
+    private void createMember() {
         MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter full name: ");
@@ -621,6 +622,21 @@ public class UserInterface {
             memberRepository.getCurrentMember().setName(newName);
         }
 
+    }
+
+    public void deleteMember() {
+        Scanner sc = new Scanner(System.in);
+        MemberController memberController = new MemberController();
+        System.out.println("Which member would you like to delete from the system?");
+        String input = sc.nextLine().toLowerCase();
+        System.out.println(memberController.chooseSpecificMemberByName(input));
+        if (memberController.getCurrentMember() != null) {
+            System.out.println("Are you sure you want to delete this member?");
+            input = sc.nextLine().toLowerCase();
+            if (input.equalsIgnoreCase("Yes")) {
+                System.out.println(memberController.deleteMember());
+            }
+        }
     }
 
 
