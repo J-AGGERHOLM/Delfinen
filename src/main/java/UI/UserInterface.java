@@ -727,7 +727,10 @@ public class UserInterface {
             case "name", "full name" -> {
                 System.out.println("Enter name: ");
                 input = sc.nextLine();
-                memberController.chooseSpecificMemberByName(input);
+                System.out.println(memberController.chooseSpecificMemberByName(input));
+                if (memberController.getCurrentMember() != null){
+                    System.out.println(memberController.displayMemberInformation());
+                }
             }
             case "id" -> {
                 int idNum = 0;
@@ -742,7 +745,9 @@ public class UserInterface {
                     }
                 }
                 System.out.println(memberController.chooseSpecificMemberById(idNum));
-                System.out.println(memberController.displayMemberInformation());
+                if (memberController.getCurrentMember() != null) {
+                    System.out.println(memberController.displayMemberInformation());
+                }
             }
         }
 

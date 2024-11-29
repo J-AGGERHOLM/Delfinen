@@ -19,6 +19,20 @@ public class CompetitiveSwimmer extends Member {
         this.chosenDiscipline = chosendiscipline;
     }
 
+    public void setChosenDisciplineByInt(int chosenDisciplineByInt) {
+         switch (chosenDisciplineByInt) {
+            case 1:
+                this.chosenDiscipline = SwimmingDisciplines.BACKCRAWL;
+            case 2:
+                this.chosenDiscipline = SwimmingDisciplines.BREASTSTROKE;
+            case 3:
+                this.chosenDiscipline = SwimmingDisciplines.BUTTERFLY;
+            case 4:
+                this.chosenDiscipline = SwimmingDisciplines.CRAWL;
+            default: this.chosenDiscipline = SwimmingDisciplines.BACKCRAWL;
+        };
+    }
+
     public SwimmingDisciplines getChosendiscipline() {
         return chosenDiscipline;
     }
