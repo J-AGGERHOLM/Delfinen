@@ -49,6 +49,20 @@ public class SwimmingClub {
         return highestID + 1;
     }
 
+    public void deleteMemberFromAllTeams(Member member){
+        for(Team t: teams){
+            t.removeMember(member);
+        }
+    }
+
+    public void deleteTrainerFromAllTeams(Trainer trainer){
+        for(Team t: teams){
+            if (t.getTrainer().getId() == trainer.getId()){
+                t.removeTrainer();
+            }
+        }
+    }
+
 
 
 
