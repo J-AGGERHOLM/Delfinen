@@ -661,16 +661,33 @@ public class UserInterface {
                 case "name" -> {
                     System.out.println("Enter new name: ");
                     input = sc.nextLine();
-                    memberController.getCurrentMember().setName(input); // refactor with a edit method in memberscontroller
-                    memberController.updateInformation();
+                    memberController.getCurrentMember().setName(input); // refactor with an edit method in membersController
+                    System.out.println(memberController.updateInformation());
                 }
                 case "birthday" -> {
+                    System.out.println("Enter new birthday: ");
+                    System.out.println("Day of birth: ");
+                    int day = sc.nextInt();
+                    System.out.println("Month of birth: ");
+                    int month = sc.nextInt();
+                    System.out.println("Year of birth: ");
+                    int year = sc.nextInt();
+                    memberController.getCurrentMember().setBirthday(LocalDate.of(year, month, day)); // refactor with an edit method in membersController
+                    System.out.println(memberController.updateInformation());
 
                 }
                 case "activity" -> {
+                    System.out.println("Enter new activity status ('active' ; 'passive': ");
+                    input = sc.nextLine();
+                    memberController.getCurrentMember().setActivity(input.equalsIgnoreCase("active")); // refactor with an edit method in membersController
+                    System.out.println(memberController.updateInformation());
 
                 }
                 case "competitive" -> {
+                    System.out.println("Enter new competitive status ('competitive' ; 'regular': ");
+                    input = sc.nextLine();
+                    memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive")); // refactor with an edit method in membersController
+                    System.out.println(memberController.updateInformation());
 
                 }
                 default -> System.out.println("not option");
