@@ -2,7 +2,7 @@ package UI;
 
 import Controllers.*;
 
-import java.io.IOException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -611,7 +611,7 @@ public class UserInterface {
         } else {
             int disciplineIndex = -1;
             disciplineIndex = typeMemberDiscipline();
-            memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
+            System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex));
         }
     }
 
@@ -705,7 +705,7 @@ public class UserInterface {
         if (memberController.getCurrentMember() != null) {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
-            if (input.equalsIgnoreCase("Yes")) {
+            if (input.equalsIgnoreCase("yes")) {
                 System.out.println(memberController.deleteMember());
             }
         }
@@ -713,9 +713,9 @@ public class UserInterface {
 
 
     private void displayMembers() {
-        MemberRepository memberRepository = new MemberRepository();
+        MemberController memberController = new MemberController();
         System.out.println("Here you have a list of all the members from the club: \n");
-        System.out.println(memberRepository.displayMembers()); // should be with controller, will do it later
+        System.out.println(memberController.displayMembers());
     }
 
     private void displayInformationFromSpecificMember() {
