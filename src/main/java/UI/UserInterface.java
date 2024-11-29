@@ -81,8 +81,13 @@ public class UserInterface {
         System.out.println("'Tilføj' - For at oprette en ny konkurrence.");
         System.out.println("'Se' - For at vise konkurrencerne.");
         System.out.println("'Slet' - For at slette en konkurrence.");
+        System.out.println("'Exit' - For at forlade konkurrence menuen.");
 
         String competitionInput = sc.nextLine().toUpperCase();
+        while(!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT") ){
+            System.out.println("Vælg en gyldig valgmulighed");
+             competitionInput = sc.nextLine().toUpperCase();
+        }
 
         //depending on the users input, these cases happen:
         switch (competitionInput) {
@@ -91,6 +96,9 @@ public class UserInterface {
                 System.out.println(competitionController.readCompetition());
             }
             case "SLET" -> deleteCompetitionEntry();
+            case "EXIT" -> {
+                return;
+            }
             default -> System.out.println("Ikke en mulighed");
         }
     }
