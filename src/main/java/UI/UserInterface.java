@@ -631,27 +631,50 @@ public class UserInterface {
 
     private void editMember() {
         Scanner sc = new Scanner(System.in);
+        MemberController memberController = new MemberController();
         MemberRepository memberRepository = new MemberRepository();
-        System.out.println("Which members information do you want to edit? ");
-        System.out.println("Enter Full name: ");
-        String name = sc.nextLine();
-        memberRepository.chooseSpecificMemberByName(name);
-        if (memberRepository.getCurrentMember() == null) {
-            System.out.println("couldnt find a member with that name.");
-        } else {
-            System.out.println("Member " + memberRepository.getCurrentMember().getFullName() + "found");
-            System.out.println("what information do you want to edit? \nName \nBirthday \nActivity \nCompetitive");
-            String input = sc.nextLine();
-            switch (input) {
-                case "Name" -> {
-                    System.out.println("Enter new name: ");
-                    String newName = sc.nextLine();
-                    memberRepository.getCurrentMember().setName(newName);
-                    System.out.println("Members name changed :)");
-                }
+        System.out.println("");
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine().toLowerCase();
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(memberController.chooseSpecificMemberByName(input));
             }
-            String newName = sc.nextLine();
-            memberRepository.getCurrentMember().setName(newName);
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
+            }
+        }
+        if (memberController.getCurrentMember() != null ) {
+            System.out.println("Choose the information you want to edit");
+            System.out.println("name");
+            System.out.println("birthday");
+            System.out.println("Activity");
+            System.out.println("Competitive");
+
+            input = sc.nextLine().toLowerCase();
+
+            switch (input) {
+                case "name" -> {
+                    System.out.println("Enter new name: ");
+                    input = sc.nextLine();
+                    memberController.getCurrentMember().setName(input); // refactor with a edit method in memberscontroller
+                    memberController.updateInformation();
+                }
+                case "birthday" -> {
+
+                }
+                case "activity" -> {
+
+                }
+                case "competitive" -> {
+
+                }
+                default -> System.out.println("not option");
+            }
         }
 
     }

@@ -78,8 +78,13 @@ public class MemberController {
         }
         return "Member was successfully created";
     }
-    public boolean updateInformation(){
-        return memberRepository.updateInformation();
+
+    // refactor
+    public String updateInformation(){
+        if (memberRepository.updateInformation()){
+            return "Members information updated successfully";
+        }
+        return "Failed to update members information";
     }
 
     public String deleteMember() {
