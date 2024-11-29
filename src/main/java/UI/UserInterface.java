@@ -606,24 +606,13 @@ public class UserInterface {
         String activity = sc.nextLine();
         System.out.println("Will it be competitive or regular?");
         String competitive = sc.nextLine();
-        System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
-
-        //Hi simon, i made changes here:
-        //it's a check to see if we should create a member or the subclass competitiveSwimmer
-        int disciplineIndex = -1;
-        if (competitive.equalsIgnoreCase("competitive")) {
+        if (!competitive.equalsIgnoreCase("competitive")) {
+            System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
+        } else {
+            int disciplineIndex = -1;
             disciplineIndex = typeMemberDiscipline();
             memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex);
-        } else {
-
-            memberController.createMember(name,
-                    LocalDate.of(year, month, day),
-                    activity.equalsIgnoreCase("active"),
-                    competitive.equalsIgnoreCase("competitive"));
-
-
         }
-        System.out.println("You have created a new Member :D");
     }
 
     //helper method for creating competitibe member:
