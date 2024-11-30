@@ -83,6 +83,11 @@ public class TrainerController {
         return "Trainer was successfully created";
     }
 
+
+    public boolean updateInformation(){
+        return trainerRepository.updateInformation();
+    }
+
     public String deleteTrainer(){
         if (!trainerRepository.deleteTrainer()){
             return "Failed to create member, please try again";

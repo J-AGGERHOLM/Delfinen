@@ -68,7 +68,7 @@ public class MemberRepository {
     // Find a specific member with their Name from the list for editing, deleting, payments, etc
     public boolean chooseSpecificMemberByName(String name) {
         for (Member m : memberArrayList) {
-            if (m.getFullName().contains(name)) {
+            if (m.getFullName().toLowerCase().contains(name)) {
                 currentMember = m;
                 return true;
             }
@@ -103,7 +103,7 @@ public class MemberRepository {
 
     public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int disciplineIndex) {
         SwimmingDisciplines chosenDiscipline = null;
-        chosenDiscipline = chosenDiscipline.values()[disciplineIndex];
+        chosenDiscipline = SwimmingDisciplines.values()[disciplineIndex];
         try {
             // Create a new Member object
             Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline);
@@ -125,7 +125,7 @@ public class MemberRepository {
         }
     }
 
-    public boolean updateInformation() throws IOException {
+    public boolean updateInformation() {
         try {
             memberFileHandler.update();
             return true;

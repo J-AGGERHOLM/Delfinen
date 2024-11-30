@@ -49,17 +49,17 @@ public class MemberController {
 
     public String chooseSpecificMemberById(int idToCheck) {
         if (!memberRepository.chooseSpecificMemberById(idToCheck)) {
-            return "Member with ID: " + idToCheck + "Was not found";
+            return "Member with ID: " + idToCheck + " was not found";
         } else {
-            return "Member with ID: " + idToCheck + "found :)";
+            return "Member with ID: " + idToCheck + " found :)";
         }
     }
 
     public String chooseSpecificMemberByName(String name) {
         if (!memberRepository.chooseSpecificMemberByName(name)) {
-            return "Member with name: " + name + "Was not found";
+            return "Member with name: " + name + " was not found";
         } else {
-            return "Member with name: " + name + "found :)";
+            return "Member with name: " + name + " found :)";
         }
     }
 
@@ -77,6 +77,14 @@ public class MemberController {
             return "Failed to create member, please try again";
         }
         return "Member was successfully created";
+    }
+
+    // refactor
+    public String updateInformation(){
+        if (memberRepository.updateInformation()){
+            return "Members information updated successfully";
+        }
+        return "Failed to update members information";
     }
 
     public String deleteMember() {

@@ -26,7 +26,7 @@ public class CompetitiveSwimmer extends Member {
 
     @Override
     public String toStringFile() {
-        return super.toStringFile() + "," + (chosenDiscipline != null ? chosenDiscipline.ordinal() : "");
+        return super.toStringFile() + "," + (chosenDiscipline != null ? chosenDiscipline : "");
     }
 
 

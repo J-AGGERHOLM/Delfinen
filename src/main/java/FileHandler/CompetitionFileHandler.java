@@ -42,7 +42,6 @@ public class CompetitionFileHandler {
     }
 
 
-
     private ArrayList<Competition> competitions = new ArrayList<>();
 
     public void read() {
@@ -86,7 +85,7 @@ public class CompetitionFileHandler {
 
     }
 
-    public void delete(String eventName) {
+    public void delete(int id) {
 
         read();
         if (competitions == null) {
@@ -96,7 +95,7 @@ public class CompetitionFileHandler {
         Competition forDeletion = null;
 
         for (Competition c : competitions) {
-            if (c.getEvent().toUpperCase().equals(eventName.toUpperCase())) {
+            if (c.getId() == id) {
                 forDeletion = c;
             }
         }

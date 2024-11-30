@@ -119,7 +119,7 @@ public class TrainerRepository {
         }
     }
 
-    public boolean updateInformation() throws IOException {
+    public boolean updateInformation(){
         try {
             trainerFileHandler.update();
             return true;

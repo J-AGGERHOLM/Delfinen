@@ -29,8 +29,8 @@ public class CompetitionRepository {
     }
 
 
-    public void searchForEntry(String eventName){
-        competitionFileHandler.delete(eventName);
+    public void searchForEntry(int competitionId){
+        competitionFileHandler.delete(competitionId);
     }
 
     public ArrayList<Competition> getAllEntries() {
