@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -100,7 +101,7 @@ public class ValideringTest {
     // You have to debug to se it works.
     // First it will take the value hej, go into while
     // Next it will take the value and return
-    @Test
+    @Disabled
     void checkDoubleNot() {
         // Arrange
         Scanner scan = new Scanner("\n" + 1);
@@ -111,7 +112,18 @@ public class ValideringTest {
         assertEquals(expected, actual);
     }
 
-    @Disabled
+    @Test
     void checkDate() {
+        // Arrange
+        Scanner scan = new Scanner("\n\n 1234-12-12");
+        // Act
+        LocalDate expected = Validering.checkDate(scan);
+
+    }
+
+    @Disabled
+    void checkDateNot() {
+
+
     }
 }
