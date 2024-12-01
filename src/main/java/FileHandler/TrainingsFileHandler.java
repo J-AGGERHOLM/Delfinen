@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class TrainingsFileHandler {
     private ArrayList<Training> trainings;
     final String filePath = "TrainingRepository.txt";
-    private MemberRepository memboR = new MemberRepository();
 
     public void saveTrainingData(ArrayList<Training> trainingData) {
         this.trainings = trainingData;
@@ -23,7 +22,7 @@ public class TrainingsFileHandler {
             }
             bw.flush();
         } catch (IOException e) {
-            System.out.println("File not found!");
+            System.out.println("File ikke fundet!");
         }
     }
 
@@ -39,7 +38,7 @@ public class TrainingsFileHandler {
                 trainingData.add(new Training(discipline, Integer.parseInt(id), time));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found! ");
+            System.out.println("Fil ikke fundet! ");
         }
         return trainingData;
     }

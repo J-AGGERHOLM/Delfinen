@@ -383,16 +383,14 @@ public class UserInterface {
         System.out.println("Velkommen til Træningmenu");
         System.out.println("Du har følgende muligheder:");
         System.out.println("TILFØJE : tilføje en træningssession.");
-        System.out.println("FEM : se de top 5 for en disciplin");
-        System.out.println("RETURN: træningmenu");
-        System.out.println("EXIT : hovedmenuen");
+        System.out.println("FEM : se top 5 for en disciplin");
+        System.out.println("EXIT : tilbage til hovedmenuen");
 
         String input = sc.nextLine().toUpperCase();
 
         switch (input) {
             case "TILFØJE" -> addTrainingSession();
             case "FEM" -> viewTop5ForDiscipline();
-            case "RETURN" -> trainerMenu();
             case "EXIT" -> {
                 trainingController.writeToFile();
                 mainLoop();
@@ -404,17 +402,16 @@ public class UserInterface {
 
     public void addTrainingSession() {
         System.out.println("Disciplin");
-        String discipline = sc.nextLine();
+        String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
         for(CompetitiveSwimmer swimmer : swimmers) {
-            System.out.println(swimmer.getFullName());
             CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
             System.out.println(swimTemp.getFullName());
             System.out.println("Tid (XX:XX:XX):");
             String time = sc.nextLine();
             trainingController.addTraining(new Training(discipline, swimmer.getId(), time));
         }
-        System.out.println(trainingController.showData());
+        trainerMenu();
     }
 
     public void viewTop5ForDiscipline() {
@@ -423,6 +420,7 @@ public class UserInterface {
         System.out.println("Junior eller Senior hold?");
         String team = sc.nextLine();
         System.out.println(trainingController.getDisciplineTopFive(team,choice));
+        trainerMenu();
     }
 
 
