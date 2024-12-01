@@ -6,6 +6,7 @@ import Controllers.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 import FileHandler.CompetitionFileHandler;
@@ -543,7 +544,25 @@ public class UserInterface {
 
     }
     public void createTrainer() {
-        System.out.println("should create a member");
+        TrainerController trainerController = new TrainerController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter full name: ");
+        String name = sc.nextLine().trim();
+        System.out.println("Enter Birthday: ");
+        System.out.println("Day of birth: ");
+        int day = sc.nextInt();
+        System.out.println("Month of birth:");
+        int month = sc.nextInt();
+        System.out.println("Year of birth: ");
+        int year = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Do you want to add him to an existing team?");
+        String input = sc.nextLine().toLowerCase();
+        if (input.equalsIgnoreCase("yes")){
+            System.out.println("It will come soon"); // create this method
+        } else {
+            System.out.println(trainerController.createTrainerWithoutTeam(name, LocalDate.of(year, month, day)));
+        }
     }
 
     public void editTrainer(){
