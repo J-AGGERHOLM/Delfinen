@@ -55,7 +55,7 @@ public class TrainingRepository {
         }
         disciplineData.sort(Comparator.comparing(Training::getTime));
         ArrayList<Integer> peopleCheck = new ArrayList<>();
-        ArrayList<Training> top5 = new ArrayList();
+        ArrayList<Training> top5 = new ArrayList<>();
         for(int i = 0; i < disciplineData.size(); i++) {
             if(!peopleCheck.contains(disciplineData.get(i).getSwimmerID())) {
                 peopleCheck.add(disciplineData.get(i).getSwimmerID());
