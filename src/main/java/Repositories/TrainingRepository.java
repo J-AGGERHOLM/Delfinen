@@ -5,12 +5,8 @@ import Models.CompetitiveSwimmer;
 import Models.Member;
 import Models.Training;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-
 
 public class TrainingRepository {
     private ArrayList<Training> trainings;
@@ -42,7 +38,7 @@ public class TrainingRepository {
     public String getDisciplineTrainings(String team, String discipline) {
         ArrayList<Training> disciplineData = new ArrayList<>();
         ArrayList<Member> memberData = memberRepo.getMemberArrayList();
-        String result = "DISCIPLIN: \t  ID(NAVN): \t TID: \n";
+        String result = "DISCIPLIN: \t  ID(NAVN): \t     TID: \t          DATO: \n";
         for(Training t : trainings) {
             if(t.getDiscipline().toUpperCase().equals(discipline.toUpperCase())) {
                 for(Member m : memberData) {

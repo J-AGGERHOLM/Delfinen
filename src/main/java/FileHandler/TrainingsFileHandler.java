@@ -35,7 +35,8 @@ public class TrainingsFileHandler {
                 String discipline = data[0];
                 String id  = data[1];
                 String time = data[2];
-                trainingData.add(new Training(discipline, Integer.parseInt(id), time));
+                String date = data[3];
+                trainingData.add(new Training(discipline, Integer.parseInt(id), time, date));
             }
         } catch (FileNotFoundException e) {
             System.out.println("Fil ikke fundet! ");

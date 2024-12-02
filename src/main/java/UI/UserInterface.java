@@ -409,7 +409,8 @@ public class UserInterface {
             System.out.println(swimTemp.getFullName());
             System.out.println("Tid (XX:XX:XX):");
             String time = sc.nextLine();
-            trainingController.addTraining(new Training(discipline, swimmer.getId(), time));
+            String date = String.valueOf(LocalDate.now());
+            trainingController.addTraining(new Training(discipline, swimmer.getId(), time, date));
         }
         trainerMenu();
     }
