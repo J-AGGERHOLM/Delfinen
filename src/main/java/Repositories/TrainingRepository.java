@@ -58,10 +58,17 @@ public class TrainingRepository {
             }
         }
         disciplineData.sort(Comparator.comparing(Training::getTime));
-
+        ArrayList<Integer> peopleCheck = new ArrayList<>();
+        ArrayList<Training> top5 = new ArrayList();
+        for(int i = 0; i < disciplineData.size(); i++) {
+            if(!peopleCheck.contains(disciplineData.get(i).getSwimmerID())) {
+                peopleCheck.add(disciplineData.get(i).getSwimmerID());
+                top5.add(disciplineData.get(i));
+            }
+        }
         for(int i = 0; i < 5 ; i++) {
             try {
-                result += disciplineData.get(i).toString() + "\n";
+                result += top5.get(i).toString() + "\n";
             } catch (IndexOutOfBoundsException e) {
                 result += "No Data\n";
             }
