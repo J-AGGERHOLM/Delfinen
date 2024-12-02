@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class TrainingsFileHandler {
     private ArrayList<Training> trainings;
-    final String filePath = "TrainingRepository.txt";
+    final String filePath = "TrainingRepository.csv";
 
     public void saveTrainingData(ArrayList<Training> trainingData) {
         this.trainings = trainingData;
