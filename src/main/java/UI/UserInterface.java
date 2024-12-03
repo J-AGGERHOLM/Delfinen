@@ -22,11 +22,13 @@ import Models.Training;
 
 public class UserInterface {
     TeamsController teamsController = new TeamsController();
+    TrainingController trainingController;
     Scanner sc;
 
 
     public UserInterface() {
         sc = new Scanner(System.in);
+        trainingController = new TrainingController();
     }
 
     public void mainLoop() {
@@ -391,7 +393,6 @@ public class UserInterface {
             case "TILFØJE" -> addTrainingSession();
             case "FEM" -> viewTop5ForDiscipline();
             case "EXIT" -> {
-                TrainingController trainingController = new TrainingController();
                 trainingController.writeToFile();
                 mainLoop();
             }
@@ -401,7 +402,6 @@ public class UserInterface {
     }
 
     public void addTrainingSession() {
-        TrainingController trainingController = new TrainingController();
         System.out.println("Disciplin");
         String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
@@ -417,7 +417,6 @@ public class UserInterface {
     }
 
     public void viewTop5ForDiscipline() {
-        TrainingController trainingController = new TrainingController();
         System.out.println("For hvilken disciplin vil du gerne se de top 5 svømmere?");
         String choice = sc.nextLine();
         System.out.println("Junior eller Senior hold?");
