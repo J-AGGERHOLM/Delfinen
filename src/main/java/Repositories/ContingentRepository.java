@@ -39,7 +39,6 @@ public class ContingentRepository {
             return null;
         }
 
-        // Snak med simon
         member.setPaid(true);
         mr.getMemberArrayList().add(member);
         mr.updateInformation();
@@ -88,9 +87,8 @@ public class ContingentRepository {
 
         // Remove from list and parse.
         contingents.remove(temp);
-        ch.delete(contingents);
 
-        return true;
+        return ch.delete(contingents);
     }
 
     // Makes id.

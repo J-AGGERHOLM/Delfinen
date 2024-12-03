@@ -70,7 +70,7 @@ public class ContingentHandler  {
     }
 
     // Delete specific Contingent
-    public void delete(ArrayList<Contingent> contingents) throws IOException {
+    public boolean delete(ArrayList<Contingent> contingents) throws IOException {
         // Override the file
         // BufferedWriter creates a file if it doesn't exist
         BufferedWriter writer = new BufferedWriter(
@@ -91,5 +91,7 @@ public class ContingentHandler  {
 
         // Close the stream
         writer.flush();
+
+        return true;
     }
 }
