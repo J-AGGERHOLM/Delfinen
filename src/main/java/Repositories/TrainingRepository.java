@@ -24,10 +24,11 @@ public class TrainingRepository {
 
     public void addTraining(Training t) {
         trainings.add(t);
+        trainingsFileHandler.saveTrainingData(trainings);
     }
 
     public String showData(ArrayList<Training> training) {
-        String data = "DISCIPLINE: \t  ID(NAME): \t TIME: \n";
+        String data = "DISCIPLIN: \t  ID(NAVN): \t TID: \n";
         for(Training t : training) {
             data += t.toString() + "\n";
         }
@@ -37,15 +38,15 @@ public class TrainingRepository {
     public String getDisciplineTrainings(String team, String discipline) {
         ArrayList<Training> disciplineData = new ArrayList<>();
         ArrayList<Member> memberData = memberRepo.getMemberArrayList();
-        String result = "DISCIPLINE: \t  ID(NAME): \t TIME: \n";
+        String result = "DISCIPLIN: \t  ID(NAVN): \t     TID: \t          DATO: \n";
         for(Training t : trainings) {
             if(t.getDiscipline().toUpperCase().equals(discipline.toUpperCase())) {
                 for(Member m : memberData) {
                     if(m.getId() == t.getSwimmerID()) {
-                        if(m.getAge() < 18 && team.equals("junior")) {
+                        if(m.getAge() < 18 && team.equalsIgnoreCase("junior")) {
                             disciplineData.add(t);
                         }
-                        if(m.getAge() >= 18 && team.equals("senior")) {
+                        if(m.getAge() >= 18 && team.equalsIgnoreCase("senior")) {
                             disciplineData.add(t);
                         }
                     }
@@ -53,9 +54,17 @@ public class TrainingRepository {
             }
         }
         disciplineData.sort(Comparator.comparing(Training::getTime));
-        for(int i = 0; i < 5; i++) {
+        ArrayList<Integer> peopleCheck = new ArrayList<>();
+        ArrayList<Training> top5 = new ArrayList<>();
+        for(int i = 0; i < disciplineData.size(); i++) {
+            if(!peopleCheck.contains(disciplineData.get(i).getSwimmerID())) {
+                peopleCheck.add(disciplineData.get(i).getSwimmerID());
+                top5.add(disciplineData.get(i));
+            }
+        }
+        for(int i = 0; i < 5 ; i++) {
             try {
-                result += disciplineData.get(i).toString() + "\n";
+                result += top5.get(i).toString() + "\n";
             } catch (IndexOutOfBoundsException e) {
                 result += "No Data\n";
             }

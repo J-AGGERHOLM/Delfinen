@@ -9,28 +9,28 @@ import java.util.Scanner;
 
 public class ContingentHandler  {
 
-    String filePath = "Contingent.txt";
+    String filePath = "Contingent.csv";
 
     //Creates a contingent
 
     public void create(int id, int memberId, double price) throws IOException {
         // Append on .txt doesn't override
         // BufferedWriter creates a file if it doesn't exist
-        BufferedWriter writer = new BufferedWriter(
-                new FileWriter(filePath, true));
+        try(BufferedWriter writer = new BufferedWriter(
+                new FileWriter(filePath, true))) {
 
-        // Create the specific contingent
-        Contingent contingent = new Contingent(id, memberId, price, LocalDate.now());
+            // Create the specific contingent
+            Contingent contingent = new Contingent(id, memberId, price, LocalDate.now());
 
-        // Write to file
-        writer.write(contingent.getId() + "," +
-                contingent.getMemberId() + "," +
-                contingent.getPrice() + "," +
-                contingent.getDate().toString());
+            // Write to file
+            writer.write(contingent.getId() + "," +
+                    contingent.getMemberId() + "," +
+                    contingent.getPrice() + "," +
+                    contingent.getDate().toString());
 
-        // ny linje and close stream
-        writer.newLine();
-        writer.flush();
+            // ny linje and close stream
+            writer.newLine();
+        }
     }
 
     // Read all data
@@ -48,7 +48,7 @@ public class ContingentHandler  {
                 // Gets the line. Split in array on ","
                 String line = scan.nextLine();
                 String[] attributes = line.split(",");
-
+                
                 // Insert in object
                 Contingent c = new Contingent(
                         Integer.parseInt(attributes[0]),
@@ -76,7 +76,7 @@ public class ContingentHandler  {
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(filePath, false));
 
-        writer.write("Id,MemberId,Price,Birthday");
+        writer.write("Id,MemberId,Pris,Betalings-dato");
         // ny linje
         writer.newLine();
         // Write the array in file

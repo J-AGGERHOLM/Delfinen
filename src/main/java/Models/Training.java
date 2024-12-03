@@ -4,11 +4,13 @@ public class Training implements Comparable<Training> {
     private String discipline;
     private int swimmerID;
     private String time;
+    private String date;
 
-    public Training(String discipline, int swimmerId, String time) {
+    public Training(String discipline, int swimmerId, String time, String date) {
         this.discipline = discipline;
         this.swimmerID = swimmerId;
         this.time = time;
+        this.date = date;
     }
 
     public int getTimeAsInteger() {
@@ -18,6 +20,10 @@ public class Training implements Comparable<Training> {
 
     public String getDiscipline() {
         return discipline;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getTime() {
@@ -32,7 +38,8 @@ public class Training implements Comparable<Training> {
     public String toString() {
         return discipline + "\t\t   " +
                 swimmerID + "\t\t   " +
-                time;
+                time + "\t\t   " +
+                date;
     }
 
     @Override
@@ -43,7 +50,8 @@ public class Training implements Comparable<Training> {
     public String toStringFile() {
         return discipline + ","
                 + swimmerID + ","
-                + time;
+                + time + ","
+                + date;
     }
 }
 

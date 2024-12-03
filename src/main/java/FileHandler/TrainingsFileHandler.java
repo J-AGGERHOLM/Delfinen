@@ -9,8 +9,7 @@ import java.util.Scanner;
 
 public class TrainingsFileHandler {
     private ArrayList<Training> trainings;
-    final String filePath = "TrainingRepository.txt";
-    private MemberRepository memboR = new MemberRepository();
+    final String filePath = "TrainingRepository.csv";
 
     public void saveTrainingData(ArrayList<Training> trainingData) {
         this.trainings = trainingData;
@@ -23,7 +22,7 @@ public class TrainingsFileHandler {
             }
             bw.flush();
         } catch (IOException e) {
-            System.out.println("File not found!");
+            System.out.println("File ikke fundet!");
         }
     }
 
@@ -36,10 +35,11 @@ public class TrainingsFileHandler {
                 String discipline = data[0];
                 String id  = data[1];
                 String time = data[2];
-                trainingData.add(new Training(discipline, Integer.parseInt(id), time));
+                String date = data[3];
+                trainingData.add(new Training(discipline, Integer.parseInt(id), time, date));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found! ");
+            System.out.println("Fil ikke fundet! ");
         }
         return trainingData;
     }

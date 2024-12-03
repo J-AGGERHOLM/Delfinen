@@ -22,22 +22,19 @@ import Models.Training;
 
 
 public class UserInterface {
-    CompetitionController competitionController;
     TeamsController teamsController = new TeamsController();
     TrainingController trainingController;
     Scanner sc;
 
 
     public UserInterface() {
-        this.competitionController = new CompetitionController();
-        this.trainingController = new TrainingController();
         sc = new Scanner(System.in);
+        trainingController = new TrainingController();
     }
 
     public void mainLoop() {
 
         boolean exit = false;
-        Scanner sc = new Scanner(System.in);
         System.out.println("Hello, and welcome to the Doplhin swimclub admin program!");
 
 
@@ -144,6 +141,7 @@ public class UserInterface {
     //----------------------------------------------TEAMS-------------------------------------------
 
     private void displayTeams() {
+
         boolean exit = false;
         while (!exit) {
             System.out.println("Vælg venligst holdet du gerne vil se:");
@@ -176,6 +174,7 @@ public class UserInterface {
     }
 
     private void editTeamMenu() {
+
         boolean exit = false;
         while (!exit) {
 
@@ -198,6 +197,7 @@ public class UserInterface {
     }
 
     private void editTeamAddRemove() {
+
         System.out.println("Vælg IDet af medlemet du vil gerne tilføje/fjerne fra holdet");
         System.out.println("Indtast AFSLUT for at gå tilbage");
         System.out.println(teamsController.getListOfMembers());
@@ -340,6 +340,7 @@ public class UserInterface {
     }
 
     private void deleteTeam() {
+
         System.out.println("Vælg venligst holdet du gerne vil slette ved at indtaste dens ID: " +
                 "\n (AFSLUT for at gå tilbage)");
         System.out.println(teamsController.getListOfTeams());
@@ -384,16 +385,14 @@ public class UserInterface {
         System.out.println("Velkommen til Træningmenu");
         System.out.println("Du har følgende muligheder:");
         System.out.println("TILFØJE : tilføje en træningssession.");
-        System.out.println("FEM : se de top 5 for en disciplin");
-        System.out.println("RETURN: træningmenu");
-        System.out.println("EXIT : hovedmenuen");
+        System.out.println("FEM : se top 5 for en disciplin");
+        System.out.println("EXIT : tilbage til hovedmenuen");
 
         String input = sc.nextLine().toUpperCase();
 
         switch (input) {
             case "TILFØJE" -> addTrainingSession();
             case "FEM" -> viewTop5ForDiscipline();
-            case "RETURN" -> trainerMenu();
             case "EXIT" -> {
                 trainingController.writeToFile();
                 mainLoop();
@@ -405,17 +404,17 @@ public class UserInterface {
 
     public void addTrainingSession() {
         System.out.println("Disciplin");
-        String discipline = sc.nextLine();
+        String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
         for(CompetitiveSwimmer swimmer : swimmers) {
-            System.out.println(swimmer.getFullName());
             CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
             System.out.println(swimTemp.getFullName());
             System.out.println("Tid (XX:XX:XX):");
             String time = sc.nextLine();
-            trainingController.addTraining(new Training(discipline, swimmer.getId(), time));
+            String date = String.valueOf(LocalDate.now());
+            trainingController.addTraining(new Training(discipline, swimmer.getId(), time, date));
         }
-        System.out.println(trainingController.showData());
+        trainerMenu();
     }
 
     public void viewTop5ForDiscipline() {
@@ -424,6 +423,7 @@ public class UserInterface {
         System.out.println("Junior eller Senior hold?");
         String team = sc.nextLine();
         System.out.println(trainingController.getDisciplineTopFive(team,choice));
+        trainerMenu();
     }
 
 
@@ -444,6 +444,7 @@ public class UserInterface {
         System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
         System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
         System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
+        System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
 
         String input = scan.nextLine().toUpperCase();
 
@@ -453,7 +454,7 @@ public class UserInterface {
             case "MEDLEMMER" -> readAll();
             case "SPECIFIK" -> getSpecificContingent(scan);
             case "FORVENTET" -> getExpectedEarnings();
-            case "" -> System.out.println();
+            case "RESTANCE" -> getArrears();
             default -> System.out.println("Det indtastede passede ikke.");
         }
 
@@ -480,8 +481,8 @@ public class UserInterface {
         ContingentController cc = new ContingentController();
 
         String members = cc.getMemberContingents(memberId);
-        if (members.isEmpty()) {
-            System.out.println("Der er ingen kontingent på ønskede id: " + memberId);
+        if (members.equals("Ingen data")) {
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
         } else {
             System.out.println("Skriv et kontingent id for at slette en specifik.");
             System.out.println(cc.deleteContingent(scan.nextInt()));
@@ -502,11 +503,11 @@ public class UserInterface {
 
         ContingentController cc = new ContingentController();
         String members = cc.getMemberContingents(memberId);
-        if (members == null) {
-            System.out.println("Der er ingen kontingent på ønskede id: " + memberId);
+        if (members.equals("Ingen data")) {
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
         } else {
-            System.out.println("Skriv et kontingent id du vil slå op.");
-            System.out.println(cc.deleteContingent(scan.nextInt()));
+            System.out.println("Her er personens kontingenter:");
+            System.out.println(members);
         }
     }
 
@@ -516,6 +517,12 @@ public class UserInterface {
         System.out.println("Forventede indtjening:");
         System.out.println(cc.getExpectedEarnings());
 
+    }
+
+    private void getArrears(){
+        ContingentController cc = new ContingentController();
+        System.out.println("Manglende betalinger:");
+        System.out.println(cc.checkArrears());
     }
 
     //----------------------------------Contingents methods----------------------------------

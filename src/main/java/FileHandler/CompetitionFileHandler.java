@@ -14,8 +14,7 @@ public class CompetitionFileHandler {
 
     Competition competition;
 
-    final String filePath = "CompetitionResults.txt";
-
+    private String filePath = "CompetitionResults.txt"; // Default file
 
     public void setCompetition(Competition competition) {
         this.competition = competition;
@@ -123,5 +122,14 @@ public class CompetitionFileHandler {
         }
     }
 
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+
+    public void setFilePath(String testFilePath) {
+        this.filePath = testFilePath;
+    }
 }
 

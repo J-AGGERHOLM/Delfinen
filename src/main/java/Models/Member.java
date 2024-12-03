@@ -5,12 +5,14 @@ import java.time.LocalDate;
 public class Member extends Person {
     private boolean activity;
     private boolean competitive;
+    private boolean paid;
 
 
-    public Member(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive) {
+    public Member(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, boolean paid) {
         super(fullName, birthday, id);
         this.activity = activity;
         this.competitive = competitive;
+        this.paid = paid;
     }
 
     //_____________________________________________Getter methods___________________________________________________________
@@ -20,6 +22,14 @@ public class Member extends Person {
 
     public boolean getCompetitive() {
         return competitive;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
     //_______________________________________________Setter Methods_____________________________________________________
@@ -47,7 +57,8 @@ public class Member extends Person {
         return super.getFullName() + "," +
                 super.getBirthday() + "," + super.getId() + "," +
                 (activity ? "active" : "passive") + "," +
-                (competitive ? "competitive" : "non-competitive");
+                (competitive ? "competitive" : "non-competitive") + "," +
+                isPaid();
     }
 
 
