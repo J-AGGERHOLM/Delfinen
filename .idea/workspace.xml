@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv">
+      <change afterPath="$PROJECT_DIR$/src/main/test/Repositories/ContingentRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/java/UI/ValideringTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/java/UI/ValideringTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,15 +19,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="optimizeContingentHandler" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,6 +61,10 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.CompetitionFileHandlerTest.create.executor": "Debug",
     "JUnit.CompetitionFileHandlerTest.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceOver18.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceOver60.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePricePassiv.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceUnder18.executor": "Run",
     "JUnit.ValideringTest.checkDate.executor": "Debug",
     "JUnit.ValideringTest.checkDouble.executor": "Run",
     "JUnit.ValideringTest.checkDoubleNot.executor": "Debug",
@@ -77,7 +84,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "ContingentPOnTrue",
+    "git-widget-placeholder": "testContingent",
     "kotlin-language-version-configured": "true",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
@@ -95,9 +102,84 @@
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="Repositories" />
       <recent name="FileHandler" />
       <recent name="UI" />
     </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ContingentRepositoryTest.calculatePricePassiv">
+    <configuration name="ContingentRepositoryTest.calculatePriceOver18" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Delfinen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Repositories" />
+      <option name="MAIN_CLASS_NAME" value="Repositories.ContingentRepositoryTest" />
+      <option name="METHOD_NAME" value="calculatePriceOver18" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContingentRepositoryTest.calculatePriceOver60" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Delfinen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Repositories" />
+      <option name="MAIN_CLASS_NAME" value="Repositories.ContingentRepositoryTest" />
+      <option name="METHOD_NAME" value="calculatePriceOver60" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContingentRepositoryTest.calculatePricePassiv" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Delfinen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Repositories" />
+      <option name="MAIN_CLASS_NAME" value="Repositories.ContingentRepositoryTest" />
+      <option name="METHOD_NAME" value="calculatePricePassiv" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContingentRepositoryTest.calculatePriceUnder18" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Delfinen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Repositories" />
+      <option name="MAIN_CLASS_NAME" value="Repositories.ContingentRepositoryTest" />
+      <option name="METHOD_NAME" value="calculatePriceUnder18" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ContingentRepositoryTest.calculatePricePassiv" />
+        <item itemvalue="JUnit.ContingentRepositoryTest.calculatePriceOver60" />
+        <item itemvalue="JUnit.ContingentRepositoryTest.calculatePriceUnder18" />
+        <item itemvalue="JUnit.ContingentRepositoryTest.calculatePriceOver18" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
