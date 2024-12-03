@@ -525,7 +525,7 @@ public class UserInterface {
         System.out.println("\n-----------------------------------------------------------\n");
         ContingentController cc = new ContingentController();
 
-        System.out.println("Forventede indtjening:\n");
+        System.out.println("Forventede indtjening:");
         System.out.println(cc.getExpectedEarnings());
         System.out.println("-----------------------------------------------------------\n");
     }
