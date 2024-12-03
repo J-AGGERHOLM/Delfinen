@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Restance virker">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="workitem taskmanager component">
+      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Restance" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,35 +49,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.ValideringTest.checkDate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkDouble.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkDoubleNot.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkInt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkIntNot.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkStringNot.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.mustBeString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.mustBeStringNot.executor&quot;: &quot;Debug&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.ValideringTest.checkDate.executor": "Debug",
+    "JUnit.ValideringTest.checkDouble.executor": "Run",
+    "JUnit.ValideringTest.checkDoubleNot.executor": "Debug",
+    "JUnit.ValideringTest.checkInt.executor": "Run",
+    "JUnit.ValideringTest.checkIntNot.executor": "Debug",
+    "JUnit.ValideringTest.checkString.executor": "Debug",
+    "JUnit.ValideringTest.checkStringNot.executor": "Run",
+    "JUnit.ValideringTest.executor": "Run",
+    "JUnit.ValideringTest.mustBeString.executor": "Debug",
+    "JUnit.ValideringTest.mustBeStringNot.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "Restance",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -125,7 +125,7 @@
       <workItem from="1733172173138" duration="320000" />
       <workItem from="1733216186675" duration="56000" />
       <workItem from="1733216255248" duration="270000" />
-      <workItem from="1733216547750" duration="361000" />
+      <workItem from="1733216547750" duration="553000" />
     </task>
     <task id="LOCAL-00001" summary="Små rettelser Member og contingent merged">
       <option name="closed" value="true" />
@@ -247,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733171958854</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="workitem taskmanager component">
+      <option name="closed" value="true" />
+      <created>1733216974407</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733216974407</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,6 +284,7 @@
     <MESSAGE value="Lavet restance" />
     <MESSAGE value="Tilføjet assertEqual til date" />
     <MESSAGE value="Restance virker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restance virker" />
+    <MESSAGE value="workitem taskmanager component" />
+    <option name="LAST_COMMIT_MESSAGE" value="workitem taskmanager component" />
   </component>
 </project>

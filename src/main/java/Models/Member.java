@@ -5,12 +5,14 @@ import java.time.LocalDate;
 public class Member extends Person {
     private boolean activity;
     private boolean competitive;
+    private boolean paid;
 
 
-    public Member(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive) {
+    public Member(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, boolean paid) {
         super(fullName, birthday, id);
         this.activity = activity;
         this.competitive = competitive;
+        this.paid = paid;
     }
 
     //_____________________________________________Getter methods___________________________________________________________
