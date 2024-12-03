@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv">
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" afterDir="false" />
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="All files moved to Documents folder">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/CompetitionResults.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CompetitionResults.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Contingent.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/Teams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/TrainingRepository.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrainingRepository.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/membersList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/trainersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainersList.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="contingentPåDansk" />
+        <entry key="$PROJECT_DIR$" value="Doc-Folder-Added" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,7 +86,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "contingentComparator",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
@@ -94,6 +100,8 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jackm\Delfinen\src" />
+      <recent name="C:\Users\jackm\Delfinen\src\Documents" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
     </key>
@@ -300,7 +308,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733245885599</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733247717700</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733247717700</updated>
+    </task>
+    <task id="LOCAL-00022" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733248129589</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733248129589</updated>
+    </task>
+    <task id="LOCAL-00023" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733248180081</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733248180081</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -334,6 +366,7 @@
     <MESSAGE value="Ændret fra .txt til .csv" />
     <MESSAGE value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
     <MESSAGE value="Lavet test for kontingent afregningen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lavet test for kontingent afregningen" />
+    <MESSAGE value="All files moved to Documents folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="All files moved to Documents folder" />
   </component>
 </project>
