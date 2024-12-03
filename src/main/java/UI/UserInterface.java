@@ -76,9 +76,9 @@ public class UserInterface {
         System.out.println("'Exit' - For at forlade konkurrence menuen.");
 
         String competitionInput = sc.nextLine().toUpperCase();
-        while(!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT") ){
+        while (!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT")) {
             System.out.println("Vælg en gyldig valgmulighed");
-             competitionInput = sc.nextLine().toUpperCase();
+            competitionInput = sc.nextLine().toUpperCase();
         }
 
         //depending on the users input, these cases happen:
@@ -400,7 +400,7 @@ public class UserInterface {
         System.out.println("Disciplin");
         String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
-        for(CompetitiveSwimmer swimmer : swimmers) {
+        for (CompetitiveSwimmer swimmer : swimmers) {
             CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
             System.out.println(swimTemp.getFullName());
             System.out.println("Tid (XX:XX:XX):");
@@ -416,10 +416,9 @@ public class UserInterface {
         String choice = sc.nextLine();
         System.out.println("Junior eller Senior hold?");
         String team = sc.nextLine();
-        System.out.println(trainingController.getDisciplineTopFive(team,choice));
+        System.out.println(trainingController.getDisciplineTopFive(team, choice));
         trainerMenu();
     }
-
 
 
     //----------------------------------Training methods----------------------------------
@@ -439,17 +438,22 @@ public class UserInterface {
         System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
         System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
         System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
+        System.out.println("Skriv : 'Exit' - for at komme ud af kasserer menuen.");
 
         String input = scan.nextLine().toUpperCase();
 
-        switch (input) {
-            case "OPRET" -> contingentAdd(scan);
-            case "SLET" -> contingentDelete(scan);
-            case "MEDLEMMER" -> readAll();
-            case "SPECIFIK" -> getSpecificContingent(scan);
-            case "FORVENTET" -> getExpectedEarnings();
-            case "RESTANCE" -> getArrears();
-            default -> System.out.println("Det indtastede passede ikke.");
+        boolean exit = true;
+        while (exit) {
+            switch (input) {
+                case "OPRET" -> contingentAdd(scan);
+                case "SLET" -> contingentDelete(scan);
+                case "MEDLEMMER" -> readAll();
+                case "SPECIFIK" -> getSpecificContingent(scan);
+                case "FORVENTET" -> getExpectedEarnings();
+                case "RESTANCE" -> getArrears();
+                case "EXIT" -> exit = false;
+                default -> System.out.println("Det indtastede passede ikke.");
+            }
         }
 
     }
@@ -478,6 +482,7 @@ public class UserInterface {
         if (members.equals("Ingen data")) {
             System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
         } else {
+            System.out.println(members);
             System.out.println("Skriv et kontingent id for at slette en specifik.");
             System.out.println(cc.deleteContingent(scan.nextInt()));
         }
@@ -513,7 +518,7 @@ public class UserInterface {
 
     }
 
-    private void getArrears(){
+    private void getArrears() {
         ContingentController cc = new ContingentController();
         System.out.println("Manglende betalinger:");
         System.out.println(cc.checkArrears());
@@ -534,17 +539,18 @@ public class UserInterface {
 
         String input = sc.nextLine().toUpperCase();
 
-        switch (input){
+        switch (input) {
             case "CREATE" -> createTrainer();
             case "EDIT" -> editTrainer();
             case "DELETE" -> deleteTrainer();
             case "DISPLAY" -> showTrainers();
             case "SPECIFIC" -> specificTrainer();
             default -> System.out.println("Not option");
-         }
+        }
 
 
     }
+
     public void createTrainer() {
         TrainerController trainerController = new TrainerController();
         Scanner sc = new Scanner(System.in);
@@ -560,7 +566,7 @@ public class UserInterface {
         sc.nextLine();
         System.out.println("Do you want to add him to an existing team?");
         String input = sc.nextLine().toLowerCase();
-        if (input.equalsIgnoreCase("yes")){
+        if (input.equalsIgnoreCase("yes")) {
             System.out.println("It will come soon"); // create this method
         } else {
             System.out.println(trainerController.createTrainerWithoutTeam(name, LocalDate.of(year, month, day)));
@@ -690,7 +696,7 @@ public class UserInterface {
                 System.out.println(trainerController.chooseSpecificTrainerById(idNum));
             }
         }
-        if (trainerController.getCurrentTrainer()!= null) {
+        if (trainerController.getCurrentTrainer() != null) {
             System.out.println(trainerController.displayTrainersInformation());
         }
     }
@@ -885,13 +891,13 @@ public class UserInterface {
                     }
                 }
                 System.out.println(memberController.chooseSpecificMemberById(idNum));
-                }
             }
+        }
         if (memberController.getCurrentMember() != null) {
             System.out.println(memberController.displayMemberInformation());
         }
-        }
-
     }
+
+}
 
 
