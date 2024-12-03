@@ -254,6 +254,9 @@ public class UserInterface {
 
     private void teamMenu() {
 
+        //whenever the teams menu is accessed, we update the list of trainers in the trainer controller:
+        teamsController.updateTrainers();
+
         boolean exit = false;
         while (!exit) {
             Scanner scan = new Scanner(System.in);

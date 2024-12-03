@@ -3,6 +3,7 @@ package Controllers;
 import Enums.SwimmingDisciplines;
 import Models.*;
 import Repositories.MemberRepository;
+import Repositories.TrainerRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -23,7 +24,8 @@ public class TeamsController {
 
 
     //TEST
-    private ArrayList<Trainer> trainerRepo = testMakeTrainers();
+    private TrainerRepository trainerRepo;
+    private  ArrayList<Trainer> trainerList;
 
     public TeamsController(){
 
@@ -35,9 +37,17 @@ public class TeamsController {
         }
 
         swimmingClub = new SwimmingClub();
-        swimmingClub.readTeamsFromFile(memberRepository.getMemberArrayList(), trainerRepo);
+        swimmingClub.readTeamsFromFile(memberRepository.getMemberArrayList(), trainerList);
 
     }
+
+    //called by the UI whenever the teams menu is accessed:
+    public void updateTrainers(){
+        trainerRepo = new TrainerRepository();
+        trainerList = trainerRepo.getTrainerArrayList();
+    }
+
+
 
 
 
@@ -89,7 +99,8 @@ public class TeamsController {
     }
 
     public Boolean assignTrainer(int id){
-        for(Trainer t: trainerRepo){
+
+        for(Trainer t: trainerList){
             if(t.getId() == id){
                 newTeamTrainer = t;
                 return true;
@@ -164,7 +175,7 @@ public class TeamsController {
     }
 
     public boolean assignTrainerToCurrentTeam(int id){
-        for(Trainer t: trainerRepo){
+        for(Trainer t: trainerList){
             if(t.getId() == id){
                 currentTeam.setTrainer(t);
                 return true;
@@ -204,7 +215,7 @@ public class TeamsController {
 
     public String getListOfTrainers(){
         String result = "LIST OF TRAINERS:\n";
-        for (Trainer t: trainerRepo){
+        for (Trainer t: trainerList){
             result += t + "\n";
         }
 
