@@ -5,6 +5,7 @@ import Models.Contingent;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class ContingentHandler  {
@@ -64,6 +65,10 @@ public class ContingentHandler  {
                 // Add data to ArrayList
                 contingents.add(c);
             }
+
+            // Compare on id
+            Comparator<Contingent> comparator = Comparator.comparing(Contingent::getId);
+            contingents.sort(comparator);
 
             return contingents;
         }
