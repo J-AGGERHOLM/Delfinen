@@ -6,18 +6,12 @@ import Controllers.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Locale;
+
 import java.util.Scanner;
 
-import FileHandler.CompetitionFileHandler;
-
-import Enums.SwimmingDisciplines;
 import Models.*;
 import Repositories.CompetitionRepository;
-import Repositories.MemberRepository;
 
-import Models.Person;
-import Models.Trainer;
 import Models.Training;
 
 
@@ -35,7 +29,7 @@ public class UserInterface {
     public void mainLoop() {
 
         boolean exit = false;
-        System.out.println("Hello, and welcome to the Doplhin swimclub admin program!");
+        System.out.println("Hej, velkommen til Delfin svømmeklub admin program!");
 
 
         while (!exit) {
@@ -43,7 +37,7 @@ public class UserInterface {
             System.out.println("please enter a command");
             System.out.println("Trainer: see options about trainers");
             System.out.println("Members: see options about members");
-            System.out.println("kasserer: see options about contingent");
+            System.out.println("kasserer: For at se mulighederne for kasserer");
             System.out.println("Competition: see options about competitions");
             System.out.println("Hold: administrere klubbens svømmehold");
             // System.out.println("Teams: see options about teams");
