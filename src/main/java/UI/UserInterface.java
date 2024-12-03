@@ -428,22 +428,21 @@ public class UserInterface {
 
 
     private void contingentMenu() {
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Du er i contingent menuen.");
-        System.out.println("Du har følgende muligheder:");
-        System.out.println("Skriv : 'Opret' - For at oprette en kontingent.");
-        System.out.println("Skriv : 'Slet' - For at slette en kontingent.");
-        System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
-        System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
-        System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
-        System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
-        System.out.println("Skriv : 'Exit' - for at komme ud af kasserer menuen.");
-
-        String input = scan.nextLine().toUpperCase();
-
         boolean exit = true;
         while (exit) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Du er i contingent menuen.");
+            System.out.println("Du har følgende muligheder:");
+            System.out.println("Skriv : 'Opret' - For at oprette en kontingent.");
+            System.out.println("Skriv : 'Slet' - For at slette en kontingent.");
+            System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
+            System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
+            System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
+            System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
+            System.out.println("Skriv : 'Exit' - for at komme ud af kasserer menuen.");
+
+            String input = scan.nextLine().toUpperCase();
+
             switch (input) {
                 case "OPRET" -> contingentAdd(scan);
                 case "SLET" -> contingentDelete(scan);
