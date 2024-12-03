@@ -119,7 +119,7 @@ public class TeamsController {
     }
 
     //-------------------------------------Team editing-----------------------------
-
+    //Team editing sets one team as the current team, which the editing functions then make edits to.
     public boolean setCurrentTeam(int id){
        for(Team t: swimmingClub.getTeams()){
            if(t.getId() == id){
@@ -178,9 +178,18 @@ public class TeamsController {
         currentTeam.setName(name);
     }
 
-    public void loadTeamsFromFile(){
+    //-----------------------DELETING MEMBERS AND TRAINERS------------------------------------------
 
+    //Call this when a member gets deleted from the member database to purge it from the teams
+    public void deleteMemberFromAllTeams(Member member){
+        swimmingClub.deleteMemberFromAllTeams(member);
     }
+
+    //Call this when a trainer gets deleted from the trainer database to purge it from the teams
+    public void deleteTrainerFromAllTeams(Trainer trainer){
+        swimmingClub.deleteTrainerFromAllTeams(trainer);
+    }
+
 
 
     //-------------------TEST FUNCTIONS: REMOVE WHEN FEATURES ARE COMPLETE---------------------------------
