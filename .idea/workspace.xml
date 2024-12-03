@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="">
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.CompetitionFileHandlerTest.create.executor": "Debug",
     "JUnit.CompetitionFileHandlerTest.executor": "Run",
@@ -284,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733237348326</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv">
+      <option name="closed" value="true" />
+      <created>1733242917351</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733242917351</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -316,6 +320,7 @@
     <MESSAGE value="Ændrede i UI" />
     <MESSAGE value="Ændrede UI tilbage" />
     <MESSAGE value="Ændret fra .txt til .csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ændret fra .txt til .csv" />
+    <MESSAGE value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
   </component>
 </project>

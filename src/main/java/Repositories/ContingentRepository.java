@@ -5,7 +5,6 @@ import FileHandler.ContingentHandler;
 import Models.Contingent;
 import Models.Member;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -94,24 +93,29 @@ public class ContingentRepository {
         return true;
     }
 
+    // Makes id.
     public int getId() throws IOException {
         int id = ch.read().size();
         return ++id;
     }
 
+    // get expected earnings
     public double getExpectedEarnings(){
         double sum = 0;
 
         for(Member member: mr.getMemberArrayList()){
+            // calculates sum
             sum += calculatePrice(member);
         }
 
         return sum;
     }
 
+    // Finds all member with paid = false
     public ArrayList<Member> getArrears(){
         ArrayList<Member> arrears = new ArrayList<>();
         for(Member m : mr.getMemberArrayList()){
+            // If not paid add.
             if(!m.isPaid()){
                 arrears.add(m);
             }
@@ -119,24 +123,29 @@ public class ContingentRepository {
         return arrears;
     }
 
-    // Jeg sætter alle som har betalt, som ikke har en oprettet kontingent til sand.
-    // returnerer et array med alle kontingenter
+    // Every member who has paid = true but no contingent added.
+    // Adds that member to contingent.
+    // returns an Array with all contingent
     public ArrayList<Contingent> allContingent() throws IOException {
         ArrayList<Contingent> contingents = new ArrayList<>();
-        // For at undgå problemer da jeg ændrer på reference objektet, tager jeg en kopi
+        // Takes a copy of the original list. avoids reference problems.
         ArrayList<Contingent> contingentCopy = new ArrayList<>(ch.read());
         ArrayList<Member> membersCopy = new ArrayList<>(mr.getMemberArrayList());
 
         for(Member m : membersCopy){
+            // If you have paid
             if(m.isPaid()){
                 boolean found = false;
+                // Loops through contingents
                 for (Contingent c : contingentCopy) {
                     if(m.getId() == c.getMemberId()){
+                        // Adds
                         found = true;
                         contingents.add(c);
                         break;
                     }
                 }
+                // If paid but no contingent, make contingent and add.
                 if(!found){
                     contingents.add(createMemberContingent(m.getId()));
                 }
