@@ -53,7 +53,7 @@ public class MemberFileHandler {
                     try {
 
                         //here it creates and reads competitive members in from the text file:
-                        SwimmingDisciplines discipline = SwimmingDisciplines.valueOf(attributes[5].toUpperCase());
+                        SwimmingDisciplines discipline = SwimmingDisciplines.valueOf(attributes[6].toUpperCase());
                         CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(
                                 attributes[0], // Name
                                 LocalDate.parse(attributes[1]), // Birthday
@@ -61,7 +61,7 @@ public class MemberFileHandler {
                                 attributes[3].equalsIgnoreCase("active"), // Activity
                                 true, // Competitive
                                 discipline, // Discipline
-                                Boolean.parseBoolean(attributes[6])
+                                Boolean.parseBoolean(attributes[5])
                         );
 
 
@@ -81,7 +81,7 @@ public class MemberFileHandler {
                             Integer.parseInt(attributes[2]), // ID
                             attributes[3].equalsIgnoreCase("active"), // Activity
                             false, // Competitive
-                            Boolean.parseBoolean(attributes[6])
+                            Boolean.parseBoolean(attributes[5])
                     );
 
 

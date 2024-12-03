@@ -25,6 +25,8 @@ public class ContingentRepository {
             member = mr.getCurrentMember();
         }
 
+        mr.getMemberArrayList().remove(member);
+
         if(member == null){
             return false;
         }
@@ -33,6 +35,11 @@ public class ContingentRepository {
 
         // Create contingent
         ch.create(getId(), member.getId(), price);
+
+        // Snak med simon
+        member.setPaid(true);
+        mr.getMemberArrayList().add(member);
+        mr.updateInformation();
 
         return true;
     }

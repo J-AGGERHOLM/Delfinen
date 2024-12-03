@@ -21,22 +21,21 @@ import Models.Training;
 
 
 public class UserInterface {
-    CompetitionController competitionController;
-    TeamsController teamsController = new TeamsController();
-    TrainingController trainingController;
+//    CompetitionController competitionController;
+//    TeamsController teamsController = new TeamsController();
+//    TrainingController trainingController;
     Scanner sc;
 
 
     public UserInterface() {
-        this.competitionController = new CompetitionController();
-        this.trainingController = new TrainingController();
+//        this.competitionController = new CompetitionController();
+//        this.trainingController = new TrainingController();
         sc = new Scanner(System.in);
     }
 
     public void mainLoop() {
 
         boolean exit = false;
-        Scanner sc = new Scanner(System.in);
         System.out.println("Hello, and welcome to the Doplhin swimclub admin program!");
 
 
@@ -143,6 +142,8 @@ public class UserInterface {
     //----------------------------------------------TEAMS-------------------------------------------
 
     private void displayTeams() {
+        TeamsController teamsController = new TeamsController();
+
         boolean exit = false;
         while (!exit) {
             System.out.println("Vælg venligst holdet du gerne vil se:");
@@ -175,6 +176,8 @@ public class UserInterface {
     }
 
     private void editTeamMenu() {
+        TeamsController teamsController = new TeamsController();
+
         boolean exit = false;
         while (!exit) {
 
@@ -197,6 +200,8 @@ public class UserInterface {
     }
 
     private void editTeamAddRemove() {
+        TeamsController teamsController = new TeamsController();
+
         System.out.println("Vælg IDet af medlemet du vil gerne tilføje/fjerne fra holdet");
         System.out.println("Indtast AFSLUT for at gå tilbage");
         System.out.println(teamsController.getListOfMembers());
@@ -219,6 +224,7 @@ public class UserInterface {
     }
 
     private void editTeamChangeName() {
+        TeamsController teamsController = new TeamsController();
 
         System.out.println("Indtast venligst den ny navn for holdet:");
         String userChoice = sc.nextLine();
@@ -227,6 +233,7 @@ public class UserInterface {
     }
 
     private void editTeamChangeTrainer() {
+        TeamsController teamsController = new TeamsController();
 
         System.out.println("Vælg venlist en træner til holdet:");
         System.out.println(teamsController.getListOfTrainers());
@@ -279,6 +286,7 @@ public class UserInterface {
 
 
     private void createTeam() {
+        TeamsController teamsController = new TeamsController();
         //must do this when creating a team:
         teamsController.resetTeamCreation();
 
@@ -339,6 +347,7 @@ public class UserInterface {
     }
 
     private void deleteTeam() {
+        TeamsController teamsController = new TeamsController();
         System.out.println("Vælg venligst holdet du gerne vil slette ved at indtaste dens ID: " +
                 "\n (AFSLUT for at gå tilbage)");
         System.out.println(teamsController.getListOfTeams());
@@ -392,6 +401,7 @@ public class UserInterface {
             case "TILFØJE" -> addTrainingSession();
             case "FEM" -> viewTop5ForDiscipline();
             case "EXIT" -> {
+                TrainingController trainingController = new TrainingController();
                 trainingController.writeToFile();
                 mainLoop();
             }
@@ -401,6 +411,7 @@ public class UserInterface {
     }
 
     public void addTrainingSession() {
+        TrainingController trainingController = new TrainingController();
         System.out.println("Disciplin");
         String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
@@ -416,6 +427,7 @@ public class UserInterface {
     }
 
     public void viewTop5ForDiscipline() {
+        TrainingController trainingController = new TrainingController();
         System.out.println("For hvilken disciplin vil du gerne se de top 5 svømmere?");
         String choice = sc.nextLine();
         System.out.println("Junior eller Senior hold?");

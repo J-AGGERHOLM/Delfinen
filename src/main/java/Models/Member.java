@@ -28,6 +28,10 @@ public class Member extends Person {
         return paid;
     }
 
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
+
     //_______________________________________________Setter Methods_____________________________________________________
     public void setActivity(boolean newActivity) {
         activity = newActivity;
@@ -53,7 +57,8 @@ public class Member extends Person {
         return super.getFullName() + "," +
                 super.getBirthday() + "," + super.getId() + "," +
                 (activity ? "active" : "passive") + "," +
-                (competitive ? "competitive" : "non-competitive");
+                (competitive ? "competitive" : "non-competitive") + "," +
+                isPaid();
     }
 
 
