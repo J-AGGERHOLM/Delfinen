@@ -12,8 +12,7 @@ public class ContingentHandler  {
     String filePath = "Contingent.csv";
 
     //Creates a contingent
-
-    public void create(int id, int memberId, double price) throws IOException {
+    public Contingent create(int id, int memberId, double price) throws IOException {
         // Append on .txt doesn't override
         // BufferedWriter creates a file if it doesn't exist
         try(BufferedWriter writer = new BufferedWriter(
@@ -30,6 +29,8 @@ public class ContingentHandler  {
 
             // ny linje and close stream
             writer.newLine();
+
+            return contingent;
         }
     }
 

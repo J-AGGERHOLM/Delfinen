@@ -19,7 +19,7 @@ public class ContingentRepository {
     }
 
     // Creates a contingent
-    public boolean createMemberContingent(int memberId) throws IOException {
+    public Contingent createMemberContingent(int memberId) throws IOException {
         Member member = null;
         if(mr.chooseSpecificMemberById(memberId)){
             member = mr.getCurrentMember();
@@ -28,20 +28,24 @@ public class ContingentRepository {
         mr.getMemberArrayList().remove(member);
 
         if(member == null){
-            return false;
+            return null;
         }
 
         double price = calculatePrice(member);
 
         // Create contingent
-        ch.create(getId(), member.getId(), price);
+        Contingent contingent = ch.create(getId(), member.getId(), price);
+
+        if(contingent == null){
+            return null;
+        }
 
         // Snak med simon
         member.setPaid(true);
         mr.getMemberArrayList().add(member);
         mr.updateInformation();
 
-        return true;
+        return contingent;
     }
 
     // Calculate Price
@@ -115,9 +119,29 @@ public class ContingentRepository {
         return arrears;
     }
 
-    // ---------------------- getter -----------------------------
-    public ArrayList<Contingent> getAllContingent() throws FileNotFoundException {
-        return ch.read();
-    }
+    // Jeg sætter alle som har betalt, som ikke har en oprettet kontingent til sand.
+    // returnerer et array med alle kontingenter
+    public ArrayList<Contingent> allContingent() throws IOException {
+        ArrayList<Contingent> contingents = new ArrayList<>();
+        // For at undgå problemer da jeg ændrer på reference objektet, tager jeg en kopi
+        ArrayList<Contingent> contingentCopy = new ArrayList<>(ch.read());
+        ArrayList<Member> membersCopy = new ArrayList<>(mr.getMemberArrayList());
 
+        for(Member m : membersCopy){
+            if(m.isPaid()){
+                boolean found = false;
+                for (Contingent c : contingentCopy) {
+                    if(m.getId() == c.getMemberId()){
+                        found = true;
+                        contingents.add(c);
+                        break;
+                    }
+                }
+                if(!found){
+                    contingents.add(createMemberContingent(m.getId()));
+                }
+            }
+        }
+        return contingents;
+    }
 }

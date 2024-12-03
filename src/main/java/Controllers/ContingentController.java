@@ -18,7 +18,7 @@ public class ContingentController {
     public String createMemberContingent(int memberId) {
         try {
             // If it's true
-            if (repository.createMemberContingent(memberId)) {
+            if (repository.createMemberContingent(memberId) != null) {
                 return "Du oprettede koningent på følgende id: " + memberId;
             }else{
                 return "Det indtastede id findes ikke: " + memberId;
@@ -36,7 +36,7 @@ public class ContingentController {
 
         try{
         // Store all
-        ArrayList<Contingent> contingents = repository.getAllContingent();
+        ArrayList<Contingent> contingents = repository.allContingent();
 
         // Loops the ArrayList
         for (Contingent c : contingents) {
@@ -73,9 +73,13 @@ public class ContingentController {
         StringBuilder sb = new StringBuilder();
 
         try{
-            // Loops through all
-            for (Contingent c : repository.getAllContingent()) {
-                sb.append(c.toString());
+            ArrayList<Contingent> contingents = repository.allContingent();
+
+                // Loops through all if array is not empty
+            if(contingents != null){
+                for (Contingent c : contingents) {
+                    sb.append(c.toString());
+                }
             }
 
             // Return message
@@ -107,8 +111,5 @@ public class ContingentController {
                 ? "Alle har betalt kontingent"
                 : sb.toString();
     }
-
-    // ------------------------------- getter ----------------------------------
-
 
 }

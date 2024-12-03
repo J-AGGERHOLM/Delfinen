@@ -1,10 +1,10 @@
-Benjamin Bennison,2005-11-01,3,active,competitive,false,BUTTERFLY
+Inger Ilton,2002-11-01,10,active,competitive,false,BUTTERFLY
+Janet Jacobs,1994-11-01,11,active,competitive,true,CRAWL
+Alice Annison,1996-11-01,2,active,competitive,true,BUTTERFLY
 Carol Caro,1992-11-01,4,active,competitive,true,BUTTERFLY
 Daniel Danielson,1987-11-01,5,active,competitive,true,BUTTERFLY
 Edward Eddison,1999-11-01,6,active,competitive,true,BUTTERFLY
 Fred Fochs,1966-11-01,7,active,competitive,true,CRAWL
 Gemma Garter,1997-11-01,8,active,competitive,true,BACKCRAWL
 Harry Harrison,2001-11-01,9,active,competitive,true,BREASTSTROKE
-Inger Ilton,2002-11-01,10,active,competitive,true,BUTTERFLY
-Janet Jacobs,1994-11-01,11,active,competitive,true,CRAWL
-Alice Annison,1996-11-01,2,active,competitive,true,BUTTERFLY
+Benjamin Bennison,2005-11-01,3,active,competitive,true,BUTTERFLY
