@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/test/FileHandler/CompetitionFileHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CompetitionResults.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CompetitionResults.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Delfinen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Delfinen.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/CompetitionFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/CompetitionFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/FileHandler/CompetitionFileHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/FileHandler/CompetitionFileHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +58,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CompetitionFileHandlerTest.create.executor": "Debug",
     "JUnit.CompetitionFileHandlerTest.executor": "Run",
     "JUnit.ValideringTest.checkDate.executor": "Debug",
     "JUnit.ValideringTest.checkDouble.executor": "Run",
