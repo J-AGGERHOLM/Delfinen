@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Restance virker">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Restance" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mathiasege&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/J-AGGERHOLM/Delfinen.git&quot;,
+    &quot;accountId&quot;: &quot;f31faadb-7438-4aac-af7e-288a9fe00afe&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2pOFxFzec6K0Ui51QhcG01TL6rR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.ValideringTest.checkDate.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValideringTest.checkDouble.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValideringTest.checkDoubleNot.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValideringTest.checkInt.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValideringTest.checkIntNot.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValideringTest.checkString.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValideringTest.checkStringNot.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValideringTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ValideringTest.mustBeString.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.ValideringTest.mustBeStringNot.executor&quot;: &quot;Debug&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src" />
+      <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="UI" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="" />
+      <created>1732629461437</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732629461437</updated>
+      <workItem from="1732629463271" duration="108000" />
+      <workItem from="1732629627084" duration="2995000" />
+      <workItem from="1732647115111" duration="5543000" />
+      <workItem from="1732694631395" duration="9364000" />
+      <workItem from="1732718472376" duration="3495000" />
+      <workItem from="1732782964489" duration="5215000" />
+      <workItem from="1732802906234" duration="9244000" />
+      <workItem from="1732815532219" duration="7506000" />
+      <workItem from="1732830637694" duration="1424000" />
+      <workItem from="1732869200228" duration="4045000" />
+      <workItem from="1733005189468" duration="8239000" />
+      <workItem from="1733013503135" duration="25000" />
+      <workItem from="1733133049353" duration="67000" />
+      <workItem from="1733133442052" duration="707000" />
+      <workItem from="1733134226107" duration="315000" />
+      <workItem from="1733145008939" duration="1153000" />
+      <workItem from="1733171333565" duration="823000" />
+      <workItem from="1733172173138" duration="320000" />
+    </task>
+    <task id="LOCAL-00001" summary="Små rettelser Member og contingent merged">
+      <option name="closed" value="true" />
+      <created>1732697543709</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732697543709</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Ændret til boolean på controller create">
+      <option name="closed" value="true" />
+      <created>1732702023620</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732702023620</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ændret tekst til dansk samt lavet forventet indtjening">
+      <option name="closed" value="true" />
+      <created>1732720888496</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732720888496</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Oprettet metoder fra film">
+      <option name="closed" value="true" />
+      <created>1732788032231</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732788032231</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add comment and made public">
+      <option name="closed" value="true" />
+      <created>1732803415904</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732803415904</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Tilføjet test og validering">
+      <option name="closed" value="true" />
+      <created>1732811076510</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732811076510</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Mangler kun date">
+      <option name="closed" value="true" />
+      <created>1732811275315</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732811275315</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Mangler kun date">
+      <option name="closed" value="true" />
+      <created>1732811639042</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732811639042</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Rettet sout i FileHandler">
+      <option name="closed" value="true" />
+      <created>1732812453855</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732812453855</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Ændret null exceptions, UI og tilføjet get">
+      <option name="closed" value="true" />
+      <created>1732817195036</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732817195036</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fjernet en forkert kommentar">
+      <option name="closed" value="true" />
+      <created>1732825426637</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732825426637</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Opdateret validering. Lavet validering på date">
+      <option name="closed" value="true" />
+      <created>1733008414169</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733008414169</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Lavet restance">
+      <option name="closed" value="true" />
+      <created>1733013521612</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733013521612</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Tilføjet assertEqual til date">
+      <option name="closed" value="true" />
+      <created>1733134327870</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733134327870</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Restance virker">
+      <option name="closed" value="true" />
+      <created>1733171958854</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733171958854</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Små rettelser Member og contingent merged" />
+    <MESSAGE value="Ændret til boolean på controller create" />
+    <MESSAGE value="Ændret tekst til dansk samt lavet forventet indtjening" />
+    <MESSAGE value="Oprettet metoder fra film" />
+    <MESSAGE value="Add comment and made public" />
+    <MESSAGE value="Tilføjet test og validering" />
+    <MESSAGE value="Mangler kun date" />
+    <MESSAGE value="Rettet sout i FileHandler" />
+    <MESSAGE value="Ændret null exceptions, UI og tilføjet get" />
+    <MESSAGE value="Fjernet en forkert kommentar" />
+    <MESSAGE value="Opdateret validering. Lavet validering på date" />
+    <MESSAGE value="Lavet restance" />
+    <MESSAGE value="Tilføjet assertEqual til date" />
+    <MESSAGE value="Restance virker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restance virker" />
+  </component>
+</project>
