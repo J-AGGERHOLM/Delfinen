@@ -19,9 +19,9 @@ public class ContingentController {
         try {
             // If it's true
             if (repository.createMemberContingent(memberId) != null) {
-                return "Du oprettede koningent på følgende id: " + memberId;
+                return "Du oprettede koningent på følgende id: " + memberId + "\n";
             }else{
-                return "Det indtastede id findes ikke: " + memberId;
+                return "Det indtastede id findes ikke: " + memberId + "\n";
             }
         } catch (IOException e) {
             return e.getMessage();
@@ -41,7 +41,7 @@ public class ContingentController {
         // Loops the ArrayList
         for (Contingent c : contingents) {
             if (c.getMemberId() == memberId) {
-                sb.append(c);
+                sb.append(c).append("\n");
             }
         }
 
@@ -58,9 +58,9 @@ public class ContingentController {
         try {
             // If we can delete
             if(repository.deleteSpecificContingent(id)){
-                return "Du slettede kontingent med følgende id: " + id;
+                return "Du slettede kontingent med følgende id: " + id + "\n";
             }else{
-                return "Der findes ikke nogen kontingenter med id: " + id;
+                return "Der findes ikke nogen kontingenter med id: " + id + "\n";
             }
         } catch (IOException e){
             // Something terrible went wrong
@@ -78,13 +78,13 @@ public class ContingentController {
                 // Loops through all if array is not empty
             if(contingents != null){
                 for (Contingent c : contingents) {
-                    sb.append(c.toString());
+                    sb.append(c.toString()).append("\n");
                 }
             }
 
             // Return message
             return sb.isEmpty()
-                    ? "Der er ingen kontingenter oprettet"
+                    ? "Der er ingen kontingenter oprettet\n"
                     : sb.toString();
         } catch (IOException e){
             return e.getMessage();
@@ -96,8 +96,8 @@ public class ContingentController {
         double sum = repository.getExpectedEarnings();
 
         return sum == 0
-                ? "Der er ingen medlemmer. I tjener ikke noget endnu"
-                : String.valueOf(sum);
+                ? "Der er ingen medlemmer. I tjener ikke noget endnu\n"
+                : sum + " kr.\n";
     }
 
     public String checkArrears(){
@@ -108,7 +108,7 @@ public class ContingentController {
         }
 
         return sb.isEmpty()
-                ? "Alle har betalt kontingent"
+                ? "Alle har betalt kontingent\n"
                 : sb.toString();
     }
 

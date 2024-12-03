@@ -40,9 +40,10 @@ public class UserInterface {
             System.out.println("kasserer: For at se mulighederne for kasserer");
             System.out.println("Competition: see options about competitions");
             System.out.println("Hold: administrere klubbens svømmehold");
-            // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
+            System.out.println("------------------------------------------------\n");
+
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "TRAINER" -> trainerMenu();
@@ -52,6 +53,8 @@ public class UserInterface {
                 case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
+            System.out.println("-----------------------------------------------------------\n");
+
         }
     }
 
@@ -443,6 +446,7 @@ public class UserInterface {
 
             String input = scan.nextLine().toUpperCase();
 
+
             switch (input) {
                 case "OPRET" -> contingentAdd(scan);
                 case "SLET" -> contingentDelete(scan);
@@ -451,27 +455,29 @@ public class UserInterface {
                 case "FORVENTET" -> getExpectedEarnings();
                 case "RESTANCE" -> getArrears();
                 case "EXIT" -> exit = false;
-                default -> System.out.println("Det indtastede passede ikke.");
+                default -> System.out.println("Det indtastede passede ikke.\n");
             }
         }
-
     }
 
     private void contingentAdd(Scanner scan) {
+        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
-        System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på.");
+        System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på:");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
         System.out.println(cc.createMemberContingent(memberId));
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void contingentDelete(Scanner scan) {
+        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
-        System.out.println("Skriv et id på en medlem, som du vil slette kontingent på.");
+        System.out.println("Skriv et id på en medlem, som du vil slette kontingent på:");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
@@ -479,48 +485,59 @@ public class UserInterface {
 
         String members = cc.getMemberContingents(memberId);
         if (members.equals("Ingen data")) {
-            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId + "\n");
         } else {
             System.out.println(members);
-            System.out.println("Skriv et kontingent id for at slette en specifik.");
+            System.out.println("Skriv et kontingent id for at slette en specifik:");
             System.out.println(cc.deleteContingent(scan.nextInt()));
         }
+
+        System.out.println("--------------------------------------------------------\n");
 
     }
 
     private void readAll() {
+        System.out.println("\n-----------------------------------------------------------\n");
+        System.out.println("Alle kontingenter i systemet:\n");
         ContingentController cc = new ContingentController();
         System.out.println(cc.readAll());
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void getSpecificContingent(Scanner scan) {
+        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
-        System.out.println("Skriv et medlems id for at få kontingenterne");
+        System.out.println("Skriv et medlems id for at få kontingenterne: ");
         int memberId = scan.nextInt();
 
         ContingentController cc = new ContingentController();
         String members = cc.getMemberContingents(memberId);
         if (members.equals("Ingen data")) {
-            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId + "\n");
         } else {
-            System.out.println("Her er personens kontingenter:");
+            System.out.println("Her er personens kontingenter:\n");
             System.out.println(members);
         }
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void getExpectedEarnings() {
+        System.out.println();
+        System.out.println("-----------------------------------------------------------\n");
         ContingentController cc = new ContingentController();
 
-        System.out.println("Forventede indtjening:");
+        System.out.println("Forventede indtjening:\n");
         System.out.println(cc.getExpectedEarnings());
-
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void getArrears() {
+        System.out.println("\n-----------------------------------------------------------\n");
         ContingentController cc = new ContingentController();
-        System.out.println("Manglende betalinger:");
+        System.out.println("Manglende betalinger:\n");
         System.out.println(cc.checkArrears());
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     //----------------------------------Contingents methods----------------------------------
