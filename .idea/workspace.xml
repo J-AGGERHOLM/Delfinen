@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Restance virker">
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/FileHandler/CompetitionFileHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompetitionResults.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CompetitionResults.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Delfinen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Delfinen.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/CompetitionFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/CompetitionFileHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,13 +22,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Restance" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,48 +52,54 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2pOFxFzec6K0Ui51QhcG01TL6rR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.ValideringTest.checkDate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkDouble.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkDoubleNot.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkInt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkIntNot.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkStringNot.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.mustBeString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.mustBeStringNot.executor&quot;: &quot;Debug&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CompetitionFileHandlerTest.executor": "Run",
+    "JUnit.ValideringTest.checkDate.executor": "Debug",
+    "JUnit.ValideringTest.checkDouble.executor": "Run",
+    "JUnit.ValideringTest.checkDoubleNot.executor": "Debug",
+    "JUnit.ValideringTest.checkInt.executor": "Run",
+    "JUnit.ValideringTest.checkIntNot.executor": "Debug",
+    "JUnit.ValideringTest.checkString.executor": "Debug",
+    "JUnit.ValideringTest.checkStringNot.executor": "Run",
+    "JUnit.ValideringTest.executor": "Run",
+    "JUnit.ValideringTest.mustBeString.executor": "Debug",
+    "JUnit.ValideringTest.mustBeStringNot.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "Competition__test",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+      <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="FileHandler" />
       <recent name="UI" />
     </key>
   </component>
@@ -273,6 +286,6 @@
     <MESSAGE value="Lavet restance" />
     <MESSAGE value="Tilføjet assertEqual til date" />
     <MESSAGE value="Restance virker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restance virker" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
