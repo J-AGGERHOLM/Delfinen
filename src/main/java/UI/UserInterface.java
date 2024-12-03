@@ -446,7 +446,6 @@ public class UserInterface {
 
             String input = scan.nextLine().toUpperCase();
 
-
             switch (input) {
                 case "OPRET" -> contingentAdd(scan);
                 case "SLET" -> contingentDelete(scan);
@@ -523,8 +522,7 @@ public class UserInterface {
     }
 
     private void getExpectedEarnings() {
-        System.out.println();
-        System.out.println("-----------------------------------------------------------\n");
+        System.out.println("\n-----------------------------------------------------------\n");
         ContingentController cc = new ContingentController();
 
         System.out.println("Forventede indtjening:\n");
