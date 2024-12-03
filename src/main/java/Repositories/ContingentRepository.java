@@ -98,12 +98,12 @@ public class ContingentRepository {
     }
 
     // get expected earnings
-    public double getExpectedEarnings(){
-        double sum = 0;
+    public ArrayList<Double> getExpectedEarnings(){
+        ArrayList<Double> sum = new ArrayList<>();
 
         for(Member member: mr.getMemberArrayList()){
             // calculates sum
-            sum += calculatePrice(member);
+            sum.add(calculatePrice(member));
         }
 
         return sum;
