@@ -442,6 +442,7 @@ public class UserInterface {
         System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
         System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
         System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
+        System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
 
         String input = scan.nextLine().toUpperCase();
 
@@ -451,7 +452,7 @@ public class UserInterface {
             case "MEDLEMMER" -> readAll();
             case "SPECIFIK" -> getSpecificContingent(scan);
             case "FORVENTET" -> getExpectedEarnings();
-            case "" -> System.out.println();
+            case "RESTANCE" -> getArrears();
             default -> System.out.println("Det indtastede passede ikke.");
         }
 
@@ -515,6 +516,13 @@ public class UserInterface {
         System.out.println(cc.getExpectedEarnings());
 
     }
+
+    private void getArrears(){
+        ContingentController cc = new ContingentController();
+        System.out.println("Manglende betalinger:");
+        System.out.println(cc.checkArrears());
+    }
+
     //----------------------------------Contingents methods----------------------------------
 // Trainer methods______________________________________________________________________________________________________
     // translate to danish

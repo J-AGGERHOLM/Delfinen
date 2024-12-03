@@ -24,6 +24,10 @@ public class Member extends Person {
         return competitive;
     }
 
+    public boolean isPaid() {
+        return paid;
+    }
+
     //_______________________________________________Setter Methods_____________________________________________________
     public void setActivity(boolean newActivity) {
         activity = newActivity;

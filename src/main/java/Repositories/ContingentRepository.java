@@ -98,6 +98,16 @@ public class ContingentRepository {
         return sum;
     }
 
+    public ArrayList<Member> getArrears(){
+        ArrayList<Member> arrears = new ArrayList<>();
+        for(Member m : mr.getMemberArrayList()){
+            if(!m.isPaid()){
+                arrears.add(m);
+            }
+        }
+        return arrears;
+    }
+
     // ---------------------- getter -----------------------------
     public ArrayList<Contingent> getAllContingent() throws FileNotFoundException {
         return ch.read();

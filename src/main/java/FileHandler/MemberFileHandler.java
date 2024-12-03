@@ -60,7 +60,8 @@ public class MemberFileHandler {
                                 Integer.parseInt(attributes[2]), // ID
                                 attributes[3].equalsIgnoreCase("active"), // Activity
                                 true, // Competitive
-                                discipline // Discipline
+                                discipline, // Discipline
+                                Boolean.parseBoolean(attributes[6])
                         );
 
 
@@ -79,7 +80,8 @@ public class MemberFileHandler {
                             LocalDate.parse(attributes[1]), // Birthday
                             Integer.parseInt(attributes[2]), // ID
                             attributes[3].equalsIgnoreCase("active"), // Activity
-                            false // Competitive
+                            false, // Competitive
+                            Boolean.parseBoolean(attributes[6])
                     );
 
 

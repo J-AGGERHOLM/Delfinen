@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Contingent;
+import Models.Member;
 import Repositories.ContingentRepository;
 
 import java.io.IOException;
@@ -93,6 +94,18 @@ public class ContingentController {
         return sum == 0
                 ? "Der er ingen medlemmer. I tjener ikke noget endnu"
                 : String.valueOf(sum);
+    }
+
+    public String checkArrears(){
+        StringBuilder sb = new StringBuilder();
+
+        for(Member m : repository.getArrears()){
+            sb.append(m).append("\n");
+        }
+
+        return sb.isEmpty()
+                ? "Alle har betalt kontingent"
+                : sb.toString();
     }
 
     // ------------------------------- getter ----------------------------------
