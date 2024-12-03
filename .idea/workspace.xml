@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="contingent ui lille ændring ved while">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Contingent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Contingent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
-    </list>
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Stilt flot op" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +51,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.CompetitionFileHandlerTest.create.executor": "Debug",
     "JUnit.CompetitionFileHandlerTest.executor": "Run",
@@ -147,7 +140,7 @@
       <workItem from="1733216186675" duration="56000" />
       <workItem from="1733216255248" duration="270000" />
       <workItem from="1733216547750" duration="361000" />
-      <workItem from="1733257336849" duration="1632000" />
+      <workItem from="1733257336849" duration="1951000" />
     </task>
     <task id="LOCAL-00001" summary="Små rettelser Member og contingent merged">
       <option name="closed" value="true" />
@@ -341,7 +334,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733249233591</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Stilt flot op">
+      <option name="closed" value="true" />
+      <created>1733259190660</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733259190660</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Stilt flot op">
+      <option name="closed" value="true" />
+      <created>1733259236753</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733259236753</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -377,6 +386,7 @@
     <MESSAGE value="Lavet test for kontingent afregningen" />
     <MESSAGE value="All files moved to Documents folder" />
     <MESSAGE value="contingent ui lille ændring ved while" />
-    <option name="LAST_COMMIT_MESSAGE" value="contingent ui lille ændring ved while" />
+    <MESSAGE value="Stilt flot op" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stilt flot op" />
   </component>
 </project>
