@@ -6,6 +6,7 @@ import Controllers.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 import FileHandler.CompetitionFileHandler;
@@ -551,23 +552,153 @@ public class UserInterface {
 
     }
     public void createTrainer() {
-        System.out.println("should create a member");
+        TrainerController trainerController = new TrainerController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter full name: ");
+        String name = sc.nextLine().trim();
+        System.out.println("Enter Birthday: ");
+        System.out.println("Day of birth: ");
+        int day = sc.nextInt();
+        System.out.println("Month of birth:");
+        int month = sc.nextInt();
+        System.out.println("Year of birth: ");
+        int year = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Do you want to add him to an existing team?");
+        String input = sc.nextLine().toLowerCase();
+        if (input.equalsIgnoreCase("yes")){
+            System.out.println("It will come soon"); // create this method
+        } else {
+            System.out.println(trainerController.createTrainerWithoutTeam(name, LocalDate.of(year, month, day)));
+        }
     }
 
-    public void editTrainer(){
-        System.out.println("should edit the trainer");
+    public void editTrainer() {                            // should finish the methods with team
+        Scanner sc = new Scanner(System.in);
+        TrainerController trainerController = new TrainerController();
+        System.out.println("");
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine().toLowerCase();
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerByName(input));
+            }
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerById(Integer.parseInt(input)));
+            }
+        }
+        if (trainerController.getCurrentTrainer() != null) {
+            System.out.println("Choose the information you want to edit");
+            System.out.println("Name");
+            System.out.println("Birthday");
+            System.out.println("Team");
+
+            input = sc.nextLine().toLowerCase();
+
+            switch (input) {
+                case "name" -> {
+                    System.out.println("Enter new name: ");
+                    input = sc.nextLine();
+                    trainerController.getCurrentTrainer().setName(input); // maybe refactor with an edit method in membersController
+                    System.out.println(trainerController.updateInformation());
+                }
+                case "birthday" -> {
+                    System.out.println("Enter new birthday: ");
+                    System.out.println("Day of birth: ");
+                    int day = sc.nextInt();
+                    System.out.println("Month of birth: ");
+                    int month = sc.nextInt();
+                    System.out.println("Year of birth: ");
+                    int year = sc.nextInt();
+                    trainerController.getCurrentTrainer().setBirthday(LocalDate.of(year, month, day)); // refactor with an edit method in membersController
+                    System.out.println(trainerController.updateInformation());
+
+                }
+                case "team" -> {
+                    System.out.println("Do you want to take the trainer out of the team or change the team the trainer is in charge of?");
+                    System.out.println("1 for delete 2 for change");
+                    input = sc.nextLine();
+                    switch (input) {
+                        case "1" -> {
+                            System.out.println("should delete him from the team he was in ");
+                        }
+                        case "2" -> {
+                            System.out.println("should change the team he is in");
+                        }
+                    }
+                }
+
+                default -> System.out.println("not option");
+            }
+        }
     }
 
-    public void deleteTrainer(){
-        System.out.println("should delete trainer");
+    public void deleteTrainer() {
+        Scanner sc = new Scanner(System.in);
+        TrainerController trainerController = new TrainerController();
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine().toLowerCase();
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerByName(input));
+            }
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerById(Integer.parseInt(input)));
+            }
+        }
+        if (trainerController.getCurrentTrainer() != null) {
+            System.out.println("Are you sure you want to delete this member?");
+            input = sc.nextLine().toLowerCase();
+            if (input.equalsIgnoreCase("yes")) {
+                System.out.println(trainerController.deleteTrainer());
+                // delete the trainer from existing teams
+            }
+        }
     }
 
-    public void showTrainers(){
-        System.out.println("should show a list of trainers");
+    public void showTrainers() {
+        TrainerController trainerController = new TrainerController();
+        System.out.println("Here you have a list of all the trainers from the club: \n");
+        System.out.println(trainerController.displayTrainers());
     }
 
-    public void specificTrainer(){
-        System.out.println("should show a specific trainers information");
+    public void specificTrainer() {
+        TrainerController trainerController = new TrainerController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine();
+        switch (input.toLowerCase()) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerByName(input));
+            }
+            case "id" -> {
+                int idNum = 0;
+                System.out.println("Enter id: ");
+                while (true) {
+                    String inputNum = sc.nextLine();
+                    try {
+                        idNum = Integer.parseInt(inputNum);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(input + " is not a valid id. try again");
+                    }
+                }
+                System.out.println(trainerController.chooseSpecificTrainerById(idNum));
+            }
+        }
+        if (trainerController.getCurrentTrainer()!= null) {
+            System.out.println(trainerController.displayTrainersInformation());
+        }
     }
 
 //Member methods----------------------------------------------------------------------------------------------------
@@ -640,7 +771,6 @@ public class UserInterface {
     private void editMember() {
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
-        MemberRepository memberRepository = new MemberRepository();
         System.out.println("");
         System.out.println("Do you want to use a name or an id?");
         String input = sc.nextLine().toLowerCase();
@@ -656,7 +786,7 @@ public class UserInterface {
                 System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
             }
         }
-        if (memberController.getCurrentMember() != null ) {
+        if (memberController.getCurrentMember() != null) {
             System.out.println("Choose the information you want to edit");
             System.out.println("name");
             System.out.println("birthday");
@@ -707,9 +837,20 @@ public class UserInterface {
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
-        System.out.println("Which member would you like to delete from the system?");
+        System.out.println("Do you want to use a name or an id?");
         String input = sc.nextLine().toLowerCase();
-        System.out.println(memberController.chooseSpecificMemberByName(input));
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(memberController.chooseSpecificMemberByName(input));
+            }
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
+            }
+        }
         if (memberController.getCurrentMember() != null) {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
@@ -736,9 +877,6 @@ public class UserInterface {
                 System.out.println("Enter name: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberByName(input));
-                if (memberController.getCurrentMember() != null){
-                    System.out.println(memberController.displayMemberInformation());
-                }
             }
             case "id" -> {
                 int idNum = 0;
@@ -753,12 +891,13 @@ public class UserInterface {
                     }
                 }
                 System.out.println(memberController.chooseSpecificMemberById(idNum));
-                if (memberController.getCurrentMember() != null) {
-                    System.out.println(memberController.displayMemberInformation());
                 }
             }
+        if (memberController.getCurrentMember() != null) {
+            System.out.println(memberController.displayMemberInformation());
+        }
         }
 
     }
-}
+
 
