@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ContingentHandler  {
 
-    String filePath = "Contingent.txt";
+    String filePath = "Contingent.csv";
 
     //Creates a contingent
 
@@ -76,7 +76,7 @@ public class ContingentHandler  {
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(filePath, false));
 
-        writer.write("Id,MemberId,Price,Birthday");
+        writer.write("Id,MemberId,Pris,Betalings-dato");
         // ny linje
         writer.newLine();
         // Write the array in file

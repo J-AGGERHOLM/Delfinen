@@ -47,7 +47,7 @@ public class ContingentController {
 
         // Returns a message
         return sb.isEmpty()
-                ? ""
+                ? "Ingen data"
                 : sb.toString();
         } catch (IOException e){
             return e.getMessage();

@@ -480,8 +480,8 @@ public class UserInterface {
         ContingentController cc = new ContingentController();
 
         String members = cc.getMemberContingents(memberId);
-        if (members.isEmpty()) {
-            System.out.println("Der er ingen kontingent på ønskede id: " + memberId);
+        if (members.equals("Ingen data")) {
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
         } else {
             System.out.println("Skriv et kontingent id for at slette en specifik.");
             System.out.println(cc.deleteContingent(scan.nextInt()));
@@ -502,11 +502,11 @@ public class UserInterface {
 
         ContingentController cc = new ContingentController();
         String members = cc.getMemberContingents(memberId);
-        if (members == null) {
-            System.out.println("Der er ingen kontingent på ønskede id: " + memberId);
+        if (members.equals("Ingen data")) {
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId);
         } else {
-            System.out.println("Skriv et kontingent id du vil slå op.");
-            System.out.println(cc.deleteContingent(scan.nextInt()));
+            System.out.println("Her er personens kontingenter:");
+            System.out.println(members);
         }
     }
 
