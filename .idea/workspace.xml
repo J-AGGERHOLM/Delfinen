@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv">
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="All files moved to Documents folder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/CompetitionResults.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CompetitionResults.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Contingent.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/Teams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Teams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/TrainingRepository.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrainingRepository.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/membersList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Documents/trainersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainersList.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="contingentPåDansk" />
+        <entry key="$PROJECT_DIR$" value="Doc-Folder-Added" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,49 +57,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.CompetitionFileHandlerTest.create.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CompetitionFileHandlerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ContingentRepositoryTest.calculatePriceOver18.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ContingentRepositoryTest.calculatePriceOver60.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ContingentRepositoryTest.calculatePricePassiv.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ContingentRepositoryTest.calculatePriceUnder18.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkDate.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkDouble.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkDoubleNot.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkInt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.checkIntNot.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.checkStringNot.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ValideringTest.mustBeString.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ValideringTest.mustBeStringNot.executor&quot;: &quot;Debug&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;contingentWhileLoop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CompetitionFileHandlerTest.create.executor": "Debug",
+    "JUnit.CompetitionFileHandlerTest.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceOver18.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceOver60.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePricePassiv.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceUnder18.executor": "Run",
+    "JUnit.ValideringTest.checkDate.executor": "Debug",
+    "JUnit.ValideringTest.checkDouble.executor": "Run",
+    "JUnit.ValideringTest.checkDoubleNot.executor": "Debug",
+    "JUnit.ValideringTest.checkInt.executor": "Run",
+    "JUnit.ValideringTest.checkIntNot.executor": "Debug",
+    "JUnit.ValideringTest.checkString.executor": "Debug",
+    "JUnit.ValideringTest.checkStringNot.executor": "Run",
+    "JUnit.ValideringTest.executor": "Run",
+    "JUnit.ValideringTest.mustBeString.executor": "Debug",
+    "JUnit.ValideringTest.mustBeStringNot.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jackm\Delfinen\src" />
       <recent name="C:\Users\jackm\Delfinen\src\Documents" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
@@ -302,7 +308,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733245885599</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733247717700</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733247717700</updated>
+    </task>
+    <task id="LOCAL-00022" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733248129589</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733248129589</updated>
+    </task>
+    <task id="LOCAL-00023" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733248180081</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733248180081</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -336,6 +366,7 @@
     <MESSAGE value="Ændret fra .txt til .csv" />
     <MESSAGE value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
     <MESSAGE value="Lavet test for kontingent afregningen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lavet test for kontingent afregningen" />
+    <MESSAGE value="All files moved to Documents folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="All files moved to Documents folder" />
   </component>
 </project>
