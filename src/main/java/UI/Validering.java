@@ -3,29 +3,47 @@ package UI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Validering {
 
     //method to check if a string variable is empty.
     //currently only used to make sure that there are no entries without data.
-    public static String checkString(Scanner scan) {
+    public static String stringHasValue(Scanner scan) {
+        String input;
         // Trims the data.
-        while (scan.nextLine().trim().isEmpty()) {
-            System.out.println("Please enter some text");
-            scan.next();
+        while (true) {
+            input = scan.nextLine().trim();
+            if(input.isEmpty()){
+                System.out.println("Please enter some text");
+                scan.next();
+            }else{
+                break;
+            }
         }
 
-        return scan.nextLine();
+        return input;
     }
 
     //checks input to see if it is an integer.
     public static String mustBeString(Scanner scan) {
-        while (scan.hasNextInt()) {
-            System.out.println("You cant type a number");
-            scan.next();
+        String input;
+        while (true) {
+            if (scan.hasNextInt()) {
+                System.out.println("You cant type a number");
+                scan.next();
+            }else{
+                input = scan.nextLine().trim();
+                if(input.isEmpty()){
+                    System.out.println("Du skal taste noget");
+                }else{
+                    break;
+                }
+            }
         }
-        return scan.nextLine();
+
+        return input;
     }
 
     // Check for int value.
@@ -46,21 +64,21 @@ public class Validering {
         return scan.nextDouble();
     }
 
-    // check for date value
+    // Check for date value
     public static LocalDate checkDate(Scanner scan) {
         LocalDate date = null;
-        // String can be 1234-23-23
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         while (date == null) {
+            System.out.println("Please enter a date in the format yyyy-MM-dd:");
+            String input = scan.nextLine().trim(); // Læs og trim input
             try {
-                // sets date if string is parsed
-                date = LocalDate.parse(scan.nextLine(), dateFormatter);
+                date = LocalDate.parse(input, dateFormatter); // Forsøg at parse datoen
             } catch (DateTimeParseException e) {
-                System.out.println("Datoens format: yyyy-mm-dd");
-                scan.nextLine();
+                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
             }
         }
-        return date;
+        return date; // Returner den gyldige dato
     }
 
 }
