@@ -54,28 +54,24 @@ public class MemberFileHandler {
                         // Check how many disciplines the swimmers has and adds them to an arrayList
 
                         ArrayList<SwimmingDisciplines> chosenDisciplines = new ArrayList<>();
-                        chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[6])]);
-                        if (attributes.length == 8){
-                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[7])]);
-                        } if (attributes.length == 9){
-                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[8])]);
-                        } if (attributes.length == 10) {
-                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[9])]);
+                        chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[6]) - 1]);
+                        if (attributes.length > 7){
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[7]) - 1]);
+                        } if (attributes.length > 8){
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[8]) - 1]);
+                        } if (attributes.length > 9) {
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[9]) - 1]);
                         }
-
-                        //here it creates and reads competitive members in from the text file:
-                        SwimmingDisciplines discipline = SwimmingDisciplines.valueOf(attributes[6].toUpperCase());
-                        CompetitiveSwimmer competitiveSwimmer = new CompetitiveSwimmer(
+                        Member competitiveSwimmer = new CompetitiveSwimmer(
                                 attributes[0], // Name
                                 LocalDate.parse(attributes[1]), // Birthday
                                 Integer.parseInt(attributes[2]), // ID
                                 attributes[3].equalsIgnoreCase("active"), // Activity
                                 true, // Competitive
-                                chosenDisciplines, // Discipline
                                 Boolean.parseBoolean(attributes[5])
                         );
 
-
+                        competitiveSwimmer.setChosenDisciplines(chosenDisciplines);
                         //here it adds a competitive member to the member arraylist
                         memberRepository.getMemberArrayList().add(competitiveSwimmer);
 

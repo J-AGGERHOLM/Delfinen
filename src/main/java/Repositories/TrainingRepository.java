@@ -86,7 +86,7 @@ public class TrainingRepository {
         ArrayList<CompetitiveSwimmer> result = new ArrayList<>();
         for(Member mem : memberRepo.getMemberArrayList()) {
             CompetitiveSwimmer swimmer = getSwimmerByID(mem.getId());
-            if(String.valueOf(swimmer.getChosendiscipline()).equals(discipline)) {
+            if(String.valueOf(swimmer.getSpecificDiscipline(discipline)).equals(discipline)) {
                 result.add(swimmer);
             }
         }

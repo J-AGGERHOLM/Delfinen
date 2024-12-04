@@ -9,6 +9,7 @@ import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
+import Enums.SwimmingDisciplines;
 import Models.*;
 import Repositories.CompetitionRepository;
 
@@ -781,24 +782,34 @@ public class UserInterface {
         if (!competitive.equalsIgnoreCase("competitive")) {
             System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
         } else {
-            int disciplineIndex = -1;
-            disciplineIndex = typeMemberDiscipline();
-            System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex));
+           ArrayList<SwimmingDisciplines> chosenDisciplines = typeMemberDiscipline();
+           System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
+           memberController.getCurrentMember().setChosenDisciplines(chosenDisciplines);
         }
     }
 
     //helper method for creating competitibe member:
-    private int typeMemberDiscipline() {
-        int userChoice = 0;
-        Scanner cmScan = new Scanner(System.in);
-        System.out.println("Chose a swimming discipline to assign to the member:");
-        System.out.println("Type 1 : To assign Butterfly ");
-        System.out.println("Type 2 : To assign Crawl ");
-        System.out.println("Type 3 : To assign Backcrawl ");
-        System.out.println("Type 4 : To assign Breaststroke ");
-        userChoice = cmScan.nextInt();
-
-        return userChoice - 1;
+    private ArrayList<SwimmingDisciplines> typeMemberDiscipline() {
+        ArrayList<SwimmingDisciplines> swimmingDisciplinesArrayList = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+        while (!input.equalsIgnoreCase("no")) {
+            System.out.println("Chose a swimming discipline to assign to the member:");
+            System.out.println("Type 1 : To assign Butterfly ");
+            System.out.println("Type 2 : To assign Crawl ");
+            System.out.println("Type 3 : To assign Backcrawl ");
+            System.out.println("Type 4 : To assign Breaststroke ");
+            String chosenDiscipline = sc.nextLine();
+            // make sure it is a number with validering
+            swimmingDisciplinesArrayList.add(SwimmingDisciplines.values()[Integer.parseInt(chosenDiscipline)]);
+            if(swimmingDisciplinesArrayList.size() < 4) {
+                System.out.println("Would you like to add another discipline?");
+                input = sc.nextLine();
+            } else {
+                break;
+            }
+        }
+        return swimmingDisciplinesArrayList;
     }
 
     private void editMember() {
@@ -857,7 +868,11 @@ public class UserInterface {
                 case "competitive" -> {
                     System.out.println("Enter new competitive status ('competitive' ; 'regular': ");
                     input = sc.nextLine();
-                    memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive")); // refactor with an edit method in membersController
+                    if (input.equalsIgnoreCase("competitive")) {
+                        ArrayList<SwimmingDisciplines> newChosenDisciplines = typeMemberDiscipline();
+                        memberController.getCurrentMember().setChosenDisciplines(newChosenDisciplines);
+                    }
+                    memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive"));
                     System.out.println(memberController.updateInformation());
 
                 }

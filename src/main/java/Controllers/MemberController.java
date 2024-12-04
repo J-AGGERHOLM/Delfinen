@@ -72,8 +72,8 @@ public class MemberController {
         return "Member was successfully created";
     }
 
-    public String createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int swimmingDisciplineIndex) {
-        if(!memberRepository.createCompetitiveMember(name, birthday, activity, competitive, swimmingDisciplineIndex)){
+    public String createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive) {
+        if(!memberRepository.createCompetitiveMember(name, birthday, activity, competitive)){
             return "Failed to create member, please try again";
         }
         return "Member was successfully created";

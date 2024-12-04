@@ -10,18 +10,27 @@ public class CompetitiveSwimmer extends Member {
 
     ArrayList<SwimmingDisciplines> chosenDisciplines;
 
-    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, ArrayList<SwimmingDisciplines> chosenDisciplines, boolean paid) {
+    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, boolean paid) {
         super(fullName, birthday, id, activity, competitive, paid);
-        this.chosenDisciplines = chosenDisciplines;
+        chosenDisciplines = new ArrayList<>();
     }
 
-
-    public void setChosendiscipline(ArrayList<SwimmingDisciplines> chosenDisciplines) {
-        this.chosenDisciplines = chosenDisciplines;
-    }
-
-    public ArrayList<SwimmingDisciplines> getChosendisciplines() {
+    public ArrayList<SwimmingDisciplines> getChosenDisciplines() {
         return chosenDisciplines;
+    }
+    public SwimmingDisciplines getSpecificDiscipline(String discipline){
+        for (SwimmingDisciplines s : chosenDisciplines){
+            if(String.valueOf(s).equalsIgnoreCase(discipline)){
+                return s;
+            }
+
+        }
+        return null;
+    }
+
+    @Override
+    public void setChosenDisciplines(ArrayList<SwimmingDisciplines> chosenDisciplines){
+        this.chosenDisciplines = chosenDisciplines;
     }
 
 
