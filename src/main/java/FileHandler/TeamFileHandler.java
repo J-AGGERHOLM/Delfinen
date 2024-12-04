@@ -38,11 +38,11 @@ public class TeamFileHandler {
 
         if(allMembers == null){
             System.out.println("Error from teams filehandler: members list is null");
-            return teams;
+            allMembers = new ArrayList<Member>();
         }
         if(trainers == null){
             System.out.println("Error from teams filehandler: trainers list is null");
-            return teams;
+            trainers = new ArrayList<Trainer>();
         }
 
         while(sc.hasNextLine()){

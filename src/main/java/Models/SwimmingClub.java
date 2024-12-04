@@ -51,13 +51,21 @@ public class SwimmingClub {
 
     public void deleteMemberFromAllTeams(Member member){
         for(Team t: teams){
+            ArrayList<Person> peopleToRemove = new ArrayList<Person>();
             for(Person p: t.getMembers()){
                 if(p.getId() == member.getId()){
-                    t.removeMember(p);
+                    //t.removeMember(p);
+                    peopleToRemove.add(p);
                 }
             }
 
+            for(Person p: peopleToRemove){
+                t.removeMember(p);
+            }
+
         }
+
+        saveTeamsToFile();
     }
 
     public void deleteTrainerFromAllTeams(Trainer trainer){
@@ -66,6 +74,8 @@ public class SwimmingClub {
                 t.removeTrainer();
             }
         }
+
+        saveTeamsToFile();
     }
 
 
