@@ -20,7 +20,6 @@ public class UserInterface {
     TrainingController trainingController;
     Scanner sc;
 
-
     public UserInterface() {
         sc = new Scanner(System.in);
         trainingController = new TrainingController();
@@ -34,11 +33,11 @@ public class UserInterface {
 
         while (!exit) {
 
-            System.out.println("please enter a command");
-            System.out.println("Trainer: see options about trainers");
-            System.out.println("Members: see options about members");
-            System.out.println("kasserer: For at se mulighederne for kasserer");
-            System.out.println("Competition: see options about competitions");
+            System.out.println("Indtast venligst en kommando");
+            System.out.println("Træner: For at se mulighederne for trænere");
+            System.out.println("Medlemmer: For at se mulighederne for medlemmer");
+            System.out.println("Kasserer: For at se mulighederne for kasserer");
+            System.out.println("Konkurrrence: see options about competitions");
             System.out.println("Hold: administrere klubbens svømmehold");
 
             String userChoice = sc.nextLine();
@@ -46,11 +45,11 @@ public class UserInterface {
 
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
-                case "TRAINER" -> trainerMenu();
+                case "TRÆNER" -> trainerMenu();
                 case "HOLD" -> teamMenu();
-                case "MEMBERS" -> memberMenu();
+                case "MEDLEMMER" -> memberMenu();
                 case "KASSERER" -> contingentMenu();
-                case "COMPETITION" -> competionMenu();
+                case "KONKURRENCE" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
             System.out.println("-----------------------------------------------------------\n");
@@ -69,33 +68,43 @@ public class UserInterface {
 
         //scanners instanciated:
         Scanner sc = new Scanner(System.in);
-        //menu:
 
-        System.out.println("Du er i konkurrence menuen");
-        System.out.println("Du har nu følgende valgmuligheder:");
-        System.out.println("'Tilføj' - For at oprette en ny konkurrence.");
-        System.out.println("'Se' - For at vise konkurrencerne.");
-        System.out.println("'Slet' - For at slette en konkurrence.");
-        System.out.println("'Exit' - For at forlade konkurrence menuen.");
+        String competitionInput = "";
+        
+        while(!competitionInput.equals("EXIT")) {
+            //menu:
+            System.out.println("Du er i konkurrence menuen");
+            System.out.println("Du har nu følgende valgmuligheder:");
+            System.out.println("'Tilføj' - For at oprette en ny konkurrence.");
+            System.out.println("'Se' - For at vise konkurrencerne.");
+            System.out.println("'Slet' - For at slette en konkurrence.");
+            System.out.println("'Exit' - For at forlade konkurrence menuen.");
 
-        String competitionInput = sc.nextLine().toUpperCase();
-        while (!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT")) {
-            System.out.println("Vælg en gyldig valgmulighed");
+            if (!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT")) {
+                System.out.println("Vælg en gyldig valgmulighed");
+            }
+
             competitionInput = sc.nextLine().toUpperCase();
-        }
 
-        //depending on the users input, these cases happen:
-        switch (competitionInput) {
-            case "TILFØJ" -> competitionEntryCreate();
-            case "SE" -> {
-                System.out.println(competitionController.readCompetition());
+            //depending on the users input, these cases happen:
+            switch (competitionInput) {
+                case "TILFØJ" -> competitionEntryCreate();
+                case "SE" -> {
+                    System.out.println(competitionController.readCompetition());
+                }
+                case "SLET" -> deleteCompetitionEntry();
+                case "EXIT" -> {
+                    return;
+                }
+                default -> System.out.println("Ikke en mulighed");
             }
-            case "SLET" -> deleteCompetitionEntry();
-            case "EXIT" -> {
-                return;
-            }
-            default -> System.out.println("Ikke en mulighed");
+
         }
+        
+
+
+
+
     }
 
 
@@ -104,7 +113,7 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         CompetitionRepository repository = new CompetitionRepository();
         System.out.println("Indtast venligst ID på den konkurrence du har lyst til at slette.");
-        int searchWord = sc.nextInt();
+        int searchWord = Validering.checkInt(sc);
         repository.searchForEntry(searchWord);
 
     }
@@ -118,17 +127,27 @@ public class UserInterface {
 
         try {
             System.out.println("Indtast venligst navn til stævnet:");
-            String event = sc.nextLine();
+
+            //validates a string for the event variable
+            String event = Validering.mustBeString(sc);
+
+
             System.out.println("Indtast venligst placering opnået til stævnet:");
-            int placement = intScanner.nextInt();
+
+            //validates an int for the placement variable
+            int placement = Validering.checkInt(intScanner);
+
             System.out.println("Indtast venligst tid på svømmeren til stævnet:");
-            double time = doubleScanner.nextDouble();
+
+
+            //validates a double for the time variable
+            double time = Validering.checkDouble(doubleScanner);
 
 
             repository.commitCompetitionEntry(event, placement, time);
 
         } catch (InputMismatchException ime) {
-            System.out.println("Error : Something is wrong with these input values");
+            System.out.println("Error : Der er noget galt med de indtastede værdier");
         }
 
     }
