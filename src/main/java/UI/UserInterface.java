@@ -801,7 +801,7 @@ public class UserInterface {
             System.out.println("Type 4 : To assign Breaststroke ");
             String chosenDiscipline = sc.nextLine();
             // make sure it is a number with validering
-            swimmingDisciplinesArrayList.add(SwimmingDisciplines.values()[Integer.parseInt(chosenDiscipline)]);
+            swimmingDisciplinesArrayList.add(SwimmingDisciplines.values()[Integer.parseInt(chosenDiscipline) - 1]);
             if(swimmingDisciplinesArrayList.size() < 4) {
                 System.out.println("Would you like to add another discipline?");
                 input = sc.nextLine();
@@ -870,6 +870,7 @@ public class UserInterface {
                     input = sc.nextLine();
                     if (input.equalsIgnoreCase("competitive")) {
                         ArrayList<SwimmingDisciplines> newChosenDisciplines = typeMemberDiscipline();
+                        System.out.println(memberController.changeFromMemberToCOmpetitiveSwimmer());
                         memberController.getCurrentMember().setChosenDisciplines(newChosenDisciplines);
                     }
                     memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive"));

@@ -54,13 +54,15 @@ public class MemberFileHandler {
                         // Check how many disciplines the swimmers has and adds them to an arrayList
 
                         ArrayList<SwimmingDisciplines> chosenDisciplines = new ArrayList<>();
-                        chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[6]) - 1]);
+                        if (attributes.length > 6) {
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[6])]);
+                        }
                         if (attributes.length > 7){
-                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[7]) - 1]);
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[7])]);
                         } if (attributes.length > 8){
-                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[8]) - 1]);
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[8])]);
                         } if (attributes.length > 9) {
-                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[9]) - 1]);
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[9])]);
                         }
                         Member competitiveSwimmer = new CompetitiveSwimmer(
                                 attributes[0], // Name
