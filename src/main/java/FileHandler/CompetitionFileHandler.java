@@ -14,7 +14,7 @@ public class CompetitionFileHandler {
 
     Competition competition;
 
-    private String filePath = "CompetitionResults.txt"; // Default file
+    private String filePath = "CompetitionResults.csv"; // Default file
 
     public void setCompetition(Competition competition) {
         this.competition = competition;

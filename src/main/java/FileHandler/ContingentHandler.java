@@ -5,6 +5,7 @@ import Models.Contingent;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class ContingentHandler  {
@@ -12,8 +13,7 @@ public class ContingentHandler  {
     String filePath = "Contingent.csv";
 
     //Creates a contingent
-
-    public void create(int id, int memberId, double price) throws IOException {
+    public Contingent create(int id, int memberId, double price) throws IOException {
         // Append on .txt doesn't override
         // BufferedWriter creates a file if it doesn't exist
         try(BufferedWriter writer = new BufferedWriter(
@@ -30,6 +30,8 @@ public class ContingentHandler  {
 
             // ny linje and close stream
             writer.newLine();
+
+            return contingent;
         }
     }
 
@@ -64,13 +66,16 @@ public class ContingentHandler  {
                 contingents.add(c);
             }
 
+            // Compare on id
+            Comparator<Contingent> comparator = Comparator.comparing(Contingent::getId);
+            contingents.sort(comparator);
+
             return contingents;
         }
     }
 
     // Delete specific Contingent
-
-    public void delete(ArrayList<Contingent> contingents) throws IOException {
+    public boolean delete(ArrayList<Contingent> contingents) throws IOException {
         // Override the file
         // BufferedWriter creates a file if it doesn't exist
         BufferedWriter writer = new BufferedWriter(
@@ -91,5 +96,7 @@ public class ContingentHandler  {
 
         // Close the stream
         writer.flush();
+
+        return true;
     }
 }

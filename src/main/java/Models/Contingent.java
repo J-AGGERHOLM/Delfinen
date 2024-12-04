@@ -38,6 +38,6 @@ public class Contingent {
 
     @Override
     public String toString() {
-        return "Id: " + id + " MedlemId: " + memberId + " Pris: " + price + " Betalings dato: " + date + "\n";
+        return "Id: " + id + " MedlemId: " + memberId + " Pris: " + price + " Betalings dato: " + date;
     }
 }

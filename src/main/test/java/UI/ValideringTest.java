@@ -1,6 +1,5 @@
 package UI;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ public class ValideringTest {
         // Arrange:
         Scanner scan = new Scanner("Test");
         // Act:
-        String actual = Validering.checkString(scan);
+        String actual = Validering.stringWithInput(scan);
         String expected = "Test";
         // Assert:
         assertEquals(expected, actual);
@@ -31,7 +30,7 @@ public class ValideringTest {
         // Arrange:
         Scanner scan = new Scanner("\n\nHallo");
         // Act:
-        String actual = Validering.checkString(scan);
+        String actual = Validering.stringWithInput(scan);
         String expected = "Hallo";
         // Assert:
         assertEquals(expected, actual);
