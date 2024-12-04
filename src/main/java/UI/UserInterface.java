@@ -54,6 +54,7 @@ public class UserInterface {
                 case "TRAINER" -> trainerMenu();
                 case "HOLD" -> teamMenu();
                 case "MEMBERS" -> memberMenu();
+                case "TRAINERS" -> trainersMenu();
                 case "KASSERER" -> contingentMenu();
                 case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
@@ -563,6 +564,7 @@ public class UserInterface {
         int month = sc.nextInt();
         System.out.println("Year of birth: ");
         int year = sc.nextInt();
+        /* i dont think I should manipulate the teams from this menu
         sc.nextLine();
         System.out.println("Do you want to add him to an existing team?");
         String input = sc.nextLine().toLowerCase();
@@ -571,6 +573,8 @@ public class UserInterface {
         } else {
             System.out.println(trainerController.createTrainerWithoutTeam(name, LocalDate.of(year, month, day)));
         }
+
+         */
     }
 
     public void editTrainer() {                            // should finish the methods with team
@@ -595,7 +599,7 @@ public class UserInterface {
             System.out.println("Choose the information you want to edit");
             System.out.println("Name");
             System.out.println("Birthday");
-            System.out.println("Team");
+           // System.out.println("Team");
 
             input = sc.nextLine().toLowerCase();
 
@@ -618,7 +622,7 @@ public class UserInterface {
                     System.out.println(trainerController.updateInformation());
 
                 }
-                case "team" -> {
+             /*   case "team" -> {
                     System.out.println("Do you want to take the trainer out of the team or change the team the trainer is in charge of?");
                     System.out.println("1 for delete 2 for change");
                     input = sc.nextLine();
@@ -631,6 +635,8 @@ public class UserInterface {
                         }
                     }
                 }
+
+              */
 
                 default -> System.out.println("not option");
             }
@@ -754,7 +760,7 @@ public class UserInterface {
         }
     }
 
-    //helper method for creating competitibe member:
+// change the discipline for an array list
     private int typeMemberDiscipline() {
         int userChoice = 0;
         Scanner cmScan = new Scanner(System.in);

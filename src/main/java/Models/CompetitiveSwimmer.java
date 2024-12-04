@@ -3,31 +3,35 @@ package Models;
 import Enums.SwimmingDisciplines;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CompetitiveSwimmer extends Member {
 
+    ArrayList<SwimmingDisciplines> chosenDisciplines;
 
-    SwimmingDisciplines chosenDiscipline;
-
-    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, SwimmingDisciplines chosenDiscipline, boolean paid) {
+    public CompetitiveSwimmer(String fullName, LocalDate birthday, int id, boolean activity, boolean competitive, ArrayList<SwimmingDisciplines> chosenDisciplines, boolean paid) {
         super(fullName, birthday, id, activity, competitive, paid);
-        this.chosenDiscipline = chosenDiscipline;
+        this.chosenDisciplines = chosenDisciplines;
     }
 
 
-    public void setChosendiscipline(SwimmingDisciplines chosendiscipline) {
-        this.chosenDiscipline = chosendiscipline;
+    public void setChosendiscipline(ArrayList<SwimmingDisciplines> chosenDisciplines) {
+        this.chosenDisciplines = chosenDisciplines;
     }
 
-    public SwimmingDisciplines getChosendiscipline() {
-        return chosenDiscipline;
+    public ArrayList<SwimmingDisciplines> getChosendisciplines() {
+        return chosenDisciplines;
     }
 
 
     @Override
     public String toStringFile() {
-        return super.toStringFile() + "," + (chosenDiscipline != null ? chosenDiscipline : "");
+        String result = super.toStringFile() + ",";
+        for (SwimmingDisciplines s : chosenDisciplines){
+            result += s.ordinal() + ",";
+        }
+        return result;
     }
 
 

@@ -102,12 +102,10 @@ public class MemberRepository {
     }
 
 
-    public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int disciplineIndex) {
-        SwimmingDisciplines chosenDiscipline = null;
-        chosenDiscipline = SwimmingDisciplines.values()[disciplineIndex];
+    public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, ArrayList<SwimmingDisciplines> chosenDisciplines) {
         try {
             // Create a new Member object
-            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline, new Random().nextBoolean());
+            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDisciplines, new Random().nextBoolean());
             // Assign the current member
             currentMember = member;
             // Add the member to the ArrayList

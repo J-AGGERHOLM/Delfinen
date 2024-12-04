@@ -1,6 +1,5 @@
 package FileHandler;
 
-import Models.Member;
 import Models.Trainer;
 import Repositories.TrainerRepository;
 
@@ -14,14 +13,16 @@ import java.util.Scanner;
 public class TrainerFileHandler {
     private final String fileName = "trainersList.txt";
     private TrainerRepository trainerRepository;
+    private TeamFileHandler teamFileHandler;
 
 
     public void setTrainerRepository(TrainerRepository trainerRepository){
         this.trainerRepository = trainerRepository;
     }
 
-
-
+    public void setTeamFileHandler(TeamFileHandler teamFileHandler){
+        this.teamFileHandler = teamFileHandler;
+    }
 
 
 
@@ -45,8 +46,6 @@ public class TrainerFileHandler {
                         attributes[0],
                         LocalDate.parse(attributes[1]),
                         Integer.parseInt(attributes[2])
-                        // add one for the teams
-
                 );
 
                 trainerRepository.getTrainerArrayList().add(trainer);

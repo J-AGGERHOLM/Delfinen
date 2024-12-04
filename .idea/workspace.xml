@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contingent.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/TrainerFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/TrainerFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/CompetitiveSwimmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/CompetitiveSwimmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Trainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +81,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "contingentCSVFile",
+    "git-widget-placeholder": "Person-feature",
     "kotlin-language-version-configured": "true",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
@@ -102,6 +102,20 @@
       <recent name="FileHandler" />
       <recent name="UI" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Delfinen" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -308,16 +322,5 @@
     <MESSAGE value="Ændrede i UI" />
     <MESSAGE value="Ændrede UI tilbage" />
     <option name="LAST_COMMIT_MESSAGE" value="Ændrede UI tilbage" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -51,6 +51,17 @@ public class MemberFileHandler {
                         continue; // Skip entries missing the discipline
                     }
                     try {
+                        // Check how many disciplines the swimmers has and adds them to an arrayList
+
+                        ArrayList<SwimmingDisciplines> chosenDisciplines = new ArrayList<>();
+                        chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[6])]);
+                        if (attributes.length == 8){
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[7])]);
+                        } if (attributes.length == 9){
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[8])]);
+                        } if (attributes.length == 10) {
+                            chosenDisciplines.add(SwimmingDisciplines.values()[Integer.parseInt(attributes[9])]);
+                        }
 
                         //here it creates and reads competitive members in from the text file:
                         SwimmingDisciplines discipline = SwimmingDisciplines.valueOf(attributes[6].toUpperCase());
@@ -60,7 +71,7 @@ public class MemberFileHandler {
                                 Integer.parseInt(attributes[2]), // ID
                                 attributes[3].equalsIgnoreCase("active"), // Activity
                                 true, // Competitive
-                                discipline, // Discipline
+                                chosenDisciplines, // Discipline
                                 Boolean.parseBoolean(attributes[5])
                         );
 
