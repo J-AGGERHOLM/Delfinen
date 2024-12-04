@@ -91,27 +91,34 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\45298\Documents\KEA\1semester\Delfinen" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen" />
-      <recent name="C:\Users\jackm\Delfinen\src" />
-      <recent name="C:\Users\jackm\Delfinen\src\Documents" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="Repositories" />
       <recent name="FileHandler" />
       <recent name="UI" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Delfinen" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -149,7 +156,6 @@
       <workItem from="1733216186675" duration="56000" />
       <workItem from="1733216255248" duration="270000" />
       <workItem from="1733216547750" duration="361000" />
-      <workItem from="1733257336849" duration="1951000" />
     </task>
     <task id="LOCAL-00001" summary="Små rettelser Member og contingent merged">
       <option name="closed" value="true" />
@@ -303,71 +309,7 @@
       <option name="project" value="LOCAL" />
       <updated>1733242917351</updated>
     </task>
-    <task id="LOCAL-00020" summary="Lavet test for kontingent afregningen">
-      <option name="closed" value="true" />
-      <created>1733245885599</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1733245885599</updated>
-    </task>
-    <task id="LOCAL-00021" summary="All files moved to Documents folder">
-      <option name="closed" value="true" />
-      <created>1733247717700</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1733247717700</updated>
-    </task>
-    <task id="LOCAL-00022" summary="All files moved to Documents folder">
-      <option name="closed" value="true" />
-      <created>1733248129589</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1733248129589</updated>
-    </task>
-    <task id="LOCAL-00023" summary="All files moved to Documents folder">
-      <option name="closed" value="true" />
-      <created>1733248180081</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1733248180081</updated>
-    </task>
-    <task id="LOCAL-00024" summary="contingent ui lille ændring ved while">
-      <option name="closed" value="true" />
-      <created>1733249233591</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1733249233591</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Stilt flot op">
-      <option name="closed" value="true" />
-      <created>1733259190660</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1733259190660</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Stilt flot op">
-      <option name="closed" value="true" />
-      <created>1733259236753</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1733259236753</updated>
-    </task>
-    <task id="LOCAL-00027" summary="loop and validation added to competition">
-      <option name="closed" value="true" />
-      <created>1733308239012</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1733308239012</updated>
-    </task>
-    <option name="localTasksCounter" value="28" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -400,22 +342,6 @@
     <MESSAGE value="Ændrede UI tilbage" />
     <MESSAGE value="Ændret fra .txt til .csv" />
     <MESSAGE value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
-    <MESSAGE value="Lavet test for kontingent afregningen" />
-    <MESSAGE value="All files moved to Documents folder" />
-    <MESSAGE value="contingent ui lille ændring ved while" />
-    <MESSAGE value="Stilt flot op" />
-    <MESSAGE value="loop and validation added to competition" />
-    <option name="LAST_COMMIT_MESSAGE" value="loop and validation added to competition" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="LAST_COMMIT_MESSAGE" value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
   </component>
 </project>
