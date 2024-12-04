@@ -16,9 +16,8 @@ public class TeamFileHandler {
     private final String listItemSeperator = ":";
 
 
-    //Waiting for persons to be done. I need to be able to read the list of persons to create the
-    //person objects in the teams, or a way to get already existing person objects and add them to the team
-    //arraylist
+    //The teams are saved with fields separated with a ; and the list of team member IDs seperated with :
+    //If the team has no trainer, the trainer ID is set to 0. Please refrain from giving an actual trainer this ID :)
     public ArrayList<Team> readAllTeams(ArrayList<Member> allMembers, ArrayList<Trainer> trainers){
 
         System.out.println("reading teams");
@@ -36,6 +35,15 @@ public class TeamFileHandler {
         sc.nextLine();
 
         ArrayList<Team> teams = new ArrayList<Team>();
+
+        if(allMembers == null){
+            System.out.println("Error from teams filehandler: members list is null");
+            allMembers = new ArrayList<Member>();
+        }
+        if(trainers == null){
+            System.out.println("Error from teams filehandler: trainers list is null");
+            trainers = new ArrayList<Trainer>();
+        }
 
         while(sc.hasNextLine()){
             String fileLine = sc.nextLine();
@@ -56,19 +64,30 @@ public class TeamFileHandler {
 
             Trainer teamTrainer = null;
             //getting the trainer object:
-            for(Trainer t: trainers){
-                if(t.getId() == trainerID){
-                    teamTrainer = t;
-                    break;
+            //If the ID is 0, the trainer is set to null.
+
+            boolean foundTrainer = false;
+
+            if(trainerID == 0){
+                teamTrainer = null;
+            }else{
+                for(Trainer t: trainers){
+                    if(t.getId() == trainerID){
+                        teamTrainer = t;
+                        foundTrainer = true;
+                        break;
+                    }
                 }
-            }
-            if(teamTrainer == null){
-                System.out.println("ERROR: Trainer not found in database");
-                return null;
+
+                if(foundTrainer == false){
+                    teamTrainer = null;
+                }
+
             }
 
 
             //getting the teams members:
+            //accounting for if the member doesn't exist
             ArrayList<Person> teamMembers = new ArrayList<Person>();
             for(int id : memberIDs){
                 for(Person m : allMembers){
@@ -89,47 +108,7 @@ public class TeamFileHandler {
         return teams;
     }
 
-    public void appendNewTeam(Team team) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath, true));
-        String result = "";
-        result += team.getId() + ";";
-        result += team.getName() + ";";
-        result += team.getTrainer().getId() + ";";
-        for(Person p: team.getMembers()){
-            result += p.getId() + ":";
-        }
-        result += ";";
 
-        bufferedWriter.write(result);
-        bufferedWriter.newLine();
-        bufferedWriter.flush();
-    }
-
-    public boolean checkIfTeamExists(int teamId){
-        File file = new File(filePath);
-
-        try{
-            Scanner sc = new Scanner(new File(String.valueOf(file)));
-            //Skip the header:
-            sc.nextLine();
-
-            while(sc.hasNextLine()){
-                //lets try to make a reader for the format we made
-                String line = sc.nextLine();
-                String[] splitLine = line.split(";");
-                String[] memberIDs = splitLine[3].split(":");
-                if (splitLine[0].equals(teamId)){
-                    return true;
-                }
-
-            }
-            return false;
-
-        }catch (FileNotFoundException e){
-            System.out.println("Team file handler: append new team error: file not found");
-            return false;
-        }
-    }
 
 
     public boolean saveAllToFile(ArrayList<Team> teams){
@@ -147,7 +126,12 @@ public class TeamFileHandler {
                 String result = "";
                 result += team.getId() + fieldSeperator;
                 result += team.getName() + fieldSeperator;
-                result += team.getTrainer().getId() + fieldSeperator;
+                //if there is no trainer, we put the ID 0 in the save file
+                if(team.getTrainer() == null){
+                    result += "0" + fieldSeperator;
+                }else {
+                    result += team.getTrainer().getId() + fieldSeperator;
+                }
                 for(Person p: team.getMembers()){
                     result += p.getId() + listItemSeperator;
                 }

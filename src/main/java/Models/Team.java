@@ -35,6 +35,10 @@ public class Team {
         trainer.setTeam(this);
     }
 
+    public void removeTrainer(){
+        this.trainer = null;
+    }
+
     public ArrayList<Person> getMembers(){
         return members;
     }
@@ -63,13 +67,25 @@ public class Team {
 
     @Override
     public String toString(){
-        String result = "Team: " + name + ", Trainer: " + trainer.getFullName() + ", Members: " + members.size();
+
+        String result = "";
+
+        if(trainer == null){
+            result = "Team: " + name + ", Trainer: " + "NO TRAINER" + ", Members: " + members.size();
+        }else{
+            result = "Team: " + name + ", Trainer: " + trainer.getFullName() + ", Members: " + members.size();
+        }
+
         return result;
     }
 
     public String getFullData(){
         String result = "Team: " + name + " \n";
-        result += "Trainer " + trainer + "\n";
+        if(trainer == null){
+            result += "Trainer: NO TRAINER";
+        }else{
+            result += "Trainer: " + trainer + "\n";
+        }
         result += "-----MEMBERS:-------\n";
         int counter = 0;
         for(Person m : members){
