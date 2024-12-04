@@ -36,6 +36,15 @@ public class TeamFileHandler {
 
         ArrayList<Team> teams = new ArrayList<Team>();
 
+        if(allMembers == null){
+            System.out.println("Error from teams filehandler: members list is null");
+            return teams;
+        }
+        if(trainers == null){
+            System.out.println("Error from teams filehandler: trainers list is null");
+            return teams;
+        }
+
         while(sc.hasNextLine()){
             String fileLine = sc.nextLine();
             String[] fields = fileLine.split(";");
@@ -56,24 +65,36 @@ public class TeamFileHandler {
             Trainer teamTrainer = null;
             //getting the trainer object:
             //If the ID is 0, the trainer is set to null.
+
+            boolean foundTrainer = false;
+
             if(trainerID == 0){
                 teamTrainer = null;
             }else{
                 for(Trainer t: trainers){
                     if(t.getId() == trainerID){
                         teamTrainer = t;
+                        foundTrainer = true;
                         break;
                     }
                 }
+
+                if(foundTrainer == false){
+                    teamTrainer = null;
+                }
+
             }
 
 
             //getting the teams members:
+            //accounting for if the member doesn't exist
             ArrayList<Person> teamMembers = new ArrayList<Person>();
             for(int id : memberIDs){
+                boolean foundMember = false;
                 for(Person m : allMembers){
                     if(m.getId() == id){
                         teamMembers.add(m);
+                        foundMember = true;
                         break;
                     }
                 }

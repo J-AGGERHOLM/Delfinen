@@ -51,7 +51,12 @@ public class SwimmingClub {
 
     public void deleteMemberFromAllTeams(Member member){
         for(Team t: teams){
-            t.removeMember(member);
+            for(Person p: t.getMembers()){
+                if(p.getId() == member.getId()){
+                    t.removeMember(p);
+                }
+            }
+
         }
     }
 

@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Stilt flot op">
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="prior to merge in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingRepository.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingRepository.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/TeamsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/TeamsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/TeamFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/TeamFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/SwimmingClub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/SwimmingClub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +48,9 @@
     &quot;accountId&quot;: &quot;f31faadb-7438-4aac-af7e-288a9fe00afe&quot;
   }
 }</component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -82,8 +90,10 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "ForventetIndtjeningUdregning",
+    "git-widget-placeholder": "Teams3",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
@@ -111,7 +121,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="jdk-21.0.2-temurin-21.0.2-4caba194b151-7da56cdf" />
       </set>
     </attachedChunks>
   </component>
@@ -354,8 +364,19 @@
       <option name="project" value="LOCAL" />
       <updated>1733259236753</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="prior to merge in">
+      <option name="closed" value="true" />
+      <created>1733302785316</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1733302785316</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -391,14 +412,15 @@
     <MESSAGE value="All files moved to Documents folder" />
     <MESSAGE value="contingent ui lille ændring ved while" />
     <MESSAGE value="Stilt flot op" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stilt flot op" />
+    <MESSAGE value="prior to merge in" />
+    <option name="LAST_COMMIT_MESSAGE" value="prior to merge in" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java</url>
-          <line>96</line>
+          <line>117</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
