@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64c75bad-aeb9-4974-ad6b-8cc14586ea99" name="Changes" comment="going through changing chosen discipline to arraylist">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/TeamsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/TeamsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/CompetitiveSwimmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/CompetitiveSwimmer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
-    </list>
+    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="Discipline change to an array with disciplines" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,41 +16,14 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
-    "git-widget-placeholder": "Person-feature",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Delfinen" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="TaskManager">
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="going through changing chosen discipline to arraylist" />
-    <option name="LAST_COMMIT_MESSAGE" value="going through changing chosen discipline to arraylist" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Discipline change to an array with disciplines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Discipline change to an array with disciplines" />
   </component>
 </project>
