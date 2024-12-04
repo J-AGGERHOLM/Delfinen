@@ -8,6 +8,7 @@ import Models.Member;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MemberRepository {
     private ArrayList<Member> memberArrayList;
@@ -81,7 +82,7 @@ public class MemberRepository {
     public boolean createMember(String name, LocalDate birthday, boolean activity, boolean competitive) {
         try {
             // Create a new Member object
-            Member member = new Member(name, birthday, getNewId(), activity, competitive);
+            Member member = new Member(name, birthday, getNewId(), activity, competitive, new Random().nextBoolean());
             // Assign the current member
             currentMember = member;
             // Add the member to the ArrayList
@@ -106,7 +107,7 @@ public class MemberRepository {
         chosenDiscipline = SwimmingDisciplines.values()[disciplineIndex];
         try {
             // Create a new Member object
-            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline);
+            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline, new Random().nextBoolean());
             // Assign the current member
             currentMember = member;
             // Add the member to the ArrayList

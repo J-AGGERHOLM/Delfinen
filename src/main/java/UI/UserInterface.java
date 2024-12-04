@@ -6,38 +6,30 @@ import Controllers.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
-import FileHandler.CompetitionFileHandler;
-
-import Enums.SwimmingDisciplines;
 import Models.*;
 import Repositories.CompetitionRepository;
-import Repositories.MemberRepository;
 
-import Models.Person;
-import Models.Trainer;
 import Models.Training;
 
 
 public class UserInterface {
-    CompetitionController competitionController;
     TeamsController teamsController = new TeamsController();
     TrainingController trainingController;
     Scanner sc;
 
 
     public UserInterface() {
-        this.competitionController = new CompetitionController();
-        this.trainingController = new TrainingController();
         sc = new Scanner(System.in);
+        trainingController = new TrainingController();
     }
 
     public void mainLoop() {
 
         boolean exit = false;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello, and welcome to the Doplhin swimclub admin program!");
+        System.out.println("Hej, velkommen til Delfin svømmeklub admin program!");
 
 
         while (!exit) {
@@ -45,12 +37,13 @@ public class UserInterface {
             System.out.println("please enter a command");
             System.out.println("Trainer: see options about trainers");
             System.out.println("Members: see options about members");
-            System.out.println("kasserer: see options about contingent");
+            System.out.println("kasserer: For at se mulighederne for kasserer");
             System.out.println("Competition: see options about competitions");
             System.out.println("Hold: administrere klubbens svømmehold");
-            // System.out.println("Teams: see options about teams");
 
             String userChoice = sc.nextLine();
+            System.out.println("------------------------------------------------\n");
+
             switch (userChoice.toUpperCase()) {
                 case "EXIT" -> exit = true;
                 case "TRAINER" -> trainerMenu();
@@ -60,6 +53,8 @@ public class UserInterface {
                 case "COMPETITION" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
             }
+            System.out.println("-----------------------------------------------------------\n");
+
         }
     }
 
@@ -84,9 +79,9 @@ public class UserInterface {
         System.out.println("'Exit' - For at forlade konkurrence menuen.");
 
         String competitionInput = sc.nextLine().toUpperCase();
-        while(!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT") ){
+        while (!competitionInput.equals("TILFØJ") && !competitionInput.equals("SE") && !competitionInput.equals("SLET") && !competitionInput.equals("EXIT")) {
             System.out.println("Vælg en gyldig valgmulighed");
-             competitionInput = sc.nextLine().toUpperCase();
+            competitionInput = sc.nextLine().toUpperCase();
         }
 
         //depending on the users input, these cases happen:
@@ -143,6 +138,7 @@ public class UserInterface {
     //----------------------------------------------TEAMS-------------------------------------------
 
     private void displayTeams() {
+
         boolean exit = false;
         while (!exit) {
             System.out.println("Vælg venligst holdet du gerne vil se:");
@@ -175,6 +171,7 @@ public class UserInterface {
     }
 
     private void editTeamMenu() {
+
         boolean exit = false;
         while (!exit) {
 
@@ -197,6 +194,7 @@ public class UserInterface {
     }
 
     private void editTeamAddRemove() {
+
         System.out.println("Vælg IDet af medlemet du vil gerne tilføje/fjerne fra holdet");
         System.out.println("Indtast AFSLUT for at gå tilbage");
         System.out.println(teamsController.getListOfMembers());
@@ -342,6 +340,7 @@ public class UserInterface {
     }
 
     private void deleteTeam() {
+
         System.out.println("Vælg venligst holdet du gerne vil slette ved at indtaste dens ID: " +
                 "\n (AFSLUT for at gå tilbage)");
         System.out.println(teamsController.getListOfTeams());
@@ -407,7 +406,7 @@ public class UserInterface {
         System.out.println("Disciplin");
         String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
-        for(CompetitiveSwimmer swimmer : swimmers) {
+        for (CompetitiveSwimmer swimmer : swimmers) {
             CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
             System.out.println(swimTemp.getFullName());
             System.out.println("Tid (XX:XX:XX):");
@@ -423,10 +422,9 @@ public class UserInterface {
         String choice = sc.nextLine();
         System.out.println("Junior eller Senior hold?");
         String team = sc.nextLine();
-        System.out.println(trainingController.getDisciplineTopFive(team,choice));
+        System.out.println(trainingController.getDisciplineTopFive(team, choice));
         trainerMenu();
     }
-
 
 
     //----------------------------------Training methods----------------------------------
@@ -436,88 +434,113 @@ public class UserInterface {
 
 
     private void contingentMenu() {
+        boolean exit = true;
+        while (exit) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Du er i contingent menuen.");
+            System.out.println("Du har følgende muligheder:");
+            System.out.println("Skriv : 'Opret' - For at oprette en kontingent.");
+            System.out.println("Skriv : 'Slet' - For at slette en kontingent.");
+            System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
+            System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
+            System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
+            System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
+            System.out.println("Skriv : 'Exit' - for at komme ud af kasserer menuen.");
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Du er i contingent menuen.");
-        System.out.println("Du har følgende muligheder:");
-        System.out.println("Skriv : 'Opret' - For at oprette en kontingent.");
-        System.out.println("Skriv : 'Slet' - For at slette en kontingent.");
-        System.out.println("Skriv : 'Medlemmer' - For at se alle kontingenter.");
-        System.out.println("Skriv : 'Specifik' - For at finde en medlems kontingenter.");
-        System.out.println("Skriv : 'Forventet' - For at se forventede indtjening.");
+            String input = scan.nextLine().toUpperCase();
 
-        String input = scan.nextLine().toUpperCase();
-
-        switch (input) {
-            case "OPRET" -> contingentAdd(scan);
-            case "SLET" -> contingentDelete(scan);
-            case "MEDLEMMER" -> readAll();
-            case "SPECIFIK" -> getSpecificContingent(scan);
-            case "FORVENTET" -> getExpectedEarnings();
-            case "" -> System.out.println();
-            default -> System.out.println("Det indtastede passede ikke.");
+            switch (input) {
+                case "OPRET" -> contingentAdd(scan);
+                case "SLET" -> contingentDelete(scan);
+                case "MEDLEMMER" -> readAll();
+                case "SPECIFIK" -> getSpecificContingent(scan);
+                case "FORVENTET" -> getExpectedEarnings();
+                case "RESTANCE" -> getArrears();
+                case "EXIT" -> exit = false;
+                default -> System.out.println("Det indtastede passede ikke.\n");
+            }
         }
-
     }
 
     private void contingentAdd(Scanner scan) {
+        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
-        System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på.");
+        System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på:");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
         System.out.println(cc.createMemberContingent(memberId));
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void contingentDelete(Scanner scan) {
+        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
-        System.out.println("Skriv et id på en medlem, som du vil slette kontingent på.");
+        System.out.println("Skriv et id på en medlem, som du vil slette kontingent på:");
         int memberId = scan.nextInt();
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
 
         String members = cc.getMemberContingents(memberId);
-        if (members.isEmpty()) {
-            System.out.println("Der er ingen kontingent på ønskede id: " + memberId);
+        if (members.equals("Ingen data")) {
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId + "\n");
         } else {
-            System.out.println("Skriv et kontingent id for at slette en specifik.");
+            System.out.println(members);
+            System.out.println("Skriv et kontingent id for at slette en specifik:");
             System.out.println(cc.deleteContingent(scan.nextInt()));
         }
+
+        System.out.println("--------------------------------------------------------\n");
 
     }
 
     private void readAll() {
+        System.out.println("\n-----------------------------------------------------------\n");
+        System.out.println("Alle kontingenter i systemet:\n");
         ContingentController cc = new ContingentController();
         System.out.println(cc.readAll());
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void getSpecificContingent(Scanner scan) {
+        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
-        System.out.println("Skriv et medlems id for at få kontingenterne");
+        System.out.println("Skriv et medlems id for at få kontingenterne: ");
         int memberId = scan.nextInt();
 
         ContingentController cc = new ContingentController();
         String members = cc.getMemberContingents(memberId);
-        if (members == null) {
-            System.out.println("Der er ingen kontingent på ønskede id: " + memberId);
+        if (members.equals("Ingen data")) {
+            System.out.println("Der er ingen kontingenter på ønskede id: " + memberId + "\n");
         } else {
-            System.out.println("Skriv et kontingent id du vil slå op.");
-            System.out.println(cc.deleteContingent(scan.nextInt()));
+            System.out.println("Her er personens kontingenter:\n");
+            System.out.println(members);
         }
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     private void getExpectedEarnings() {
+        System.out.println("\n-----------------------------------------------------------\n");
         ContingentController cc = new ContingentController();
 
         System.out.println("Forventede indtjening:");
         System.out.println(cc.getExpectedEarnings());
-
+        System.out.println("-----------------------------------------------------------\n");
     }
+
+    private void getArrears() {
+        System.out.println("\n-----------------------------------------------------------\n");
+        ContingentController cc = new ContingentController();
+        System.out.println("Manglende betalinger:\n");
+        System.out.println(cc.checkArrears());
+        System.out.println("-----------------------------------------------------------\n");
+    }
+
     //----------------------------------Contingents methods----------------------------------
 // Trainer methods______________________________________________________________________________________________________
     // translate to danish
@@ -533,35 +556,166 @@ public class UserInterface {
 
         String input = sc.nextLine().toUpperCase();
 
-        switch (input){
+        switch (input) {
             case "CREATE" -> createTrainer();
             case "EDIT" -> editTrainer();
             case "DELETE" -> deleteTrainer();
             case "DISPLAY" -> showTrainers();
             case "SPECIFIC" -> specificTrainer();
             default -> System.out.println("Not option");
-         }
+        }
 
 
     }
+
     public void createTrainer() {
-        System.out.println("should create a member");
+        TrainerController trainerController = new TrainerController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter full name: ");
+        String name = sc.nextLine().trim();
+        System.out.println("Enter Birthday: ");
+        System.out.println("Day of birth: ");
+        int day = sc.nextInt();
+        System.out.println("Month of birth:");
+        int month = sc.nextInt();
+        System.out.println("Year of birth: ");
+        int year = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Do you want to add him to an existing team?");
+        String input = sc.nextLine().toLowerCase();
+        if (input.equalsIgnoreCase("yes")) {
+            System.out.println("It will come soon"); // create this method
+        } else {
+            System.out.println(trainerController.createTrainerWithoutTeam(name, LocalDate.of(year, month, day)));
+        }
     }
 
-    public void editTrainer(){
-        System.out.println("should edit the trainer");
+    public void editTrainer() {                            // should finish the methods with team
+        Scanner sc = new Scanner(System.in);
+        TrainerController trainerController = new TrainerController();
+        System.out.println("");
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine().toLowerCase();
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerByName(input));
+            }
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerById(Integer.parseInt(input)));
+            }
+        }
+        if (trainerController.getCurrentTrainer() != null) {
+            System.out.println("Choose the information you want to edit");
+            System.out.println("Name");
+            System.out.println("Birthday");
+            System.out.println("Team");
+
+            input = sc.nextLine().toLowerCase();
+
+            switch (input) {
+                case "name" -> {
+                    System.out.println("Enter new name: ");
+                    input = sc.nextLine();
+                    trainerController.getCurrentTrainer().setName(input); // maybe refactor with an edit method in membersController
+                    System.out.println(trainerController.updateInformation());
+                }
+                case "birthday" -> {
+                    System.out.println("Enter new birthday: ");
+                    System.out.println("Day of birth: ");
+                    int day = sc.nextInt();
+                    System.out.println("Month of birth: ");
+                    int month = sc.nextInt();
+                    System.out.println("Year of birth: ");
+                    int year = sc.nextInt();
+                    trainerController.getCurrentTrainer().setBirthday(LocalDate.of(year, month, day)); // refactor with an edit method in membersController
+                    System.out.println(trainerController.updateInformation());
+
+                }
+                case "team" -> {
+                    System.out.println("Do you want to take the trainer out of the team or change the team the trainer is in charge of?");
+                    System.out.println("1 for delete 2 for change");
+                    input = sc.nextLine();
+                    switch (input) {
+                        case "1" -> {
+                            System.out.println("should delete him from the team he was in ");
+                        }
+                        case "2" -> {
+                            System.out.println("should change the team he is in");
+                        }
+                    }
+                }
+
+                default -> System.out.println("not option");
+            }
+        }
     }
 
-    public void deleteTrainer(){
-        System.out.println("should delete trainer");
+    public void deleteTrainer() {
+        Scanner sc = new Scanner(System.in);
+        TrainerController trainerController = new TrainerController();
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine().toLowerCase();
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerByName(input));
+            }
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerById(Integer.parseInt(input)));
+            }
+        }
+        if (trainerController.getCurrentTrainer() != null) {
+            System.out.println("Are you sure you want to delete this member?");
+            input = sc.nextLine().toLowerCase();
+            if (input.equalsIgnoreCase("yes")) {
+                System.out.println(trainerController.deleteTrainer());
+                // delete the trainer from existing teams
+            }
+        }
     }
 
-    public void showTrainers(){
-        System.out.println("should show a list of trainers");
+    public void showTrainers() {
+        TrainerController trainerController = new TrainerController();
+        System.out.println("Here you have a list of all the trainers from the club: \n");
+        System.out.println(trainerController.displayTrainers());
     }
 
-    public void specificTrainer(){
-        System.out.println("should show a specific trainers information");
+    public void specificTrainer() {
+        TrainerController trainerController = new TrainerController();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Do you want to use a name or an id?");
+        String input = sc.nextLine();
+        switch (input.toLowerCase()) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(trainerController.chooseSpecificTrainerByName(input));
+            }
+            case "id" -> {
+                int idNum = 0;
+                System.out.println("Enter id: ");
+                while (true) {
+                    String inputNum = sc.nextLine();
+                    try {
+                        idNum = Integer.parseInt(inputNum);
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println(input + " is not a valid id. try again");
+                    }
+                }
+                System.out.println(trainerController.chooseSpecificTrainerById(idNum));
+            }
+        }
+        if (trainerController.getCurrentTrainer() != null) {
+            System.out.println(trainerController.displayTrainersInformation());
+        }
     }
 
 //Member methods----------------------------------------------------------------------------------------------------
@@ -634,7 +788,6 @@ public class UserInterface {
     private void editMember() {
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
-        MemberRepository memberRepository = new MemberRepository();
         System.out.println("");
         System.out.println("Do you want to use a name or an id?");
         String input = sc.nextLine().toLowerCase();
@@ -650,7 +803,7 @@ public class UserInterface {
                 System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
             }
         }
-        if (memberController.getCurrentMember() != null ) {
+        if (memberController.getCurrentMember() != null) {
             System.out.println("Choose the information you want to edit");
             System.out.println("name");
             System.out.println("birthday");
@@ -701,9 +854,20 @@ public class UserInterface {
     public void deleteMember() {
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
-        System.out.println("Which member would you like to delete from the system?");
+        System.out.println("Do you want to use a name or an id?");
         String input = sc.nextLine().toLowerCase();
-        System.out.println(memberController.chooseSpecificMemberByName(input));
+        switch (input) {
+            case "name", "full name" -> {
+                System.out.println("Enter name: ");
+                input = sc.nextLine();
+                System.out.println(memberController.chooseSpecificMemberByName(input));
+            }
+            case "id" -> {
+                System.out.println("Enter ID: ");
+                input = sc.nextLine();
+                System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
+            }
+        }
         if (memberController.getCurrentMember() != null) {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
@@ -730,9 +894,6 @@ public class UserInterface {
                 System.out.println("Enter name: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberByName(input));
-                if (memberController.getCurrentMember() != null){
-                    System.out.println(memberController.displayMemberInformation());
-                }
             }
             case "id" -> {
                 int idNum = 0;
@@ -747,12 +908,13 @@ public class UserInterface {
                     }
                 }
                 System.out.println(memberController.chooseSpecificMemberById(idNum));
-                if (memberController.getCurrentMember() != null) {
-                    System.out.println(memberController.displayMemberInformation());
-                }
             }
         }
-
+        if (memberController.getCurrentMember() != null) {
+            System.out.println(memberController.displayMemberInformation());
+        }
     }
+
 }
+
 

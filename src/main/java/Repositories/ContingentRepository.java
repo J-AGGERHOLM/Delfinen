@@ -5,7 +5,6 @@ import FileHandler.ContingentHandler;
 import Models.Contingent;
 import Models.Member;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,22 +18,32 @@ public class ContingentRepository {
     }
 
     // Creates a contingent
-    public boolean createMemberContingent(int memberId) throws IOException {
+    public Contingent createMemberContingent(int memberId) throws IOException {
         Member member = null;
         if(mr.chooseSpecificMemberById(memberId)){
             member = mr.getCurrentMember();
         }
 
+        mr.getMemberArrayList().remove(member);
+
         if(member == null){
-            return false;
+            return null;
         }
 
         double price = calculatePrice(member);
 
         // Create contingent
-        ch.create(getId(), member.getId(), price);
+        Contingent contingent = ch.create(getId(), member.getId(), price);
 
-        return true;
+        if(contingent == null){
+            return null;
+        }
+
+        member.setPaid(true);
+        mr.getMemberArrayList().add(member);
+        mr.updateInformation();
+
+        return contingent;
     }
 
     // Calculate Price
@@ -78,29 +87,68 @@ public class ContingentRepository {
 
         // Remove from list and parse.
         contingents.remove(temp);
-        ch.delete(contingents);
 
-        return true;
+        return ch.delete(contingents);
     }
 
+    // Makes id.
     public int getId() throws IOException {
         int id = ch.read().size();
         return ++id;
     }
 
-    public double getExpectedEarnings(){
-        double sum = 0;
+    // get expected earnings
+    public ArrayList<Double> getExpectedEarnings(){
+        ArrayList<Double> sum = new ArrayList<>();
 
         for(Member member: mr.getMemberArrayList()){
-            sum += calculatePrice(member);
+            // calculates sum
+            sum.add(calculatePrice(member));
         }
 
         return sum;
     }
 
-    // ---------------------- getter -----------------------------
-    public ArrayList<Contingent> getAllContingent() throws FileNotFoundException {
-        return ch.read();
+    // Finds all member with paid = false
+    public ArrayList<Member> getArrears(){
+        ArrayList<Member> arrears = new ArrayList<>();
+        for(Member m : mr.getMemberArrayList()){
+            // If not paid add.
+            if(!m.isPaid()){
+                arrears.add(m);
+            }
+        }
+        return arrears;
     }
 
+    // Every member who has paid = true but no contingent added.
+    // Adds that member to contingent.
+    // returns an Array with all contingent
+    public ArrayList<Contingent> allContingent() throws IOException {
+        ArrayList<Contingent> contingents = new ArrayList<>();
+        // Takes a copy of the original list. avoids reference problems.
+        ArrayList<Contingent> contingentCopy = new ArrayList<>(ch.read());
+        ArrayList<Member> membersCopy = new ArrayList<>(mr.getMemberArrayList());
+
+        for(Member m : membersCopy){
+            // If you have paid
+            if(m.isPaid()){
+                boolean found = false;
+                // Loops through contingents
+                for (Contingent c : contingentCopy) {
+                    if(m.getId() == c.getMemberId()){
+                        // Adds
+                        found = true;
+                        contingents.add(c);
+                        break;
+                    }
+                }
+                // If paid but no contingent, make contingent and add.
+                if(!found){
+                    contingents.add(createMemberContingent(m.getId()));
+                }
+            }
+        }
+        return contingents;
+    }
 }

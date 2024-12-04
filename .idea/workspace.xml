@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Restance virker">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-11-2024_23_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30-11-2024_23_21__Changes_.xml" afterDir="false" />
+    <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Stilt flot op">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/TeamsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/TeamsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,13 +18,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Restance" />
+        <entry key="$PROJECT_DIR$" value="contingentFlotUdskrift" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,6 +48,7 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2pOFxFzec6K0Ui51QhcG01TL6rR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -55,6 +57,12 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.CompetitionFileHandlerTest.create.executor": "Debug",
+    "JUnit.CompetitionFileHandlerTest.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceOver18.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceOver60.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePricePassiv.executor": "Run",
+    "JUnit.ContingentRepositoryTest.calculatePriceUnder18.executor": "Run",
     "JUnit.ValideringTest.checkDate.executor": "Debug",
     "JUnit.ValideringTest.checkDouble.executor": "Run",
     "JUnit.ValideringTest.checkDoubleNot.executor": "Debug",
@@ -70,13 +78,14 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "Teams3",
+    "git-widget-placeholder": "ForventetIndtjeningUdregning",
     "kotlin-language-version-configured": "true",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
@@ -84,12 +93,18 @@
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+      <recent name="junit.framework.TestCase" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen" />
+      <recent name="C:\Users\jackm\Delfinen\src" />
+      <recent name="C:\Users\jackm\Delfinen\src\Documents" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src" />
       <recent name="C:\Users\mathi\IdeaProjects\Semester 1\Delfinen\src\main" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="Repositories" />
+      <recent name="FileHandler" />
       <recent name="UI" />
     </key>
   </component>
@@ -129,6 +144,7 @@
       <workItem from="1733216186675" duration="56000" />
       <workItem from="1733216255248" duration="270000" />
       <workItem from="1733216547750" duration="361000" />
+      <workItem from="1733257336849" duration="1951000" />
     </task>
     <task id="LOCAL-00001" summary="Små rettelser Member og contingent merged">
       <option name="closed" value="true" />
@@ -250,7 +266,95 @@
       <option name="project" value="LOCAL" />
       <updated>1733171958854</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Ændrede i UI">
+      <option name="closed" value="true" />
+      <created>1733235205547</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235205547</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Ændrede UI tilbage">
+      <option name="closed" value="true" />
+      <created>1733235325309</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235325309</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Ændret fra .txt til .csv">
+      <option name="closed" value="true" />
+      <created>1733237348326</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733237348326</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv">
+      <option name="closed" value="true" />
+      <created>1733242917351</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733242917351</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Lavet test for kontingent afregningen">
+      <option name="closed" value="true" />
+      <created>1733245885599</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733245885599</updated>
+    </task>
+    <task id="LOCAL-00021" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733247717700</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733247717700</updated>
+    </task>
+    <task id="LOCAL-00022" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733248129589</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733248129589</updated>
+    </task>
+    <task id="LOCAL-00023" summary="All files moved to Documents folder">
+      <option name="closed" value="true" />
+      <created>1733248180081</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733248180081</updated>
+    </task>
+    <task id="LOCAL-00024" summary="contingent ui lille ændring ved while">
+      <option name="closed" value="true" />
+      <created>1733249233591</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733249233591</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Stilt flot op">
+      <option name="closed" value="true" />
+      <created>1733259190660</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733259190660</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Stilt flot op">
+      <option name="closed" value="true" />
+      <created>1733259236753</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733259236753</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +383,25 @@
     <MESSAGE value="Lavet restance" />
     <MESSAGE value="Tilføjet assertEqual til date" />
     <MESSAGE value="Restance virker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restance virker" />
+    <MESSAGE value="Ændrede i UI" />
+    <MESSAGE value="Ændrede UI tilbage" />
+    <MESSAGE value="Ændret fra .txt til .csv" />
+    <MESSAGE value="Har lavet logik for, hvis du er true i betalt, opret i Contingent.csv" />
+    <MESSAGE value="Lavet test for kontingent afregningen" />
+    <MESSAGE value="All files moved to Documents folder" />
+    <MESSAGE value="contingent ui lille ændring ved while" />
+    <MESSAGE value="Stilt flot op" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stilt flot op" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
