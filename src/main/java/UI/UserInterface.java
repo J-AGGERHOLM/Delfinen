@@ -884,7 +884,7 @@ public class UserInterface {
                     input = sc.nextLine();
                     if (input.equalsIgnoreCase("competitive")) {
                         ArrayList<SwimmingDisciplines> newChosenDisciplines = typeMemberDiscipline();
-                        System.out.println(memberController.changeFromMemberToCOmpetitiveSwimmer());
+                        System.out.println(memberController.changeFromMemberToCompetitiveSwimmer());
                         memberController.getCurrentMember().setChosenDisciplines(newChosenDisciplines);
                     }
                     memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive"));

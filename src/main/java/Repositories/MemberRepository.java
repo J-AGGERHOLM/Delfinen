@@ -124,7 +124,7 @@ public class MemberRepository {
         }
     }
 
-    public boolean createCompetitiveMemberFromEdit(String name, LocalDate birthday, int id, boolean activity, boolean competitive) {
+    public boolean createCompetitiveMemberFromEdit(String name, LocalDate birthday, int id, boolean activity, boolean competitive) { //refactor
         try {
             // Create a new Member object
             Member member = new CompetitiveSwimmer(name, birthday, id, activity, competitive, new Random().nextBoolean());
@@ -165,7 +165,7 @@ public class MemberRepository {
         }
     }
 
-    public boolean deleteMemberFromEdit(Member member){
+    public boolean deleteMemberFromEdit(Member member){ //refactor
         try {
             memberArrayList.remove(member);
             memberFileHandler.update();

@@ -93,7 +93,7 @@ public class MemberController {
         return "Member deleted successfully";
     }
 
-    public String changeFromMemberToCOmpetitiveSwimmer() {
+    public String changeFromMemberToCompetitiveSwimmer() {               //refactor better
         try {
             Member memberToDelete = getCurrentMember();
             memberRepository.createCompetitiveMemberFromEdit(getCurrentMember().getFullName(), getCurrentMember().getBirthday(), getCurrentMember().getId(), getCurrentMember().getActivity(), true);
@@ -104,6 +104,8 @@ public class MemberController {
             return "Didnt work";
         }
     }
+
+
 
 
 }
