@@ -90,11 +90,9 @@ public class TeamFileHandler {
             //accounting for if the member doesn't exist
             ArrayList<Person> teamMembers = new ArrayList<Person>();
             for(int id : memberIDs){
-                boolean foundMember = false;
                 for(Person m : allMembers){
                     if(m.getId() == id){
                         teamMembers.add(m);
-                        foundMember = true;
                         break;
                     }
                 }
