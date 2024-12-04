@@ -13,10 +13,6 @@ public class TrainingController {
         data = new TrainingRepository();
     }
 
-    public String showData() {
-        return data.showData(data.getData());
-    }
-
     public void addTraining(Training t) {
         data.addTraining(t);
 
@@ -36,6 +32,10 @@ public class TrainingController {
 
     public void writeToFile() {
         data.writeToFile();
+    }
+
+    public String specificSwimmerData(int id) {
+        return data.specificSwimmerData(id);
     }
 }
 

@@ -15,8 +15,6 @@ public class CompetitiveSwimmer extends Member {
         chosenDisciplines = new ArrayList<>();
     }
 
-
-
     public ArrayList<SwimmingDisciplines> getChosenDisciplines() {
         return chosenDisciplines;
     }

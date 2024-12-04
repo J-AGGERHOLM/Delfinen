@@ -409,23 +409,29 @@ public class UserInterface {
     //----------------------------------Training methods----------------------------------
 
     private void trainerMenu() {
-        System.out.println("Velkommen til Træningmenu");
-        System.out.println("Du har følgende muligheder:");
-        System.out.println("TILFØJE : tilføje en træningssession.");
-        System.out.println("FEM : se top 5 for en disciplin");
-        System.out.println("EXIT : tilbage til hovedmenuen");
+        boolean exit = true;
+        while(exit) {
+            System.out.println("Velkommen til Træningmenu");
+            System.out.println("Du har følgende muligheder:");
+            System.out.println("TILFØJE : tilføje en træningssession");
+            System.out.println("FEM : se top 5 for en disciplin");
+            System.out.println("SVØMMER: se tider for en specifik svømmer");
+            System.out.println("EXIT : tilbage til hovedmenuen");
 
-        String input = sc.nextLine().toUpperCase();
+            String input = sc.nextLine().toUpperCase();
 
-        switch (input) {
-            case "TILFØJE" -> addTrainingSession();
-            case "FEM" -> viewTop5ForDiscipline();
-            case "EXIT" -> {
-                trainingController.writeToFile();
-                mainLoop();
+            switch (input) {
+                case "TILFØJE" -> addTrainingSession();
+                case "FEM" -> viewTop5ForDiscipline();
+                case "SVØMMER" -> searchForSpecificSwimmerData();
+                case "EXIT" -> {
+                    trainingController.writeToFile();
+                    exit = false;
+                }
+                default -> System.out.println("Du har indtastet forkert");
             }
-            default -> System.out.println("Forkert input");
         }
+
 
     }
 
@@ -434,14 +440,12 @@ public class UserInterface {
         String discipline = sc.nextLine().toUpperCase();
         ArrayList<CompetitiveSwimmer> swimmers = trainingController.getCompetitiveSwimmersForDiscipline(discipline);
         for (CompetitiveSwimmer swimmer : swimmers) {
-            CompetitiveSwimmer swimTemp = trainingController.getSwimmerByID(swimmer.getId());
-            System.out.println(swimTemp.getFullName());
+            System.out.println(swimmer.getFullName());
             System.out.println("Tid (XX:XX:XX):");
             String time = sc.nextLine();
             String date = String.valueOf(LocalDate.now());
             trainingController.addTraining(new Training(discipline, swimmer.getId(), time, date));
         }
-        trainerMenu();
     }
 
     public void viewTop5ForDiscipline() {
@@ -450,7 +454,13 @@ public class UserInterface {
         System.out.println("Junior eller Senior hold?");
         String team = sc.nextLine();
         System.out.println(trainingController.getDisciplineTopFive(team, choice));
-        trainerMenu();
+    }
+
+    public void searchForSpecificSwimmerData() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Svømmer ID:");
+        int id = Validering.checkInt(scan);
+        System.out.println(trainingController.specificSwimmerData(id));
     }
 
 

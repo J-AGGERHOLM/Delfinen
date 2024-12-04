@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="going through changing chosen discipline to arraylist">
+      <change afterPath="$PROJECT_DIR$/TrainingData.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainingRepository.csv" beforeDir="false" afterPath="$PROJECT_DIR$/TrainingRepository.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TrainingRepository.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/TrainingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/TrainingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/TrainingsFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/TrainingsFileHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Models/CompetitiveSwimmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/CompetitiveSwimmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +34,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "git-widget-placeholder": "Person-feature",
+    "git-widget-placeholder": "FastestTimesForSwimmer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
@@ -71,8 +76,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/UI/UserInterface.java</url>
-          <line>803</line>
+          <line>813</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
