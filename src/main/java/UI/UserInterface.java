@@ -272,6 +272,9 @@ public class UserInterface {
 
     private void teamMenu() {
 
+        //whenever the teams menu is accessed, we update the list of trainers in the trainer controller:
+        teamsController.updateTrainers();
+
         boolean exit = false;
         while (!exit) {
             Scanner scan = new Scanner(System.in);
@@ -330,24 +333,31 @@ public class UserInterface {
         System.out.println("Indtast venligst trænerens ID");
         System.out.println(teamsController.getListOfTrainers());
 
-        exit = false;
-        int trainerChoiceID;
-        while (!exit) {
-            String userChoice = sc.nextLine();
-            try {
-                trainerChoiceID = Integer.parseInt(userChoice);
-            } catch (NumberFormatException e) {
-                System.out.println("Indtast venligst en tal");
-                trainerChoiceID = -1;
-            }
+        if(!teamsController.areThereTrainers()){
+            System.out.println("Der er ingen trænere i databasen");
+            teamsController.assignTrainer(0);
+        }else{
+            exit = false;
+            int trainerChoiceID;
+            while (!exit) {
+                String userChoice = sc.nextLine();
+                try {
+                    trainerChoiceID = Integer.parseInt(userChoice);
+                } catch (NumberFormatException e) {
+                    System.out.println("Indtast venligst en tal");
+                    trainerChoiceID = -1;
+                }
 
-            if (teamsController.assignTrainer(trainerChoiceID)) {
-                System.out.println("Denne træner er blevet tildelt til holdet");
-                exit = true;
-            } else {
-                System.out.println("Indtast venligst en gyldig træner");
+                if (teamsController.assignTrainer(trainerChoiceID)) {
+                    System.out.println("Denne træner er blevet tildelt til holdet");
+                    exit = true;
+                } else {
+                    System.out.println("Indtast venligst en gyldig træner");
+                }
             }
         }
+
+
 
         //Finally we tell the controller to make the new team with all the data it has gathered:
         teamsController.finalCreateNewTeam(teamName);
@@ -692,8 +702,12 @@ public class UserInterface {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
             if (input.equalsIgnoreCase("yes")) {
-                System.out.println(trainerController.deleteTrainer());
+
                 // delete the trainer from existing teams
+                teamsController.deleteTrainerFromAllTeams(trainerController.getCurrentTrainer());
+
+                System.out.println(trainerController.deleteTrainer());
+
             }
         }
     }
@@ -904,7 +918,11 @@ public class UserInterface {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
             if (input.equalsIgnoreCase("yes")) {
+                //Deleting the member from all teams:
+                teamsController.deleteMemberFromAllTeams(memberController.getCurrentMember());
+
                 System.out.println(memberController.deleteMember());
+
             }
         }
     }
