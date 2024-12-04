@@ -1,6 +1,9 @@
 package Models;
 
+import Enums.SwimmingDisciplines;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Member extends Person {
     private boolean activity;
@@ -22,6 +25,10 @@ public class Member extends Person {
 
     public boolean getCompetitive() {
         return competitive;
+    }
+
+    public void setChosenDisciplines(ArrayList<SwimmingDisciplines> chosenDisciplines){
+
     }
 
     public boolean isPaid() {

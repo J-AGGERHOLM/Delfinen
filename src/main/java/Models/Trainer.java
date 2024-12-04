@@ -35,8 +35,12 @@ public class Trainer extends Person {
     }
 
     public String toStringFile(){
+        if (team == null){
+            return super.getFullName() + "," +
+                    super.getBirthday() + "," + super.getId();
+        }
         return super.getFullName() + "," +
                 super.getBirthday() + "," + super.getId() + "," +
-                team.getName();
+                team.getId();
     }
 }

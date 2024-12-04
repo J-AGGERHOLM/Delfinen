@@ -102,12 +102,32 @@ public class MemberRepository {
     }
 
 
-    public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int disciplineIndex) {
-        SwimmingDisciplines chosenDiscipline = null;
-        chosenDiscipline = SwimmingDisciplines.values()[disciplineIndex];
+    public boolean createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive) {
         try {
             // Create a new Member object
-            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, chosenDiscipline, new Random().nextBoolean());
+            Member member = new CompetitiveSwimmer(name, birthday, getNewId(), activity, competitive, new Random().nextBoolean());
+            // Assign the current member
+            currentMember = member;
+            // Add the member to the ArrayList
+            memberArrayList.add(currentMember);
+            // Save the member to file
+            memberFileHandler.create();
+            return true;
+        } catch (IOException e) {
+            System.err.println("Error occurred while creating a member: " + e.getMessage());
+
+            return false;
+        } catch (Exception e) {
+            // Catch any other unforeseen exceptions
+            System.err.println("An unexpected error occurred: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean createCompetitiveMemberFromEdit(String name, LocalDate birthday, int id, boolean activity, boolean competitive) {
+        try {
+            // Create a new Member object
+            Member member = new CompetitiveSwimmer(name, birthday, id, activity, competitive, new Random().nextBoolean());
             // Assign the current member
             currentMember = member;
             // Add the member to the ArrayList
@@ -138,6 +158,16 @@ public class MemberRepository {
     public boolean deleteMember(){
         try {
             memberArrayList.remove(currentMember);
+            memberFileHandler.update();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean deleteMemberFromEdit(Member member){
+        try {
+            memberArrayList.remove(member);
             memberFileHandler.update();
             return true;
         } catch (Exception e) {

@@ -64,7 +64,6 @@ public class MemberController {
     }
 
 
-
     public String createMember(String name, LocalDate birthday, boolean activity, boolean competitive) {
         if (!memberRepository.createMember(name, birthday, activity, competitive)) {
             return "Failed to create member, please try again";
@@ -72,16 +71,16 @@ public class MemberController {
         return "Member was successfully created";
     }
 
-    public String createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive, int swimmingDisciplineIndex) {
-        if(!memberRepository.createCompetitiveMember(name, birthday, activity, competitive, swimmingDisciplineIndex)){
+    public String createCompetitiveMember(String name, LocalDate birthday, boolean activity, boolean competitive) {
+        if (!memberRepository.createCompetitiveMember(name, birthday, activity, competitive)) {
             return "Failed to create member, please try again";
         }
         return "Member was successfully created";
     }
 
     // refactor
-    public String updateInformation(){
-        if (memberRepository.updateInformation()){
+    public String updateInformation() {
+        if (memberRepository.updateInformation()) {
             return "Members information updated successfully";
         }
         return "Failed to update members information";
@@ -92,6 +91,18 @@ public class MemberController {
             return "Failed to create member, please try again";
         }
         return "Member deleted successfully";
+    }
+
+    public String changeFromMemberToCOmpetitiveSwimmer() {
+        try {
+            Member memberToDelete = getCurrentMember();
+            memberRepository.createCompetitiveMemberFromEdit(getCurrentMember().getFullName(), getCurrentMember().getBirthday(), getCurrentMember().getId(), getCurrentMember().getActivity(), true);
+            memberRepository.deleteMemberFromEdit(memberToDelete);
+            return "Worked :)";
+
+        } catch (Exception e) {
+            return "Didnt work";
+        }
     }
 
 

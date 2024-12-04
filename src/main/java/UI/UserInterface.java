@@ -9,6 +9,7 @@ import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
+import Enums.SwimmingDisciplines;
 import Models.*;
 import Repositories.CompetitionRepository;
 
@@ -271,6 +272,9 @@ public class UserInterface {
 
     private void teamMenu() {
 
+        //whenever the teams menu is accessed, we update the list of trainers in the trainer controller:
+        teamsController.updateTrainers();
+
         boolean exit = false;
         while (!exit) {
             Scanner scan = new Scanner(System.in);
@@ -329,24 +333,31 @@ public class UserInterface {
         System.out.println("Indtast venligst trænerens ID");
         System.out.println(teamsController.getListOfTrainers());
 
-        exit = false;
-        int trainerChoiceID;
-        while (!exit) {
-            String userChoice = sc.nextLine();
-            try {
-                trainerChoiceID = Integer.parseInt(userChoice);
-            } catch (NumberFormatException e) {
-                System.out.println("Indtast venligst en tal");
-                trainerChoiceID = -1;
-            }
+        if(!teamsController.areThereTrainers()){
+            System.out.println("Der er ingen trænere i databasen");
+            teamsController.assignTrainer(0);
+        }else{
+            exit = false;
+            int trainerChoiceID;
+            while (!exit) {
+                String userChoice = sc.nextLine();
+                try {
+                    trainerChoiceID = Integer.parseInt(userChoice);
+                } catch (NumberFormatException e) {
+                    System.out.println("Indtast venligst en tal");
+                    trainerChoiceID = -1;
+                }
 
-            if (teamsController.assignTrainer(trainerChoiceID)) {
-                System.out.println("Denne træner er blevet tildelt til holdet");
-                exit = true;
-            } else {
-                System.out.println("Indtast venligst en gyldig træner");
+                if (teamsController.assignTrainer(trainerChoiceID)) {
+                    System.out.println("Denne træner er blevet tildelt til holdet");
+                    exit = true;
+                } else {
+                    System.out.println("Indtast venligst en gyldig træner");
+                }
             }
         }
+
+
 
         //Finally we tell the controller to make the new team with all the data it has gathered:
         teamsController.finalCreateNewTeam(teamName);
@@ -691,8 +702,12 @@ public class UserInterface {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
             if (input.equalsIgnoreCase("yes")) {
-                System.out.println(trainerController.deleteTrainer());
+
                 // delete the trainer from existing teams
+                teamsController.deleteTrainerFromAllTeams(trainerController.getCurrentTrainer());
+
+                System.out.println(trainerController.deleteTrainer());
+
             }
         }
     }
@@ -781,24 +796,34 @@ public class UserInterface {
         if (!competitive.equalsIgnoreCase("competitive")) {
             System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
         } else {
-            int disciplineIndex = -1;
-            disciplineIndex = typeMemberDiscipline();
-            System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive"), disciplineIndex));
+           ArrayList<SwimmingDisciplines> chosenDisciplines = typeMemberDiscipline();
+           System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
+           memberController.getCurrentMember().setChosenDisciplines(chosenDisciplines);
         }
     }
 
     //helper method for creating competitibe member:
-    private int typeMemberDiscipline() {
-        int userChoice = 0;
-        Scanner cmScan = new Scanner(System.in);
-        System.out.println("Chose a swimming discipline to assign to the member:");
-        System.out.println("Type 1 : To assign Butterfly ");
-        System.out.println("Type 2 : To assign Crawl ");
-        System.out.println("Type 3 : To assign Backcrawl ");
-        System.out.println("Type 4 : To assign Breaststroke ");
-        userChoice = cmScan.nextInt();
-
-        return userChoice - 1;
+    private ArrayList<SwimmingDisciplines> typeMemberDiscipline() {
+        ArrayList<SwimmingDisciplines> swimmingDisciplinesArrayList = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+        while (!input.equalsIgnoreCase("no")) {
+            System.out.println("Chose a swimming discipline to assign to the member:");
+            System.out.println("Type 1 : To assign Butterfly ");
+            System.out.println("Type 2 : To assign Crawl ");
+            System.out.println("Type 3 : To assign Backcrawl ");
+            System.out.println("Type 4 : To assign Breaststroke ");
+            String chosenDiscipline = sc.nextLine();
+            // make sure it is a number with validering
+            swimmingDisciplinesArrayList.add(SwimmingDisciplines.values()[Integer.parseInt(chosenDiscipline) - 1]);
+            if(swimmingDisciplinesArrayList.size() < 4) {
+                System.out.println("Would you like to add another discipline?");
+                input = sc.nextLine();
+            } else {
+                break;
+            }
+        }
+        return swimmingDisciplinesArrayList;
     }
 
     private void editMember() {
@@ -857,7 +882,12 @@ public class UserInterface {
                 case "competitive" -> {
                     System.out.println("Enter new competitive status ('competitive' ; 'regular': ");
                     input = sc.nextLine();
-                    memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive")); // refactor with an edit method in membersController
+                    if (input.equalsIgnoreCase("competitive")) {
+                        ArrayList<SwimmingDisciplines> newChosenDisciplines = typeMemberDiscipline();
+                        System.out.println(memberController.changeFromMemberToCOmpetitiveSwimmer());
+                        memberController.getCurrentMember().setChosenDisciplines(newChosenDisciplines);
+                    }
+                    memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive"));
                     System.out.println(memberController.updateInformation());
 
                 }
@@ -888,7 +918,11 @@ public class UserInterface {
             System.out.println("Are you sure you want to delete this member?");
             input = sc.nextLine().toLowerCase();
             if (input.equalsIgnoreCase("yes")) {
+                //Deleting the member from all teams:
+                teamsController.deleteMemberFromAllTeams(memberController.getCurrentMember());
+
                 System.out.println(memberController.deleteMember());
+
             }
         }
     }
