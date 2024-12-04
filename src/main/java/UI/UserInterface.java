@@ -463,7 +463,7 @@ public class UserInterface {
             System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
             System.out.println("Skriv : 'Exit' - for at komme ud af kasserer menuen.");
 
-            String input = scan.nextLine().toUpperCase();
+            String input = Validering.mustBeString(scan).toUpperCase();
 
             switch (input) {
                 case "OPRET" -> contingentAdd(scan);
@@ -483,7 +483,7 @@ public class UserInterface {
         displayMembers();
 
         System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på:");
-        int memberId = scan.nextInt();
+        int memberId = Validering.checkInt(scan);
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
@@ -496,7 +496,7 @@ public class UserInterface {
         displayMembers();
 
         System.out.println("Skriv et id på en medlem, som du vil slette kontingent på:");
-        int memberId = scan.nextInt();
+        int memberId = Validering.checkInt(scan);
 
         // should be user input in parameter. input doesn't do anything yet
         ContingentController cc = new ContingentController();
@@ -527,7 +527,7 @@ public class UserInterface {
         displayMembers();
 
         System.out.println("Skriv et medlems id for at få kontingenterne: ");
-        int memberId = scan.nextInt();
+        int memberId = Validering.checkInt(scan);
 
         ContingentController cc = new ContingentController();
         String members = cc.getMemberContingents(memberId);
