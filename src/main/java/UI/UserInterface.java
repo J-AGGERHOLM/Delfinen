@@ -444,18 +444,18 @@ public class UserInterface {
             System.out.println("Skriv : 'Restance' - For at se manglende betalinger.");
             System.out.println("Skriv : 'Exit' - for at komme ud af kasserer menuen.");
 
-            String input = scan.nextLine().toUpperCase();
+            String input = Validering.mustBeString(scan);
 
-            switch (input) {
-                case "OPRET" -> contingentAdd(scan);
-                case "SLET" -> contingentDelete(scan);
-                case "MEDLEMMER" -> readAll();
-                case "SPECIFIK" -> getSpecificContingent(scan);
-                case "FORVENTET" -> getExpectedEarnings();
-                case "RESTANCE" -> getArrears();
-                case "EXIT" -> exit = false;
-                default -> System.out.println("Det indtastede passede ikke.\n");
-            }
+//            switch (input) {
+//                case "OPRET" -> contingentAdd(scan);
+//                case "SLET" -> contingentDelete(scan);
+//                case "MEDLEMMER" -> readAll();
+//                case "SPECIFIK" -> getSpecificContingent(scan);
+//                case "FORVENTET" -> getExpectedEarnings();
+//                case "RESTANCE" -> getArrears();
+//                case "EXIT" -> exit = false;
+//                default -> System.out.println("Det indtastede passede ikke.\n");
+//            }
         }
     }
 
