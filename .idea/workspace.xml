@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9e5b6f4-3769-4190-bb31-cd8d35a8614f" name="Changes" comment="Stilt flot op">
+      <change afterPath="$PROJECT_DIR$/CompetitionResults.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompetitionResults.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/CompetitionFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/CompetitionFileHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +83,9 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "document-update-competition",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/45298/Documents/KEA/1semester/Delfinen",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
@@ -89,6 +93,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\45298\Documents\KEA\1semester\Delfinen" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
       <recent name="junit.framework.TestCase" />
@@ -352,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733259236753</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="loop and validation added to competition">
+      <option name="closed" value="true" />
+      <created>1733308239012</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1733308239012</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -389,7 +404,8 @@
     <MESSAGE value="All files moved to Documents folder" />
     <MESSAGE value="contingent ui lille ændring ved while" />
     <MESSAGE value="Stilt flot op" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stilt flot op" />
+    <MESSAGE value="loop and validation added to competition" />
+    <option name="LAST_COMMIT_MESSAGE" value="loop and validation added to competition" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -398,11 +414,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java</url>
           <line>96</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/UI/UserInterface.java</url>
-          <line>446</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
