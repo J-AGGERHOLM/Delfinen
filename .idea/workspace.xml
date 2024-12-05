@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="going through changing chosen discipline to arraylist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/ContingentHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="contingentGetName" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,7 +28,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "git-widget-placeholder": "contingentGetName",
+    "git-widget-placeholder": "contingentBugSpecifik",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)"
@@ -76,6 +77,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java</url>
           <line>104</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java</url>
+          <line>165</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

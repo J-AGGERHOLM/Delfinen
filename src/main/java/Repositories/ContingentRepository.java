@@ -151,7 +151,6 @@ public class ContingentRepository {
                         // Adds
                         found = true;
                         contingents.add(c);
-                        break;
                     }
                 }
                 // If paid but no contingent, make contingent and add.

@@ -35,22 +35,34 @@ public class ContingentController {
 
         try {
 
-            // Loops the ArrayList
-            for (Contingent c : repository.allContingent()) {
-                for (Member m : repository.getAllMembers()) {
-                    if (sb.isEmpty() && c.getMemberId() == memberId) {
-                        sb.append("Id, ").append("name + memberId, ").append(" Pris,").append(" Betalings dato\n");
-                    }
-
-                    if (c.getMemberId() == memberId && m.getId() == memberId) {
-                        sb.append(c.getId()).append(", ")
-                                .append(m.getFullName()).append("(").append(c.getMemberId()).append(")").append(", ")
-                                .append(c.getPrice()).append(", ")
-                                .append(c.getDate())
-                                .append("\n");
-                    }
+            // Find medlemmet én gang
+            Member targetMember = null;
+            for (Member m : repository.getAllMembers()) {
+                if (m.getId() == memberId) {
+                    targetMember = m;
+                    break;
                 }
             }
+
+            // Hvis medlemmet ikke findes
+            if (targetMember == null) {
+                return "Medlemmet findes ikke.";
+            }
+
+            // Tilføj overskriften
+            sb.append("Id, Name (MemberId), Price, Payment Date\n");
+
+            ArrayList<Contingent> contingents = repository.allContingent();
+            // Loop gennem kontingenter og find relevante
+            for (Contingent c : contingents) {
+                if (c.getMemberId() == memberId) {
+                    sb.append(c.getId()).append(", ")
+                            .append(targetMember.getFullName()).append("(").append(c.getMemberId()).append(")").append(", ")
+                            .append(c.getPrice()).append(", ")
+                            .append(c.getDate()).append("\n");
+                }
+            }
+
 
             // Returns a message
             return sb.isEmpty()
