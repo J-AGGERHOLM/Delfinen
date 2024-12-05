@@ -49,7 +49,7 @@ public class Validering {
     // Check for int value.
     public static int checkInt(Scanner scan) {
         while (!scan.hasNextInt()) {
-            System.out.println("Please enter a number");
+            System.out.println("Indtast venligst et tal");
             scan.next();
         }
         return scan.nextInt();

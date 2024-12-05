@@ -442,7 +442,13 @@ public class UserInterface {
         for (CompetitiveSwimmer swimmer : swimmers) {
             System.out.println(swimmer.getFullName());
             System.out.println("Tid (XX:XX:XX):");
-            String time = sc.nextLine();
+            System.out.println("Minutter:");
+            int minutes = Validering.checkInt(sc);
+            System.out.println("Sekunder:");
+            int seconds = Validering.checkInt(sc);
+            System.out.println("Millisekunder:");
+            int miliseconds = Validering.checkInt(sc);
+            String time = minutes + ":" + seconds + ":" + miliseconds;
             String date = String.valueOf(LocalDate.now());
             trainingController.addTraining(new Training(discipline, swimmer.getId(), time, date));
         }
