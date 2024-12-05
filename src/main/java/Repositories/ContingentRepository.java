@@ -93,7 +93,13 @@ public class ContingentRepository {
 
     // Makes id.
     public int getId() throws IOException {
-        int id = ch.read().size();
+        int id = 0;
+        for(Contingent c : ch.read()){
+            if(c.getId() > id){
+                id = c.getId();
+            }
+        }
+
         return ++id;
     }
 
