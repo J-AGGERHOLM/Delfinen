@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class TrainerFileHandler {
-    private final String fileName = "trainersList.txt";
+    private final String fileName = "trainersList.csv";
     private TrainerRepository trainerRepository;
     private TeamFileHandler teamFileHandler;
 

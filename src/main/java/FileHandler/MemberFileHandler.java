@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MemberFileHandler {
-    private final String fileName = "membersList.txt";
+    private final String fileName = "membersList.csv";
     private MemberRepository memberRepository;
 
 

@@ -1,6 +1,7 @@
 package Controllers;
 
 import Enums.SwimmingDisciplines;
+import Models.CompetitiveSwimmer;
 import Models.Member;
 import Repositories.MemberRepository;
 
@@ -95,13 +96,27 @@ public class MemberController {
 
     public String changeFromMemberToCompetitiveSwimmer() {               //refactor better
         try {
-            Member memberToDelete = getCurrentMember();
-            memberRepository.createCompetitiveMemberFromEdit(getCurrentMember().getFullName(), getCurrentMember().getBirthday(), getCurrentMember().getId(), getCurrentMember().getActivity(), true);
-            memberRepository.deleteMemberFromEdit(memberToDelete);
-            return "Worked :)";
-
+            if(getCurrentMember() instanceof CompetitiveSwimmer) {
+                Member memberToDelete = getCurrentMember();
+                memberRepository.createCompetitiveMemberFromEdit(getCurrentMember().getFullName(), getCurrentMember().getBirthday(), getCurrentMember().getId(), getCurrentMember().getActivity(), true);
+                memberRepository.deleteMemberFromEdit(memberToDelete);
+                return "Worked :)";
+            } else {
+                return "was already a competitive swimmer";
+            }
         } catch (Exception e) {
             return "Didnt work";
+        }
+    }
+
+    public String changeFromCompetitiveSwimmerToMember(){
+        try {
+            if(!(getCurrentMember() instanceof CompetitiveSwimmer) ){
+                return "hello";
+            }
+return "holleo";
+        } catch (Exception e){
+            return "didnt work";
         }
     }
 

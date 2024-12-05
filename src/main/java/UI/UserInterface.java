@@ -763,47 +763,49 @@ public class UserInterface {
 
     public void memberMenu() {
         // need to translate to danish
-        System.out.println("You are in the Member menu");
-        System.out.println("You have following options:");
-        System.out.println("Type : 'Create' - To register a new member.");
-        System.out.println("Type : 'Edit' - To edit information about an existing member.");
-        System.out.println("Typer : 'Delete' - to delete a member from the system.");
-        System.out.println("Type : 'Members' - To view all current members.");
-        System.out.println("Type : 'Specific' - To search for a specific member.");
+        System.out.println("Du er i medlemsmenuen");
+        System.out.println("Indtast venligst en kommando");
+        System.out.println("Opret: For at registrere et nyt medlem.");
+        System.out.println("Rediger: For at redigere oplysninger om et eksisterende medlem.");
+        System.out.println("Slet: For at slette et medlem fra systemet.");
+        System.out.println("Medlemmer: For at se alle nuværende medlemmer.");
+        System.out.println("Specifik: For at søge efter et bestemt medlem.");
 
 
         Scanner sc = new Scanner(System.in);
 
         String userInput = sc.nextLine().toUpperCase();
+        System.out.println("------------------------------------------------\n");
 
         switch (userInput) {
-            case "CREATE" -> createMember();
-            case "EDIT" -> editMember();
-            case "DELETE" -> deleteMember();
-            case "MEMBERS" -> displayMembers();
-            case "SPECIFIC" -> displayInformationFromSpecificMember();
-            default -> System.out.println("Not an option!");
+            case "OPRET" -> createMember();
+            case "REDIGER" -> editMember();
+            case "SLET" -> deleteMember();
+            case "MEDLEMMER" -> displayMembers();
+            case "SPECIFIK" -> displayInformationFromSpecificMember();
+            default -> System.out.println("Indtast en gyldig kommando");
         }
     }
 
     private void createMember() {
+        System.out.println("------------------------------------------------\n");
         MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter full name: ");
+        System.out.println("Indtast fuldt navn: ");
         String name = sc.nextLine().trim();
-        System.out.println("Enter Birthday: ");
-        System.out.println("Day of birth: ");
+        System.out.println("Indtast fødselsdag: ");
+        System.out.println("Fødselsdagen: ");
         int day = sc.nextInt();
-        System.out.println("Month of birth:");
+        System.out.println("Fødselsmåned:");
         int month = sc.nextInt();
-        System.out.println("Year of birth: ");
+        System.out.println("Fødselsår: ");
         int year = sc.nextInt();
         sc.nextLine();
-        System.out.println("Will it be active or passive?");
+        System.out.println("Skal den være aktiv eller passiv? (type 1 for aktiv / 2 for passiv)");
         String activity = sc.nextLine();
-        System.out.println("Will it be competitive or regular?");
+        System.out.println("Vil det være konkurrencepræget eller almindeligt? (type 1 for konkurrence / 2 for almindelig)");
         String competitive = sc.nextLine();
-        if (!competitive.equalsIgnoreCase("competitive")) {
+        if (!competitive.equalsIgnoreCase("1")) {
             System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
         } else {
            ArrayList<SwimmingDisciplines> chosenDisciplines = typeMemberDiscipline();
@@ -818,16 +820,16 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         String input = "";
         while (!input.equalsIgnoreCase("no")) {
-            System.out.println("Chose a swimming discipline to assign to the member:");
-            System.out.println("Type 1 : To assign Butterfly ");
-            System.out.println("Type 2 : To assign Crawl ");
-            System.out.println("Type 3 : To assign Backcrawl ");
-            System.out.println("Type 4 : To assign Breaststroke ");
+            System.out.println("Vælg en svømmedisciplin, som du vil tildele medlemmet:");
+            System.out.println("Type 1: For at tildele Butterfly ");
+            System.out.println("Type 2 : For at tildele Crawl ");
+            System.out.println("Type 3 : For at tildele Backcrawl ");
+            System.out.println("Type 4 : For at tildele Breaststroke ");
             String chosenDiscipline = sc.nextLine();
             // make sure it is a number with validering
             swimmingDisciplinesArrayList.add(SwimmingDisciplines.values()[Integer.parseInt(chosenDiscipline) - 1]);
             if(swimmingDisciplinesArrayList.size() < 4) {
-                System.out.println("Would you like to add another discipline?");
+                System.out.println("Vil du gerne tilføje en anden disciplin?");
                 input = sc.nextLine();
             } else {
                 break;
@@ -837,6 +839,7 @@ public class UserInterface {
     }
 
     private void editMember() {
+        System.out.println("------------------------------------------------\n");
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
         System.out.println("");
@@ -896,6 +899,9 @@ public class UserInterface {
                         ArrayList<SwimmingDisciplines> newChosenDisciplines = typeMemberDiscipline();
                         System.out.println(memberController.changeFromMemberToCompetitiveSwimmer());
                         memberController.getCurrentMember().setChosenDisciplines(newChosenDisciplines);
+                    } else {
+                        memberController.changeFromCompetitiveSwimmerToMember();
+                        System.out.println("Hello");
                     }
                     memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive"));
                     System.out.println(memberController.updateInformation());
@@ -908,6 +914,7 @@ public class UserInterface {
     }
 
     public void deleteMember() {
+        System.out.println("------------------------------------------------\n");
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
         System.out.println("Do you want to use a name or an id?");
@@ -930,7 +937,6 @@ public class UserInterface {
             if (input.equalsIgnoreCase("yes")) {
                 //Deleting the member from all teams:
                 teamsController.deleteMemberFromAllTeams(memberController.getCurrentMember());
-
                 System.out.println(memberController.deleteMember());
 
             }
@@ -939,12 +945,14 @@ public class UserInterface {
 
 
     private void displayMembers() {
+        System.out.println("------------------------------------------------\n");
         MemberController memberController = new MemberController();
         System.out.println("Here you have a list of all the members from the club: \n");
         System.out.println(memberController.displayMembers());
     }
 
     private void displayInformationFromSpecificMember() {
+        System.out.println("------------------------------------------------\n");
         MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
         System.out.println("Do you want to use a name or an id?");

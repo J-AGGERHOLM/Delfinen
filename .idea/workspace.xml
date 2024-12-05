@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="going through changing chosen discipline to arraylist" />
+    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="Memberlist and trainerList files to csv">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/membersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/MemberFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileHandler/TrainerFileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileHandler/TrainerFileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainersList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/trainersList.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,11 +26,31 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Simonknu"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/J-AGGERHOLM/Delfinen.git",
+    "accountId": "a0f3c66b-f33c-446a-9878-b98efd6acc97"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2pnprqbWm22mHlviAwcIWqnS1PP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Person-feature",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)"
@@ -39,9 +67,19 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="Discipline change to an array with disciplines">
       <option name="closed" value="true" />
@@ -62,20 +100,19 @@
     <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Discipline change to an array with disciplines" />
     <MESSAGE value="going through changing chosen discipline to arraylist" />
     <MESSAGE value="Fjernet fejlen ift. opslag af specifik" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fjernet fejlen ift. opslag af specifik" />
+    <MESSAGE value="Memberlist and trainerList files to csv" />
+    <option name="LAST_COMMIT_MESSAGE" value="Memberlist and trainerList files to csv" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/UI/UserInterface.java</url>
-          <line>813</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java</url>
           <line>104</line>
