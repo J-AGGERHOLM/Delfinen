@@ -35,7 +35,7 @@ public class ContingentController {
 
         try {
 
-            // Find medlemmet én gang
+            // Find Member
             Member targetMember = null;
             for (Member m : repository.getAllMembers()) {
                 if (m.getId() == memberId) {
@@ -44,16 +44,15 @@ public class ContingentController {
                 }
             }
 
-            // Hvis medlemmet ikke findes
+            // If member is null
             if (targetMember == null) {
                 return "Medlemmet findes ikke.";
             }
 
-            // Tilføj overskriften
             sb.append("Id, Name (MemberId), Price, Payment Date\n");
 
             ArrayList<Contingent> contingents = repository.allContingent();
-            // Loop gennem kontingenter og find relevante
+            // Loops through contingent
             for (Contingent c : contingents) {
                 if (c.getMemberId() == memberId) {
                     sb.append(c.getId()).append(", ")
