@@ -528,7 +528,7 @@ public class UserInterface {
         } else {
             System.out.println(members);
             System.out.println("Skriv et kontingent id for at slette en specifik:");
-            System.out.println(cc.deleteContingent(scan.nextInt()));
+            System.out.println(cc.deleteContingent(scan.nextInt(), memberId));
         }
 
         System.out.println("--------------------------------------------------------\n");

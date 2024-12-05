@@ -33,14 +33,14 @@ public class ContingentRepository {
     }
 
     // Delete a contingent
-    public boolean deleteSpecificContingent(int id) throws IOException {
+    public boolean deleteSpecificContingent(int id, int memberId) throws IOException {
         // To store the contingent
         ArrayList<Contingent> contingents = ch.read();
         Contingent contingent = null;
 
         for (Contingent c : contingents) {
             // If there is a match
-            if (c.getId() == id) {
+            if (c.getId() == id && c.getMemberId() == memberId) {
                 contingent = c;
             }
         }
@@ -49,13 +49,14 @@ public class ContingentRepository {
             return false;
         }
 
-        // Remove from list and parse.
-        contingents.remove(contingent);
 
         // If no contingent set false
         if(findContingentByMemberId(contingent.getMemberId(),contingents) == null){
             updateMember(contingent.getMemberId(), false);
         }
+
+        // Remove from list and parse.
+        contingents.remove(contingent);
 
         return ch.delete(contingents);
     }

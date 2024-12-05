@@ -70,13 +70,13 @@ public class ContingentController {
         }
     }
 
-    public String deleteContingent(int id) {
+    public String deleteContingent(int id, int memberId) {
         try {
             // If we can delete
-            if (repository.deleteSpecificContingent(id)) {
-                return "Du slettede kontingent med følgende id: " + id + "\n";
+            if (repository.deleteSpecificContingent(id, memberId)) {
+                return "Du slettede kontingentet med følgende id: " + id + "\n";
             } else {
-                return "Der findes ikke nogen kontingenter med id: " + id + "\n";
+                return "Kontingentet med følgende id: " + id + " findes ikke på personen\n";
             }
         } catch (IOException e) {
             // Something terrible went wrong
