@@ -66,10 +66,6 @@ public class ContingentHandler  {
                 contingents.add(c);
             }
 
-            // Compare on id
-            Comparator<Contingent> comparator = Comparator.comparing(Contingent::getId);
-            contingents.sort(comparator);
-
             return contingents;
         }
     }

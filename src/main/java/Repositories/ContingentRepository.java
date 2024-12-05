@@ -7,6 +7,7 @@ import Models.Member;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ContingentRepository {
     private final ContingentHandler ch;
@@ -44,6 +45,10 @@ public class ContingentRepository {
         mr.updateInformation();
 
         return contingent;
+    }
+
+    public ArrayList<Member> getAllMembers(){
+        return mr.getMemberArrayList();
     }
 
     // Calculate Price
@@ -155,6 +160,10 @@ public class ContingentRepository {
                 }
             }
         }
+        // Compare on id
+        Comparator<Contingent> comparator = Comparator.comparing(Contingent::getId);
+        contingents.sort(comparator);
+
         return contingents;
     }
 }
