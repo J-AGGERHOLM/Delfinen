@@ -1,5 +1,6 @@
 package Repositories;
 
+import Enums.SwimmingDisciplines;
 import FileHandler.TrainingsFileHandler;
 import Models.CompetitiveSwimmer;
 import Models.Member;
@@ -27,11 +28,22 @@ public class TrainingRepository {
         trainingsFileHandler.saveTrainingData(trainings);
     }
 
-    public String showData(ArrayList<Training> training) {
-        String data = "DISCIPLIN: \t  ID(NAVN): \t TID: \n";
-        for(Training t : training) {
-            data += t.toString() + "\n";
+    public String specificSwimmerData(int id) {
+        trainings.sort(Comparator.comparing(Training::getTime));
+        CompetitiveSwimmer swimmer = this.getSwimmerByID(id);
+        String data = "NAVN: " + swimmer.getFullName() + " ID: " + swimmer.getId() + "\n";
+        ArrayList<SwimmingDisciplines> disciplines = swimmer.getChosenDisciplines();
+        for(SwimmingDisciplines d : disciplines) {
+            for(int i = 0; i < trainings.size(); i++) {
+                if(trainings.get(i).getSwimmerID() == id && trainings.get(i).getDiscipline().equalsIgnoreCase(String.valueOf(d))) {
+                    data += trainings.get(i).getDiscipline() + "  "
+                            + trainings.get(i).getTime() + "  "
+                            + trainings.get(i).getDate() + "\n";
+                    break;
+                }
+            }
         }
+
         return data;
     }
 
@@ -66,7 +78,7 @@ public class TrainingRepository {
             try {
                 result += top5.get(i).toString() + "\n";
             } catch (IndexOutOfBoundsException e) {
-                result += "No Data\n";
+                result += "Ingen Data\n";
             }
         }
         return result;

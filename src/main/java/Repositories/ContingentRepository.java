@@ -7,6 +7,7 @@ import Models.Member;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ContingentRepository {
     private final ContingentHandler ch;
@@ -44,6 +45,10 @@ public class ContingentRepository {
         mr.updateInformation();
 
         return contingent;
+    }
+
+    public ArrayList<Member> getAllMembers(){
+        return mr.getMemberArrayList();
     }
 
     // Calculate Price
@@ -93,7 +98,13 @@ public class ContingentRepository {
 
     // Makes id.
     public int getId() throws IOException {
-        int id = ch.read().size();
+        int id = 0;
+        for(Contingent c : ch.read()){
+            if(c.getId() > id){
+                id = c.getId();
+            }
+        }
+
         return ++id;
     }
 
@@ -140,7 +151,6 @@ public class ContingentRepository {
                         // Adds
                         found = true;
                         contingents.add(c);
-                        break;
                     }
                 }
                 // If paid but no contingent, make contingent and add.
@@ -149,6 +159,10 @@ public class ContingentRepository {
                 }
             }
         }
+        // Compare on id
+        Comparator<Contingent> comparator = Comparator.comparing(Contingent::getId);
+        contingents.sort(comparator);
+
         return contingents;
     }
 }

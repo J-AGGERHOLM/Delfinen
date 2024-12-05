@@ -34,15 +34,34 @@ public class ContingentController {
         StringBuilder sb = new StringBuilder();
 
         try {
-            // Store all
-            ArrayList<Contingent> contingents = repository.allContingent();
 
-            // Loops the ArrayList
-            for (Contingent c : contingents) {
-                if (c.getMemberId() == memberId) {
-                    sb.append(c).append("\n");
+            // Find Member
+            Member targetMember = null;
+            for (Member m : repository.getAllMembers()) {
+                if (m.getId() == memberId) {
+                    targetMember = m;
+                    break;
                 }
             }
+
+            // If member is null
+            if (targetMember == null) {
+                return "Medlemmet findes ikke.";
+            }
+
+            sb.append("Id, Name (MemberId), Price, Payment Date\n");
+
+            ArrayList<Contingent> contingents = repository.allContingent();
+            // Loops through contingent
+            for (Contingent c : contingents) {
+                if (c.getMemberId() == memberId) {
+                    sb.append(c.getId()).append(", ")
+                            .append(targetMember.getFullName()).append("(").append(c.getMemberId()).append(")").append(", ")
+                            .append(c.getPrice()).append(", ")
+                            .append(c.getDate()).append("\n");
+                }
+            }
+
 
             // Returns a message
             return sb.isEmpty()
@@ -72,12 +91,17 @@ public class ContingentController {
         StringBuilder sb = new StringBuilder();
 
         try {
-            ArrayList<Contingent> contingents = repository.allContingent();
-
-            // Loops through all if array is not empty
-            if (contingents != null) {
-                for (Contingent c : contingents) {
-                    sb.append(c.toString()).append("\n");
+            sb.append("Id, ").append("name + memberId, ").append(" Pris,").append(" Betalings dato\n");
+            // Loops the ArrayList
+            for (Contingent c : repository.allContingent()) {
+                for (Member m : repository.getAllMembers()) {
+                    if (c.getMemberId() == m.getId()) {
+                        sb.append(c.getId()).append(", ")
+                                .append(m.getFullName()).append("(").append(c.getMemberId()).append(")").append(", ")
+                                .append(c.getPrice()).append(", ")
+                                .append(c.getDate())
+                                .append("\n");
+                    }
                 }
             }
 
@@ -96,15 +120,15 @@ public class ContingentController {
         ArrayList<Double> earnings = repository.getExpectedEarnings();
         double sum = 0.0;
 
-        for(double number : earnings){
+        for (double number : earnings) {
             sb.append(sum).append(" + ").append(number).append(" = ");
             sum += number;
-            sb.append(sum).append(" kr.").append("\n");
+            sb.append(sum).append(" kr.\n");
         }
 
         if (sum != 0) {
-            sb.append("\n").append("I alt:").append("\n");
-            sb.append(sum).append("kr.").append("\n");
+            sb.append("\n").append("I alt:\n");
+            sb.append(sum).append("kr.\n");
         }
 
 
@@ -116,6 +140,7 @@ public class ContingentController {
     public String checkArrears() {
         StringBuilder sb = new StringBuilder();
 
+        sb.append("Folk som mangler at betale:\n");
         for (Member m : repository.getArrears()) {
             sb.append(m).append("\n");
         }

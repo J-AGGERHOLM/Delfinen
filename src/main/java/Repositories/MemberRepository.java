@@ -33,7 +33,6 @@ public class MemberRepository {
     public Member getCurrentMember() {
         return currentMember;
     }
-
     //__________________________________________________________________________________________________________________
 
 
