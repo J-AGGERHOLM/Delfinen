@@ -34,7 +34,6 @@ public class ContingentController {
         StringBuilder sb = new StringBuilder();
 
         try {
-
             // Find Member
             Member targetMember = null;
             for (Member m : repository.getAllMembers()) {
@@ -61,7 +60,6 @@ public class ContingentController {
                             .append(c.getDate()).append("\n");
                 }
             }
-
 
             // Returns a message
             return sb.isEmpty()
