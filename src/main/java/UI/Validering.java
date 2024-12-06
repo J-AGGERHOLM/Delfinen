@@ -49,7 +49,7 @@ public class Validering {
     // Check for int value.
     public static int checkInt(Scanner scan) {
         while (!scan.hasNextInt()) {
-            System.out.println("Please enter a number");
+            System.out.println("Indtast venligst et tal");
             scan.next();
         }
         return scan.nextInt();
@@ -71,14 +71,17 @@ public class Validering {
 
         while (date == null) {
             System.out.println("Please enter a date in the format yyyy-MM-dd:");
-            String input = scan.nextLine().trim(); // Læs og trim input
+            // trim data
+            String input = scan.nextLine().trim();
             try {
-                date = LocalDate.parse(input, dateFormatter); // Forsøg at parse datoen
+                // Try to parse date
+                date = LocalDate.parse(input, dateFormatter);
             } catch (DateTimeParseException e) {
                 System.out.println("Invalid date format. Please use yyyy-MM-dd.");
             }
         }
-        return date; // Returner den gyldige dato
+        // Returner valid date
+        return date;
     }
 
 }

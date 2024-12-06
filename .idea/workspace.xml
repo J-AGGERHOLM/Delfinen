@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="ui, controller for member trainer translated to danish">
+    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="going through changing chosen discipline to arraylist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Teams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teams.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/membersList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/ContingentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UI/Validering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UI/Validering.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +20,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="contingentGetName" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,19 +28,19 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Simonknu&quot;
+    &quot;assignee&quot;: &quot;mathiasege&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/J-AGGERHOLM/Delfinen.git&quot;,
-    &quot;accountId&quot;: &quot;a0f3c66b-f33c-446a-9878-b98efd6acc97&quot;
+    &quot;accountId&quot;: &quot;f31faadb-7438-4aac-af7e-288a9fe00afe&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2pnprqbWm22mHlviAwcIWqnS1PP" />
+  <component name="ProjectId" id="2pnnkJe8YottX8qSkHd2mlO6obb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -48,15 +48,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Person-feature",
+    "git-widget-placeholder": "deletePickedContingent",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RunManager">
@@ -70,7 +69,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -78,7 +76,6 @@
     <attachedChunks>
       <set>
         <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
       </set>
     </attachedChunks>
   </component>
@@ -100,43 +97,27 @@
       <option name="project" value="LOCAL" />
       <updated>1733397410126</updated>
     </task>
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="Memberlist and trainerList files to csv" />
-      <created>1733486746799</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1733486746799</updated>
-      <workItem from="1733486751998" duration="4254000" />
-    </task>
-    <task id="LOCAL-00003" summary="ui, controller for member trainer translated to danish">
-      <option name="closed" value="true" />
-      <created>1733489617788</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1733489617788</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Discipline change to an array with disciplines" />
     <MESSAGE value="going through changing chosen discipline to arraylist" />
     <MESSAGE value="Fjernet fejlen ift. opslag af specifik" />
-    <MESSAGE value="Memberlist and trainerList files to csv" />
-    <MESSAGE value="ui, controller for member trainer translated to danish" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui, controller for member trainer translated to danish" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fjernet fejlen ift. opslag af specifik" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/UI/UserInterface.java</url>
-          <line>890</line>
-          <option name="timeStamp" value="34" />
+          <line>813</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Repositories/TrainingRepository.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

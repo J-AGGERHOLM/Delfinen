@@ -53,11 +53,12 @@ public class Member extends Person {
 
     @Override
     public String toString() {
-        return "id: " + super.getId() +
-                " Full name: " + super.getFullName() +
-                " Birthday: " + super.getBirthday() +
-                " Activity status: " + (activity ? "Active" : "Passive") +
-                " Competitive status: " + (competitive ? "Competitive" : "Non-competitive"); // need better names
+        return "id: " + super.getId() + "," +
+                " Full name: " + super.getFullName() + "," +
+                " Birthday: " + super.getBirthday() + "," +
+                " Activity status: " + (activity ? "Active" : "Passive") + "," +
+                " Competitive status: " + (competitive ? "Competitive" : "Non-competitive") + "," +
+                " Paid: " + (paid ? "Har betalt" : "Mangler betaling"); // need better names
     }
 
     public String toStringFile() {

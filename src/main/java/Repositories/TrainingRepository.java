@@ -19,10 +19,6 @@ public class TrainingRepository {
         trainings = trainingsFileHandler.read();
     }
 
-    public ArrayList<Training> getData() {
-        return trainings;
-    }
-
     public void addTraining(Training t) {
         trainings.add(t);
         trainingsFileHandler.saveTrainingData(trainings);
@@ -43,16 +39,15 @@ public class TrainingRepository {
                 }
             }
         }
-
         return data;
     }
 
     public String getDisciplineTrainings(String team, String discipline) {
         ArrayList<Training> disciplineData = new ArrayList<>();
         ArrayList<Member> memberData = memberRepo.getMemberArrayList();
-        String result = "DISCIPLIN: \t  ID(NAVN): \t     TID: \t          DATO: \n";
+        String result = "DISCIPLIN: " + discipline.toUpperCase() + " \n  NAVN(ID): \t     TID: \t          DATO: \n";
         for(Training t : trainings) {
-            if(t.getDiscipline().toUpperCase().equals(discipline.toUpperCase())) {
+            if(t.getDiscipline().equalsIgnoreCase(discipline)) {
                 for(Member m : memberData) {
                     if(m.getId() == t.getSwimmerID()) {
                         if(m.getAge() < 18 && team.equalsIgnoreCase("junior")) {
@@ -76,7 +71,9 @@ public class TrainingRepository {
         }
         for(int i = 0; i < 5 ; i++) {
             try {
-                result += top5.get(i).toString() + "\n";
+                String name = getSwimmerByID(top5.get(i).getSwimmerID()).getFullName();
+                result += name + "(" + top5.get(i).getSwimmerID() + ")\t"
+                        + top5.get(i).getTime() +"\t" + top5.get(i).getDate() + "\n";
             } catch (IndexOutOfBoundsException e) {
                 result += "Ingen Data\n";
             }
