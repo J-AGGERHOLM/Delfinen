@@ -807,6 +807,7 @@ public class UserInterface {
             ArrayList<SwimmingDisciplines> chosenDisciplines = typeMemberDiscipline();
             System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("1"), competitive.equalsIgnoreCase("1")));
             memberController.getCurrentMember().setChosenDisciplines(chosenDisciplines);
+            memberController.updateInformation();
         }
     }
 

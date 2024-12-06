@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="Memberlist and trainerList files to csv">
+    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="ui, controller for member trainer translated to danish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Teams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Teams.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/membersList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/membersList.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/MemberRepository.java" afterDir="false" />
@@ -47,7 +48,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Person-feature",
     "kotlin-language-version-configured": "true",
@@ -105,9 +106,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1733486746799</updated>
-      <workItem from="1733486751998" duration="2509000" />
+      <workItem from="1733486751998" duration="4254000" />
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ui, controller for member trainer translated to danish">
+      <option name="closed" value="true" />
+      <created>1733489617788</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733489617788</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,15 +127,16 @@
     <MESSAGE value="going through changing chosen discipline to arraylist" />
     <MESSAGE value="Fjernet fejlen ift. opslag af specifik" />
     <MESSAGE value="Memberlist and trainerList files to csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="Memberlist and trainerList files to csv" />
+    <MESSAGE value="ui, controller for member trainer translated to danish" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui, controller for member trainer translated to danish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java</url>
-          <line>165</line>
-          <option name="timeStamp" value="28" />
+          <url>file://$PROJECT_DIR$/src/main/java/UI/UserInterface.java</url>
+          <line>890</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

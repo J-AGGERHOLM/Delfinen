@@ -94,7 +94,7 @@ public class MemberController {
 
     public String changeFromMemberToCompetitiveSwimmer() { // refactor better
         try {
-            if (getCurrentMember() instanceof CompetitiveSwimmer) {
+            if (!(getCurrentMember() instanceof CompetitiveSwimmer)) {
                 Member memberToDelete = getCurrentMember();
                 memberRepository.createCompetitiveMemberFromEdit(
                         getCurrentMember().getFullName(),
@@ -114,7 +114,7 @@ public class MemberController {
 
     public String changeFromCompetitiveSwimmerToMember() {
         try {
-            if (!(getCurrentMember() instanceof CompetitiveSwimmer)) {
+            if ((getCurrentMember() instanceof CompetitiveSwimmer)) {
                 Member memberToDelete = getCurrentMember();
                 memberRepository.createMemberFromEdit(
                         getCurrentMember().getFullName(),

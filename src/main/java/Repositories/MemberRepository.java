@@ -72,7 +72,7 @@ public class MemberRepository {
                 currentMember = m;
                 return true;
             }
-        }
+         }
         currentMember = null;
         return false;
     }
