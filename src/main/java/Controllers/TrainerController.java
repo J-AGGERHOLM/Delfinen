@@ -10,13 +10,11 @@ import java.util.ArrayList;
 public class TrainerController {
     private TrainerRepository trainerRepository;
 
-
-
     public TrainerController(){
         trainerRepository = new TrainerRepository();
     }
 
-//_______________________________getter and setter methods___________________________________
+    //_______________________________getter and setter methods___________________________________
 
     public ArrayList<Trainer> getTrainerArrayList(){
         return trainerRepository.getTrainerArrayList();
@@ -29,12 +27,13 @@ public class TrainerController {
     public String setFullName(String newName){
         try {
             trainerRepository.getCurrentTrainer().setName(newName);
-            return "Members name changed successfully";
+            return "Medlemmets navn blev ændret med succes"; // Translated: "Member's name changed successfully"
         } catch (Exception e){
-            return "An error ocurred while changing the name";
+            return "Der opstod en fejl under ændring af navnet"; // Translated: "An error occurred while changing the name"
         }
     }
-//____________________________________________________________________________________________________-
+
+    //____________________________________________________________________________________________________-
 
     public String displayTrainers(){
         StringBuilder sb = new StringBuilder();
@@ -42,7 +41,7 @@ public class TrainerController {
             sb.append(trainer).append("\n");
         }
         return sb.isEmpty()
-                ? "No trainer found"
+                ? "Ingen trænere fundet" // Translated: "No trainer found"
                 : sb.toString();
     }
 
@@ -55,34 +54,33 @@ public class TrainerController {
     }
     public String chooseSpecificTrainerById(int idToCheck) {
         if (!trainerRepository.chooseSpecificTrainerById(idToCheck)){
-            return "Member with ID: " + idToCheck + " Was not found";
+            return "Medlem med ID: " + idToCheck + " blev ikke fundet"; // Translated: "Member with ID: X was not found"
         } else {
-            return "Member with ID: " + idToCheck + " found :)";
+            return "Medlem med ID: " + idToCheck + " fundet :)"; // Translated: "Member with ID: X found :)"
         }
     }
 
     public String chooseSpecificTrainerByName(String name) {
         if (!trainerRepository.chooseSpecificTrainerByName(name)){
-            return "Member with name: " + name + " was not found";
+            return "Medlem med navn: " + name + " blev ikke fundet"; // Translated: "Member with name: X was not found"
         } else {
-            return "Member with name: " + getCurrentTrainer().getFullName() + " found :)";
+            return "Medlem med navn: " + getCurrentTrainer().getFullName() + " fundet :)"; // Translated: "Member with name: X found :)"
         }
     }
 
     public String createTrainerWithTeam(String name, LocalDate birthday, Team team){
         if(!trainerRepository.createTrainer(name, birthday, team)){
-            return "Failed to create trainer, please try again";
+            return "Kunne ikke oprette træner, prøv igen"; // Translated: "Failed to create trainer, please try again"
         }
-        return "Trainer was successfully created";
+        return "Træner blev oprettet med succes"; // Translated: "Trainer was successfully created"
     }
 
     public String createTrainerWithoutTeam(String name, LocalDate birthday){
         if(!trainerRepository.createTrainer(name, birthday)){
-            return "Failed to create trainer, please try again";
+            return "Kunne ikke oprette træner, prøv igen"; // Translated: "Failed to create trainer, please try again"
         }
-        return "Trainer was successfully created";
+        return "Træner blev oprettet med succes"; // Translated: "Trainer was successfully created"
     }
-
 
     public boolean updateInformation(){
         return trainerRepository.updateInformation();
@@ -90,9 +88,9 @@ public class TrainerController {
 
     public String deleteTrainer(){
         if (!trainerRepository.deleteTrainer()){
-            return "Failed to create member, please try again";
+            return "Kunne ikke slette medlem, prøv igen"; // Translated: "Failed to delete member, please try again"
         }
-        return "Member deleted successfully";
+        return "Medlem slettet med succes"; // Translated: "Member deleted successfully"
     }
-
 }
+

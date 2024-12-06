@@ -123,10 +123,10 @@ public class MemberRepository {
         }
     }
 
-    public boolean createCompetitiveMemberFromEdit(String name, LocalDate birthday, int id, boolean activity, boolean competitive) { //refactor
+    public boolean createCompetitiveMemberFromEdit(String name, LocalDate birthday, int id, boolean activity) { //refactor
         try {
             // Create a new Member object
-            Member member = new CompetitiveSwimmer(name, birthday, id, activity, competitive, new Random().nextBoolean());
+            Member member = new CompetitiveSwimmer(name, birthday, id, activity,true, new Random().nextBoolean());
             // Assign the current member
             currentMember = member;
             // Add the member to the ArrayList
@@ -141,6 +141,21 @@ public class MemberRepository {
         } catch (Exception e) {
             // Catch any other unforeseen exceptions
             System.err.println("An unexpected error occurred: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean createMemberFromEdit(String name, LocalDate birthday, int id, boolean activity){
+        try {
+            Member member = new Member(name, birthday, id, activity, false, new Random().nextBoolean());
+
+            currentMember = member;
+
+            memberArrayList.add(currentMember);
+
+            memberFileHandler.create();
+            return true;
+        } catch (Exception e){
             return false;
         }
     }

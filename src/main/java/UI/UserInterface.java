@@ -71,7 +71,7 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
 
         String competitionInput = "";
-        
+
         while(!competitionInput.equals("EXIT")) {
             //menu:
             System.out.println("Du er i konkurrence menuen");
@@ -101,7 +101,7 @@ public class UserInterface {
             }
 
         }
-        
+
 
 
 
@@ -583,110 +583,104 @@ public class UserInterface {
     // translate to danish
     public void trainersMenu() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("title");
-        System.out.println("options");
-        System.out.println("'create'");
-        System.out.println("'edit'");
-        System.out.println("'delete'");
-        System.out.println("'Display trainers'");
-        System.out.println("'specific");
+        System.out.println("Titel");
+        System.out.println("Muligheder");
+        System.out.println("'Opret'");
+        System.out.println("'Rediger'");
+        System.out.println("'Slet'");
+        System.out.println("'Vis trænere'");
+        System.out.println("'Specifik'");
 
         String input = sc.nextLine().toUpperCase();
 
         switch (input) {
-            case "CREATE" -> createTrainer();
-            case "EDIT" -> editTrainer();
-            case "DELETE" -> deleteTrainer();
-            case "DISPLAY" -> showTrainers();
-            case "SPECIFIC" -> specificTrainer();
-            default -> System.out.println("Not option");
+            case "OPRET" -> createTrainer();
+            case "REDIGER" -> editTrainer();
+            case "SLET" -> deleteTrainer();
+            case "VIS" -> showTrainers();
+            case "SPECIFIK" -> specificTrainer();
+            default -> System.out.println("Ikke en mulighed");
         }
-
-
     }
 
     public void createTrainer() {
         TrainerController trainerController = new TrainerController();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter full name: ");
+        System.out.println("Indtast fuldt navn: ");
         String name = sc.nextLine().trim();
-        System.out.println("Enter Birthday: ");
-        System.out.println("Day of birth: ");
+        System.out.println("Indtast fødselsdag: ");
+        System.out.println("Fødselsdagens dag: ");
         int day = sc.nextInt();
-        System.out.println("Month of birth:");
+        System.out.println("Fødselsmåned: ");
         int month = sc.nextInt();
-        System.out.println("Year of birth: ");
+        System.out.println("Fødselsår: ");
         int year = sc.nextInt();
         sc.nextLine();
-        System.out.println("Do you want to add him to an existing team?");
+        System.out.println("Vil du tilføje ham til et eksisterende hold?");
         String input = sc.nextLine().toLowerCase();
-        if (input.equalsIgnoreCase("yes")) {
-            System.out.println("It will come soon"); // create this method
+        if (input.equalsIgnoreCase("ja")) {
+            System.out.println("Kommer snart"); // opret denne metode
         } else {
             System.out.println(trainerController.createTrainerWithoutTeam(name, LocalDate.of(year, month, day)));
         }
     }
 
-    public void editTrainer() {                            // should finish the methods with team
+    public void editTrainer() {
         Scanner sc = new Scanner(System.in);
         TrainerController trainerController = new TrainerController();
         System.out.println("");
-        System.out.println("Do you want to use a name or an id?");
+        System.out.println("Vil du bruge navn eller ID?");
         String input = sc.nextLine().toLowerCase();
         switch (input) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
+            case "navn", "fuldt navn" -> {
+                System.out.println("Indtast navn: ");
                 input = sc.nextLine();
                 System.out.println(trainerController.chooseSpecificTrainerByName(input));
             }
             case "id" -> {
-                System.out.println("Enter ID: ");
+                System.out.println("Indtast ID: ");
                 input = sc.nextLine();
                 System.out.println(trainerController.chooseSpecificTrainerById(Integer.parseInt(input)));
             }
+            default -> System.out.println("Ikke en gyldig mulighed");
         }
         if (trainerController.getCurrentTrainer() != null) {
-            System.out.println("Choose the information you want to edit");
-            System.out.println("Name");
-            System.out.println("Birthday");
-            System.out.println("Team");
+            System.out.println("Vælg de oplysninger, du vil redigere");
+            System.out.println("Navn");
+            System.out.println("Fødselsdag");
+            System.out.println("Hold");
 
             input = sc.nextLine().toLowerCase();
 
             switch (input) {
-                case "name" -> {
-                    System.out.println("Enter new name: ");
+                case "navn" -> {
+                    System.out.println("Indtast nyt navn: ");
                     input = sc.nextLine();
-                    trainerController.getCurrentTrainer().setName(input); // maybe refactor with an edit method in membersController
+                    trainerController.getCurrentTrainer().setName(input);
                     System.out.println(trainerController.updateInformation());
                 }
-                case "birthday" -> {
-                    System.out.println("Enter new birthday: ");
-                    System.out.println("Day of birth: ");
+                case "fødselsdag" -> {
+                    System.out.println("Indtast ny fødselsdag: ");
+                    System.out.println("Dag: ");
                     int day = sc.nextInt();
-                    System.out.println("Month of birth: ");
+                    System.out.println("Måned: ");
                     int month = sc.nextInt();
-                    System.out.println("Year of birth: ");
+                    System.out.println("År: ");
                     int year = sc.nextInt();
-                    trainerController.getCurrentTrainer().setBirthday(LocalDate.of(year, month, day)); // refactor with an edit method in membersController
+                    trainerController.getCurrentTrainer().setBirthday(LocalDate.of(year, month, day));
                     System.out.println(trainerController.updateInformation());
-
                 }
-                case "team" -> {
-                    System.out.println("Do you want to take the trainer out of the team or change the team the trainer is in charge of?");
-                    System.out.println("1 for delete 2 for change");
+                case "hold" -> {
+                    System.out.println("Vil du fjerne træneren fra holdet eller ændre holdet?");
+                    System.out.println("1 for at slette, 2 for at ændre");
                     input = sc.nextLine();
                     switch (input) {
-                        case "1" -> {
-                            System.out.println("should delete him from the team he was in ");
-                        }
-                        case "2" -> {
-                            System.out.println("should change the team he is in");
-                        }
+                        case "1" -> System.out.println("Skal slette træneren fra det hold, han var på");
+                        case "2" -> System.out.println("Skal ændre det hold, han er ansvarlig for");
+                        default -> System.out.println("Ikke en mulighed");
                     }
                 }
-
-                default -> System.out.println("not option");
+                default -> System.out.println("Ikke en mulighed");
             }
         }
     }
@@ -694,96 +688,98 @@ public class UserInterface {
     public void deleteTrainer() {
         Scanner sc = new Scanner(System.in);
         TrainerController trainerController = new TrainerController();
-        System.out.println("Do you want to use a name or an id?");
+        System.out.println("Vil du bruge navn eller ID?");
         String input = sc.nextLine().toLowerCase();
         switch (input) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
+            case "navn", "fuldt navn" -> {
+                System.out.println("Indtast navn: ");
                 input = sc.nextLine();
                 System.out.println(trainerController.chooseSpecificTrainerByName(input));
             }
             case "id" -> {
-                System.out.println("Enter ID: ");
+                System.out.println("Indtast ID: ");
                 input = sc.nextLine();
                 System.out.println(trainerController.chooseSpecificTrainerById(Integer.parseInt(input)));
             }
+            default -> System.out.println("Ikke en gyldig mulighed");
         }
         if (trainerController.getCurrentTrainer() != null) {
-            System.out.println("Are you sure you want to delete this member?");
+            System.out.println("Er du sikker på, at du vil slette denne træner?");
             input = sc.nextLine().toLowerCase();
-            if (input.equalsIgnoreCase("yes")) {
-
-                // delete the trainer from existing teams
+            if (input.equalsIgnoreCase("ja")) {
                 teamsController.deleteTrainerFromAllTeams(trainerController.getCurrentTrainer());
-
                 System.out.println(trainerController.deleteTrainer());
-
             }
         }
     }
 
     public void showTrainers() {
         TrainerController trainerController = new TrainerController();
-        System.out.println("Here you have a list of all the trainers from the club: \n");
+        System.out.println("Her er en liste over alle trænere fra klubben: \n");
         System.out.println(trainerController.displayTrainers());
     }
 
     public void specificTrainer() {
         TrainerController trainerController = new TrainerController();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Do you want to use a name or an id?");
+        System.out.println("Vil du bruge navn eller ID?");
         String input = sc.nextLine();
         switch (input.toLowerCase()) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
+            case "navn", "fuldt navn" -> {
+                System.out.println("Indtast navn: ");
                 input = sc.nextLine();
                 System.out.println(trainerController.chooseSpecificTrainerByName(input));
             }
             case "id" -> {
                 int idNum = 0;
-                System.out.println("Enter id: ");
+                System.out.println("Indtast ID: ");
                 while (true) {
                     String inputNum = sc.nextLine();
                     try {
                         idNum = Integer.parseInt(inputNum);
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println(input + " is not a valid id. try again");
+                        System.out.println(input + " er ikke et gyldigt ID. Prøv igen.");
                     }
                 }
                 System.out.println(trainerController.chooseSpecificTrainerById(idNum));
             }
+            default -> System.out.println("Ikke en mulighed");
         }
         if (trainerController.getCurrentTrainer() != null) {
             System.out.println(trainerController.displayTrainersInformation());
         }
     }
 
+
 //Member methods----------------------------------------------------------------------------------------------------
 
     public void memberMenu() {
-        // need to translate to danish
-        System.out.println("Du er i medlemsmenuen");
-        System.out.println("Indtast venligst en kommando");
-        System.out.println("Opret: For at registrere et nyt medlem.");
-        System.out.println("Rediger: For at redigere oplysninger om et eksisterende medlem.");
-        System.out.println("Slet: For at slette et medlem fra systemet.");
-        System.out.println("Medlemmer: For at se alle nuværende medlemmer.");
-        System.out.println("Specifik: For at søge efter et bestemt medlem.");
+        String userInput = "";
+        while (!userInput.equalsIgnoreCase("exit")) {
+            System.out.println("Du er i medlemsmenuen");
+            System.out.println("Indtast venligst en kommando");
+            System.out.println("Opret: For at registrere et nyt medlem.");
+            System.out.println("Rediger: For at redigere oplysninger om et eksisterende medlem.");
+            System.out.println("Slet: For at slette et medlem fra systemet.");
+            System.out.println("Medlemmer: For at se alle nuværende medlemmer.");
+            System.out.println("Specifik: For at søge efter et bestemt medlem.");
+            System.out.println("Exit: For at gå tilbage til hovedmenuen");
 
+            Scanner sc = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+            userInput = sc.nextLine().toUpperCase();
+            System.out.println("------------------------------------------------\n");
 
-        String userInput = sc.nextLine().toUpperCase();
-        System.out.println("------------------------------------------------\n");
-
-        switch (userInput) {
-            case "OPRET" -> createMember();
-            case "REDIGER" -> editMember();
-            case "SLET" -> deleteMember();
-            case "MEDLEMMER" -> displayMembers();
-            case "SPECIFIK" -> displayInformationFromSpecificMember();
-            default -> System.out.println("Indtast en gyldig kommando");
+            switch (userInput) {
+                case "OPRET" -> createMember();
+                case "REDIGER" -> editMember();
+                case "SLET" -> deleteMember();
+                case "MEDLEMMER" -> displayMembers();
+                case "SPECIFIK" -> displayInformationFromSpecificMember();
+                case "EXIT" -> System.out.println("Gå tilbage til hovedmenuen");
+                default -> System.out.println("Indtast en gyldig kommando");
+            }
         }
     }
 
@@ -801,34 +797,33 @@ public class UserInterface {
         System.out.println("Fødselsår: ");
         int year = sc.nextInt();
         sc.nextLine();
-        System.out.println("Skal den være aktiv eller passiv? (type 1 for aktiv / 2 for passiv)");
+        System.out.println("Skal den være aktiv eller passiv? (skriv 1 for aktiv / 2 for passiv)");
         String activity = sc.nextLine();
-        System.out.println("Vil det være konkurrencepræget eller almindeligt? (type 1 for konkurrence / 2 for almindelig)");
+        System.out.println("Vil det være konkurrencepræget eller almindeligt? (skriv 1 for konkurrence / 2 for almindelig)");
         String competitive = sc.nextLine();
         if (!competitive.equalsIgnoreCase("1")) {
-            System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
+            System.out.println(memberController.createMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("1"), competitive.equalsIgnoreCase("1")));
         } else {
-           ArrayList<SwimmingDisciplines> chosenDisciplines = typeMemberDiscipline();
-           System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("active"), competitive.equalsIgnoreCase("competitive")));
-           memberController.getCurrentMember().setChosenDisciplines(chosenDisciplines);
+            ArrayList<SwimmingDisciplines> chosenDisciplines = typeMemberDiscipline();
+            System.out.println(memberController.createCompetitiveMember(name, LocalDate.of(year, month, day), activity.equalsIgnoreCase("1"), competitive.equalsIgnoreCase("1")));
+            memberController.getCurrentMember().setChosenDisciplines(chosenDisciplines);
         }
     }
 
-    //helper method for creating competitibe member:
+    // Helper method for creating competitive member
     private ArrayList<SwimmingDisciplines> typeMemberDiscipline() {
         ArrayList<SwimmingDisciplines> swimmingDisciplinesArrayList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String input = "";
-        while (!input.equalsIgnoreCase("no")) {
+        while (!input.equalsIgnoreCase("nej")) {
             System.out.println("Vælg en svømmedisciplin, som du vil tildele medlemmet:");
-            System.out.println("Type 1: For at tildele Butterfly ");
-            System.out.println("Type 2 : For at tildele Crawl ");
-            System.out.println("Type 3 : For at tildele Backcrawl ");
-            System.out.println("Type 4 : For at tildele Breaststroke ");
+            System.out.println("Skriv 1: For at tildele Butterfly");
+            System.out.println("Skriv 2: For at tildele Crawl");
+            System.out.println("Skriv 3: For at tildele Backcrawl");
+            System.out.println("Skriv 4: For at tildele Brystsvømning");
             String chosenDiscipline = sc.nextLine();
-            // make sure it is a number with validering
             swimmingDisciplinesArrayList.add(SwimmingDisciplines.values()[Integer.parseInt(chosenDiscipline) - 1]);
-            if(swimmingDisciplinesArrayList.size() < 4) {
+            if (swimmingDisciplinesArrayList.size() < 4) {
                 System.out.println("Vil du gerne tilføje en anden disciplin?");
                 input = sc.nextLine();
             } else {
@@ -838,116 +833,112 @@ public class UserInterface {
         return swimmingDisciplinesArrayList;
     }
 
+
     private void editMember() {
         System.out.println("------------------------------------------------\n");
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
-        System.out.println("");
-        System.out.println("Do you want to use a name or an id?");
+        System.out.println("Vil du bruge et navn eller et id?");
         String input = sc.nextLine().toLowerCase();
         switch (input) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
+            case "navn", "fuldt navn" -> {
+                System.out.println("Indtast navn: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberByName(input));
             }
             case "id" -> {
-                System.out.println("Enter ID: ");
+                System.out.println("Indtast ID: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
             }
+            default -> System.out.println("Ugyldig kommando");
         }
         if (memberController.getCurrentMember() != null) {
-            System.out.println("Choose the information you want to edit");
-            System.out.println("name");
-            System.out.println("birthday");
-            System.out.println("Activity");
-            System.out.println("Competitive");
+            System.out.println("Vælg de oplysninger, du vil redigere:");
+            System.out.println("Navn");
+            System.out.println("Fødselsdag");
+            System.out.println("Aktivitet");
+            System.out.println("Konkurrence");
 
             input = sc.nextLine().toLowerCase();
 
             switch (input) {
-                case "name" -> {
-                    System.out.println("Enter new name: ");
+                case "navn" -> {
+                    System.out.println("Indtast nyt navn: ");
                     input = sc.nextLine();
-                    memberController.getCurrentMember().setName(input); // refactor with an edit method in membersController
+                    memberController.getCurrentMember().setName(input);
                     System.out.println(memberController.updateInformation());
                 }
-                case "birthday" -> {
-                    System.out.println("Enter new birthday: ");
-                    System.out.println("Day of birth: ");
+                case "fødselsdag" -> {
+                    System.out.println("Indtast ny fødselsdag:");
+                    System.out.println("Fødselsdag: ");
                     int day = sc.nextInt();
-                    System.out.println("Month of birth: ");
+                    System.out.println("Fødselsmåned: ");
                     int month = sc.nextInt();
-                    System.out.println("Year of birth: ");
+                    System.out.println("Fødselsår: ");
                     int year = sc.nextInt();
-                    memberController.getCurrentMember().setBirthday(LocalDate.of(year, month, day)); // refactor with an edit method in membersController
+                    memberController.getCurrentMember().setBirthday(LocalDate.of(year, month, day));
                     System.out.println(memberController.updateInformation());
-
                 }
-                case "activity" -> {
-                    System.out.println("Enter new activity status ('active' ; 'passive': ");
+                case "aktivitet" -> {
+                    System.out.println("Indtast ny aktivitetsstatus ('aktiv' eller 'passiv'): ");
                     input = sc.nextLine();
-                    memberController.getCurrentMember().setActivity(input.equalsIgnoreCase("active")); // refactor with an edit method in membersController
+                    memberController.getCurrentMember().setActivity(input.equalsIgnoreCase("aktiv"));
                     System.out.println(memberController.updateInformation());
-
                 }
-                case "competitive" -> {
-                    System.out.println("Enter new competitive status ('competitive' ; 'regular': ");
+                case "konkurrence" -> {
+                    System.out.println("Indtast ny konkurrence-status ('konkurrence' eller 'almindelig'): ");
                     input = sc.nextLine();
-                    if (input.equalsIgnoreCase("competitive")) {
+                    if (input.equalsIgnoreCase("konkurrence")) {
                         ArrayList<SwimmingDisciplines> newChosenDisciplines = typeMemberDiscipline();
                         System.out.println(memberController.changeFromMemberToCompetitiveSwimmer());
                         memberController.getCurrentMember().setChosenDisciplines(newChosenDisciplines);
                     } else {
+                        teamsController.deleteMemberFromAllTeams(memberController.getCurrentMember());
                         memberController.changeFromCompetitiveSwimmerToMember();
-                        System.out.println("Hello");
                     }
-                    memberController.getCurrentMember().setCompetitive(input.equalsIgnoreCase("competitive"));
                     System.out.println(memberController.updateInformation());
-
                 }
-                default -> System.out.println("not option");
+                default -> System.out.println("Ikke en mulighed");
             }
         }
-
     }
 
     public void deleteMember() {
         System.out.println("------------------------------------------------\n");
         Scanner sc = new Scanner(System.in);
         MemberController memberController = new MemberController();
-        System.out.println("Do you want to use a name or an id?");
+        System.out.println("Vil du bruge et navn eller et id?");
         String input = sc.nextLine().toLowerCase();
         switch (input) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
+            case "navn", "fuldt navn" -> {
+                System.out.println("Indtast navn: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberByName(input));
             }
             case "id" -> {
-                System.out.println("Enter ID: ");
+                System.out.println("Indtast ID: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberById(Integer.parseInt(input)));
             }
+            default -> System.out.println("Ugyldig kommando");
         }
         if (memberController.getCurrentMember() != null) {
-            System.out.println("Are you sure you want to delete this member?");
+            System.out.println("Er du sikker på, at du vil slette dette medlem?");
             input = sc.nextLine().toLowerCase();
-            if (input.equalsIgnoreCase("yes")) {
-                //Deleting the member from all teams:
+            if (input.equalsIgnoreCase("ja")) {
                 teamsController.deleteMemberFromAllTeams(memberController.getCurrentMember());
                 System.out.println(memberController.deleteMember());
-
             }
         }
     }
 
 
+
     private void displayMembers() {
         System.out.println("------------------------------------------------\n");
         MemberController memberController = new MemberController();
-        System.out.println("Here you have a list of all the members from the club: \n");
+        System.out.println("Her er en liste over alle medlemmer fra klubben:\n");
         System.out.println(memberController.displayMembers());
     }
 
@@ -955,28 +946,29 @@ public class UserInterface {
         System.out.println("------------------------------------------------\n");
         MemberController memberController = new MemberController();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Do you want to use a name or an id?");
+        System.out.println("Vil du bruge et navn eller et id?");
         String input = sc.nextLine();
         switch (input.toLowerCase()) {
-            case "name", "full name" -> {
-                System.out.println("Enter name: ");
+            case "navn", "fuldt navn" -> {
+                System.out.println("Indtast navn: ");
                 input = sc.nextLine();
                 System.out.println(memberController.chooseSpecificMemberByName(input));
             }
             case "id" -> {
                 int idNum = 0;
-                System.out.println("Enter id: ");
+                System.out.println("Indtast id: ");
                 while (true) {
                     String inputNum = sc.nextLine();
                     try {
                         idNum = Integer.parseInt(inputNum);
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println(input + " is not a valid id. try again");
+                        System.out.println(input + " er ikke et gyldigt id. Prøv igen.");
                     }
                 }
                 System.out.println(memberController.chooseSpecificMemberById(idNum));
             }
+            default -> System.out.println("Ugyldig kommando");
         }
         if (memberController.getCurrentMember() != null) {
             System.out.println(memberController.displayMemberInformation());
