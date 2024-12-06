@@ -20,43 +20,67 @@ public class ContingentRepository {
 
     // Creates a contingent
     public Contingent createMemberContingent(int memberId) throws IOException {
-        Member member = null;
-        if(mr.chooseSpecificMemberById(memberId)){
-            member = mr.getCurrentMember();
-        }
-
-        mr.getMemberArrayList().remove(member);
-
-        if(member == null){
+        if(!mr.chooseSpecificMemberById(memberId)){
             return null;
         }
+
+        Member member = updateMember(memberId, true);
 
         double price = calculatePrice(member);
 
         // Create contingent
-        Contingent contingent = ch.create(getId(), member.getId(), price);
-
-        if(contingent == null){
-            return null;
-        }
-
-        member.setPaid(true);
-        mr.getMemberArrayList().add(member);
-        mr.updateInformation();
-
-        return contingent;
+        return ch.create(getId(), member.getId(), price);
     }
 
-    public ArrayList<Member> getAllMembers(){
-        return mr.getMemberArrayList();
+    // Delete a contingent
+    public boolean deleteSpecificContingent(int id, int memberId) throws IOException {
+        // To store the contingent
+        ArrayList<Contingent> contingents = ch.read();
+        Contingent contingent = null;
+
+        for (Contingent c : contingents) {
+            // If there is a match
+            if (c.getId() == id && c.getMemberId() == memberId) {
+                contingent = c;
+            }
+        }
+        // No match
+        if (contingent == null) {
+            return false;
+        }
+
+
+        // If no contingent set false
+        if(findContingentByMemberId(contingent.getMemberId(),contingents) == null){
+            updateMember(contingent.getMemberId(), false);
+        }
+
+        // Remove from list and parse.
+        contingents.remove(contingent);
+
+        return ch.delete(contingents);
+    }
+
+    private Contingent findContingentByMemberId(int memberId, ArrayList<Contingent> contingents){
+        // Checks for more contingents
+        for(Contingent c : contingents){
+            if(c.getMemberId() == memberId){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    private Member updateMember(int memberId, boolean paid){
+        mr.getCurrentMember().setPaid(paid);
+        Member member = mr.getCurrentMember();
+        mr.getMemberArrayList().set(memberId, member);
+        mr.updateInformation();
+        return member;
     }
 
     // Calculate Price
     private double calculatePrice(Member member) {
-        if (member == null) {
-            return 0;
-        }
-
         // get age
         int age = member.getAge();
 
@@ -72,32 +96,8 @@ public class ContingentRepository {
         }
     }
 
-    // Delete a contingent
-    public boolean deleteSpecificContingent(int id) throws IOException {
-        ArrayList<Contingent> contingents = ch.read();
-
-        // To store the contingent
-        Contingent temp = null;
-        for (Contingent c : contingents) {
-            // If there is a match
-            if (c.getId() == id) {
-                temp = c;
-            }
-        }
-
-        // No match
-        if (temp == null) {
-            return false;
-        }
-
-        // Remove from list and parse.
-        contingents.remove(temp);
-
-        return ch.delete(contingents);
-    }
-
     // Makes id.
-    public int getId() throws IOException {
+    private int getId() throws IOException {
         int id = 0;
         for(Contingent c : ch.read()){
             if(c.getId() > id){
@@ -144,18 +144,14 @@ public class ContingentRepository {
         for(Member m : membersCopy){
             // If you have paid
             if(m.isPaid()){
-                boolean found = false;
                 // Loops through contingents
-                for (Contingent c : contingentCopy) {
-                    if(m.getId() == c.getMemberId()){
-                        // Adds
-                        found = true;
-                        contingents.add(c);
-                    }
-                }
+                Contingent found = findContingentByMemberId(m.getId(), contingentCopy);
+
                 // If paid but no contingent, make contingent and add.
-                if(!found){
+                if(found == null){
                     contingents.add(createMemberContingent(m.getId()));
+                } else {
+                    contingents.add(found);
                 }
             }
         }
@@ -164,5 +160,11 @@ public class ContingentRepository {
         contingents.sort(comparator);
 
         return contingents;
+    }
+
+    // ------------------------ get -------------------------------
+
+    public ArrayList<Member> getAllMembers(){
+        return mr.getMemberArrayList();
     }
 }
