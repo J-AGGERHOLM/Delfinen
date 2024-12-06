@@ -37,6 +37,7 @@ public class UserInterface {
             System.out.println("Indtast venligst en kommando");
             System.out.println("Træner: For at se mulighederne for trænere");
             System.out.println("Medlemmer: For at se mulighederne for medlemmer");
+            System.out.println("Trænere: For at se mulighederne for trænere");
             System.out.println("Kasserer: For at se mulighederne for kasserer");
             System.out.println("Konkurrrence: see options about competitions");
             System.out.println("Hold: administrere klubbens svømmehold");
@@ -49,6 +50,7 @@ public class UserInterface {
                 case "TRÆNER" -> trainerMenu();
                 case "HOLD" -> teamMenu();
                 case "MEDLEMMER" -> memberMenu();
+                case "TRÆNERE" -> trainersMenu();
                 case "KASSERER" -> contingentMenu();
                 case "KONKURRENCE" -> competionMenu();
                 default -> System.out.println("Please enter a valid Command");
@@ -648,7 +650,7 @@ public class UserInterface {
             System.out.println("Vælg de oplysninger, du vil redigere");
             System.out.println("Navn");
             System.out.println("Fødselsdag");
-            System.out.println("Hold");
+
 
             input = sc.nextLine().toLowerCase();
 
@@ -669,16 +671,6 @@ public class UserInterface {
                     int year = sc.nextInt();
                     trainerController.getCurrentTrainer().setBirthday(LocalDate.of(year, month, day));
                     System.out.println(trainerController.updateInformation());
-                }
-                case "hold" -> {
-                    System.out.println("Vil du fjerne træneren fra holdet eller ændre holdet?");
-                    System.out.println("1 for at slette, 2 for at ændre");
-                    input = sc.nextLine();
-                    switch (input) {
-                        case "1" -> System.out.println("Skal slette træneren fra det hold, han var på");
-                        case "2" -> System.out.println("Skal ændre det hold, han er ansvarlig for");
-                        default -> System.out.println("Ikke en mulighed");
-                    }
                 }
                 default -> System.out.println("Ikke en mulighed");
             }
