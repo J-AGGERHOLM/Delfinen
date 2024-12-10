@@ -49,13 +49,14 @@ public class ContingentRepository {
             return false;
         }
 
+        // Remove from list and parse.
+        contingents.remove(contingent);
+
         // If no contingent set false
         if (findContingentByMemberId(contingent.getMemberId(), contingents) == null) {
             updateMember(contingent.getMemberId(), false);
         }
 
-        // Remove from list and parse.
-        contingents.remove(contingent);
 
         return ch.delete(contingents);
     }
@@ -71,11 +72,19 @@ public class ContingentRepository {
     }
 
     private Member updateMember(int memberId, boolean paid) {
-        mr.getCurrentMember().setPaid(paid);
-        Member member = mr.getCurrentMember();
-        mr.getMemberArrayList().remove(member);
-        mr.getMemberArrayList().add(member);
-        mr.updateInformation();
+        Member member = null;
+        for (Member m : mr.getMemberArrayList()) {
+            if (m.getId() == memberId) {
+                member = m;
+            }
+        }
+
+        if (member != null) {
+            mr.getMemberArrayList().remove(member);
+            member.setPaid(paid);
+            mr.getMemberArrayList().add(member);
+            mr.updateInformation();
+        }
         return member;
     }
 
