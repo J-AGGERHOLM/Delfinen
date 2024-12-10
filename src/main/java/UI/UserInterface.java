@@ -508,7 +508,6 @@ public class UserInterface {
     }
 
     private void contingentAdd(Scanner scan) {
-        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
         System.out.println("Skriv et id på en medlem, som du vil oprette kontingent på:");
@@ -521,7 +520,6 @@ public class UserInterface {
     }
 
     private void contingentDelete(Scanner scan) {
-        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
         System.out.println("Skriv et id på en medlem, som du vil slette kontingent på:");
@@ -536,7 +534,7 @@ public class UserInterface {
         } else {
             System.out.println(members);
             System.out.println("Skriv et kontingent id for at slette en specifik:");
-            System.out.println(cc.deleteContingent(scan.nextInt(), memberId));
+            System.out.println(cc.deleteContingent(Validering.checkInt(scan), memberId));
         }
 
         System.out.println("--------------------------------------------------------\n");
@@ -552,7 +550,6 @@ public class UserInterface {
     }
 
     private void getSpecificContingent(Scanner scan) {
-        System.out.println("\n-----------------------------------------------------------\n");
         displayMembers();
 
         System.out.println("Skriv et medlems id for at få kontingenterne: ");

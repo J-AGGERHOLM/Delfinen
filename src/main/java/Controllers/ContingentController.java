@@ -44,8 +44,8 @@ public class ContingentController {
             }
 
             // If member is null
-            if (targetMember == null) {
-                return "Medlemmet findes ikke.";
+            if (!targetMember.isPaid()) {
+                return "Ingen data";
             }
 
             sb.append("Id, Name (MemberId), Price, Payment Date\n");
