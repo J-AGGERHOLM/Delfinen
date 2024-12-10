@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="going through changing chosen discipline to arraylist">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contingent.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Contingent.csv" afterDir="false" />
+    <list default="true" id="49e58f93-c3a0-4738-9c7c-3771b1450425" name="Changes" comment="Rettet bugs på slet også">
       <change beforePath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Repositories/ContingentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733863791195</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Rettet bugs på slet også">
+      <option name="closed" value="true" />
+      <created>1733865112166</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733865112166</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -112,7 +118,8 @@
     <MESSAGE value="going through changing chosen discipline to arraylist" />
     <MESSAGE value="Fjernet fejlen ift. opslag af specifik" />
     <MESSAGE value="Rettet bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rettet bugs" />
+    <MESSAGE value="Rettet bugs på slet også" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rettet bugs på slet også" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

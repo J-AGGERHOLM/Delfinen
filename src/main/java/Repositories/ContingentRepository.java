@@ -71,7 +71,9 @@ public class ContingentRepository {
         return null;
     }
 
+    // Updates member in memberlist.csv
     private Member updateMember(int memberId, boolean paid) {
+        // Finds member
         Member member = null;
         for (Member m : mr.getMemberArrayList()) {
             if (m.getId() == memberId) {
@@ -79,6 +81,7 @@ public class ContingentRepository {
             }
         }
 
+        // if found
         if (member != null) {
             mr.getMemberArrayList().remove(member);
             member.setPaid(paid);
@@ -154,13 +157,14 @@ public class ContingentRepository {
         for (Member m : membersCopy) {
             if (m.isPaid()) {
                 boolean hasContingent = false;
+                // if member is in contingent file.
                 for (Contingent c : contingentCopy) {
                     if (c.getMemberId() == m.getId()) {
                         contingents.add(c);
                         hasContingent = true;
                     }
                 }
-                // Hvis der ikke blev fundet et eksisterende kontingent, opret et nyt.
+                // if has paid but noone in contingent file.
                 if (!hasContingent) {
                     contingents.add(createMemberContingent(m.getId()));
                 }
